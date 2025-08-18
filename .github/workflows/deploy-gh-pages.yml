@@ -27,12 +27,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-          
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -55,11 +49,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
         
-      - name: Build Jekyll Site
+      - name: Copy HTML files to site
         run: |
-          bundle exec jekyll build --destination ./_site
-        env:
-          JEKYLL_ENV: production
+          mkdir -p _site
+          cp index.html _site/
           
       - name: Build MkDocs Documentation
         run: |

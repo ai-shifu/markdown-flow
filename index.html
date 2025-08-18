@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkdownFlow - Human Writing, AI Interpretation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0F63EE 0%, #1e40af 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .github-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .github-link:hover {
+            background: white;
+            color: #0F63EE;
+        }
+
+        main {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .api-section {
+            margin-bottom: 3rem;
+        }
+
+        .api-section h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            border-bottom: 2px solid #0F63EE;
+            padding-bottom: 0.5rem;
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .api-endpoint {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #0F63EE;
+        }
+
+        .api-method {
+            font-weight: bold;
+            color: #0F63EE;
+            font-size: 0.9rem;
+        }
+
+        .api-path {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-name {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .project-type {
+            background: #0F63EE;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .project-type.frontend {
+            background: #059669;
+        }
+
+        .project-type.backend {
+            background: #d97706;
+        }
+
+        .project-type.demo {
+            background: #7c3aed;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .quick-start {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .quick-start h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: #0F63EE;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .example-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .example-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .example-item h4 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .markdown-example {
+            background: #f8f9fa;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .markdown-example pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            margin: 0;
+            border-radius: 0;
+            overflow-x: auto;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+        }
+
+        .markdown-example code {
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>🚀 MarkdownFlow</h1>
+                <nav style="display: flex; gap: 1rem;">
+                    <a href="/docs/" class="github-link">Documentation</a>
+                    <a href="https://github.com/ai-shifu" class="github-link">View on GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <section class="hero">
+                <h2>MarkdownFlow: Human Writing, AI Interpretation</h2>
+                <p>A powerful development library that transforms markdown-formatted instructions into interactive, AI-powered documents. Creators write markdown to guide AI behavior, while AI interprets these instructions to generate personalized content for end users.</p>
+            </section>
+
+            <section class="features">
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Markdown as Instructions</h3>
+                    <p>Creators write markdown instructions with AI directives and interactive elements.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Content Generation</h3>
+                    <p>AI interprets instructions to generate personalized content based on user context and variables.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Complete Ecosystem</h3>
+                    <p>Frontend components for React and Vue, backend agents for Python and Go.</p>
+                </div>
+            </section>
+
+            <section class="api-section">
+                <h3>📝 MarkdownFlow Examples</h3>
+                <div class="example-showcase">
+                    <div class="example-item">
+                        <h4>📚 Interactive Learning Course</h4>
+                        <div class="markdown-example">
+                            <pre><code># Python Programming Course Instructions
+
+Generate a warm welcome message for {{student_name}} who is starting to learn Python programming.
+
+Explain that this course covers variables, data types, and basic programming concepts. Adapt the explanation complexity to {{student_level}} level (beginner/intermediate/advanced).
+
+Create 2-3 code examples showing variables and data types appropriate for {{student_level}}.
+
+---
+
+# Practice Exercise Generation
+
+Create a coding exercise about Python variables that matches {{student_level}} difficulty. Include:
+- Clear problem statement
+- Expected output
+- Helpful hints if needed
+
+After presenting the exercise, ask the student to choose from these options:
+?[${{exercise_choice}}I completed it|I need help|Skip this exercise]
+
+---
+
+# Response Based on Student Choice
+
+The student chose: "{{exercise_choice}}"
+
+Generate appropriate response based on their choice:
+
+If {{exercise_choice}} is "I completed it": Give encouraging feedback and introduce the next topic (functions). Include a brief preview of what functions do.
+
+If {{exercise_choice}} is "I need help": Provide step-by-step guidance with simpler examples. Break down the exercise into smaller parts.
+
+If {{exercise_choice}} is "Skip this exercise": Acknowledge their choice respectfully and provide a brief summary of the key concepts before moving to the next lesson.</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="example-item">
+                        <h4>📖 Interactive Story Adventure</h4>
+                        <div class="markdown-example">
+                            <pre><code># Interactive Fantasy Story Generation
+
+Create a welcoming introduction for {{player_name}} explaining this is an adventure story where their choices matter.
+
+Establish that they are a {{character_class}} exploring an ancient forest. Generate vivid descriptions of the forest atmosphere with trees whispering secrets and mysterious lights flickering in the distance.
+
+Build suspense and mystery. Make the player feel the wonder and intrigue of this magical place.
+
+Present a choice point: as they walk deeper into the forest, they come to a fork in the path. Offer these options:
+
+?[${{path_choice}}Follow the glowing lights|Investigate the old oak tree|Set up camp and wait]
+
+---
+
+# Generate Path Consequences
+
+The player chose to "{{path_choice}}".
+
+Generate dramatic consequences based on their choice:
+
+If {{path_choice}} is "Follow the glowing lights": Create a scene where they reach a magical clearing and encounter a friendly forest spirit who offers them a quest. The spirit needs help recovering a stolen crystal.
+
+If {{path_choice}} is "Investigate the old oak tree": Describe how they discover a hidden door in the tree trunk leading to an underground chamber with ancient puzzles and treasures.
+
+If {{path_choice}} is "Set up camp and wait": Generate a nighttime scene where they overhear a conversation between two mysterious figures plotting something in the forest.
+
+Present the consequences dramatically, adapting the tone and description style to match their choice of "{{path_choice}}".
+
+Then present new choices that logically follow from "{{path_choice}}":
+
+?[${{next_action}}Accept the quest|Decline and explore elsewhere|Ask for more information]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="example-item">
+                        <h4>💬 Personalized Consultation</h4>
+                        <div class="markdown-example">
+                            <pre><code># Career Development Consultation Instructions
+
+Generate a professional greeting for {{client_name}} explaining you'll help with their career development in {{industry}}.
+
+Acknowledge their current role as {{current_position}} and their {{years_experience}} years of experience. Express that you'll provide personalized guidance to help them achieve their goals.
+
+Ask them to clarify their career objectives by presenting these options:
+
+?[${{career_goal}}I want to advance in my current company|I want to change industries|I want to start my own business|I want better work-life balance]
+
+---
+
+# Generate Tailored Career Advice
+
+The client chose: "{{career_goal}}"
+
+Acknowledge their goal positively, noting it's an excellent objective for someone with {{years_experience}} years of experience in {{industry}}.
+
+Generate specific guidance based on their choice:
+
+If {{career_goal}} is "I want to advance in my current company": Provide advice on internal networking, skill development aligned with company needs, and strategies for visibility and promotion within their current organization.
+
+If {{career_goal}} is "I want to change industries": Discuss transferable skills, industry research strategies, networking approaches, and how to position their {{current_position}} experience for a new field.
+
+If {{career_goal}} is "I want to start my own business": Cover business planning, financial preparation, market research, and how to leverage their {{years_experience}} years of experience as a foundation.
+
+If {{career_goal}} is "I want better work-life balance": Explore boundary-setting strategies, time management, remote work options, and how to negotiate flexible arrangements.
+
+Provide 3-4 specific action steps tailored to their goal of "{{career_goal}}" and {{industry}} context.
+
+Then ask what they'd like to focus on first with these options:
+
+?[${{focus_area}}Create an action plan|Learn about networking strategies|Discuss skill development|Get industry insights]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="example-item">
+                        <h4>📋 User Information Collection</h4>
+                        <div class="markdown-example">
+                            <pre><code># Health Assessment Information Gathering
+
+Generate a welcoming introduction for a health assessment. Explain that you'll ask a few questions to create personalized recommendations.
+
+Ask the user about their primary health goal. Present these options:
+?[${{health_goal}}Lose weight|Gain muscle|Improve cardiovascular health|Manage stress|Better sleep|General wellness]
+
+---
+
+# Activity Level Collection
+
+Acknowledge their choice of "{{health_goal}}" positively.
+
+Ask about their current activity level with these options:
+?[${{activity_level}}Very active (exercise 5+ times/week)|Moderately active (exercise 2-4 times/week)|Lightly active (exercise 1-2 times/week)|Sedentary (little to no exercise)]
+
+---
+
+# Dietary Preference Collection
+
+Reference their previous choices: they are "{{activity_level}}" and want to "{{health_goal}}".
+
+Ask about their dietary approach with these options:
+?[${{diet_type}}No restrictions - I eat everything|Vegetarian|Vegan|Keto/Low-carb|Mediterranean|Intermittent fasting|Other special diet]
+
+---
+
+# Time Commitment Collection
+
+Create a summary of their profile so far:
+- Goal: {{health_goal}}
+- Activity level: {{activity_level}}
+- Diet preference: {{diet_type}}
+
+Ask how much time they can commit to health activities daily:
+?[${{time_commitment}}Less than 30 minutes|30-60 minutes|1-2 hours|More than 2 hours]
+
+---
+
+# Generate Personalized Plan
+
+Create a comprehensive health plan based on their complete profile:
+- Goal: {{health_goal}}
+- Activity level: {{activity_level}}
+- Diet preference: {{diet_type}}
+- Time available: {{time_commitment}}
+
+The plan should include:
+1. Specific strategies for achieving "{{health_goal}}" suitable for someone who is "{{activity_level}}"
+2. Meal planning recommendations that align with "{{diet_type}}" preferences
+3. Exercise routines that fit within "{{time_commitment}}" daily schedule
+4. Progress tracking methods appropriate for their goal
+
+Make all recommendations practical and achievable for their specific profile.</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="api-section">
+                <h3>📦 Open Source Projects</h3>
+                <div class="projects-grid">
+                    <a href="https://github.com/ai-shifu/markdown-flow-ui" class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">markdown-flow-ui</div>
+                            <div class="project-type frontend">FRONTEND</div>
+                        </div>
+                        <div class="project-description">
+                            Complete UI components with built-in functionality. Ready-to-use React components for interactive markdown documents.
+                        </div>
+                    </a>
+                    <a href="https://github.com/ai-shifu/remark-flow" class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">remark-flow</div>
+                            <div class="project-type frontend">FRONTEND</div>
+                        </div>
+                        <div class="project-description">
+                            React-markdown plugin for MarkdownFlow syntax. Extends react-markdown with variable processing and AI integration.
+                        </div>
+                    </a>
+                    <a href="https://github.com/ai-shifu/markdown-it-flow" class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">markdown-it-flow</div>
+                            <div class="project-type frontend">FRONTEND</div>
+                        </div>
+                        <div class="project-description">
+                            Markdown-it plugin for MarkdownFlow syntax. Adds MarkdownFlow capabilities to any markdown-it powered application.
+                        </div>
+                    </a>
+                    <a href="https://github.com/ai-shifu/markdown-flow-agent-py" class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">markdown-flow-agent-py</div>
+                            <div class="project-type backend">BACKEND</div>
+                        </div>
+                        <div class="project-description">
+                            Python backend implementation. FastAPI-based server with template processing and LLM integration capabilities.
+                        </div>
+                    </a>
+                    <a href="https://github.com/ai-shifu/markdown-flow-agent-go" class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">markdown-flow-agent-go</div>
+                            <div class="project-type backend">BACKEND</div>
+                        </div>
+                        <div class="project-description">
+                            Go backend implementation. High-performance server with concurrent processing and minimal resource usage.
+                        </div>
+                    </a>
+                    <a href="https://github.com/ai-shifu/markdown-flow" class="project-card">
+                        <div class="project-header">
+                            <div class="project-name">markdown-flow</div>
+                            <div class="project-type demo">DEMO</div>
+                        </div>
+                        <div class="project-description">
+                            Testing and development platform. Interactive demo showcasing MarkdownFlow capabilities with live examples.
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Shifu. Open source projects under <a href="https://github.com/ai-shifu" style="color: white;">ai-shifu</a> organization.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
