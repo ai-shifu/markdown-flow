@@ -1,6 +1,4 @@
-# MarkdownFlow Documentation
-
-Welcome to the official MarkdownFlow documentation! MarkdownFlow is **the HTML of the AI Era** - a document format that humans, code, and AI can all read and write.
+# MarkdownFlow Syntax
 
 ## What is MarkdownFlow?
 

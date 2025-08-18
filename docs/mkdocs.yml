@@ -38,8 +38,9 @@ markdown_extensions:
       alternate_style: true
 
 nav:
-  - Home: syntax/index.md
+  - Home: index.md
   - Syntax Guide:
+    - Overview: syntax/index.md
     - Variables: syntax/variables.md
     - User Input: syntax/user-input.md
     - AI Instructions: syntax/ai-instructions.md
