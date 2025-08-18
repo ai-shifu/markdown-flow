@@ -1,4 +1,8 @@
-# MarkdownFlow Syntax
+# MarkdownFlow Documentation
+
+Welcome to the official MarkdownFlow documentation! MarkdownFlow is **the HTML of the AI Era** - a document format that humans, code, and AI can all read and write.
+
+## What is MarkdownFlow?
 
 MarkdownFlow extends standard Markdown with powerful features for creating dynamic, AI-powered documents. It enables creators to write instructions that AI can interpret and transform into personalized content.
 
@@ -92,9 +96,30 @@ If {{learning_choice}} is "Practical examples":
 3. **Logical Flow** - Structure content with clear conditions
 4. **User Focus** - Design interactions that enhance user experience
 
-## Next Steps
+## Quick Navigation
 
-- [Variables](variables.md) - Master dynamic content
-- [User Input](user-input.md) - Create interactive experiences
+### Learn MarkdownFlow Syntax
+- [Variables](variables.md) - Master dynamic content with `{{variables}}`
+- [User Input](user-input.md) - Create interactive experiences with `?[$...]`
 - [AI Instructions](ai-instructions.md) - Write effective AI directives
 - [Examples](examples.md) - See complete templates in action
+
+### Use MarkdownFlow Libraries
+- [Library Overview](../libraries/index.md) - Choose the right components
+- **Frontend**: [React UI](../libraries/frontend/markdown-flow-ui.md) | [remark plugin](../libraries/frontend/remark-flow.md) | [markdown-it plugin](../libraries/frontend/markdown-it-flow.md)
+- **Backend**: [Python Agent](../libraries/backend/agent-python.md) | [Go Agent](../libraries/backend/agent-go.md)
+
+## Getting Started
+
+### For Creators
+Start with the [syntax guide](variables.md) to learn how to write MarkdownFlow templates that combine human-readable content with AI instructions.
+
+### For Developers
+Check out our [libraries](../libraries/index.md) to integrate MarkdownFlow into your applications. We have components for React, Vue, Python, Go, and more.
+
+## Community & Support
+
+- 🎮 [Try the Playground](https://markdownflow.streamlit.app/) - Experiment with MarkdownFlow
+- 💬 [GitHub Discussions](https://github.com/ai-shifu) - Join the community
+- 🐛 [Report Issues](https://github.com/ai-shifu/markdown-flow/issues) - Help us improve
+- 📧 [Contact Us](mailto:support@markdownflow.ai) - Get in touch
