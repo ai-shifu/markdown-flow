@@ -1,12 +1,17 @@
 # Jekyll configuration for markdown-flow
 title: MarkdownFlow
-description: A powerful markdown processing tool
+description: Human Writing, AI Interpretation - A powerful development library
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
 theme: minima
+
+# Header pages
+header_pages:
+  - about.md
+  - docs.md
 
 # Exclude from Jekyll processing
 exclude:
