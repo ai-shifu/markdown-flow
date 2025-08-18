@@ -8,10 +8,8 @@ url: "" # the base hostname & protocol for your site
 markdown: kramdown
 theme: minima
 
-# Header pages
-header_pages:
-  - about.md
-  - docs.md
+# Header pages (handled by custom header.html)
+# header_pages:
 
 # Exclude from Jekyll processing
 exclude:
