@@ -39,12 +39,18 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started:
-    - Installation: getting-started/installation.md
-    - Quick Start: getting-started/quickstart.md
-  - User Guide:
-    - Overview: guide/overview.md
-    - Configuration: guide/configuration.md
-  - API Reference:
-    - Core API: api/core.md
-    - Extensions: api/extensions.md
+  - MarkdownFlow Syntax:
+    - Overview: syntax/index.md
+    - Variables: syntax/variables.md
+    - User Input: syntax/user-input.md
+    - AI Instructions: syntax/ai-instructions.md
+    - Examples: syntax/examples.md
+  - Libraries:
+    - Overview: libraries/index.md
+    - Frontend:
+      - markdown-flow-ui: libraries/frontend/markdown-flow-ui.md
+      - remark-flow: libraries/frontend/remark-flow.md
+      - markdown-it-flow: libraries/frontend/markdown-it-flow.md
+    - Backend:
+      - Python Agent: libraries/backend/agent-python.md
+      - Go Agent: libraries/backend/agent-go.md
