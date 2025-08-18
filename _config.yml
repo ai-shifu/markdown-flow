@@ -1,0 +1,30 @@
+# Jekyll configuration for markdown-flow
+title: MarkdownFlow
+description: A powerful markdown processing tool
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Exclude from Jekyll processing
+exclude:
+  - docs/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - .git/
+  - .github/
+  - LICENSE
+  - README.md
+
+# Include files
+include:
+  - index.md
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
