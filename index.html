@@ -57,6 +57,24 @@
             background: white;
             color: #0F63EE;
         }
+        
+        .playground-link {
+            color: #0F63EE;
+            background: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+        }
+        
+        .playground-link:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+        }
 
         main {
             background: white;
@@ -323,9 +341,10 @@
         <div class="container">
             <div class="header-content">
                 <h1>🚀 MarkdownFlow</h1>
-                <nav style="display: flex; gap: 1rem;">
+                <nav style="display: flex; gap: 1rem; align-items: center;">
                     <a href="/docs/" class="github-link">Documentation</a>
-                    <a href="https://github.com/ai-shifu" class="github-link">View on GitHub</a>
+                    <a href="https://github.com/ai-shifu" class="github-link">GitHub</a>
+                    <a href="https://markdownflow.streamlit.app/" class="playground-link">🎮 Try Playground</a>
                 </nav>
             </div>
         </div>
