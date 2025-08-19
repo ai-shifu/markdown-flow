@@ -38,7 +38,7 @@ markdown_extensions:
       alternate_style: true
 
 nav:
-  - Home: index.md
+  - Getting Started: index.md
   - Specification:
     - Overview: specification/index.md
     - Variables: specification/variables.md
