@@ -39,11 +39,6 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started:
-    - What is MarkdownFlow: getting-started/index.md
-    - MarkdownFlow vs Markdown: getting-started/relationship.md
-    - Quick Start (5 min): getting-started/quickstart.md
-    - Installation: getting-started/installation.md
   - Specification:
     - Overview: specification/index.md
     - Variables: specification/variables.md

@@ -244,7 +244,7 @@ Support MarkdownFlow development:
 Ready to join the MarkdownFlow ecosystem?
 
 1. **[Try the Playground](https://markdownflow.streamlit.app)** - Experiment with MarkdownFlow
-2. **[Read the Docs](/getting-started/)** - Learn the fundamentals
+2. **[Read the Docs](/)** - Learn the fundamentals
 3. **[Install an SDK](/sdks/)** - Start building
 4. **[Join the Community](https://discord.gg/markdown-flow)** - Connect with others
 
