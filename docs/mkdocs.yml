@@ -39,18 +39,30 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Syntax Guide:
-    - Overview: syntax/index.md
-    - Variables: syntax/variables.md
-    - User Input: syntax/user-input.md
-    - AI Instructions: syntax/ai-instructions.md
-    - Examples: syntax/examples.md
-  - Libraries:
-    - Overview: libraries/index.md
-    - Frontend:
-      - markdown-flow-ui: libraries/frontend/markdown-flow-ui.md
-      - remark-flow: libraries/frontend/remark-flow.md
-      - markdown-it-flow: libraries/frontend/markdown-it-flow.md
-    - Backend:
-      - Python Agent: libraries/backend/agent-python.md
-      - Go Agent: libraries/backend/agent-go.md
+  - Getting Started:
+    - What is MarkdownFlow: getting-started/index.md
+    - MarkdownFlow vs Markdown: getting-started/relationship.md
+    - Quick Start (5 min): getting-started/quickstart.md
+    - Installation: getting-started/installation.md
+  - Specification:
+    - Overview: specification/index.md
+    - Variables: specification/variables.md
+    - User Input: specification/user-input.md
+    - AI Instructions: specification/ai-instructions.md
+  - SDKs:
+    - Overview: sdks/index.md
+    - JavaScript:
+      - markdown-flow-ui (React): sdks/javascript/markdown-flow-ui.md
+      - remark-flow (React): sdks/javascript/remark-flow.md
+      - markdown-it-flow (Vue/Vanilla): sdks/javascript/markdown-it-flow.md
+    - Python: sdks/python.md
+    - Go: sdks/go.md
+  - Examples:
+    - Overview: examples/index.md
+    - Education: examples/education.md
+    - Storytelling: examples/storytelling.md
+    - Forms & Surveys: examples/forms.md
+    - Documentation: examples/documentation.md
+    - Consultation: examples/consultation.md
+  - Ecosystem:
+    - Overview: ecosystem/index.md

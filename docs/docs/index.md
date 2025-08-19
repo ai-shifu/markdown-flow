@@ -1,46 +1,142 @@
-# MarkdownFlow Documentation
+# Welcome to MarkdownFlow Documentation
 
-Welcome to MarkdownFlow - **The HTML of the AI Era**
+> **The HTML of the AI Era** - A document format that humans, code, and AI can all read and write.
 
-A document format that humans, code, and AI can all read and write.
+## Quick Navigation
 
-## 🚀 Quick Start
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
 
-- **[Learn the Syntax](syntax/index.md)** - Understand MarkdownFlow's powerful features
-- **[Explore Libraries](libraries/index.md)** - Integrate MarkdownFlow into your applications
-- **[See Examples](syntax/examples.md)** - Real-world use cases and templates
+<div style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px;">
 
-## 📚 What You'll Find Here
+### 🚀 [Getting Started](getting-started/index.md)
+New to MarkdownFlow? Start here!
+- What is MarkdownFlow
+- 5-minute quickstart
+- Installation guides
 
-### MarkdownFlow Syntax
-Learn how to write dynamic, AI-powered documents:
-- [Variables](syntax/variables.md) - Dynamic content with `{{variables}}`
-- [User Input](syntax/user-input.md) - Interactive elements with `?[$...]`
-- [AI Instructions](syntax/ai-instructions.md) - Natural language directives
-- [Complete Examples](syntax/examples.md) - 5 real-world templates
+</div>
 
-### Open Source Libraries
-Choose components for your tech stack:
-- **Frontend**: [React](libraries/frontend/markdown-flow-ui.md), [Vue](libraries/frontend/markdown-it-flow.md), [Vanilla JS](libraries/frontend/markdown-it-flow.md)
-- **Backend**: [Python](libraries/backend/agent-python.md), [Go](libraries/backend/agent-go.md)
+<div style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px;">
 
-## 🎯 For Different Users
+### 📖 [Specification](specification/index.md)
+Formal syntax and rules
+- Variable syntax
+- User input format
+- AI instructions
 
-### Content Creators
-Write markdown that becomes intelligent, interactive documents. No coding required!
+</div>
 
-### Developers
-Integrate MarkdownFlow into your applications with our comprehensive libraries.
+<div style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px;">
 
-### AI Engineers
-Build AI-powered applications that understand human intent through markdown.
+### 🛠️ [SDKs](sdks/index.md)
+Libraries for every stack
+- React, Vue, JavaScript
+- Python backend
+- Go backend
 
-## 🔗 Resources
+</div>
 
-- [Try the Playground](https://markdownflow.streamlit.app/)
-- [GitHub Organization](https://github.com/ai-shifu)
-- [Main Repository](https://github.com/ai-shifu/markdown-flow)
+<div style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px;">
+
+### 💡 [Examples](examples/index.md)
+Real-world use cases
+- Interactive education
+- Smart documentation
+- Dynamic forms
+
+</div>
+
+<div style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px;">
+
+### 🌐 [Ecosystem](ecosystem/index.md)
+Community & integrations
+- Official tools
+- Community projects
+- Commercial products
+
+</div>
+
+</div>
+
+## What is MarkdownFlow?
+
+MarkdownFlow is a superset of Markdown that adds three powerful features:
+
+### 1. Variables `{{name}}`
+Replace placeholders with dynamic content:
+```markdown
+Hello {{user_name}}, welcome to {{app_name}}!
+```
+
+### 2. User Input `?[#{{choice}}Yes|No]`
+Create interactive elements:
+```markdown
+What's your experience level?
+?[#{{level}}Beginner|Intermediate|Advanced]
+```
+
+### 3. AI Instructions
+Embed instructions for AI processing:
+```markdown
+<!-- AI: Generate a summary appropriate for {{level}} readers -->
+```
+
+## Why MarkdownFlow?
+
+### For Developers
+- **Simple**: Extends familiar Markdown syntax
+- **Flexible**: Works with any tech stack
+- **Powerful**: Full programmatic control
+
+### For Content Creators
+- **Readable**: Looks like regular Markdown
+- **Dynamic**: Content adapts to context
+- **Interactive**: Engage users with choices
+
+### For AI Applications
+- **Structured**: Clear syntax for parsing
+- **Contextual**: Variables provide context
+- **Instructable**: Direct AI behavior
+
+## Quick Example
+
+```markdown
+# Learning {{topic}}
+
+?[#{{experience}}I'm new to programming|I know some basics|I'm experienced]
+
+<!-- AI: Create a {{topic}} tutorial for someone who says "{{experience}}" -->
+
+## Your Personalized Lesson
+
+Based on your experience, here's what we'll cover:
+- Concepts suited for your level
+- Practical exercises
+- Relevant examples
+```
+
+## Popular Use Cases
+
+- **📚 Adaptive Learning** - Educational content that adjusts to student level
+- **📝 Smart Documentation** - Docs that show role-specific information  
+- **💬 Conversational AI** - Dynamic chatbot responses
+- **📋 Intelligent Forms** - Forms with conditional logic
+- **📖 Interactive Stories** - Choose-your-own-adventure narratives
+
+## Getting Help
+
+- 💬 [Discord Community](https://discord.gg/markdown-flow) - Chat with users and contributors
+- 🐛 [GitHub Issues](https://github.com/ai-shifu/markdown-flow/issues) - Report bugs and request features
+- 📧 [Email Support](mailto:support@markdownflow.ai) - For commercial inquiries
+
+## Start Building
+
+Ready to create dynamic, interactive content?
+
+1. **[Try the Playground](https://markdownflow.streamlit.app)** - Experiment online
+2. **[Read the Quick Start](getting-started/quickstart.md)** - Learn in 5 minutes
+3. **[Install an SDK](sdks/index.md)** - Start coding
 
 ---
 
-*Start exploring with our [Syntax Guide](syntax/index.md) or jump straight to [Examples](syntax/examples.md)!*
+*MarkdownFlow is open source and available under the MIT License.*
