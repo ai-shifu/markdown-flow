@@ -1,0 +1,63 @@
+# Markdownlint configuration
+# See https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+# Default state for all rules
+default: true
+
+# Line length - reasonable for modern screens
+MD013:
+  line_length: 120
+  code_blocks: false
+  tables: false
+  
+# Heading style
+MD003:
+  style: "atx"
+  
+# Unordered list style
+MD004:
+  style: "dash"
+  
+# Ordered list item prefix
+MD029:
+  style: "ordered"
+  
+# Code block style
+MD046:
+  style: "fenced"
+  
+# Emphasis style
+MD049:
+  style: "underscore"
+  
+# Strong style  
+MD050:
+  style: "asterisk"
+
+# Allow inline HTML (needed for some advanced formatting)
+MD033: false
+
+# Allow bare URLs (common in documentation)
+MD034: false
+
+# First line in file should be a top level heading (not always needed)
+MD041: false
+
+# No duplicate headings (allow with different nesting)
+MD024:
+  siblings_only: true
+  allow_different_nesting: true
+
+# No trailing punctuation in headings
+# Allow question marks for FAQ-style headings
+MD026:
+  punctuation: ".,;:!"
+
+# Allow multiple top-level headings (for documentation)
+MD025: false
+
+# Ignore files
+exclude:
+  - "node_modules/**"
+  - "docs/site/**"
+  - ".git/**"
