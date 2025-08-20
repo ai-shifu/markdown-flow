@@ -1,4 +1,4 @@
-name: Deploy Jekyll and MkDocs to GitHub Pages
+name: Deploy homepage and MkDocs to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
