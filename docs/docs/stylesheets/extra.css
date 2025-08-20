@@ -29,10 +29,33 @@
   background: linear-gradient(135deg, #0F63EE 0%, #1e40af 100%);
 }
 
-/* Navigation tabs styling */
+/* Navigation tabs styling - matching header gradient */
 .md-tabs {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, #0F63EE 0%, #1e40af 100%);
+}
+
+/* Make tabs container seamless with header */
+.md-tabs__list {
+  background: transparent;
+}
+
+/* Tab items styling */
+.md-tabs__item {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.md-tabs__link {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+}
+
+.md-tabs__link:hover {
+  color: white;
+}
+
+.md-tabs__link--active {
+  color: white;
+  font-weight: bold;
 }
 
 /* Search styling */
