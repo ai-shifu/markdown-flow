@@ -42,7 +42,7 @@ markdown_extensions:
 
 nav:
   - Getting Started:
-    - Overview: index.md
+    - index.md
     - Complete Example: getting-started/example.md
     - How It Works: getting-started/how-it-works.md
     - Quick Start (5 min): getting-started/quickstart.md
