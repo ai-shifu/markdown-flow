@@ -4,32 +4,37 @@ MarkdownFlow provides SDKs for major programming languages and frameworks. Choos
 
 ## Quick Comparison
 
-| SDK | Language | Use Case | Package |
-|-----|----------|----------|---------|
-| [markdown-flow-ui](javascript/markdown-flow-ui.md) | React | Full UI components | `npm install markdown-flow-ui` |
-| [remark-flow](javascript/remark-flow.md) | React | Markdown plugin | `npm install remark-flow` |
-| [markdown-it-flow](javascript/markdown-it-flow.md) | JavaScript | Parser plugin | `npm install markdown-it-flow` |
-| [Python Agent](python.md) | Python | Backend processing | `pip install markdown-flow-agent` |
-| [Go Agent](go.md) | Go | High-performance backend | `go get github.com/ai-shifu/markdown-flow-agent-go` |
+| SDK                                                | Language   | Use Case                 | Package                                             |
+| -------------------------------------------------- | ---------- | ------------------------ | --------------------------------------------------- |
+| [markdown-flow-ui](javascript/markdown-flow-ui.md) | React      | Full UI components       | `npm install markdown-flow-ui`                      |
+| [remark-flow](javascript/remark-flow.md)           | React      | Markdown plugin          | `npm install remark-flow`                           |
+| [markdown-it-flow](javascript/markdown-it-flow.md) | JavaScript | Parser plugin            | `npm install markdown-it-flow`                      |
+| [Python Agent](python.md)                          | Python     | Backend processing       | `pip install markdown-flow-agent`                   |
+| [Go Agent](go.md)                                  | Go         | High-performance backend | `go get github.com/ai-shifu/markdown-flow-agent-go` |
 
 ## Frontend SDKs
 
 ### React
+
 - **[markdown-flow-ui](javascript/markdown-flow-ui.md)** - Complete React components with styling
 - **[remark-flow](javascript/remark-flow.md)** - Plugin for react-markdown
 
 ### Vue.js
+
 - **[markdown-it-flow](javascript/markdown-it-flow.md)** - Works with Vue's markdown-it integration
 
 ### Vanilla JavaScript
+
 - **[markdown-it-flow](javascript/markdown-it-flow.md)** - Pure JavaScript implementation
 
 ## Backend SDKs
 
 ### Python
+
 - **[markdown-flow-agent](python.md)** - FastAPI-based backend with AI integration
 
 ### Go
+
 - **[markdown-flow-agent-go](go.md)** - High-performance Go implementation
 
 ## Choosing an SDK
@@ -60,7 +65,7 @@ MarkdownFlow provides SDKs for major programming languages and frameworks. Choos
 
 ### Full-Stack React + Python
 
-```
+```text
 React App (markdown-flow-ui)
     ↓ HTTP/WebSocket
 Python Backend (markdown-flow-agent)
@@ -70,7 +75,7 @@ LLM Provider (OpenAI/Anthropic)
 
 ### Vue + Go High-Performance
 
-```
+```text
 Vue App (markdown-it-flow)
     ↓ HTTP/WebSocket
 Go Backend (markdown-flow-agent-go)
@@ -80,7 +85,7 @@ LLM Provider
 
 ### Microservices Architecture
 
-```
+```text
 Frontend (Any SDK)
     ↓
 API Gateway
@@ -93,13 +98,15 @@ LLM Service
 ## Quick Start Examples
 
 ### React
-```jsx
-import { MarkdownFlow } from 'markdown-flow-ui';
 
-<MarkdownFlow template={template} />
+```jsx
+import { MarkdownFlow } from "markdown-flow-ui";
+
+<MarkdownFlow template={template} />;
 ```
 
 ### Python
+
 ```python
 from markdown_flow_agent import FlowAgent
 
@@ -108,6 +115,7 @@ result = await agent.process(template, variables)
 ```
 
 ### Go
+
 ```go
 agent := mf.NewAgent(config)
 result, err := agent.Process(template, variables)
@@ -115,15 +123,15 @@ result, err := agent.Process(template, variables)
 
 ## Feature Matrix
 
-| Feature | UI | remark | markdown-it | Python | Go |
-|---------|-----|--------|-------------|---------|-----|
-| Variables | ✅ | ✅ | ✅ | ✅ | ✅ |
-| User Input | ✅ | ✅ | ✅ | ✅ | ✅ |
-| AI Processing | ✅ | ⚠️ | ⚠️ | ✅ | ✅ |
-| Styling | ✅ | ❌ | ❌ | N/A | N/A |
-| TypeScript | ✅ | ✅ | ✅ | N/A | N/A |
-| Streaming | ✅ | ❌ | ❌ | ✅ | ✅ |
-| Caching | ✅ | ❌ | ❌ | ✅ | ✅ |
+| Feature       | UI  | remark | markdown-it | Python | Go  |
+| ------------- | --- | ------ | ----------- | ------ | --- |
+| Variables     | ✅  | ✅     | ✅          | ✅     | ✅  |
+| User Input    | ✅  | ✅     | ✅          | ✅     | ✅  |
+| AI Processing | ✅  | ⚠️     | ⚠️          | ✅     | ✅  |
+| Styling       | ✅  | ❌     | ❌          | N/A    | N/A |
+| TypeScript    | ✅  | ✅     | ✅          | N/A    | N/A |
+| Streaming     | ✅  | ❌     | ❌          | ✅     | ✅  |
+| Caching       | ✅  | ❌     | ❌          | ✅     | ✅  |
 
 Legend: ✅ Full support | ⚠️ Requires backend | ❌ Not supported | N/A Not applicable
 

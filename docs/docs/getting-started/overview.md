@@ -9,6 +9,7 @@ MarkdownFlow extends Markdown with variables, user inputs, and AI instructions t
 ## The Problem It Solves
 
 Traditional documents are static. The same content for everyone. But in the AI era, we need documents that:
+
 - Adapt to each reader
 - Respond to user choices
 - Generate personalized content
@@ -19,6 +20,7 @@ MarkdownFlow solves this by adding just three simple concepts to standard Markdo
 ## Core Concepts
 
 ### 1. Variables `{{name}}`
+
 Replace static text with dynamic content:
 
 ```markdown
@@ -26,14 +28,16 @@ Hello {{user_name}}, welcome to {{course_name}}!
 ```
 
 ### 2. User Input `?[...]`
+
 Collect choices from users:
 
 ```markdown
 What's your experience level?
-?[#{{level}}Beginner|Intermediate|Advanced]
+?[%{{level}}Beginner|Intermediate|Advanced]
 ```
 
 ### 3. AI Instructions
+
 Write natural language instructions for AI:
 
 ```markdown
@@ -44,30 +48,37 @@ Make it encouraging and specific to their goals.
 ## Who Uses MarkdownFlow?
 
 ### Content Creators
+
 Write once, deliver personalized content to thousands. No coding required.
 
 ### Developers
+
 Build interactive applications with markdown as the interface.
 
 ### Educators
+
 Create adaptive learning materials that meet students where they are.
 
 ### AI Engineers
+
 Define AI behavior using natural language instead of complex prompts.
 
 ## Why MarkdownFlow?
 
 ### It's Just Markdown
+
 - 100% compatible with standard Markdown
 - Works with existing tools and editors
 - No proprietary format lock-in
 
 ### It's Human-Friendly
+
 - Read and write without special tools
 - Natural language instructions
 - Clear, simple syntax
 
 ### It's Powerful
+
 - Full Turing-complete with AI
 - Infinite personalization possibilities
 - Works with any LLM provider
@@ -75,6 +86,7 @@ Define AI behavior using natural language instead of complex prompts.
 ## Next Steps
 
 Ready to dive deeper?
+
 - [Quick Example](example.md) - See a complete working example
 - [How It Works](how-it-works.md) - Understand the processing flow
 - [Installation](installation.md) - Set up MarkdownFlow in your project

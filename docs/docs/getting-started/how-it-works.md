@@ -4,39 +4,49 @@ Understanding the MarkdownFlow processing pipeline helps you create more effecti
 
 ## Processing Pipeline
 
-```
+```text
 Template → Parser → Processor → AI Engine → Output
 ```
 
 ### 1. Template Creation
+
 Authors write MarkdownFlow templates using standard Markdown with three extensions:
+
 - Variables `{{name}}`
 - User inputs `?[...]`
 - AI instructions (natural language)
 
 ### 2. Parsing Phase
+
 The parser:
+
 - Identifies variables and their positions
 - Extracts user input definitions
 - Separates AI instructions from visible content
 - Validates syntax
 
 ### 3. Processing Phase
+
 The processor:
+
 - Collects variable values from context
 - Renders user input UI elements
 - Waits for user interactions
 - Assembles the complete context
 
 ### 4. AI Engine
+
 When AI instructions are present:
+
 - Combines template, variables, and user choices
 - Sends context to the LLM
 - Receives generated content
 - Integrates response into final document
 
 ### 5. Output Generation
+
 The final document:
+
 - Has all variables replaced
 - Shows personalized content
 - Maintains Markdown formatting
@@ -47,7 +57,7 @@ The final document:
 ### Simple Variable Replacement
 
 ```markdown
-Input:  Hello {{name}}, today is {{date}}!
+Input: Hello {{name}}, today is {{date}}!
 Context: {name: "Alice", date: "2024-01-15"}
 Output: Hello Alice, today is 2024-01-15!
 ```
@@ -58,7 +68,7 @@ No AI involved - just direct substitution.
 
 ```markdown
 Template:
-?[#{{choice}}Yes|No]
+?[%{{choice}}Yes|No]
 
 Renders as:
 ○ Yes
@@ -82,14 +92,15 @@ AI Prompt:
 "Generate a greeting for Bob who likes photography."
 
 Output:
-"Hey Bob! Hope you're capturing some amazing moments 
-with your camera today! The light this morning would 
+"Hey Bob! Hope you're capturing some amazing moments
+with your camera today! The light this morning would
 be perfect for some outdoor photography."
 ```
 
 ## Processing Modes
 
 ### 1. Static Mode
+
 - Only variable replacement
 - No AI calls needed
 - Instant processing
@@ -100,18 +111,20 @@ Your account {{account_id}} expires on {{expiry_date}}.
 ```
 
 ### 2. Interactive Mode
+
 - User inputs required
 - Collects choices before processing
 - May trigger conditional content
 
 ```markdown
 Select your plan:
-?[#{{plan}}Basic|Pro|Enterprise]
+?[%{{plan}}Basic|Pro|Enterprise]
 
 You selected the {{plan}} plan.
 ```
 
 ### 3. Generative Mode
+
 - AI processes instructions
 - Creates dynamic content
 - Personalized responses
@@ -122,13 +135,14 @@ Consider the target audience: {{audience}}.
 ```
 
 ### 4. Hybrid Mode
+
 Combines all three:
 
 ```markdown
 Hi {{user_name}}!
 
 What would you like to learn?
-?[#{{topic}}Python|JavaScript|SQL]
+?[%{{topic}}Python|JavaScript|SQL]
 
 <!-- AI: Create a beginner-friendly introduction to {{topic}} -->
 ```
@@ -173,6 +187,7 @@ async for chunk in agent.stream_process(template, variables):
 ## Variable Scoping
 
 ### Global Variables
+
 Available throughout the document:
 
 ```markdown
@@ -182,6 +197,7 @@ Thank you for reading, {{user_name}}!
 ```
 
 ### Local Context
+
 Variables can be overridden in AI instructions:
 
 ```markdown
@@ -200,6 +216,7 @@ While MarkdownFlow doesn't have explicit if/else syntax, AI instructions handle 
 
 ```markdown
 Based on {{level}}:
+
 - If "beginner": Cover basics only
 - If "intermediate": Include advanced topics
 - If "expert": Focus on optimization
@@ -208,11 +225,13 @@ Based on {{level}}:
 ## Performance Considerations
 
 ### Caching
+
 - Variable substitutions are cached
 - AI responses can be cached by input hash
 - User selections are stored in session
 
 ### Optimization Tips
+
 1. **Minimize AI calls** - Use static content where possible
 2. **Batch processing** - Process multiple templates together
 3. **Stream responses** - For better UX with long content
@@ -221,6 +240,7 @@ Based on {{level}}:
 ## Security
 
 ### Variable Sanitization
+
 All variables are escaped by default:
 
 ```markdown
@@ -230,6 +250,7 @@ Output: &lt;script&gt;alert('xss')&lt;/script&gt;
 ```
 
 ### AI Instruction Isolation
+
 AI instructions are never shown to end users:
 
 ```markdown
@@ -243,6 +264,7 @@ Generate content here (this is sent to AI)
 ## Error Handling
 
 ### Missing Variables
+
 ```markdown
 Template: Hello {{name}}!
 Context: {} (empty)
@@ -250,12 +272,14 @@ Output: Hello {{name}}! (or error, depending on config)
 ```
 
 ### Invalid Syntax
+
 ```markdown
-?[{{choice}}Yes|No]  ← Missing marker
+?[{{choice}}Yes|No] ← Missing marker
 Error: Invalid user input syntax
 ```
 
 ### AI Failures
+
 ```markdown
 Fallback content is shown when AI is unavailable.
 Configure retry logic and timeouts in SDK.

@@ -44,16 +44,16 @@ config = FlowConfig(
     llm_provider="openai",  # or "anthropic", "cohere", "local"
     api_key="your-api-key",
     model="gpt-4",          # or "claude-3", etc.
-    
+
     # Processing Options
     temperature=0.7,
     max_tokens=2000,
     timeout=30,             # seconds
-    
+
     # Caching
     enable_cache=True,
     cache_ttl=3600,         # seconds
-    
+
     # Safety
     enable_content_filter=True,
     max_recursion_depth=5
@@ -89,13 +89,13 @@ agent = FlowAgent()
 @app.post("/process")
 async def process_template(request: ProcessRequest):
     """Process a MarkdownFlow template with variables."""
-    
+
     result = await agent.process(
         template=request.template,
         variables=request.variables,
         context=request.context  # Optional additional context
     )
-    
+
     return {
         "content": result.content,
         "variables_used": result.variables_used,
@@ -185,7 +185,7 @@ async def stream_processing(request: ProcessRequest):
             variables=request.variables
         ):
             yield f"data: {chunk.json()}\n\n"
-    
+
     return StreamingResponse(
         generate(),
         media_type="text/event-stream"
@@ -198,12 +198,12 @@ async def stream_processing(request: ProcessRequest):
 @app.post("/batch")
 async def batch_process(requests: List[ProcessRequest]):
     """Process multiple templates concurrently."""
-    
+
     tasks = [
         agent.process(req.template, req.variables)
         for req in requests
     ]
-    
+
     results = await asyncio.gather(*tasks)
     return {"results": results}
 ```
@@ -246,7 +246,7 @@ class RateLimitMiddleware(Middleware):
     def __init__(self, max_requests=100):
         self.max_requests = max_requests
         self.requests = {}
-    
+
     async def process(self, template, variables, next_handler):
         # Implement rate limiting logic
         return await next_handler(template, variables)
@@ -263,11 +263,11 @@ from markdown_flow_agent import Processor
 
 class CustomProcessor(Processor):
     """Custom processor for specific template patterns."""
-    
+
     def can_process(self, template):
         """Check if this processor can handle the template."""
         return "CUSTOM:" in template
-    
+
     async def process(self, template, variables):
         """Process the template."""
         # Custom processing logic
@@ -340,7 +340,7 @@ async def batch_process(requests: List[ProcessRequest]):
         for req in requests
     ]
     results = await asyncio.gather(*tasks, return_exceptions=True)
-    
+
     return {
         "results": [
             r.dict() if not isinstance(r, Exception) else {"error": str(r)}
@@ -352,11 +352,11 @@ async def batch_process(requests: List[ProcessRequest]):
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket for real-time processing."""
     await websocket.accept()
-    
+
     try:
         while True:
             data = await websocket.receive_json()
-            
+
             async for chunk in agent.stream_process(
                 template=data["template"],
                 variables=data.get("variables", {})
@@ -365,7 +365,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     "type": "chunk",
                     "content": chunk.content
                 })
-            
+
             await websocket.send_json({"type": "complete"})
     except WebSocketDisconnect:
         pass
@@ -390,18 +390,18 @@ def agent():
 async def test_process_template(agent):
     template = "Hello {{name}}!"
     variables = {"name": "Test"}
-    
+
     result = await agent.process(template, variables)
-    
+
     assert "Test" in result.content
     assert "name" in result.variables_used
 
 @pytest.mark.asyncio
 async def test_user_input_parsing(agent):
-    template = "?[${{choice}}Yes|No]"
-    
+    template = "?[%{{choice}}Yes|No]"
+
     inputs = agent.parse_inputs(template)
-    
+
     assert len(inputs) == 1
     assert inputs[0]["variable"] == "choice"
     assert inputs[0]["options"] == ["Yes", "No"]
@@ -414,7 +414,7 @@ async def test_conditional_processing(agent):
     If {{level}} is "advanced":
         Dive into complex topics.
     """
-    
+
     result = await agent.process(template, {"level": "beginner"})
     assert "basics" in result.content.lower()
 ```
@@ -431,7 +431,7 @@ def test_process_endpoint():
         "template": "Hello {{name}}!",
         "variables": {"name": "World"}
     })
-    
+
     assert response.status_code == 200
     assert "World" in response.json()["content"]
 
@@ -441,14 +441,14 @@ def test_websocket():
             "template": "Generate story for {{character}}",
             "variables": {"character": "Alice"}
         })
-        
+
         chunks = []
         while True:
             data = websocket.receive_json()
             if data["type"] == "complete":
                 break
             chunks.append(data["content"])
-        
+
         assert len(chunks) > 0
 ```
 
@@ -460,7 +460,7 @@ def test_websocket():
 # Process multiple templates concurrently
 async def process_many(templates_and_vars):
     tasks = [
-        agent.process(t, v) 
+        agent.process(t, v)
         for t, v in templates_and_vars
     ]
     return await asyncio.gather(*tasks)
@@ -498,11 +498,11 @@ def get_cached_result(template_hash, variables_hash):
 async def process_with_cache(template, variables):
     template_hash = hashlib.md5(template.encode()).hexdigest()
     variables_hash = hashlib.md5(str(variables).encode()).hexdigest()
-    
+
     cached = get_cached_result(template_hash, variables_hash)
     if cached:
         return cached
-    
+
     result = await agent.process(template, variables)
     # Store in cache
     return result
@@ -528,7 +528,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ### Docker Compose
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   api:
@@ -540,7 +540,7 @@ services:
       - REDIS_URL=redis://redis:6379
     depends_on:
       - redis
-  
+
   redis:
     image: redis:alpine
     ports:
@@ -556,20 +556,20 @@ production_config = FlowConfig(
     # Performance
     worker_count=4,
     connection_pool_size=20,
-    
+
     # Reliability
     retry_attempts=3,
     retry_delay=1.0,
     timeout=30,
-    
+
     # Security
     enable_content_filter=True,
     allowed_domains=["api.openai.com", "api.anthropic.com"],
-    
+
     # Monitoring
     enable_metrics=True,
     metrics_port=9090,
-    
+
     # Logging
     log_level="INFO",
     log_format="json"
@@ -624,14 +624,14 @@ async def process_template(request: ProcessRequest):
         "template_length": len(request.template),
         "variable_count": len(request.variables)
     })
-    
+
     result = await agent.process(request.template, request.variables)
-    
+
     logger.info("Processing complete", extra={
         "content_length": len(result.content),
         "processing_time": result.processing_time
     })
-    
+
     return result
 ```
 

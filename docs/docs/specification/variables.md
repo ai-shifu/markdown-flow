@@ -2,7 +2,7 @@
 
 ## Syntax Definition
 
-```
+```bnf
 variable ::= '{{' ws* variable_name ws* '}}'
 variable_name ::= identifier
 identifier ::= [a-zA-Z_][a-zA-Z0-9_]*
@@ -16,29 +16,30 @@ ws ::= [ \t\n\r]
 Variables MUST use exactly two opening braces `{{` and two closing braces `}}`.
 
 ```markdown
-{{valid}}     ✓ Correct
-{invalid}     ✗ Single braces
+{{valid}} ✓ Correct
+{invalid} ✗ Single braces
 {{{invalid}}} ✗ Triple braces
-````
+```
 
 ### Rule 2: Variable Names
 
 Variable names MUST:
-- Start with a letter (a-z, A-Z) or underscore (_)
+
+- Start with a letter (a-z, A-Z) or underscore (\_)
 - Contain only letters, numbers, and underscores
 - Be case-sensitive
 
 ```markdown
-{{userName}}      ✓ Valid camelCase
-{{user_name}}     ✓ Valid snake_case
-{{UserName}}      ✓ Valid PascalCase
-{{_private}}      ✓ Valid with underscore prefix
-{{user123}}       ✓ Valid with numbers
+{{userName}} ✓ Valid camelCase
+{{user_name}} ✓ Valid snake_case
+{{UserName}} ✓ Valid PascalCase
+{{_private}} ✓ Valid with underscore prefix
+{{user123}} ✓ Valid with numbers
 
-{{123user}}       ✗ Invalid - starts with number
-{{user-name}}     ✗ Invalid - contains hyphen
-{{user.name}}     ✗ Invalid - contains period
-{{user name}}     ✗ Invalid - contains space
+{{123user}} ✗ Invalid - starts with number
+{{user-name}} ✗ Invalid - contains hyphen
+{{user.name}} ✗ Invalid - contains period
+{{user name}} ✗ Invalid - contains space
 ```
 
 ### Rule 3: Whitespace Handling
@@ -46,12 +47,12 @@ Variable names MUST:
 Whitespace inside delimiters is NOT significant:
 
 ```markdown
-{{name}}          → variable: "name"
-{{ name }}        → variable: "name"
-{{  name  }}      → variable: "name"
+{{name}} → variable: "name"
+{{ name }} → variable: "name"
+{{  name  }} → variable: "name"
 {{
   name
-}}                → variable: "name"
+}} → variable: "name"
 ```
 
 ### Rule 4: Context Independence
@@ -60,26 +61,33 @@ Variables can appear in any context:
 
 ```markdown
 # In text
+
 Hello {{name}}!
 
 # In headers
+
 ## Chapter {{chapter_number}}: {{chapter_title}}
 
 # In lists
+
 - Item {{item_1}}
 - Item {{item_2}}
 
 # In links
+
 [Click here]({{url}})
 [{{link_text}}](https://example.com)
 
 # In images
+
 ![{{alt_text}}]({{image_url}})
 
 # In code spans
+
 The variable `{{varName}}` is used here
 
 # In HTML
+
 <div class="{{className}}" id="{{elementId}}">
   {{content}}
 </div>
@@ -90,8 +98,8 @@ The variable `{{varName}}` is used here
 To display literal braces, use backslash escaping:
 
 ```markdown
-\{\{literal\}\}     → {{literal}} (displayed as text)
-\\{{variable}}      → \[value] (backslash then variable)
+\{\{literal\}\} → {{literal}} (displayed as text)
+\\{{variable}} → \[value] (backslash then variable)
 ```
 
 ## Parsing Algorithm
@@ -107,7 +115,7 @@ def parse_variables(text):
             if i > 0 and text[i-1] == '\\':
                 i += 2
                 continue
-            
+
             # Find closing delimiter
             j = i + 2
             brace_count = 0
@@ -141,23 +149,23 @@ def is_valid_identifier(name):
 ### Empty Variables
 
 ```markdown
-{{}}              → Invalid (empty variable name)
-{{ }}             → Invalid (whitespace is not a valid name)
+{{}} → Invalid (empty variable name)
+{{ }} → Invalid (whitespace is not a valid name)
 ```
 
 ### Nested Braces
 
 ```markdown
 {{user_{{type}}}} → Invalid (nesting not supported)
-{{user_{type}}}   → Invalid (single braces inside)
+{{user_{type}}} → Invalid (single braces inside)
 ```
 
 ### Adjacent Variables
 
 ```markdown
-{{first}}{{last}}       → Two separate variables
-{{first}} {{last}}      → Two variables with space
-{{first}}-{{last}}      → Two variables with hyphen
+{{first}}{{last}} → Two separate variables
+{{first}} {{last}} → Two variables with space
+{{first}}-{{last}} → Two variables with hyphen
 ```
 
 ### Variables in Code Blocks
@@ -182,9 +190,9 @@ The code `print({{variable}})` uses a variable
 Currently, variable names are restricted to ASCII characters:
 
 ```markdown
-{{user_name}}     ✓ Valid
-{{用户名}}         ✗ Invalid (non-ASCII)
-{{naïve}}         ✗ Invalid (non-ASCII)
+{{user_name}} ✓ Valid
+{{用户名}} ✗ Invalid (non-ASCII)
+{{naïve}} ✗ Invalid (non-ASCII)
 ```
 
 ## Replacement Rules
@@ -192,6 +200,7 @@ Currently, variable names are restricted to ASCII characters:
 ### Rule 1: Value Types
 
 Variables can be replaced with:
+
 - Strings
 - Numbers (converted to strings)
 - Booleans (converted to "true"/"false")
@@ -229,6 +238,7 @@ Should render as: "&lt;script&gt;alert('xss')&lt;/script&gt;"
 
 ```markdown
 # Input
+
 Dear {{recipient_name}},
 
 Your order #{{order_number}} has been {{order_status}}.
@@ -237,12 +247,14 @@ Best regards,
 {{sender_name}}
 
 # With values
+
 recipient_name = "Alice"
 order_number = "12345"
 order_status = "shipped"
 sender_name = "Bob"
 
 # Output
+
 Dear Alice,
 
 Your order #12345 has been shipped.
@@ -279,18 +291,23 @@ Common variable naming patterns:
 
 ```markdown
 # User data
+
 {{user_name}}, {{user_email}}, {{user_id}}
 
 # Dates and times
+
 {{current_date}}, {{timestamp}}, {{year}}
 
 # Content
+
 {{title}}, {{description}}, {{content}}
 
 # Metadata
+
 {{version}}, {{author}}, {{status}}
 
 # Computed values
+
 {{total_price}}, {{item_count}}, {{percentage}}
 ```
 

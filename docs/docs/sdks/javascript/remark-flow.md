@@ -15,15 +15,15 @@ pnpm add remark-flow react-markdown
 ## Quick Start
 
 ```jsx
-import ReactMarkdown from 'react-markdown';
-import remarkFlow from 'remark-flow';
+import ReactMarkdown from "react-markdown";
+import remarkFlow from "remark-flow";
 
 function App() {
   const markdown = `
 # Hello {{user_name}}!
 
 Choose your preference:
-?[${{theme}}Light|Dark|Auto]
+?[%{{theme}}Light|Dark|Auto]
   `;
 
   return (
@@ -33,9 +33,11 @@ Choose your preference:
         variable: ({ name, value }) => <span>{value || `{{${name}}}`}</span>,
         userInput: ({ variable, options, onSelect }) => (
           <select onChange={(e) => onSelect(e.target.value)}>
-            {options.map(opt => <option key={opt}>{opt}</option>)}
+            {options.map((opt) => (
+              <option key={opt}>{opt}</option>
+            ))}
           </select>
-        )
+        ),
       }}
     >
       {markdown}
@@ -49,20 +51,20 @@ Choose your preference:
 ### Plugin Options
 
 ```jsx
-import remarkFlow from 'remark-flow';
+import remarkFlow from "remark-flow";
 
 const options = {
-  variablePrefix: '{{',      // Variable start delimiter
-  variableSuffix: '}}',      // Variable end delimiter
-  inputPrefix: '?[${{',      // User input start
-  inputSuffix: '}}',         // User input end
+  variablePrefix: "{{", // Variable start delimiter
+  variableSuffix: "}}", // Variable end delimiter
+  inputPrefix: "?[%{{", // User input start
+  inputSuffix: "}}", // User input end
   enableAIInstructions: true, // Parse AI instruction blocks
-  strict: false              // Strict parsing mode
+  strict: false, // Strict parsing mode
 };
 
 <ReactMarkdown remarkPlugins={[[remarkFlow, options]]}>
   {markdown}
-</ReactMarkdown>
+</ReactMarkdown>;
 ```
 
 ## Component Customization
@@ -75,13 +77,13 @@ const components = {
     // name: variable name (e.g., "user_name")
     // value: current value if available
     // context: additional context data
-    
+
     return (
       <span className="variable" title={name}>
         {value || <em>{name}</em>}
       </span>
     );
-  }
+  },
 };
 ```
 
@@ -92,18 +94,18 @@ const components = {
   userInput: ({ variable, options, onSelect, selected }) => {
     return (
       <div className="user-input">
-        {options.map(option => (
+        {options.map((option) => (
           <button
             key={option}
             onClick={() => onSelect(option)}
-            className={selected === option ? 'selected' : ''}
+            className={selected === option ? "selected" : ""}
           >
             {option}
           </button>
         ))}
       </div>
     );
-  }
+  },
 };
 ```
 
@@ -115,13 +117,13 @@ const components = {
     // content: The instruction text
     // variables: Variables referenced in the instruction
     // type: Instruction type (generate, transform, etc.)
-    
+
     return (
       <div className="ai-instruction">
         <strong>AI:</strong> {content}
       </div>
     );
-  }
+  },
 };
 ```
 
@@ -132,26 +134,28 @@ const components = {
 ```jsx
 function InteractiveDoc() {
   const [variables, setVariables] = useState({
-    user_name: 'Guest',
-    theme: 'light'
+    user_name: "Guest",
+    theme: "light",
   });
 
   const handleVariableChange = (name, value) => {
-    setVariables(prev => ({ ...prev, [name]: value }));
+    setVariables((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <ReactMarkdown
       remarkPlugins={[remarkFlow]}
       components={{
-        variable: ({ name }) => (
-          <span>{variables[name] || `{{${name}}}`}</span>
-        ),
+        variable: ({ name }) => <span>{variables[name] || `{{${name}}}`}</span>,
         userInput: ({ variable, options }) => (
-          <select onChange={(e) => handleVariableChange(variable, e.target.value)}>
-            {options.map(opt => <option key={opt}>{opt}</option>)}
+          <select
+            onChange={(e) => handleVariableChange(variable, e.target.value)}
+          >
+            {options.map((opt) => (
+              <option key={opt}>{opt}</option>
+            ))}
           </select>
-        )
+        ),
       }}
     >
       {markdown}
@@ -167,7 +171,7 @@ const MarkdownContext = createContext();
 
 function MarkdownProvider({ children }) {
   const [variables, setVariables] = useState({});
-  
+
   return (
     <MarkdownContext.Provider value={{ variables, setVariables }}>
       {children}
@@ -184,26 +188,32 @@ function VariableRenderer({ name }) {
 ### With Redux
 
 ```jsx
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 function MarkdownWithRedux({ content }) {
-  const variables = useSelector(state => state.markdown.variables);
+  const variables = useSelector((state) => state.markdown.variables);
   const dispatch = useDispatch();
 
   return (
     <ReactMarkdown
       remarkPlugins={[remarkFlow]}
       components={{
-        variable: ({ name }) => (
-          <span>{variables[name]}</span>
-        ),
+        variable: ({ name }) => <span>{variables[name]}</span>,
         userInput: ({ variable, options }) => (
-          <select onChange={(e) => 
-            dispatch({ type: 'SET_VARIABLE', name: variable, value: e.target.value })
-          }>
-            {options.map(opt => <option key={opt}>{opt}</option>)}
+          <select
+            onChange={(e) =>
+              dispatch({
+                type: "SET_VARIABLE",
+                name: variable,
+                value: e.target.value,
+              })
+            }
+          >
+            {options.map((opt) => (
+              <option key={opt}>{opt}</option>
+            ))}
           </select>
-        )
+        ),
       }}
     >
       {content}
@@ -217,24 +227,27 @@ function MarkdownWithRedux({ content }) {
 ### Custom Node Types
 
 ```jsx
-import remarkFlow from 'remark-flow';
+import remarkFlow from "remark-flow";
 
-const customPlugin = [remarkFlow, {
-  customNodes: {
-    timer: {
-      pattern: /!T\[([^\]]+)\]/,
-      component: 'timer'
+const customPlugin = [
+  remarkFlow,
+  {
+    customNodes: {
+      timer: {
+        pattern: /!T\[([^\]]+)\]/,
+        component: "timer",
+      },
+      progress: {
+        pattern: /%P\[([0-9]+)\]/,
+        component: "progress",
+      },
     },
-    progress: {
-      pattern: /%P\[([0-9]+)\]/,
-      component: 'progress'
-    }
-  }
-}];
+  },
+];
 
 const components = {
   timer: ({ duration }) => <Timer seconds={duration} />,
-  progress: ({ value }) => <ProgressBar percent={value} />
+  progress: ({ value }) => <ProgressBar percent={value} />,
 };
 ```
 
@@ -243,7 +256,7 @@ const components = {
 ```jsx
 function ConditionalContent({ markdown }) {
   const [variables, setVariables] = useState({});
-  
+
   const processConditionals = (content) => {
     // Process if statements in markdown
     return content.replace(
@@ -252,16 +265,13 @@ function ConditionalContent({ markdown }) {
         if (variables[varName] === value) {
           return body;
         }
-        return '';
-      }
+        return "";
+      },
     );
   };
 
   return (
-    <ReactMarkdown
-      remarkPlugins={[remarkFlow]}
-      components={components}
-    >
+    <ReactMarkdown remarkPlugins={[remarkFlow]} components={components}>
       {processConditionals(markdown)}
     </ReactMarkdown>
   );
@@ -278,13 +288,13 @@ function AIProcessedMarkdown({ template }) {
 
   const processWithAI = async () => {
     setProcessing(true);
-    
-    const response = await fetch('/api/process', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template, variables })
+
+    const response = await fetch("/api/process", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ template, variables }),
     });
-    
+
     const result = await response.json();
     setContent(result.processedContent);
     setProcessing(false);
@@ -303,13 +313,20 @@ function AIProcessedMarkdown({ template }) {
         remarkPlugins={[remarkFlow]}
         components={{
           userInput: ({ variable, options }) => (
-            <select onChange={(e) => 
-              setVariables(prev => ({ ...prev, [variable]: e.target.value }))
-            }>
+            <select
+              onChange={(e) =>
+                setVariables((prev) => ({
+                  ...prev,
+                  [variable]: e.target.value,
+                }))
+              }
+            >
               <option>Select...</option>
-              {options.map(opt => <option key={opt}>{opt}</option>)}
+              {options.map((opt) => (
+                <option key={opt}>{opt}</option>
+              ))}
             </select>
-          )
+          ),
         }}
       >
         {content}
@@ -351,21 +368,19 @@ The plugin adds semantic classes to elements:
 ### Styled Components
 
 ```jsx
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledVariable = styled.span`
-  color: ${props => props.hasValue ? '#333' : '#999'};
-  background: ${props => props.hasValue ? '#e8f4f8' : '#f5f5f5'};
+  color: ${(props) => (props.hasValue ? "#333" : "#999")};
+  background: ${(props) => (props.hasValue ? "#e8f4f8" : "#f5f5f5")};
   padding: 2px 6px;
   border-radius: 3px;
 `;
 
 const components = {
   variable: ({ name, value }) => (
-    <StyledVariable hasValue={!!value}>
-      {value || name}
-    </StyledVariable>
-  )
+    <StyledVariable hasValue={!!value}>{value || name}</StyledVariable>
+  ),
 };
 ```
 
@@ -407,48 +422,52 @@ function App() {
 ## Testing
 
 ```jsx
-import { render, screen } from '@testing-library/react';
-import ReactMarkdown from 'react-markdown';
-import remarkFlow from 'remark-flow';
+import { render, screen } from "@testing-library/react";
+import ReactMarkdown from "react-markdown";
+import remarkFlow from "remark-flow";
 
-describe('MarkdownFlow Rendering', () => {
-  test('renders variables', () => {
-    const markdown = 'Hello {{name}}!';
-    
+describe("MarkdownFlow Rendering", () => {
+  test("renders variables", () => {
+    const markdown = "Hello {{name}}!";
+
     render(
       <ReactMarkdown
         remarkPlugins={[remarkFlow]}
         components={{
-          variable: ({ name }) => <span data-testid={`var-${name}`}>{name}</span>
+          variable: ({ name }) => (
+            <span data-testid={`var-${name}`}>{name}</span>
+          ),
         }}
       >
         {markdown}
-      </ReactMarkdown>
+      </ReactMarkdown>,
     );
-    
-    expect(screen.getByTestId('var-name')).toBeInTheDocument();
+
+    expect(screen.getByTestId("var-name")).toBeInTheDocument();
   });
-  
-  test('renders user inputs', () => {
-    const markdown = '?[${{choice}}Yes|No]';
-    
+
+  test("renders user inputs", () => {
+    const markdown = "?[%{{choice}}Yes|No]";
+
     render(
       <ReactMarkdown
         remarkPlugins={[remarkFlow]}
         components={{
           userInput: ({ options }) => (
             <div data-testid="input">
-              {options.map(opt => <button key={opt}>{opt}</button>)}
+              {options.map((opt) => (
+                <button key={opt}>{opt}</button>
+              ))}
             </div>
-          )
+          ),
         }}
       >
         {markdown}
-      </ReactMarkdown>
+      </ReactMarkdown>,
     );
-    
-    expect(screen.getByText('Yes')).toBeInTheDocument();
-    expect(screen.getByText('No')).toBeInTheDocument();
+
+    expect(screen.getByText("Yes")).toBeInTheDocument();
+    expect(screen.getByText("No")).toBeInTheDocument();
   });
 });
 ```
@@ -458,7 +477,7 @@ describe('MarkdownFlow Rendering', () => {
 ### Memoization
 
 ```jsx
-import { memo, useMemo } from 'react';
+import { memo, useMemo } from "react";
 
 const MemoizedMarkdown = memo(({ content, variables }) => {
   const processedContent = useMemo(() => {
@@ -477,20 +496,18 @@ const MemoizedMarkdown = memo(({ content, variables }) => {
 ### Lazy Loading
 
 ```jsx
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from "react";
 
-const LazyMarkdown = lazy(() => 
-  import('react-markdown').then(module => ({
-    default: module.default
-  }))
+const LazyMarkdown = lazy(() =>
+  import("react-markdown").then((module) => ({
+    default: module.default,
+  })),
 );
 
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <LazyMarkdown remarkPlugins={[remarkFlow]}>
-        {content}
-      </LazyMarkdown>
+      <LazyMarkdown remarkPlugins={[remarkFlow]}>{content}</LazyMarkdown>
     </Suspense>
   );
 }
@@ -502,25 +519,22 @@ function App() {
 
 ```jsx
 // Before
-<ReactMarkdown>{markdown}</ReactMarkdown>
+<ReactMarkdown>{markdown}</ReactMarkdown>;
 
 // After
-import remarkFlow from 'remark-flow';
+import remarkFlow from "remark-flow";
 
-<ReactMarkdown 
-  remarkPlugins={[remarkFlow]}
-  components={flowComponents}
->
+<ReactMarkdown remarkPlugins={[remarkFlow]} components={flowComponents}>
   {markdown}
-</ReactMarkdown>
+</ReactMarkdown>;
 ```
 
 ### From Other Plugins
 
 ```jsx
 // With multiple plugins
-import remarkGfm from 'remark-gfm';
-import remarkFlow from 'remark-flow';
+import remarkGfm from "remark-gfm";
+import remarkFlow from "remark-flow";
 
 <ReactMarkdown
   remarkPlugins={[
@@ -530,7 +544,7 @@ import remarkFlow from 'remark-flow';
   ]}
 >
   {markdown}
-</ReactMarkdown>
+</ReactMarkdown>;
 ```
 
 ## API Reference
@@ -542,8 +556,8 @@ import remarkFlow, {
   parseVariables,
   parseUserInputs,
   createFlowProcessor,
-  defaultOptions
-} from 'remark-flow';
+  defaultOptions,
+} from "remark-flow";
 
 // Parse variables from markdown
 const vars = parseVariables(markdown);
@@ -558,7 +572,7 @@ const processor = createFlowProcessor(options);
 ### Utilities
 
 ```javascript
-import { utils } from 'remark-flow';
+import { utils } from "remark-flow";
 
 // Interpolate variables
 const result = utils.interpolate(template, variables);

@@ -4,7 +4,7 @@ The MarkdownFlow ecosystem provides a complete set of open-source libraries for 
 
 ## Architecture Overview
 
-```
+```text
 ┌─────────────────────────────────────┐
 │         User Interface              │
 │  (React/Vue/Vanilla JavaScript)     │
@@ -32,7 +32,8 @@ The MarkdownFlow ecosystem provides a complete set of open-source libraries for 
 ## Frontend Libraries
 
 ### [markdown-flow-ui](frontend/markdown-flow-ui.md)
-**Complete React UI Components**
+
+### Complete React UI Components
 
 Ready-to-use React components with built-in MarkdownFlow functionality.
 
@@ -46,7 +47,8 @@ npm install markdown-flow-ui
 - ♿ Accessibility built-in
 
 ### [remark-flow](frontend/remark-flow.md)
-**React-Markdown Plugin**
+
+### React-Markdown Plugin
 
 Extends react-markdown with MarkdownFlow syntax support.
 
@@ -60,7 +62,8 @@ npm install remark-flow
 - 📦 Tree-shakeable
 
 ### [markdown-it-flow](frontend/markdown-it-flow.md)
-**Markdown-it Plugin**
+
+### Markdown-it Plugin
 
 Adds MarkdownFlow capabilities to any markdown-it powered application.
 
@@ -76,7 +79,8 @@ npm install markdown-it-flow
 ## Backend Libraries
 
 ### [markdown-flow-agent-py](backend/agent-python.md)
-**Python Backend Agent**
+
+### Python Backend Agent
 
 FastAPI-based server for processing MarkdownFlow templates with AI.
 
@@ -90,7 +94,8 @@ pip install markdown-flow-agent
 - 📊 Built-in analytics
 
 ### [markdown-flow-agent-go](backend/agent-go.md)
-**Go Backend Agent**
+
+### Go Backend Agent
 
 High-performance Go implementation for enterprise applications.
 
@@ -108,7 +113,7 @@ go get github.com/ai-shifu/markdown-flow-agent-go
 ### For React Applications
 
 ```jsx
-import { MarkdownFlow } from 'markdown-flow-ui';
+import { MarkdownFlow } from "markdown-flow-ui";
 
 function App() {
   return (
@@ -124,8 +129,8 @@ function App() {
 ### For Vue Applications
 
 ```javascript
-import MarkdownIt from 'markdown-it';
-import MarkdownFlowPlugin from 'markdown-it-flow';
+import MarkdownIt from "markdown-it";
+import MarkdownFlowPlugin from "markdown-it-flow";
 
 const md = new MarkdownIt();
 md.use(MarkdownFlowPlugin);
@@ -160,11 +165,13 @@ result, err := agent.Process(template, variables)
 ### Frontend Decision Tree
 
 1. **Using React?**
+
    - Want pre-built components? → `markdown-flow-ui`
    - Already using react-markdown? → `remark-flow`
    - Need maximum control? → `markdown-it-flow` + custom React wrapper
 
 2. **Using Vue?**
+
    - → `markdown-it-flow` (Vue has excellent markdown-it integration)
 
 3. **Using Angular or vanilla JS?**
@@ -173,12 +180,15 @@ result, err := agent.Process(template, variables)
 ### Backend Decision Tree
 
 1. **Need maximum performance?**
+
    - → Go agent
 
 2. **Want rich ecosystem and AI libraries?**
+
    - → Python agent
 
 3. **Existing FastAPI application?**
+
    - → Python agent
 
 4. **Microservices architecture?**
@@ -188,7 +198,7 @@ result, err := agent.Process(template, variables)
 
 ### Full-Stack React + Python
 
-```
+```text
 Frontend: markdown-flow-ui
     ↓
 Backend: markdown-flow-agent-py
@@ -198,7 +208,7 @@ AI: OpenAI/Anthropic API
 
 ### High-Performance Vue + Go
 
-```
+```text
 Frontend: Vue + markdown-it-flow
     ↓
 Backend: markdown-flow-agent-go
@@ -208,7 +218,7 @@ AI: Local LLM or API
 
 ### Microservices Architecture
 
-```
+```text
 Web App: React + remark-flow
     ↓
 API Gateway

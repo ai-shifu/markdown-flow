@@ -20,7 +20,7 @@ This specification uses similar notation to the CommonMark spec:
 
 A MarkdownFlow document consists of:
 
-```
+```bnf
 document ::= block*
 block ::= markdown_block | flow_block
 flow_block ::= variable | user_input | ai_instruction
@@ -33,19 +33,21 @@ flow_block ::= variable | user_input | ai_instruction
 Variables are placeholders for dynamic content.
 
 **Syntax:**
-```
+
+```bnf
 variable ::= '{{' variable_name '}}'
 variable_name ::= [a-zA-Z_][a-zA-Z0-9_]*
 ```
 
 **Examples:**
+
 ```markdown
-{{user_name}}           → Valid
-{{first_name}}          → Valid
-{{userAge}}             → Valid (camelCase allowed)
-{{user_age_years}}      → Valid
-{{123_invalid}}         → Invalid (starts with number)
-{{user-name}}           → Invalid (contains hyphen)
+{{user_name}} → Valid
+{{first_name}} → Valid
+{{userAge}} → Valid (camelCase allowed)
+{{user_age_years}} → Valid
+{{123_invalid}} → Invalid (starts with number)
+{{user-name}} → Invalid (contains hyphen)
 ```
 
 ### 2. User Input
@@ -53,7 +55,8 @@ variable_name ::= [a-zA-Z_][a-zA-Z0-9_]*
 User inputs collect choices from users.
 
 **Syntax:**
-```
+
+```bnf
 user_input ::= '?[' input_marker variable options ']'
 input_marker ::= '#' | '$'
 options ::= option ('|' option)*
@@ -61,14 +64,16 @@ option ::= text_without_pipe
 ```
 
 **Marker Meanings:**
+
 - `#` - Single selection (radio button behavior)
 - `$` - Multi-selection (checkbox behavior)
 
 **Examples:**
+
 ```markdown
-?[#{{choice}}Yes|No]                    → Single choice
-?[${{choices}}Red|Blue|Green]           → Multiple choices
-?[#{{level}}Beginner|Intermediate|Pro]  → Single choice with 3 options
+?[%{{choice}}Yes|No] → Single choice
+?[%{{choices}}Red|Blue|Green] → Multiple choices
+?[%{{level}}Beginner|Intermediate|Pro] → Single choice with 3 options
 ```
 
 ### 3. AI Instructions
@@ -78,17 +83,18 @@ AI instructions are natural language directives for content generation.
 **Syntax:**
 AI instructions don't have strict syntax - they are written in natural language. However, they commonly use these patterns:
 
-```
+```bnf
 conditional ::= 'If' variable 'is' value ':' instruction
 generation ::= 'Generate' | 'Create' | 'Write' | 'Provide'
 ```
 
 **Common Patterns:**
+
 ```markdown
 Generate a welcome message for {{user_name}}.
 
 If {{level}} is "beginner":
-  Provide simple explanations.
+Provide simple explanations.
 
 Create content based on {{topic}} for {{audience}}.
 ```
@@ -100,17 +106,20 @@ Create content based on {{topic}} for {{audience}}.
 #### Parsing Rules
 
 1. **Delimiter Recognition:**
+
    - Opening delimiter: `{{` (exactly two opening braces)
    - Closing delimiter: `}}` (exactly two closing braces)
    - No spaces allowed between braces
 
 2. **Variable Name Rules:**
+
    - Must start with letter or underscore
    - Can contain letters, numbers, underscores
    - Case-sensitive (`userName` ≠ `username`)
    - No length limit (implementation-dependent)
 
 3. **Context:**
+
    - Variables can appear in any context (inline or block)
    - Variables can appear within HTML attributes
    - Variables can appear within code spans/blocks
@@ -124,30 +133,30 @@ Create content based on {{topic}} for {{audience}}.
 ```markdown
 # Valid Variables
 
-{{name}}                    → name
-{{user_123}}                → user_123
-{{_private}}                → _private
-{{firstName}}               → firstName
-{{CONSTANT}}                → CONSTANT
+{{name}} → name
+{{user_123}} → user_123
+{{_private}} → \_private
+{{firstName}} → firstName
+{{CONSTANT}} → CONSTANT
 
 # Invalid Variables
 
-{{ name }}                  → Literal text (spaces not allowed)
-{{{triple}}}                → Literal text (wrong delimiter count)
-{{user-name}}               → Invalid (hyphen not allowed)
-{{123user}}                 → Invalid (starts with number)
+{{ name }} → Literal text (spaces not allowed)
+{{{triple}}} → Literal text (wrong delimiter count)
+{{user-name}} → Invalid (hyphen not allowed)
+{{123user}} → Invalid (starts with number)
 
 # Edge Cases
 
-{{}}                        → Invalid (empty variable)
-{{a}}                       → Valid (single character)
-{{user_name}} {{email}}     → Two separate variables
+{{}} → Invalid (empty variable)
+{{a}} → Valid (single character)
+{{user_name}} {{email}} → Two separate variables
 
 # In Different Contexts
 
-<img src="{{image_url}}" alt="{{image_alt}}">   → Variables in HTML
-`Code with {{variable}}`                        → Variable in code span
-[Link]({{url}})                                  → Variable in markdown link
+<img src="{{image_url}}" alt="{{image_alt}}"> → Variables in HTML
+`Code with {{variable}}` → Variable in code span
+[Link]({{url}}) → Variable in markdown link
 ```
 
 ### User Input Specification
@@ -155,13 +164,15 @@ Create content based on {{topic}} for {{audience}}.
 #### Parsing Rules
 
 1. **Delimiter Structure:**
-   - Opening: `?[` 
+
+   - Opening: `?[`
    - Marker: `#` (single) or `$` (multiple)
    - Variable: Standard variable syntax
    - Options: Pipe-separated values
    - Closing: `]`
 
 2. **Option Rules:**
+
    - Options separated by `|` (pipe)
    - Options can contain any text except pipe
    - Options are trimmed of leading/trailing whitespace
@@ -178,27 +189,27 @@ Create content based on {{topic}} for {{audience}}.
 ```markdown
 # Valid User Inputs
 
-?[#{{choice}}Yes|No]                           → Two options
-?[#{{color}}Red|Green|Blue|Yellow]             → Four options
-?[${{languages}}Python|JavaScript|Go|Rust]     → Multi-select
-?[#{{option}}Option with spaces|Another one]   → Options with spaces
+?[%{{choice}}Yes|No] → Two options
+?[%{{color}}Red|Green|Blue|Yellow] → Four options
+?[%{{languages}}Python|JavaScript|Go|Rust] → Multi-select
+?[%{{option}}Option with spaces|Another one] → Options with spaces
 
 # Invalid User Inputs
 
-?[{{choice}}Yes|No]                → Missing marker
-?[#Yes|No]                          → Missing variable
-?[#{{choice}}]                      → No options
-?[#{{choice}}Single]                → Only one option (valid but unusual)
+?[{{choice}}Yes|No] → Missing marker
+?[#Yes|No] → Missing variable
+?[%{{choice}}] → No options
+?[%{{choice}}Single] → Only one option (valid but unusual)
 
 # Edge Cases
 
-?[#{{choice}}|Empty||Options|]     → Empty options are preserved
-?[#{{choice}}Option\|with\|pipes]  → Escaped pipes in options
-?[#{{complex}}Very long option text that spans many words|Short]
+?[%{{choice}}|Empty||Options|] → Empty options are preserved
+?[%{{choice}}Option\|with\|pipes] → Escaped pipes in options
+?[%{{complex}}Very long option text that spans many words|Short]
 
 # Nested Structures (Not Supported)
 
-?[#{{outer}}?[#{{inner}}A|B]|C]    → Invalid nesting
+?[%{{outer}}?[%{{inner}}A|B]|C] → Invalid nesting
 ```
 
 ### AI Instructions Specification
@@ -208,75 +219,92 @@ Create content based on {{topic}} for {{audience}}.
 AI instructions are free-form natural language, but follow these conventions:
 
 1. **Conditional Patterns:**
-```markdown
-If {{variable}} is "value":
-  [instruction]
 
-When {{variable}} equals "value":
-  [instruction]
+   ```markdown
+   If {{variable}} is "value":
+   [instruction]
 
-Based on {{variable}}:
-  - If "value1": [instruction1]
-  - If "value2": [instruction2]
-```
+   When {{variable}} equals "value":
+   [instruction]
+
+   Based on {{variable}}:
+
+   - If "value1": [instruction1]
+   - If "value2": [instruction2]
+   ```
 
 2. **Generation Patterns:**
-```markdown
-Generate [what] for {{variable}}.
-Create [what] based on {{variable}}.
-Write [what] considering {{variable}}.
-Provide [what] appropriate for {{variable}}.
-```
+
+   ```markdown
+   Generate [what] for {{variable}}.
+   Create [what] based on {{variable}}.
+   Write [what] considering {{variable}}.
+   Provide [what] appropriate for {{variable}}.
+   ```
 
 3. **Instruction Modifiers:**
-```markdown
-# Tone modifiers
-Keep it [friendly/professional/casual].
 
-# Length modifiers
-Make it [brief/detailed/comprehensive].
+   ```markdown
+   # Tone modifiers
 
-# Structure modifiers
-Include [bullet points/numbered list/paragraphs].
-```
+   Keep it [friendly/professional/casual].
+
+   # Length modifiers
+
+   Make it [brief/detailed/comprehensive].
+
+   # Structure modifiers
+
+   Include [bullet points/numbered list/paragraphs].
+   ```
 
 #### Best Practices
 
 1. **Be Specific:**
-```markdown
-# Good
-Generate a 3-paragraph introduction to {{topic}} for beginners,
-including a definition, why it matters, and a simple example.
 
-# Poor
-Write about {{topic}}.
-```
+   ```markdown
+   # Good
+
+   Generate a 3-paragraph introduction to {{topic}} for beginners,
+   including a definition, why it matters, and a simple example.
+
+   # Poor
+
+   Write about {{topic}}.
+   ```
 
 2. **Handle All Cases:**
-```markdown
-# Good
-If {{level}} is "beginner": [...]
-If {{level}} is "intermediate": [...]
-If {{level}} is "advanced": [...]
-Otherwise: [...]
 
-# Poor
-If {{level}} is "beginner": [...]
-# Missing other cases
-```
+   ```markdown
+   # Good
+
+   If {{level}} is "beginner": [...]
+   If {{level}} is "intermediate": [...]
+   If {{level}} is "advanced": [...]
+   Otherwise: [...]
+
+   # Poor
+
+   If {{level}} is "beginner": [...]
+
+   # Missing other cases
+   ```
 
 3. **Use Clear Structure:**
-```markdown
-# Good
-For user {{name}} with experience {{level}}:
 
-1. Generate a greeting
-2. Provide 3 relevant tips
-3. Suggest next steps
+   ```markdown
+   # Good
 
-# Poor
-Generate something for {{name}} based on {{level}}.
-```
+   For user {{name}} with experience {{level}}:
+
+   1. Generate a greeting
+   2. Provide 3 relevant tips
+   3. Suggest next steps
+
+   # Poor
+
+   Generate something for {{name}} based on {{level}}.
+   ```
 
 ## Interaction with CommonMark
 
@@ -285,9 +313,9 @@ Generate something for {{name}} based on {{level}}.
 MarkdownFlow constructs have lower precedence than CommonMark constructs:
 
 ```markdown
-`{{not_a_variable}}`        → Code span (CommonMark wins)
-**{{bold_and_variable}}**   → Bold with variable inside
-[{{link_text}}](url)        → Link with variable text
+`{{not_a_variable}}` → Code span (CommonMark wins)
+**{{bold_and_variable}}** → Bold with variable inside
+[{{link_text}}](url) → Link with variable text
 ```
 
 ### Block vs Inline
@@ -303,7 +331,7 @@ MarkdownFlow elements work within HTML:
 ```html
 <div class="{{class_name}}">
   <p>Hello {{user_name}}</p>
-  ?[#{{choice}}Yes|No]
+  ?[%{{choice}}Yes|No]
 </div>
 ```
 
@@ -341,8 +369,8 @@ Hello {{undefined_var}}!
 ### Malformed Syntax
 
 ```markdown
-{{incomplete          → Treat as literal text
-?[#missing_bracket    → Treat as literal text
+{{incomplete → Treat as literal text
+?[#missing_bracket → Treat as literal text
 ```
 
 ### Processing Errors

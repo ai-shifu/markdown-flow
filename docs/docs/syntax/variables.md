@@ -31,9 +31,9 @@ Follow these conventions for variable names:
 ### Poor Examples
 
 ```markdown
-{{x}}           # Too vague
-{{UserName}}    # Use snake_case instead
-{{123_var}}     # Don't start with numbers
+{{x}} # Too vague
+{{UserName}} # Use snake_case instead
+{{123_var}} # Don't start with numbers
 ```
 
 ## Variable Types
@@ -93,7 +93,7 @@ Variables can be used anywhere in your markdown:
 ### In Paragraphs
 
 ```markdown
-Hello {{user_name}}, based on your {{skill_level}} level, 
+Hello {{user_name}}, based on your {{skill_level}} level,
 we recommend starting with {{recommended_module}}.
 ```
 
@@ -101,6 +101,7 @@ we recommend starting with {{recommended_module}}.
 
 ```markdown
 Your learning path:
+
 1. {{step_1_title}} - {{step_1_duration}}
 2. {{step_2_title}} - {{step_2_duration}}
 3. {{step_3_title}} - {{step_3_duration}}
@@ -121,13 +122,13 @@ Variables are often used with AI instructions for conditional content:
 Generate content based on {{user_level}}:
 
 If {{user_level}} is "beginner":
-  Provide simple explanations with many examples.
+Provide simple explanations with many examples.
 
 If {{user_level}} is "intermediate":
-  Include technical details and best practices.
+Include technical details and best practices.
 
 If {{user_level}} is "advanced":
-  Focus on optimization and edge cases.
+Focus on optimization and edge cases.
 ```
 
 ## Default Values
@@ -162,6 +163,7 @@ Specific to a section or module:
 ## Module: {{module_name}}
 
 In this module about {{module_topic}}, you'll learn:
+
 - {{learning_objective_1}}
 - {{learning_objective_2}}
 ```
@@ -171,7 +173,7 @@ In this module about {{module_topic}}, you'll learn:
 Used for specific interactions:
 
 ```markdown
-?[${{temp_choice}}Yes|No]
+?[%{{temp_choice}}Yes|No]
 
 Based on your answer "{{temp_choice}}", we'll proceed accordingly.
 ```
@@ -210,9 +212,11 @@ Ensure variables are defined before use:
 
 ```markdown
 <!-- Ensure these variables are set -->
+
 Required: {{user_id}}, {{session_id}}
 
 <!-- Then use them -->
+
 Tracking: User {{user_id}} in session {{session_id}}
 ```
 
@@ -223,7 +227,7 @@ Tracking: User {{user_id}} in session {{session_id}}
 Variables within AI instructions:
 
 ```markdown
-Generate a {{content_type}} about {{topic}} for someone with 
+Generate a {{content_type}} about {{topic}} for someone with
 {{years_experience}} years of experience in {{field}}.
 ```
 
@@ -251,9 +255,9 @@ Address: {{address.street}}, {{address.city}}, {{address.country}}
 ### Personalization
 
 ```markdown
-Hi {{first_name}}, 
+Hi {{first_name}},
 
-Based on your interests in {{interests}}, we've prepared 
+Based on your interests in {{interests}}, we've prepared
 a custom {{content_type}} just for you.
 ```
 
@@ -280,6 +284,7 @@ a custom {{content_type}} just for you.
 ### Variable Not Replaced
 
 If you see `{{variable}}` in output:
+
 - Check variable name spelling
 - Ensure variable is defined
 - Verify variable scope

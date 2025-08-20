@@ -15,22 +15,22 @@ pnpm add markdown-flow-ui
 ## Quick Start
 
 ```jsx
-import { MarkdownFlow } from 'markdown-flow-ui';
-import 'markdown-flow-ui/dist/styles.css';
+import { MarkdownFlow } from "markdown-flow-ui";
+import "markdown-flow-ui/dist/styles.css";
 
 function App() {
   const template = `
 # Welcome {{user_name}}!
 
 What would you like to learn today?
-?[${{choice}}React|Vue|Angular]
+?[%{{choice}}React|Vue|Angular]
   `;
 
   return (
     <MarkdownFlow
       template={template}
-      variables={{ user_name: 'Alice' }}
-      onVariableChange={(vars) => console.log('Variables:', vars)}
+      variables={{ user_name: "Alice" }}
+      onVariableChange={(vars) => console.log("Variables:", vars)}
       apiEndpoint="https://your-api.com/process"
     />
   );
@@ -45,16 +45,16 @@ The main component that renders MarkdownFlow templates.
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `template` | `string` | Required | MarkdownFlow template string |
-| `variables` | `object` | `{}` | Initial variables |
-| `apiEndpoint` | `string` | - | Backend API endpoint for AI processing |
-| `onVariableChange` | `function` | - | Callback when variables change |
-| `onUserInput` | `function` | - | Callback when user makes a selection |
-| `theme` | `'light' \| 'dark' \| 'auto'` | `'auto'` | Color theme |
-| `className` | `string` | - | Additional CSS classes |
-| `style` | `object` | - | Inline styles |
+| Prop               | Type                          | Default  | Description                            |
+| ------------------ | ----------------------------- | -------- | -------------------------------------- |
+| `template`         | `string`                      | Required | MarkdownFlow template string           |
+| `variables`        | `object`                      | `{}`     | Initial variables                      |
+| `apiEndpoint`      | `string`                      | -        | Backend API endpoint for AI processing |
+| `onVariableChange` | `function`                    | -        | Callback when variables change         |
+| `onUserInput`      | `function`                    | -        | Callback when user makes a selection   |
+| `theme`            | `'light' \| 'dark' \| 'auto'` | `'auto'` | Color theme                            |
+| `className`        | `string`                      | -        | Additional CSS classes                 |
+| `style`            | `object`                      | -        | Inline styles                          |
 
 #### Example with All Props
 
@@ -62,19 +62,19 @@ The main component that renders MarkdownFlow templates.
 <MarkdownFlow
   template={markdownTemplate}
   variables={{
-    user_name: 'Bob',
-    skill_level: 'intermediate'
+    user_name: "Bob",
+    skill_level: "intermediate",
   }}
   apiEndpoint="https://api.example.com/markdownflow"
   onVariableChange={(variables) => {
-    console.log('Updated variables:', variables);
+    console.log("Updated variables:", variables);
   }}
   onUserInput={(inputData) => {
-    console.log('User selected:', inputData);
+    console.log("User selected:", inputData);
   }}
   theme="dark"
   className="my-custom-class"
-  style={{ maxWidth: '800px', margin: '0 auto' }}
+  style={{ maxWidth: "800px", margin: "0 auto" }}
 />
 ```
 
@@ -83,7 +83,7 @@ The main component that renders MarkdownFlow templates.
 Context provider for managing MarkdownFlow state across components.
 
 ```jsx
-import { MarkdownFlowProvider, useMarkdownFlow } from 'markdown-flow-ui';
+import { MarkdownFlowProvider, useMarkdownFlow } from "markdown-flow-ui";
 
 function App() {
   return (
@@ -95,7 +95,7 @@ function App() {
 
 function YourComponent() {
   const { variables, setVariable, processTemplate } = useMarkdownFlow();
-  
+
   // Use the context methods
 }
 ```
@@ -105,14 +105,14 @@ function YourComponent() {
 Standalone component for rendering user input elements.
 
 ```jsx
-import { UserInput } from 'markdown-flow-ui';
+import { UserInput } from "markdown-flow-ui";
 
 <UserInput
   variable="choice"
-  options={['Option 1', 'Option 2', 'Option 3']}
-  onSelect={(value) => console.log('Selected:', value)}
+  options={["Option 1", "Option 2", "Option 3"]}
+  onSelect={(value) => console.log("Selected:", value)}
   style="buttons" // or 'dropdown', 'radio'
-/>
+/>;
 ```
 
 ## Hooks
@@ -129,7 +129,7 @@ const {
   setTemplate,
   processTemplate,
   isProcessing,
-  error
+  error,
 } = useMarkdownFlow();
 ```
 
@@ -138,7 +138,7 @@ const {
 Manage a single variable.
 
 ```jsx
-const [value, setValue] = useVariable('user_name', 'Guest');
+const [value, setValue] = useVariable("user_name", "Guest");
 ```
 
 ### `useAIProcess()`
@@ -147,7 +147,7 @@ Handle AI processing.
 
 ```jsx
 const { process, isLoading, result, error } = useAIProcess({
-  endpoint: 'https://api.example.com/process'
+  endpoint: "https://api.example.com/process",
 });
 
 // Usage
@@ -161,7 +161,7 @@ await process(template, variables);
 Import the default stylesheet:
 
 ```jsx
-import 'markdown-flow-ui/dist/styles.css';
+import "markdown-flow-ui/dist/styles.css";
 ```
 
 ### Custom Themes
@@ -193,10 +193,10 @@ Override CSS variables for custom theming:
 ```jsx
 <MarkdownFlow
   classNames={{
-    container: 'custom-container',
-    content: 'custom-content',
-    userInput: 'custom-input',
-    variable: 'custom-variable'
+    container: "custom-container",
+    content: "custom-content",
+    userInput: "custom-input",
+    variable: "custom-variable",
   }}
 />
 ```
@@ -207,11 +207,11 @@ Override CSS variables for custom theming:
 
 ```jsx
 // pages/index.js (Next.js example)
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const MarkdownFlow = dynamic(
-  () => import('markdown-flow-ui').then(mod => mod.MarkdownFlow),
-  { ssr: false }
+  () => import("markdown-flow-ui").then((mod) => mod.MarkdownFlow),
+  { ssr: false },
 );
 
 export default function Page() {
@@ -231,16 +231,11 @@ Override default rendering for specific elements:
       <span className="custom-variable">{value || name}</span>
     ),
     userInput: ({ variable, options, onSelect }) => (
-      <CustomSelect
-        options={options}
-        onChange={(value) => onSelect(value)}
-      />
+      <CustomSelect options={options} onChange={(value) => onSelect(value)} />
     ),
     code: ({ language, value }) => (
-      <SyntaxHighlighter language={language}>
-        {value}
-      </SyntaxHighlighter>
-    )
+      <SyntaxHighlighter language={language}>{value}</SyntaxHighlighter>
+    ),
   }}
 />
 ```
@@ -250,14 +245,14 @@ Override default rendering for specific elements:
 ```jsx
 function App() {
   const [variables, setVariables] = useState({});
-  
+
   const handleProcess = async (template, vars) => {
-    const response = await fetch('https://api.example.com/process', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ template, variables: vars })
+    const response = await fetch("https://api.example.com/process", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ template, variables: vars }),
     });
-    
+
     const result = await response.json();
     return result.content;
   };
@@ -276,18 +271,18 @@ function App() {
 ### Real-time Collaboration
 
 ```jsx
-import { MarkdownFlow } from 'markdown-flow-ui';
-import { useWebSocket } from 'your-websocket-lib';
+import { MarkdownFlow } from "markdown-flow-ui";
+import { useWebSocket } from "your-websocket-lib";
 
 function CollaborativeDoc() {
-  const { variables, sendUpdate } = useWebSocket('wss://collab.example.com');
-  
+  const { variables, sendUpdate } = useWebSocket("wss://collab.example.com");
+
   return (
     <MarkdownFlow
       template={template}
       variables={variables}
       onVariableChange={(vars) => {
-        sendUpdate({ type: 'variables', data: vars });
+        sendUpdate({ type: "variables", data: vars });
       }}
     />
   );
@@ -299,7 +294,7 @@ function CollaborativeDoc() {
 ### MarkdownFlow Class Methods
 
 ```javascript
-import { MarkdownFlowProcessor } from 'markdown-flow-ui';
+import { MarkdownFlowProcessor } from "markdown-flow-ui";
 
 const processor = new MarkdownFlowProcessor();
 
@@ -320,8 +315,8 @@ import {
   parseVariables,
   parseUserInputs,
   interpolateVariables,
-  validateTemplate
-} from 'markdown-flow-ui/utils';
+  validateTemplate,
+} from "markdown-flow-ui/utils";
 
 // Extract variables from template
 const variables = parseVariables(template);
@@ -332,7 +327,7 @@ const inputs = parseUserInputs(template);
 // Returns: [{ variable: 'choice', options: [...] }, ...]
 
 // Replace variables with values
-const content = interpolateVariables(template, { user_name: 'Alice' });
+const content = interpolateVariables(template, { user_name: "Alice" });
 
 // Validate template syntax
 const { valid, errors } = validateTemplate(template);
@@ -343,14 +338,14 @@ const { valid, errors } = validateTemplate(template);
 Full TypeScript support with type definitions included:
 
 ```typescript
-import { MarkdownFlow, MarkdownFlowProps, Variable } from 'markdown-flow-ui';
+import { MarkdownFlow, MarkdownFlowProps, Variable } from "markdown-flow-ui";
 
 const props: MarkdownFlowProps = {
-  template: '# Hello {{name}}',
-  variables: { name: 'World' },
+  template: "# Hello {{name}}",
+  variables: { name: "World" },
   onVariableChange: (vars: Record<string, Variable>) => {
     console.log(vars);
-  }
+  },
 };
 ```
 
@@ -365,14 +360,14 @@ const tutorialTemplate = `
 Welcome {{student_name}}!
 
 Choose your path:
-?[${{path}}Frontend Development|Backend Development|Full Stack]
+?[%{{path}}Frontend Development|Backend Development|Full Stack]
 
 Based on your choice of {{path}}, we'll customize your learning experience.
 `;
 
 function Tutorial() {
-  const [studentName, setStudentName] = useState('');
-  
+  const [studentName, setStudentName] = useState("");
+
   return (
     <div>
       <input
@@ -394,14 +389,14 @@ function Tutorial() {
 const formTemplate = `
 ## User Registration
 
-?[${{account_type}}Personal|Business|Enterprise]
+?[%{{account_type}}Personal|Business|Enterprise]
 
 {{#if account_type === 'Business'}}
   Company Name: {{company_name}}
-  ?[${{employees}}1-10|11-50|51-200|200+]
+  ?[%{{employees}}1-10|11-50|51-200|200+]
 {{/if}}
 
-?[${{newsletter}}Subscribe to newsletter|No thanks]
+?[%{{newsletter}}Subscribe to newsletter|No thanks]
 `;
 
 function DynamicForm() {
@@ -409,7 +404,7 @@ function DynamicForm() {
     <MarkdownFlow
       template={formTemplate}
       onSubmit={(data) => {
-        console.log('Form data:', data);
+        console.log("Form data:", data);
       }}
     />
   );
@@ -421,21 +416,21 @@ function DynamicForm() {
 ### Memoization
 
 ```jsx
-import { memo } from 'react';
-import { MarkdownFlow } from 'markdown-flow-ui';
+import { memo } from "react";
+import { MarkdownFlow } from "markdown-flow-ui";
 
 const MemoizedMarkdownFlow = memo(MarkdownFlow);
 
 // Use when template doesn't change frequently
-<MemoizedMarkdownFlow template={staticTemplate} />
+<MemoizedMarkdownFlow template={staticTemplate} />;
 ```
 
 ### Lazy Loading
 
 ```jsx
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from "react";
 
-const MarkdownFlow = lazy(() => import('markdown-flow-ui'));
+const MarkdownFlow = lazy(() => import("markdown-flow-ui"));
 
 function App() {
   return (
@@ -449,20 +444,20 @@ function App() {
 ## Testing
 
 ```jsx
-import { render, fireEvent } from '@testing-library/react';
-import { MarkdownFlow } from 'markdown-flow-ui';
+import { render, fireEvent } from "@testing-library/react";
+import { MarkdownFlow } from "markdown-flow-ui";
 
-test('renders template and handles input', () => {
+test("renders template and handles input", () => {
   const { getByText } = render(
     <MarkdownFlow
-      template="Hello {{name}}! ?[${{choice}}Yes|No]"
-      variables={{ name: 'Test' }}
-    />
+      template="Hello {{name}}! ?[%{{choice}}Yes|No]"
+      variables={{ name: "Test" }}
+    />,
   );
-  
-  expect(getByText('Hello Test!')).toBeInTheDocument();
-  
-  const yesButton = getByText('Yes');
+
+  expect(getByText("Hello Test!")).toBeInTheDocument();
+
+  const yesButton = getByText("Yes");
   fireEvent.click(yesButton);
   // Assert behavior
 });

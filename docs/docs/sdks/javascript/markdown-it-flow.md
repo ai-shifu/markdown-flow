@@ -15,8 +15,8 @@ pnpm add markdown-it markdown-it-flow
 ## Quick Start
 
 ```javascript
-const MarkdownIt = require('markdown-it');
-const markdownItFlow = require('markdown-it-flow');
+const MarkdownIt = require("markdown-it");
+const markdownItFlow = require("markdown-it-flow");
 
 const md = new MarkdownIt();
 md.use(markdownItFlow);
@@ -25,7 +25,7 @@ const html = md.render(`
 # Hello {{user_name}}!
 
 Choose your theme:
-?[${{theme}}Light|Dark|Auto]
+?[%{{theme}}Light|Dark|Auto]
 `);
 ```
 
@@ -35,15 +35,15 @@ Choose your theme:
 
 ```javascript
 const options = {
-  variableClass: 'flow-variable',       // CSS class for variables
-  inputClass: 'flow-input',             // CSS class for inputs
-  instructionClass: 'flow-instruction', // CSS class for AI instructions
-  enableVariables: true,                // Enable variable parsing
-  enableInputs: true,                   // Enable user input parsing
-  enableInstructions: true,             // Enable AI instruction parsing
-  variableRenderer: null,               // Custom variable renderer
-  inputRenderer: null,                  // Custom input renderer
-  instructionRenderer: null             // Custom instruction renderer
+  variableClass: "flow-variable", // CSS class for variables
+  inputClass: "flow-input", // CSS class for inputs
+  instructionClass: "flow-instruction", // CSS class for AI instructions
+  enableVariables: true, // Enable variable parsing
+  enableInputs: true, // Enable user input parsing
+  enableInstructions: true, // Enable AI instruction parsing
+  variableRenderer: null, // Custom variable renderer
+  inputRenderer: null, // Custom input renderer
+  instructionRenderer: null, // Custom instruction renderer
 };
 
 md.use(markdownItFlow, options);
@@ -60,7 +60,7 @@ const markdown = `
 Welcome {{user_name}}!
 
 What's your experience level?
-?[${{level}}Beginner|Intermediate|Advanced]
+?[%{{level}}Beginner|Intermediate|Advanced]
 
 Generate content appropriate for {{level}} level.
 `;
@@ -77,32 +77,35 @@ const html = md.render(markdown);
 </template>
 
 <script>
-import MarkdownIt from 'markdown-it';
-import markdownItFlow from 'markdown-it-flow';
+import MarkdownIt from "markdown-it";
+import markdownItFlow from "markdown-it-flow";
 
 export default {
   data() {
     return {
-      markdown: '# Hello {{name}}!',
-      variables: { name: 'Vue User' }
+      markdown: "# Hello {{name}}!",
+      variables: { name: "Vue User" },
     };
   },
   computed: {
     renderedMarkdown() {
       const md = new MarkdownIt().use(markdownItFlow);
       let html = md.render(this.markdown);
-      
+
       // Replace variables
       Object.entries(this.variables).forEach(([key, value]) => {
         html = html.replace(
-          new RegExp(`<span class="flow-variable" data-var="${key}">.*?</span>`, 'g'),
-          `<span class="flow-variable">${value}</span>`
+          new RegExp(
+            `<span class="flow-variable" data-var="${key}">.*?</span>`,
+            "g",
+          ),
+          `<span class="flow-variable">${value}</span>`,
         );
       });
-      
+
       return html;
-    }
-  }
+    },
+  },
 };
 </script>
 ```
@@ -110,29 +113,29 @@ export default {
 ### Angular Integration
 
 ```typescript
-import { Component } from '@angular/core';
-import MarkdownIt from 'markdown-it';
-import markdownItFlow from 'markdown-it-flow';
+import { Component } from "@angular/core";
+import MarkdownIt from "markdown-it";
+import markdownItFlow from "markdown-it-flow";
 
 @Component({
-  selector: 'app-markdown',
-  template: '<div [innerHTML]="renderedHtml"></div>'
+  selector: "app-markdown",
+  template: '<div [innerHTML]="renderedHtml"></div>',
 })
 export class MarkdownComponent {
   private md = new MarkdownIt().use(markdownItFlow);
-  
-  markdown = '# Welcome {{user}}!';
-  variables = { user: 'Angular Developer' };
-  
+
+  markdown = "# Welcome {{user}}!";
+  variables = { user: "Angular Developer" };
+
   get renderedHtml(): string {
     let html = this.md.render(this.markdown);
-    
+
     // Process variables
     Object.entries(this.variables).forEach(([key, value]) => {
-      const regex = new RegExp(`{{${key}}}`, 'g');
+      const regex = new RegExp(`{{${key}}}`, "g");
       html = html.replace(regex, value as string);
     });
-    
+
     return html;
   }
 }
@@ -141,39 +144,39 @@ export class MarkdownComponent {
 ### Vanilla JavaScript
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it-flow/dist/markdown-it-flow.min.js"></script>
-</head>
-<body>
-  <div id="content"></div>
-  
-  <script>
-    const md = window.markdownit().use(window.markdownItFlow);
-    
-    const markdown = `
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it-flow/dist/markdown-it-flow.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <script>
+      const md = window.markdownit().use(window.markdownItFlow);
+
+      const markdown = `
 # Interactive Document
 
 Hello {{user_name}}!
 
-?[${{choice}}Option A|Option B|Option C]
+?[%{{choice}}Option A|Option B|Option C]
     `;
-    
-    const html = md.render(markdown);
-    document.getElementById('content').innerHTML = html;
-    
-    // Add interactivity
-    document.querySelectorAll('.flow-input').forEach(input => {
-      input.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-          console.log('Selected:', e.target.textContent);
-        }
+
+      const html = md.render(markdown);
+      document.getElementById("content").innerHTML = html;
+
+      // Add interactivity
+      document.querySelectorAll(".flow-input").forEach((input) => {
+        input.addEventListener("click", (e) => {
+          if (e.target.tagName === "BUTTON") {
+            console.log("Selected:", e.target.textContent);
+          }
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
 ```
 
@@ -186,14 +189,14 @@ const options = {
   variableRenderer: (tokens, idx) => {
     const token = tokens[idx];
     const varName = token.content;
-    
-    return `<input 
-      type="text" 
-      placeholder="${varName}" 
+
+    return `<input
+      type="text"
+      placeholder="${varName}"
       data-variable="${varName}"
       class="variable-input"
     />`;
-  }
+  },
 };
 
 md.use(markdownItFlow, options);
@@ -206,7 +209,7 @@ const options = {
   inputRenderer: (tokens, idx) => {
     const token = tokens[idx];
     const { variable, options } = token.meta;
-    
+
     // Render as radio buttons
     let html = `<div class="input-group" data-variable="${variable}">`;
     options.forEach((option, i) => {
@@ -217,10 +220,10 @@ const options = {
         </label>
       `;
     });
-    html += '</div>';
-    
+    html += "</div>";
+
     return html;
-  }
+  },
 };
 ```
 
@@ -231,14 +234,14 @@ const options = {
   instructionRenderer: (tokens, idx) => {
     const token = tokens[idx];
     const instruction = token.content;
-    
+
     return `
       <div class="ai-instruction" data-instruction="${escape(instruction)}">
         <i class="ai-icon"></i>
         <span>AI will process: ${instruction}</span>
       </div>
     `;
-  }
+  },
 };
 ```
 
@@ -253,14 +256,10 @@ const md = new MarkdownIt().use(markdownItFlow);
 const tokens = md.parse(markdown);
 
 // Find all variable tokens
-const variableTokens = tokens.filter(token => 
-  token.type === 'flow_variable'
-);
+const variableTokens = tokens.filter((token) => token.type === "flow_variable");
 
 // Find all input tokens
-const inputTokens = tokens.filter(token => 
-  token.type === 'flow_input'
-);
+const inputTokens = tokens.filter((token) => token.type === "flow_input");
 
 // Render with modified tokens
 const html = md.renderer.render(tokens, md.options);
@@ -273,43 +272,44 @@ class MarkdownFlowDocument {
   constructor() {
     this.md = new MarkdownIt().use(markdownItFlow);
     this.variables = {};
-    this.template = '';
+    this.template = "";
   }
-  
+
   setTemplate(markdown) {
     this.template = markdown;
     this.extractVariables();
   }
-  
+
   extractVariables() {
     const tokens = this.md.parse(this.template);
-    tokens.forEach(token => {
-      if (token.type === 'flow_variable') {
+    tokens.forEach((token) => {
+      if (token.type === "flow_variable") {
         this.variables[token.content] = null;
       }
     });
   }
-  
+
   setVariable(name, value) {
     this.variables[name] = value;
   }
-  
+
   render() {
     let html = this.md.render(this.template);
-    
+
     // Replace variables with values
     Object.entries(this.variables).forEach(([key, value]) => {
       if (value !== null) {
         const pattern = new RegExp(
           `<span class="flow-variable" data-var="${key}">.*?</span>`,
-          'g'
+          "g",
         );
-        html = html.replace(pattern, 
-          `<span class="flow-variable">${value}</span>`
+        html = html.replace(
+          pattern,
+          `<span class="flow-variable">${value}</span>`,
         );
       }
     });
-    
+
     return html;
   }
 }
@@ -320,18 +320,18 @@ class MarkdownFlowDocument {
 ```javascript
 function attachFlowEventHandlers(container) {
   // Handle variable inputs
-  container.querySelectorAll('[data-variable]').forEach(element => {
-    element.addEventListener('change', (e) => {
+  container.querySelectorAll("[data-variable]").forEach((element) => {
+    element.addEventListener("change", (e) => {
       const variable = e.target.dataset.variable;
       const value = e.target.value;
       console.log(`Variable ${variable} = ${value}`);
       // Update your state management here
     });
   });
-  
+
   // Handle user selections
-  container.querySelectorAll('.flow-input button').forEach(button => {
-    button.addEventListener('click', (e) => {
+  container.querySelectorAll(".flow-input button").forEach((button) => {
+    button.addEventListener("click", (e) => {
       const variable = e.target.parentElement.dataset.variable;
       const value = e.target.textContent;
       console.log(`Selected ${variable} = ${value}`);
@@ -342,8 +342,8 @@ function attachFlowEventHandlers(container) {
 
 // Usage
 const html = md.render(markdown);
-document.getElementById('content').innerHTML = html;
-attachFlowEventHandlers(document.getElementById('content'));
+document.getElementById("content").innerHTML = html;
+attachFlowEventHandlers(document.getElementById("content"));
 ```
 
 ## Styling
@@ -399,15 +399,15 @@ attachFlowEventHandlers(document.getElementById('content'));
 ## TypeScript Support
 
 ```typescript
-import MarkdownIt from 'markdown-it';
-import markdownItFlow, { MarkdownItFlowOptions } from 'markdown-it-flow';
+import MarkdownIt from "markdown-it";
+import markdownItFlow, { MarkdownItFlowOptions } from "markdown-it-flow";
 
 const options: MarkdownItFlowOptions = {
-  variableClass: 'custom-variable',
+  variableClass: "custom-variable",
   enableVariables: true,
   variableRenderer: (tokens, idx) => {
     return `<span class="var">${tokens[idx].content}</span>`;
-  }
+  },
 };
 
 const md: MarkdownIt = new MarkdownIt();
@@ -445,7 +445,7 @@ const instructions = flowState.getInstructions();
   type: 'flow_variable',
   tag: 'span',
   content: 'variable_name',
-  meta: { 
+  meta: {
     original: '{{variable_name}}'
   }
 }
@@ -475,7 +475,7 @@ const instructions = flowState.getInstructions();
 ### Utility Functions
 
 ```javascript
-import { utils } from 'markdown-it-flow';
+import { utils } from "markdown-it-flow";
 
 // Parse variables from text
 const variables = utils.parseVariables(text);
@@ -493,35 +493,35 @@ const result = utils.interpolate(template, variables);
 ## Testing
 
 ```javascript
-import MarkdownIt from 'markdown-it';
-import markdownItFlow from 'markdown-it-flow';
+import MarkdownIt from "markdown-it";
+import markdownItFlow from "markdown-it-flow";
 
-describe('markdown-it-flow', () => {
+describe("markdown-it-flow", () => {
   let md;
-  
+
   beforeEach(() => {
     md = new MarkdownIt().use(markdownItFlow);
   });
-  
-  test('parses variables', () => {
-    const html = md.render('Hello {{name}}!');
+
+  test("parses variables", () => {
+    const html = md.render("Hello {{name}}!");
     expect(html).toContain('class="flow-variable"');
     expect(html).toContain('data-var="name"');
   });
-  
-  test('parses user inputs', () => {
-    const html = md.render('?[${{choice}}Yes|No]');
+
+  test("parses user inputs", () => {
+    const html = md.render("?[%{{choice}}Yes|No]");
     expect(html).toContain('class="flow-input"');
     expect(html).toContain('data-variable="choice"');
   });
-  
-  test('custom renderer', () => {
+
+  test("custom renderer", () => {
     md = new MarkdownIt().use(markdownItFlow, {
-      variableRenderer: () => '<custom-var></custom-var>'
+      variableRenderer: () => "<custom-var></custom-var>",
     });
-    
-    const html = md.render('{{test}}');
-    expect(html).toContain('<custom-var></custom-var>');
+
+    const html = md.render("{{test}}");
+    expect(html).toContain("<custom-var></custom-var>");
   });
 });
 ```
@@ -536,25 +536,25 @@ class CachedMarkdownRenderer {
     this.md = new MarkdownIt().use(markdownItFlow);
     this.cache = new Map();
   }
-  
+
   render(markdown, variables = {}) {
     const cacheKey = `${markdown}:${JSON.stringify(variables)}`;
-    
+
     if (this.cache.has(cacheKey)) {
       return this.cache.get(cacheKey);
     }
-    
+
     let html = this.md.render(markdown);
-    
+
     // Apply variables
     Object.entries(variables).forEach(([key, value]) => {
-      html = html.replace(new RegExp(`{{${key}}}`, 'g'), value);
+      html = html.replace(new RegExp(`{{${key}}}`, "g"), value);
     });
-    
+
     this.cache.set(cacheKey, html);
     return html;
   }
-  
+
   clearCache() {
     this.cache.clear();
   }
@@ -566,11 +566,11 @@ class CachedMarkdownRenderer {
 ```javascript
 // Process large documents in chunks
 function* renderInChunks(markdown, chunkSize = 1000) {
-  const lines = markdown.split('\n');
+  const lines = markdown.split("\n");
   const md = new MarkdownIt().use(markdownItFlow);
-  
+
   for (let i = 0; i < lines.length; i += chunkSize) {
-    const chunk = lines.slice(i, i + chunkSize).join('\n');
+    const chunk = lines.slice(i, i + chunkSize).join("\n");
     yield md.render(chunk);
   }
 }
@@ -578,7 +578,7 @@ function* renderInChunks(markdown, chunkSize = 1000) {
 // Usage
 for (const htmlChunk of renderInChunks(largeMarkdown)) {
   // Process each chunk
-  document.getElementById('content').innerHTML += htmlChunk;
+  document.getElementById("content").innerHTML += htmlChunk;
 }
 ```
 
@@ -600,10 +600,10 @@ const html = md.render(markdown);
 ### With Other Plugins
 
 ```javascript
-import MarkdownIt from 'markdown-it';
-import markdownItFlow from 'markdown-it-flow';
-import markdownItEmoji from 'markdown-it-emoji';
-import markdownItAnchor from 'markdown-it-anchor';
+import MarkdownIt from "markdown-it";
+import markdownItFlow from "markdown-it-flow";
+import markdownItEmoji from "markdown-it-emoji";
+import markdownItAnchor from "markdown-it-anchor";
 
 const md = new MarkdownIt()
   .use(markdownItEmoji)

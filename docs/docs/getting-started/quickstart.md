@@ -14,7 +14,7 @@ Thank you for joining us.
 ## What You Can Do Here
 
 - Learn new skills
-- Connect with others  
+- Connect with others
 - Build projects
 ```
 
@@ -32,6 +32,7 @@ Thank you for joining us, {{user_name}}.
 ## What You Can Do Here
 
 Based on your interests in {{interests}}, you can:
+
 - Learn new skills in {{interests}}
 - Connect with other {{interests}} enthusiasts
 - Build {{interests}} projects
@@ -49,10 +50,10 @@ Make it interactive by collecting user choices:
 Thank you for joining us. Let's personalize your experience.
 
 What brings you here today?
-?[#{{goal}}Learn something new|Work on projects|Meet people|Just browsing]
+?[%{{goal}}Learn something new|Work on projects|Meet people|Just browsing]
 
 What's your experience level?
-?[#{{level}}Complete beginner|Some experience|Expert]
+?[%{{level}}Complete beginner|Some experience|Expert]
 ```
 
 Users can now make selections that affect the content they see.
@@ -67,17 +68,18 @@ Now the magic — let AI generate personalized content:
 Thank you for joining us. Let's personalize your experience.
 
 What brings you here today?
-?[#{{goal}}Learn something new|Work on projects|Meet people|Just browsing]
+?[%{{goal}}Learn something new|Work on projects|Meet people|Just browsing]
 
 What's your experience level?
-?[#{{level}}Complete beginner|Some experience|Expert]
+?[%{{level}}Complete beginner|Some experience|Expert]
 
 ---
 
-Generate a personalized welcome message for {{user_name}} who wants to "{{goal}}" 
+Generate a personalized welcome message for {{user_name}} who wants to "{{goal}}"
 and has "{{level}}" experience.
 
 Include:
+
 1. An encouraging message specific to their goal
 2. Three specific suggestions for getting started
 3. One pro tip based on their experience level
@@ -89,14 +91,15 @@ Keep it friendly and conversational.
 
 Here's what happens when this template is processed:
 
-### Input Values:
+### Input Values
+
 - `user_name`: "Alice"
 - `goal`: "Learn something new"
 - `level`: "Some experience"
 
-### Generated Output:
+### Generated Output
 
-> # Welcome to Our Platform, Alice!
+> # Welcome to Our Platform, Alice
 >
 > Thank you for joining us. Let's personalize your experience.
 >
@@ -118,20 +121,20 @@ Here's what happens when this template is processed:
 Here's a more complete welcome flow:
 
 ```markdown
-# Welcome to MarkdownFlow Learning Platform! 
+# Welcome to MarkdownFlow Learning Platform!
 
 ## Quick Setup
 
 What should we call you? {{user_name}}
 
 What are you most interested in learning?
-?[#{{interest}}Web Development|Data Science|Mobile Apps|AI/Machine Learning|Other]
+?[%{{interest}}Web Development|Data Science|Mobile Apps|AI/Machine Learning|Other]
 
 How much time can you dedicate daily?
-?[#{{time}}15-30 minutes|30-60 minutes|1-2 hours|More than 2 hours]
+?[%{{time}}15-30 minutes|30-60 minutes|1-2 hours|More than 2 hours]
 
 What's your preferred learning style?
-?[#{{style}}Video tutorials|Written guides|Interactive exercises|Projects]
+?[%{{style}}Video tutorials|Written guides|Interactive exercises|Projects]
 
 ---
 
@@ -141,17 +144,20 @@ Hi {{user_name}}! Based on your interests in {{interest}} and {{time}} daily ava
 here's your customized learning path.
 
 Generate a detailed 4-week learning plan for {{user_name}}:
+
 - Topic: {{interest}}
 - Daily time: {{time}}
 - Learning style: {{style}}
 
 Structure the plan with:
+
 1. Week 1: Foundations (what to learn first)
 2. Week 2: Core concepts (building on basics)
 3. Week 3: Practical application (hands-on work)
 4. Week 4: Real project (consolidate learning)
 
 For each week, provide:
+
 - Daily learning objectives
 - Specific resources matching their {{style}} preference
 - Time estimates that fit within {{time}}
@@ -163,13 +169,15 @@ Make the plan encouraging and achievable.
 ## Try It Yourself
 
 ### Option 1: MarkdownFlow Playground
+
 Visit [markdownflow.streamlit.app](https://markdownflow.streamlit.app) to try these examples live.
 
 ### Option 2: Use an SDK
 
 **React:**
+
 ```jsx
-import { MarkdownFlow } from 'markdown-flow-ui';
+import { MarkdownFlow } from "markdown-flow-ui";
 
 function App() {
   return <MarkdownFlow template={yourTemplate} />;
@@ -177,6 +185,7 @@ function App() {
 ```
 
 **Python:**
+
 ```python
 from markdown_flow_agent import FlowAgent
 
@@ -189,7 +198,7 @@ result = await agent.process(template, variables)
 In 5 minutes, you've learned:
 
 ✅ **Variables** - Make content dynamic with `{{variable_name}}`  
-✅ **User Input** - Collect choices with `?[#{{var}}option1|option2]`  
+✅ **User Input** - Collect choices with `?[%{{var}}option1|option2]`  
 ✅ **AI Instructions** - Generate content with natural language  
 ✅ **How they work together** - Create fully personalized experiences
 

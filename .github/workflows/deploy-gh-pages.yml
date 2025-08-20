@@ -26,12 +26,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-          
+
       - name: Cache pip packages
         uses: actions/cache@v4
         with:
@@ -39,26 +39,26 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-            
+
       - name: Install MkDocs dependencies
         run: |
           pip install mkdocs-material
           pip install pymdown-extensions
-          
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-        
+
       - name: Copy HTML files to site
         run: |
           mkdir -p _site
           cp index.html _site/
-          
+
       - name: Build MkDocs Documentation
         run: |
           cd docs
           mkdocs build --site-dir ../_site/docs --clean
-          
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -39,163 +39,178 @@ npm install markdown-it markdown-it-flow
 ### React with markdown-flow-ui
 
 1. **Install the package:**
-```bash
-npm install markdown-flow-ui
-```
+
+   ```bash
+   npm install markdown-flow-ui
+   ```
 
 2. **Import styles:**
-```jsx
-import 'markdown-flow-ui/dist/styles.css';
-```
+
+   ```jsx
+   import "markdown-flow-ui/dist/styles.css";
+   ```
 
 3. **Use the component:**
-```jsx
-import { MarkdownFlow } from 'markdown-flow-ui';
 
-function App() {
-  const template = `
-    # Hello {{user_name}}!
-    ?[#{{choice}}Continue|Cancel]
-  `;
+   ```jsx
+   import { MarkdownFlow } from "markdown-flow-ui";
 
-  return (
-    <MarkdownFlow 
-      template={template}
-      variables={{ user_name: 'World' }}
-      apiEndpoint="https://your-api.com/process"
-    />
-  );
-}
-```
+   function App() {
+     const template = `
+       # Hello {{user_name}}!
+       ?[%{{choice}}Continue|Cancel]
+     `;
+
+     return (
+       <MarkdownFlow
+         template={template}
+         variables={{ user_name: "World" }}
+         apiEndpoint="https://your-api.com/process"
+       />
+     );
+   }
+   ```
 
 ### React with react-markdown
 
 1. **Install packages:**
-```bash
-npm install react-markdown remark-flow
-```
+
+   ```bash
+   npm install react-markdown remark-flow
+   ```
 
 2. **Set up the component:**
-```jsx
-import ReactMarkdown from 'react-markdown';
-import remarkFlow from 'remark-flow';
 
-function App() {
-  return (
-    <ReactMarkdown remarkPlugins={[remarkFlow]}>
-      {markdownContent}
-    </ReactMarkdown>
-  );
-}
-```
+   ```jsx
+   import ReactMarkdown from "react-markdown";
+   import remarkFlow from "remark-flow";
+
+   function App() {
+     return (
+       <ReactMarkdown remarkPlugins={[remarkFlow]}>
+         {markdownContent}
+       </ReactMarkdown>
+     );
+   }
+   ```
 
 ### Python Backend
 
 1. **Install the package:**
-```bash
-pip install markdown-flow-agent
-```
+
+   ```bash
+   pip install markdown-flow-agent
+   ```
 
 2. **Create a FastAPI server:**
-```python
-from fastapi import FastAPI
-from markdown_flow_agent import FlowAgent
 
-app = FastAPI()
-agent = FlowAgent()
+   ```python
+   from fastapi import FastAPI
+   from markdown_flow_agent import FlowAgent
 
-@app.post("/process")
-async def process_template(template: str, variables: dict):
-    result = await agent.process(template, variables)
-    return result
-```
+   app = FastAPI()
+   agent = FlowAgent()
+
+   @app.post("/process")
+   async def process_template(template: str, variables: dict):
+       result = await agent.process(template, variables)
+       return result
+   ```
 
 3. **Run the server:**
-```bash
-uvicorn main:app --reload
-```
+
+   ```bash
+   uvicorn main:app --reload
+   ```
 
 ### Go Backend
 
 1. **Install the package:**
-```bash
-go get github.com/ai-shifu/markdown-flow-agent-go
-```
+
+   ```bash
+   go get github.com/ai-shifu/markdown-flow-agent-go
+   ```
 
 2. **Create a server:**
-```go
-package main
 
-import (
-    "log"
-    "net/http"
-    mf "github.com/ai-shifu/markdown-flow-agent-go"
-)
+   ```go
+   package main
 
-func main() {
-    agent := mf.NewAgent(mf.Config{
-        LLMProvider: "openai",
-        APIKey:      "your-api-key",
-    })
-    
-    handler := mf.NewHTTPHandler(agent)
-    log.Fatal(http.ListenAndServe(":8080", handler))
-}
-```
+   import (
+       "log"
+       "net/http"
+       mf "github.com/ai-shifu/markdown-flow-agent-go"
+   )
+
+   func main() {
+       agent := mf.NewAgent(mf.Config{
+           LLMProvider: "openai",
+           APIKey:      "your-api-key",
+       })
+
+       handler := mf.NewHTTPHandler(agent)
+       log.Fatal(http.ListenAndServe(":8080", handler))
+   }
+   ```
 
 ### Vue.js
 
 1. **Install packages:**
-```bash
-npm install markdown-it markdown-it-flow
-```
+
+   ```bash
+   npm install markdown-it markdown-it-flow
+   ```
 
 2. **Create a component:**
-```vue
-<template>
-  <div v-html="renderedMarkdown"></div>
-</template>
 
-<script>
-import MarkdownIt from 'markdown-it';
-import markdownItFlow from 'markdown-it-flow';
+   ```vue
+   <template>
+     <div v-html="renderedMarkdown"></div>
+   </template>
 
-export default {
-  data() {
-    return {
-      markdown: '# Hello {{name}}!',
-      variables: { name: 'Vue User' }
-    };
-  },
-  computed: {
-    renderedMarkdown() {
-      const md = new MarkdownIt().use(markdownItFlow);
-      return md.render(this.markdown);
-    }
-  }
-};
-</script>
-```
+   <script>
+   import MarkdownIt from "markdown-it";
+   import markdownItFlow from "markdown-it-flow";
+
+   export default {
+     data() {
+       return {
+         markdown: "# Hello {{name}}!",
+         variables: { name: "Vue User" },
+       };
+     },
+     computed: {
+       renderedMarkdown() {
+         const md = new MarkdownIt().use(markdownItFlow);
+         return md.render(this.markdown);
+       },
+     },
+   };
+   </script>
+   ```
 
 ### Vanilla JavaScript
 
 1. **Using CDN:**
-```html
-<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/markdown-it-flow/dist/markdown-it-flow.min.js"></script>
-```
+
+   ```html
+   <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/markdown-it-flow/dist/markdown-it-flow.min.js"></script>
+   ```
 
 2. **Or install via npm:**
-```bash
-npm install markdown-it markdown-it-flow
-```
+
+   ```bash
+   npm install markdown-it markdown-it-flow
+   ```
 
 3. **Use in your code:**
-```javascript
-const md = window.markdownit().use(window.markdownItFlow);
-const html = md.render(markdownContent);
-document.getElementById('content').innerHTML = html;
-```
+
+   ```javascript
+   const md = window.markdownit().use(window.markdownItFlow);
+   const html = md.render(markdownContent);
+   document.getElementById("content").innerHTML = html;
+   ```
 
 ## Environment Setup
 
@@ -271,7 +286,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
 ### Docker Compose
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   frontend:
@@ -280,7 +295,7 @@ services:
       - "3000:3000"
     environment:
       - REACT_APP_API_URL=http://backend:8000
-  
+
   backend:
     build: ./backend
     ports:
@@ -294,16 +309,19 @@ services:
 ### Check Package Version
 
 **JavaScript:**
+
 ```bash
 npm list markdown-flow-ui
 ```
 
 **Python:**
+
 ```bash
 pip show markdown-flow-agent
 ```
 
 **Go:**
+
 ```bash
 go list -m github.com/ai-shifu/markdown-flow-agent-go
 ```
@@ -311,14 +329,16 @@ go list -m github.com/ai-shifu/markdown-flow-agent-go
 ### Test Basic Functionality
 
 **JavaScript:**
-```javascript
-import { parseVariables } from 'markdown-flow-ui/utils';
 
-const vars = parseVariables('Hello {{name}}!');
+```javascript
+import { parseVariables } from "markdown-flow-ui/utils";
+
+const vars = parseVariables("Hello {{name}}!");
 console.log(vars); // ['name']
 ```
 
 **Python:**
+
 ```python
 from markdown_flow_agent import FlowAgent
 
@@ -332,21 +352,25 @@ print(variables)  # ['name']
 ### Common Issues
 
 **Module not found:**
+
 - Ensure package is installed: `npm install` or `pip install`
 - Check import paths are correct
 - Restart your development server
 
 **API key errors:**
+
 - Verify environment variables are set
 - Check API key is valid and has credits
 - Ensure backend can access the keys
 
 **CORS errors:**
+
 - Configure backend to allow frontend origin
 - Use proxy in development
 - Check API endpoint URLs
 
 **Version conflicts:**
+
 - Update to latest versions
 - Clear node_modules and reinstall
 - Check peer dependency requirements

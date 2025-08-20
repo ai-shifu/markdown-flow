@@ -37,7 +37,7 @@ Hello {{user_name}}, welcome to {{course_name}}!
 Collect user choices with interactive elements:
 
 ```markdown
-?[${{choice}}Option 1|Option 2|Option 3]
+?[%{{choice}}Option 1|Option 2|Option 3]
 ```
 
 [Learn more about user input →](user-input.md)
@@ -47,7 +47,7 @@ Collect user choices with interactive elements:
 Write natural language instructions for AI:
 
 ```markdown
-Generate a personalized learning plan for {{student_name}} 
+Generate a personalized learning plan for {{student_name}}
 based on their {{skill_level}} level in {{subject}}.
 ```
 
@@ -71,20 +71,20 @@ Generate a friendly greeting for {{user_name}} who is interested in {{topic}}.
 
 What would you like to learn about {{topic}} today?
 
-?[${{learning_choice}}Basic concepts|Advanced techniques|Practical examples]
+?[%{{learning_choice}}Basic concepts|Advanced techniques|Practical examples]
 
 ---
 
 Based on the choice "{{learning_choice}}", provide appropriate content:
 
-If {{learning_choice}} is "Basic concepts": 
-  Explain fundamental principles in simple terms.
+If {{learning_choice}} is "Basic concepts":
+Explain fundamental principles in simple terms.
 
 If {{learning_choice}} is "Advanced techniques":
-  Dive into complex implementations and best practices.
+Dive into complex implementations and best practices.
 
 If {{learning_choice}} is "Practical examples":
-  Show real-world applications with code samples.
+Show real-world applications with code samples.
 ```
 
 ## Best Practices
@@ -97,12 +97,14 @@ If {{learning_choice}} is "Practical examples":
 ## Quick Navigation
 
 ### Learn MarkdownFlow Syntax
+
 - [Variables](variables.md) - Master dynamic content with `{{variables}}`
 - [User Input](user-input.md) - Create interactive experiences with `?[$...]`
 - [AI Instructions](ai-instructions.md) - Write effective AI directives
 - [Examples](examples.md) - See complete templates in action
 
 ### Use MarkdownFlow Libraries
+
 - [Library Overview](../libraries/index.md) - Choose the right components
 - **Frontend**: [React UI](../libraries/frontend/markdown-flow-ui.md) | [remark plugin](../libraries/frontend/remark-flow.md) | [markdown-it plugin](../libraries/frontend/markdown-it-flow.md)
 - **Backend**: [Python Agent](../libraries/backend/agent-python.md) | [Go Agent](../libraries/backend/agent-go.md)
@@ -110,9 +112,11 @@ If {{learning_choice}} is "Practical examples":
 ## Getting Started
 
 ### For Creators
+
 Start with the [syntax guide](variables.md) to learn how to write MarkdownFlow templates that combine human-readable content with AI instructions.
 
 ### For Developers
+
 Check out our [libraries](../libraries/index.md) to integrate MarkdownFlow into your applications. We have components for React, Vue, Python, Go, and more.
 
 ## Community & Support

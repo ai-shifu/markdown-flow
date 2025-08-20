@@ -16,7 +16,7 @@ package main
 import (
     "log"
     "net/http"
-    
+
     mf "github.com/ai-shifu/markdown-flow-agent-go"
 )
 
@@ -27,10 +27,10 @@ func main() {
         APIKey:      "your-api-key",
         Model:       "gpt-4",
     })
-    
+
     // Create HTTP handler
     handler := mf.NewHTTPHandler(agent)
-    
+
     // Start server
     log.Println("Server starting on :8080")
     log.Fatal(http.ListenAndServe(":8080", handler))
@@ -47,17 +47,17 @@ config := mf.Config{
     LLMProvider: "openai",     // or "anthropic", "local"
     APIKey:      "your-key",
     Model:       "gpt-4",
-    
+
     // Processing Options
     Temperature:    0.7,
     MaxTokens:      2000,
     Timeout:        30 * time.Second,
     MaxConcurrency: 10,
-    
+
     // Caching
     EnableCache: true,
     CacheTTL:    1 * time.Hour,
-    
+
     // Safety
     EnableContentFilter: true,
     MaxRecursionDepth:   5,
@@ -92,12 +92,12 @@ func processTemplate(agent *mf.Agent) {
         "name":  "Alice",
         "level": "intermediate",
     }
-    
+
     result, err := agent.Process(template, variables)
     if err != nil {
         log.Fatal(err)
     }
-    
+
     fmt.Println("Content:", result.Content)
     fmt.Println("Variables Used:", result.VariablesUsed)
     fmt.Println("Processing Time:", result.ProcessingTime)
@@ -116,13 +116,13 @@ func asyncProcess(agent *mf.Agent) {
         }
         fmt.Println("Processed:", result.Content)
     })
-    
+
     // Process with channel
     resultChan := make(chan *mf.Result)
     errorChan := make(chan error)
-    
+
     go agent.ProcessWithChannels(template, variables, resultChan, errorChan)
-    
+
     select {
     case result := <-resultChan:
         fmt.Println("Result:", result)
@@ -140,7 +140,7 @@ func streamProcess(agent *mf.Agent) {
     if err != nil {
         log.Fatal(err)
     }
-    
+
     for chunk := range stream {
         if chunk.Error != nil {
             log.Printf("Stream error: %v", chunk.Error)
@@ -161,7 +161,7 @@ package main
 import (
     "encoding/json"
     "net/http"
-    
+
     mf "github.com/ai-shifu/markdown-flow-agent-go"
 )
 
@@ -170,28 +170,28 @@ func main() {
         LLMProvider: "openai",
         APIKey:      "your-key",
     })
-    
+
     http.HandleFunc("/process", func(w http.ResponseWriter, r *http.Request) {
         var req struct {
             Template  string                 `json:"template"`
             Variables map[string]interface{} `json:"variables"`
         }
-        
+
         if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
             http.Error(w, err.Error(), http.StatusBadRequest)
             return
         }
-        
+
         result, err := agent.Process(req.Template, req.Variables)
         if err != nil {
             http.Error(w, err.Error(), http.StatusInternalServerError)
             return
         }
-        
+
         w.Header().Set("Content-Type", "application/json")
         json.NewEncoder(w).Encode(result)
     })
-    
+
     http.ListenAndServe(":8080", nil)
 }
 ```
@@ -211,29 +211,29 @@ func main() {
         LLMProvider: "openai",
         APIKey:      "your-key",
     })
-    
+
     r := gin.Default()
-    
+
     r.POST("/process", func(c *gin.Context) {
         var req struct {
             Template  string                 `json:"template"`
             Variables map[string]interface{} `json:"variables"`
         }
-        
+
         if err := c.ShouldBindJSON(&req); err != nil {
             c.JSON(400, gin.H{"error": err.Error()})
             return
         }
-        
+
         result, err := agent.Process(req.Template, req.Variables)
         if err != nil {
             c.JSON(500, gin.H{"error": err.Error()})
             return
         }
-        
+
         c.JSON(200, result)
     })
-    
+
     r.Run(":8080")
 }
 ```
@@ -253,27 +253,27 @@ func main() {
         LLMProvider: "openai",
         APIKey:      "your-key",
     })
-    
+
     e := echo.New()
-    
+
     e.POST("/process", func(c echo.Context) error {
         var req struct {
             Template  string                 `json:"template"`
             Variables map[string]interface{} `json:"variables"`
         }
-        
+
         if err := c.Bind(&req); err != nil {
             return echo.NewHTTPError(400, err.Error())
         }
-        
+
         result, err := agent.Process(req.Template, req.Variables)
         if err != nil {
             return echo.NewHTTPError(500, err.Error())
         }
-        
+
         return c.JSON(200, result)
     })
-    
+
     e.Start(":8080")
 }
 ```
@@ -289,9 +289,9 @@ func batchProcess(agent *mf.Agent) {
         {Template: "Welcome {{user}}!", Variables: map[string]interface{}{"user": "Bob"}},
         {Template: "Greetings {{person}}!", Variables: map[string]interface{}{"person": "Charlie"}},
     }
-    
+
     results, errors := agent.BatchProcess(requests)
-    
+
     for i, result := range results {
         if errors[i] != nil {
             log.Printf("Request %d failed: %v", i, errors[i])
@@ -335,9 +335,9 @@ func loggingMiddleware(next mf.ProcessFunc) mf.ProcessFunc {
     return func(template string, variables map[string]interface{}) (*mf.Result, error) {
         start := time.Now()
         log.Printf("Processing template with %d variables", len(variables))
-        
+
         result, err := next(template, variables)
-        
+
         log.Printf("Processing took %v", time.Since(start))
         return result, err
     }
@@ -346,7 +346,7 @@ func loggingMiddleware(next mf.ProcessFunc) mf.ProcessFunc {
 // Rate limiting middleware
 func rateLimitMiddleware(limit int) mf.Middleware {
     limiter := rate.NewLimiter(rate.Limit(limit), 1)
-    
+
     return func(next mf.ProcessFunc) mf.ProcessFunc {
         return func(template string, variables map[string]interface{}) (*mf.Result, error) {
             if err := limiter.Wait(context.Background()); err != nil {
@@ -409,19 +409,19 @@ func handleWebSocket(agent *mf.Agent) http.HandlerFunc {
             return
         }
         defer conn.Close()
-        
+
         for {
             var req struct {
                 Template  string                 `json:"template"`
                 Variables map[string]interface{} `json:"variables"`
                 Stream    bool                   `json:"stream"`
             }
-            
+
             if err := conn.ReadJSON(&req); err != nil {
                 log.Printf("Read error: %v", err)
                 break
             }
-            
+
             if req.Stream {
                 // Stream response
                 stream, err := agent.StreamProcess(req.Template, req.Variables)
@@ -431,14 +431,14 @@ func handleWebSocket(agent *mf.Agent) http.HandlerFunc {
                     })
                     continue
                 }
-                
+
                 for chunk := range stream {
                     conn.WriteJSON(map[string]interface{}{
                         "type":    "chunk",
                         "content": chunk.Content,
                     })
                 }
-                
+
                 conn.WriteJSON(map[string]interface{}{
                     "type": "complete",
                 })
@@ -519,12 +519,12 @@ func NewWorkerPool(agent *mf.Agent, workers int) *WorkerPool {
         jobs:    make(chan Job, 100),
         results: make(chan Result, 100),
     }
-    
+
     // Start workers
     for i := 0; i < workers; i++ {
         go pool.worker()
     }
-    
+
     return pool
 }
 
@@ -557,7 +557,7 @@ package main
 
 import (
     "testing"
-    
+
     mf "github.com/ai-shifu/markdown-flow-agent-go"
     "github.com/stretchr/testify/assert"
 )
@@ -566,14 +566,14 @@ func TestProcessTemplate(t *testing.T) {
     agent := mf.NewAgent(mf.Config{
         LLMProvider: "mock",
     })
-    
+
     template := "Hello {{name}}!"
     variables := map[string]interface{}{
         "name": "Test",
     }
-    
+
     result, err := agent.Process(template, variables)
-    
+
     assert.NoError(t, err)
     assert.Contains(t, result.Content, "Test")
     assert.Contains(t, result.VariablesUsed, "name")
@@ -581,10 +581,10 @@ func TestProcessTemplate(t *testing.T) {
 
 func TestParseUserInputs(t *testing.T) {
     agent := mf.NewAgent(mf.Config{})
-    
-    template := "?[${{choice}}Yes|No]"
+
+    template := "?[%{{choice}}Yes|No]"
     inputs := agent.ParseUserInputs(template)
-    
+
     assert.Len(t, inputs, 1)
     assert.Equal(t, "choice", inputs[0].Variable)
     assert.Equal(t, []string{"Yes", "No"}, inputs[0].Options)
@@ -594,10 +594,10 @@ func BenchmarkProcess(b *testing.B) {
     agent := mf.NewAgent(mf.Config{
         LLMProvider: "mock",
     })
-    
+
     template := "Hello {{name}}!"
     variables := map[string]interface{}{"name": "Benchmark"}
-    
+
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         agent.Process(template, variables)
@@ -612,25 +612,25 @@ func TestHTTPEndpoint(t *testing.T) {
     agent := mf.NewAgent(mf.Config{
         LLMProvider: "mock",
     })
-    
+
     handler := mf.NewHTTPHandler(agent)
     server := httptest.NewServer(handler)
     defer server.Close()
-    
+
     reqBody := `{
         "template": "Hello {{name}}!",
         "variables": {"name": "World"}
     }`
-    
+
     resp, err := http.Post(
         server.URL+"/process",
         "application/json",
         strings.NewReader(reqBody),
     )
-    
+
     assert.NoError(t, err)
     assert.Equal(t, 200, resp.StatusCode)
-    
+
     var result mf.Result
     json.NewDecoder(resp.Body).Decode(&result)
     assert.Contains(t, result.Content, "World")
@@ -679,23 +679,23 @@ spec:
         app: markdownflow-agent
     spec:
       containers:
-      - name: agent
-        image: markdownflow-agent:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: MARKDOWNFLOW_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: markdownflow-secrets
-              key: api-key
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
+        - name: agent
+          image: markdownflow-agent:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MARKDOWNFLOW_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: markdownflow-secrets
+                  key: api-key
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
@@ -705,8 +705,8 @@ spec:
   selector:
     app: markdownflow-agent
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
   type: LoadBalancer
 ```
 
@@ -728,7 +728,7 @@ var (
         },
         []string{"status"},
     )
-    
+
     requestDuration = prometheus.NewHistogramVec(
         prometheus.HistogramOpts{
             Name: "markdownflow_request_duration_seconds",
@@ -747,9 +747,9 @@ func instrumentedHandler(agent *mf.Agent) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         timer := prometheus.NewTimer(requestDuration.WithLabelValues("/process"))
         defer timer.ObserveDuration()
-        
+
         // Process request...
-        
+
         requestsTotal.WithLabelValues("success").Inc()
     }
 }
@@ -777,10 +777,10 @@ func processWithLogging(agent *mf.Agent, logger *zap.Logger) {
         zap.Int("variableCount", len(variables)),
         zap.String("provider", agent.Config.LLMProvider),
     )
-    
+
     start := time.Now()
     result, err := agent.Process(template, variables)
-    
+
     if err != nil {
         logger.Error("Processing failed",
             zap.Error(err),
