@@ -1,111 +1,154 @@
-# What is MarkdownFlow?
+# MarkdownFlow
 
-**MarkdownFlow is the HTML of the AI Era** — a document format that humans, code, and AI can all read and write.
+## Write Once, Deliver Personally
 
-## One-Line Definition
+MarkdownFlow is an extension of the Markdown format. Documents written in MarkdownFlow can be processed by MarkdownFlow Agents to create beautifully formatted, personalized, and interactive pages tailored to each reader.
 
-MarkdownFlow extends Markdown with variables, user inputs, and AI instructions to create dynamic, personalized documents.
+**No programming knowledge required. Easy to learn and use. If you can type, you can create.**
 
-## The Problem It Solves
+## Use Cases
 
-Traditional documents are static. The same content for everyone. But in the AI era, we need documents that:
-- Adapt to each reader
-- Respond to user choices
-- Generate personalized content
-- Maintain human readability
+### Education
 
-MarkdownFlow solves this by adding just three simple concepts to standard Markdown.
+Generate personalized learning materials for students at different levels. A single curriculum outline automatically adjusts difficulty and teaching methods based on students' foundation, interests, and learning progress.
 
-## Core Concepts
+### Content Creation
 
-### 1. Variables `{{name}}`
-Replace static text with dynamic content:
+Articles that automatically adjust technical terminology based on readers' background knowledge. Provide detailed explanations for beginners while delivering key points directly to professionals.
+
+### News Media
+
+The same news story expands from different angles based on readers' interests. Technology-focused readers see technical details, while business-oriented readers receive market analysis.
+
+### Interactive Storytelling
+
+Create interactive narratives where every reader choice influences the plot direction, generating unique adventure experiences.
+
+### Corporate Training
+
+Automatically generate customized training materials and operation manuals based on employees' departments, positions, and skill levels.
+
+## Getting Started
+
+### Step 1: Inherit Everything from Markdown, But Everything Is a Prompt
+
+MarkdownFlow is fully compatible with standard Markdown, but **everything in the document serves as prompts**. When writing, always remember that you are instructing AI on how to teach, tell stories, deliver news, and more.
+
+**Example:**
 
 ```markdown
-Hello {{user_name}}, welcome to {{course_name}}!
+# Introduction to Python Programming
+
+Please introduce Python programming language in an engaging and accessible manner.
+
+Python is a programming language that is as natural as speaking.
+
+Let's begin with printing "Hello World":
+
+- Explain what printing means in programming
+- Use everyday analogies to illustrate concepts
+- Encourage readers to try it themselves
 ```
 
-### 2. User Input `?[...]`
-Collect choices from users:
+The AI will generate engaging educational content based on these prompts.
+
+### Step 2: Collect User Choices with Interactive Buttons
+
+Use the syntax `?[%{{variable}}Option1|Option2]` to create buttons. User selections are stored in `{{variable}}`, allowing subsequent prompts to generate different content based on the stored value.
+
+**Example:**
 
 ```markdown
-What's your experience level?
-?[#{{level}}Beginner|Intermediate|Advanced]
-```
+# Learning Python
 
-### 3. AI Instructions
-Write natural language instructions for AI:
-
-```markdown
-Generate a learning plan for {{user_name}} who is at {{level}} level.
-Make it encouraging and specific to their goals.
-```
-
-## A Complete Example
-
-Here's a simple MarkdownFlow template that demonstrates all three concepts:
-
-```markdown
-# Welcome to Python Learning! 
-
-What's your name? {{student_name}}
-
-How much programming experience do you have?
-?[#{{experience}}None at all|Some basics|Comfortable with another language]
+Which area of Python would you like to explore?
+?[%{{direction}}Web Development|Data Analysis|Artificial Intelligence|Automation Scripts]
 
 ---
 
-Generate a personalized welcome message for {{student_name}}.
+Generate a learning path based on the user's selected {{direction}}:
 
-Based on their experience level "{{experience}}":
-- If "None at all": Start with encouragement and basic concepts
-- If "Some basics": Acknowledge their foundation and preview next steps  
-- If "Comfortable with another language": Compare Python to other languages
+If "Web Development" is selected:
 
-Include 2-3 specific things they'll learn in their first lesson.
+- Introduce Django and Flask frameworks
+- Recommend HTML/CSS fundamentals
+- Provide a simple website project example
+
+If "Data Analysis" is selected:
+
+- Introduce Pandas and NumPy
+- Explain data visualization tools
+- Present real dataset analysis cases
+
+[And so on...]
 ```
 
-## How It Works
+### Step 3: Preserve Specific Content from AI Interpretation
 
-1. **Write** - Authors create templates using MarkdownFlow syntax
-2. **Process** - AI interprets instructions and fills in variables
-3. **Interact** - Users make choices that shape the content
-4. **Deliver** - Each user gets personalized, relevant content
+For content that should remain unchanged by AI interpretation—such as quotations, axioms, or code examples—enclose it with `===`.
 
-## Who Uses MarkdownFlow?
+**Example:**
 
-### Content Creators
-Write once, deliver personalized content to thousands. No coding required.
+```markdown
+Let us remember the core principles of The Zen of Python:
 
-### Developers
-Build interactive applications with markdown as the interface.
+===
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+===
 
-### Educators
-Create adaptive learning materials that meet students where they are.
+Please explain the significance of these principles for programming while preserving the original text.
+```
 
-### AI Engineers
-Define AI behavior using natural language instead of complex prompts.
+## Additional Examples
 
-## Why MarkdownFlow?
+### Interactive Story
 
-### It's Just Markdown
-- 100% compatible with standard Markdown
-- Works with existing tools and editors
-- No proprietary format lock-in
+```markdown
+# The Mysterious Forest Adventure
 
-### It's Human-Friendly
-- Read and write without special tools
-- Natural language instructions
-- Clear, simple syntax
+You are a brave explorer standing at the entrance to the legendary mysterious forest.
 
-### It's Powerful
-- Full Turing-complete with AI
-- Infinite personalization possibilities
-- Works with any LLM provider
+You see two paths before you:
+?[%{{path}}The sunny path on the left|The shadowy trail on the right]
 
-## Next Steps
+---
 
-Ready to start? Continue to:
-- [Relationship with Markdown](relationship.md) - How MarkdownFlow extends Markdown
-- [5-Minute Quickstart](quickstart.md) - Learn by doing
-- [Installation Guide](installation.md) - Set up MarkdownFlow in your project
+Generate different adventure stories based on the {{path}} choice:
+
+- If "The sunny path on the left" is chosen: Encounter friendly sprites and receive magical blessings
+- If "The shadowy trail on the right" is chosen: Discover ancient treasures that require solving puzzles
+```
+
+### Personalized News
+
+```markdown
+# Today's Tech News: AI Breakthrough
+
+Which aspect interests you most?
+?[%{{focus}}Technical Principles|Business Applications|Social Impact|Investment Opportunities]
+
+---
+
+Expand content based on the reader's selected {{focus}}:
+
+- Maintain objective and neutral journalistic standards
+- Include relevant expert opinions
+- Provide background information and context
+```
+
+## Future Roadmap
+
+### Multimodal Output Support
+
+Generate richly illustrated content. Enable AI not only to narrate but also to create diagrams, charts, and visualizations, making your creations more vivid and engaging.
+
+### Evolution into Universal Agent Expression Language
+
+Effortlessly customize your own Agents. Define complex AI behaviors using natural language. Building intelligent applications has never been simpler.
+
+---
+
+Ready to begin? Visit the [Quick Start Guide](getting-started/quickstart.md) to experience the power of MarkdownFlow today!
