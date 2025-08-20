@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarkdownFlow - The HTML of the AI Era</title>
+    <title>MarkdownFlow - Write Once, Deliver Personally</title>
+    <link rel="icon" type="image/png" href="/logo.png">
     <style>
         * {
             margin: 0;
@@ -42,6 +43,15 @@
         h1 {
             font-size: 2rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
         }
 
         .github-link {
@@ -340,7 +350,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>🚀 MarkdownFlow</h1>
+                <h1><img src="/logo.png" alt="MarkdownFlow Logo" class="logo"> MarkdownFlow</h1>
                 <nav style="display: flex; gap: 1rem; align-items: center;">
                     <a href="/docs/" class="github-link">Documentation</a>
                     <a href="https://github.com/ai-shifu/markdown-flow" class="github-link">GitHub</a>
@@ -353,104 +363,76 @@
     <div class="container">
         <main>
             <section class="hero">
-                <h2>MarkdownFlow: The HTML of the AI Era</h2>
-                <p>A document format that humans, code, and AI can all read and write. Write once in markdown, let AI deliver personalized, interactive experiences to every user.</p>
+                <h2>Write Once, Deliver Personally</h2>
+                <p>MarkdownFlow is an extension of the Markdown format. Documents written in MarkdownFlow can be processed by MarkdownFlow Agents to create beautifully formatted, personalized, and interactive pages tailored to each reader.</p>
+                <p style="margin-top: 1rem; font-weight: bold; color: #0F63EE;">No programming knowledge required. Easy to learn and use. If you can type, you can create.</p>
             </section>
 
             <section class="features">
                 <div class="feature">
-                    <div class="feature-icon">📝</div>
-                    <h3>Markdown as Instructions</h3>
-                    <p>Creators write markdown instructions with AI directives and interactive elements.</p>
+                    <div class="feature-icon">📚</div>
+                    <h3>Education</h3>
+                    <p>Generate personalized learning materials for students at different levels. A single curriculum outline automatically adjusts difficulty and teaching methods based on students' foundation, interests, and learning progress.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI Content Generation</h3>
-                    <p>AI interprets instructions to generate personalized content based on user context and variables.</p>
+                    <div class="feature-icon">✍️</div>
+                    <h3>Content Creation</h3>
+                    <p>Articles that automatically adjust technical terminology based on readers' background knowledge. Provide detailed explanations for beginners while delivering key points directly to professionals.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">🔌</div>
-                    <h3>Complete Ecosystem</h3>
-                    <p>Frontend components for React and Vue, backend agents for Python and Go.</p>
+                    <div class="feature-icon">📰</div>
+                    <h3>News Media</h3>
+                    <p>The same news story expands from different angles based on readers' interests. Technology-focused readers see technical details, while business-oriented readers receive market analysis.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Interactive Storytelling</h3>
+                    <p>Create interactive narratives where every reader choice influences the plot direction, generating unique adventure experiences.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💼</div>
+                    <h3>Corporate Training</h3>
+                    <p>Automatically generate customized training materials and operation manuals based on employees' departments, positions, and skill levels.</p>
                 </div>
             </section>
 
             <section class="api-section">
-                <h3>📝 MarkdownFlow Examples</h3>
+                <h3>Examples</h3>
                 <div class="example-showcase">
                     <div class="example-item">
-                        <h4>📚 Interactive Learning Course</h4>
+                        <h4>📖 Interactive Story</h4>
                         <div class="markdown-example">
-                            <pre><code># Python Programming Course Instructions
+                            <pre><code># The Mysterious Forest Adventure
 
-Generate a warm welcome message for {{student_name}} who is starting to learn Python programming.
+You are a brave explorer standing at the entrance to the legendary mysterious forest.
 
-Explain that this course covers variables, data types, and basic programming concepts. Adapt the explanation complexity to {{student_level}} level (beginner/intermediate/advanced).
-
-Create 2-3 code examples showing variables and data types appropriate for {{student_level}}.
-
----
-
-# Practice Exercise Generation
-
-Create a coding exercise about Python variables that matches {{student_level}} difficulty. Include:
-- Clear problem statement
-- Expected output
-- Helpful hints if needed
-
-After presenting the exercise, ask the student to choose from these options:
-?[%{{exercise_choice}}I completed it|I need help|Skip this exercise]
+You see two paths before you:
+?[%{{path}}The sunny path on the left|The shadowy trail on the right]
 
 ---
 
-# Response Based on Student Choice
+Generate different adventure stories based on the {{path}} choice:
 
-The student chose: "{{exercise_choice}}"
-
-Generate appropriate response based on their choice:
-
-If {{exercise_choice}} is "I completed it": Give encouraging feedback and introduce the next topic (functions). Include a brief preview of what functions do.
-
-If {{exercise_choice}} is "I need help": Provide step-by-step guidance with simpler examples. Break down the exercise into smaller parts.
-
-If {{exercise_choice}} is "Skip this exercise": Acknowledge their choice respectfully and provide a brief summary of the key concepts before moving to the next lesson.</code></pre>
+- If "The sunny path on the left" is chosen: Encounter friendly sprites and receive magical blessings
+- If "The shadowy trail on the right" is chosen: Discover ancient treasures that require solving puzzles</code></pre>
                         </div>
                     </div>
 
                     <div class="example-item">
-                        <h4>📖 Interactive Story Adventure</h4>
+                        <h4>📰 Personalized News</h4>
                         <div class="markdown-example">
-                            <pre><code># Interactive Fantasy Story Generation
+                            <pre><code># Today's Tech News: AI Breakthrough
 
-Create a welcoming introduction for {{player_name}} explaining this is an adventure story where their choices matter.
-
-Establish that they are a {{character_class}} exploring an ancient forest. Generate vivid descriptions of the forest atmosphere with trees whispering secrets and mysterious lights flickering in the distance.
-
-Build suspense and mystery. Make the player feel the wonder and intrigue of this magical place.
-
-Present a choice point: as they walk deeper into the forest, they come to a fork in the path. Offer these options:
-
-?[%{{path_choice}}Follow the glowing lights|Investigate the old oak tree|Set up camp and wait]
+Which aspect interests you most?
+?[%{{focus}}Technical Principles|Business Applications|Social Impact|Investment Opportunities]
 
 ---
 
-# Generate Path Consequences
+Expand content based on the reader's selected {{focus}}:
 
-The player chose to "{{path_choice}}".
-
-Generate dramatic consequences based on their choice:
-
-If {{path_choice}} is "Follow the glowing lights": Create a scene where they reach a magical clearing and encounter a friendly forest spirit who offers them a quest. The spirit needs help recovering a stolen crystal.
-
-If {{path_choice}} is "Investigate the old oak tree": Describe how they discover a hidden door in the tree trunk leading to an underground chamber with ancient puzzles and treasures.
-
-If {{path_choice}} is "Set up camp and wait": Generate a nighttime scene where they overhear a conversation between two mysterious figures plotting something in the forest.
-
-Present the consequences dramatically, adapting the tone and description style to match their choice of "{{path_choice}}".
-
-Then present new choices that logically follow from "{{path_choice}}":
-
-?[%{{next_action}}Accept the quest|Decline and explore elsewhere|Ask for more information]</code></pre>
+- Maintain objective and neutral journalistic standards
+- Include relevant expert opinions
+- Provide background information and context</code></pre>
                         </div>
                     </div>
 
@@ -556,7 +538,7 @@ Make all recommendations practical and achievable for their specific profile.</c
             </section>
 
             <section class="api-section">
-                <h3>📦 Open Source Projects</h3>
+                <h3>Open Source Projects</h3>
                 <div class="projects-grid">
                     <a href="https://github.com/ai-shifu/markdown-flow-ui" class="project-card">
                         <div class="project-header">
