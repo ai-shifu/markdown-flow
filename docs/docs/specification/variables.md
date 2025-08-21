@@ -15,17 +15,16 @@ Variables use double curly braces:
 **Simple example:**
 
 ```markdown
-Hello, {{user_name}}!
-Your account balance is {{balance}}.
+Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
 ```
 
 ## Variable Naming Rules
 
-Variable names are **case-sensitive** and must follow these rules:
+Variable names are **case-sensitive** and can use any character combination except `}`:
 
-- **Start with**: Letter (a-z, A-Z) or underscore (\_)
-- **Contain**: Letters, numbers, underscores
-- **Cannot contain**: Spaces, hyphens, dots, or special characters (except }
+- **Can contain**: Any characters including letters, numbers, spaces, special characters, emojis, non-ASCII characters
+- **Cannot contain**: The `}` character (as it marks the end of the variable)
+- **Cannot be**: Empty (must have at least one character)
 
 ### Valid Variable Names
 
@@ -38,16 +37,20 @@ Variable names are **case-sensitive** and must follow these rules:
 {{_private}} ✓ Starting with underscore
 {{CONSTANT}} ✓ All caps
 {{a}} ✓ Single character
+{{123user}} ✓ Starts with number
+{{user-name}} ✓ Contains hyphen
+{{user.name}} ✓ Contains dot
+{{user name}} ✓ Contains space
+{{用户}} ✓ Non-ASCII characters
+{{user@email}} ✓ With special characters
+{{🚀rocket}} ✓ With emoji
+{{name[0]}} ✓ Array-like notation
 ```
 
 ### Invalid Variable Names
 
 ```markdown
-{{123user}} ✗ Starts with number
-{{user-name}} ✗ Contains hyphen
-{{user.name}} ✗ Contains dot
-{{user name}} ✗ Contains space
-{{用户}} ✗ Non-ASCII characters
+{{user}name}} ✗ Contains } character
 {{}} ✗ Empty variable
 ```
 
