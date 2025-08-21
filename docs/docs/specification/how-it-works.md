@@ -1,0 +1,213 @@
+# How It Works
+
+## The MarkdownFlow Processing Pipeline
+
+MarkdownFlow transforms source documents into personalized, interactive pages through a sophisticated processing pipeline. Understanding this workflow helps you write more effective MarkdownFlow documents.
+
+## Document Structure
+
+A MarkdownFlow source document consists of two main parts:
+
+### 1. Content Source
+
+The main body of your document, written in Markdown with MarkdownFlow extensions:
+
+```markdown
+# Welcome {{user_name}}
+
+Your learning path begins here.
+
+?[%{{level}} Beginner | Intermediate | Advanced]
+
+Based on your selection, here's your customized content...
+```
+
+### 2. Document Prompt
+
+Instructions that guide how the content should be rendered, typically placed at the document's end:
+
+```markdown
+---
+Language: Adapt to {{browser_language}}
+Tone: Professional but friendly
+Style: Clear and concise
+Personalization: Adjust complexity based on {{level}}
+---
+```
+
+## Processing Workflow
+
+Here's how MarkdownFlow transforms your source into the final output:
+
+### Step 1: Parsing
+
+The MarkdownFlow Agent receives the source document and:
+
+1. **Identifies standard Markdown** - Headers, lists, links, etc.
+2. **Extracts MarkdownFlow syntax** - Variables, interactions, preserved content
+3. **Separates document prompt** - Processing instructions for the LLM
+
+**Example:**
+
+```markdown
+Input: "Hello {{name}}, welcome!"
+Parsed:
+
+- Text: "Hello "
+- Variable: "name"
+- Text: ", welcome!"
+```
+
+### Step 2: Variable Resolution
+
+The agent resolves variables from multiple sources:
+
+- **User inputs** - Collected through interactive elements
+- **System variables** - Pre-defined by the platform
+- **Context variables** - From the current session
+
+**Example:**
+
+```markdown
+Before: "Welcome {{user_name}} from {{country}}"
+After: "Welcome Alice from Canada"
+```
+
+### Step 3: LLM Processing
+
+The resolved content and document prompt are sent to the Large Language Model:
+
+1. **Content interpretation** - Understanding the document's intent
+2. **Personalization** - Adapting content to user context
+3. **Generation** - Creating tailored content while respecting preserved sections
+
+**Example:**
+
+```markdown
+Source: "Explain recursion for {{level}} programmers"
+LLM Input: "Explain recursion for beginner programmers"
+LLM Output: "Recursion is when a function calls itself. Think of it like Russian dolls..."
+```
+
+### Step 4: Interface Element Generation
+
+Interactive elements are transformed into UI components:
+
+```markdown
+Source: ?[%{{choice}} Yes | No | Maybe]
+Output: Three clickable buttons that store the selection
+```
+
+### Step 5: Rendering
+
+The MarkdownFlow Renderer converts the processed content into the final page:
+
+1. **Markdown rendering** - Standard Markdown to HTML conversion
+2. **Component injection** - Interactive elements become UI widgets
+3. **Style application** - Applying themes and formatting
+4. **Event binding** - Connecting user interactions to variables
+
+## A Complete Example
+
+Let's trace a document through the entire pipeline:
+
+**Source Document:**
+
+```markdown
+# Learning Path
+
+What would you like to learn?
+?[%{{topic}} Python | JavaScript | Go]
+
+## Getting Started with {{topic}}
+
+===Remember: Practice makes perfect!===
+
+---
+
+Document Prompt:
+Create beginner-friendly content
+Use simple language
+Include practical examples
+```
+
+**Processing Steps:**
+
+1. **Parse**: Identify heading, interaction, variable, preserved text
+2. **Wait for input**: Display buttons, user selects "Python"
+3. **Resolve**: Replace `{{topic}}` with "Python"
+4. **LLM Process**: Generate personalized Python tutorial
+5. **Preserve**: Keep "Remember: Practice makes perfect!" unchanged
+6. **Render**: Create interactive HTML page
+
+**Final Output:**
+
+```html
+<h1>Learning Path</h1>
+<div class="interaction-complete">✓ Python selected</div>
+<h2>Getting Started with Python</h2>
+<p>
+  Python is perfect for beginners! Let's start with a simple "Hello World"...
+</p>
+<p><strong>Remember: Practice makes perfect!</strong></p>
+```
+
+## Key Concepts
+
+### Real-time Processing
+
+MarkdownFlow processes content dynamically:
+
+- Variables are resolved at runtime
+- Content adapts to user choices instantly
+- Each reader gets a unique experience
+
+### Context Awareness
+
+The system maintains context throughout the session:
+
+- Previous selections influence later content
+- Variables persist across sections
+- User journey is tracked and utilized
+
+### Intelligent Adaptation
+
+The LLM doesn't just substitute variables—it:
+
+- Adjusts tone and complexity
+- Generates relevant examples
+- Maintains narrative coherence
+- Respects formatting requirements
+
+## Platform Integration
+
+Different platforms provide different capabilities:
+
+### MarkdownFlow Playground
+
+- Browser-based processing
+- Access to `{{browser_language}}`
+- Real-time preview
+
+### AI-Shifu Platform
+
+- Extended system variables
+- User profiles: `{{sys_user_nickname}}`, `{{sys_user_background}}`
+- Advanced personalization
+
+### Custom Implementations
+
+- Define your own system variables
+- Integrate with databases
+- Custom rendering pipelines
+
+## Summary
+
+MarkdownFlow's power comes from this sophisticated pipeline that:
+
+1. **Preserves** all standard Markdown functionality
+2. **Enhances** with dynamic, personalized content
+3. **Adapts** to each reader's context
+4. **Delivers** unique experiences from a single source
+
+The beauty is that as an author, you don't need to manage this complexity—you just write MarkdownFlow, and the system handles the rest.

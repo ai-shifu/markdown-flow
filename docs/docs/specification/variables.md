@@ -1,345 +1,369 @@
-# Variables Specification
+# Variables
 
-## Syntax Definition
+## Using Variables in MarkdownFlow
 
-```bnf
-variable ::= '{{' ws* variable_name ws* '}}'
-variable_name ::= identifier
-identifier ::= [a-zA-Z_][a-zA-Z0-9_]*
-ws ::= [ \t\n\r]
-```
+Variables are the foundation of dynamic content in MarkdownFlow. They act as placeholders that get replaced with actual values during processing, enabling personalized and context-aware documents.
 
-## Formal Rules
+## Basic Syntax
 
-### Rule 1: Delimiter Matching
-
-Variables MUST use exactly two opening braces `{{` and two closing braces `}}`.
+Variables use double curly braces:
 
 ```markdown
-{{valid}} ✓ Correct
-{invalid} ✗ Single braces
-{{{invalid}}} ✗ Triple braces
+{{variable_name}}
 ```
 
-### Rule 2: Variable Names
-
-Variable names MUST:
-
-- Start with a letter (a-z, A-Z) or underscore (\_)
-- Contain only letters, numbers, and underscores
-- Be case-sensitive
+**Simple example:**
 
 ```markdown
-{{userName}} ✓ Valid camelCase
-{{user_name}} ✓ Valid snake_case
-{{UserName}} ✓ Valid PascalCase
-{{_private}} ✓ Valid with underscore prefix
-{{user123}} ✓ Valid with numbers
-
-{{123user}} ✗ Invalid - starts with number
-{{user-name}} ✗ Invalid - contains hyphen
-{{user.name}} ✗ Invalid - contains period
-{{user name}} ✗ Invalid - contains space
+Hello, {{user_name}}!
+Your account balance is {{balance}}.
 ```
 
-### Rule 3: Whitespace Handling
+## Variable Naming Rules
 
-Whitespace inside delimiters is NOT significant:
+Variable names are **case-sensitive** and must follow these rules:
+
+- **Start with**: Letter (a-z, A-Z) or underscore (\_)
+- **Contain**: Letters, numbers, underscores
+- **Cannot contain**: Spaces, hyphens, dots, or special characters (except }
+
+### Valid Variable Names
 
 ```markdown
-{{name}} → variable: "name"
-{{ name }} → variable: "name"
-{{  name  }} → variable: "name"
-{{
-  name
-}} → variable: "name"
+{{name}} ✓ Simple
+{{userName}} ✓ camelCase
+{{user_name}} ✓ snake_case
+{{UserName}} ✓ PascalCase
+{{user123}} ✓ With numbers
+{{_private}} ✓ Starting with underscore
+{{CONSTANT}} ✓ All caps
+{{a}} ✓ Single character
 ```
 
-### Rule 4: Context Independence
-
-Variables can appear in any context:
+### Invalid Variable Names
 
 ```markdown
-# In text
+{{123user}} ✗ Starts with number
+{{user-name}} ✗ Contains hyphen
+{{user.name}} ✗ Contains dot
+{{user name}} ✗ Contains space
+{{用户}} ✗ Non-ASCII characters
+{{}} ✗ Empty variable
+```
 
-Hello {{name}}!
+## How Variables Work
 
-# In headers
+### 1. Declaration and Assignment
 
-## Chapter {{chapter_number}}: {{chapter_title}}
+Variables get their values from multiple sources:
 
-# In lists
+**User Input:**
 
-- Item {{item_1}}
-- Item {{item_2}}
+```markdown
+What's your name?
+?[%{{name}} ...Enter your name]
 
-# In links
+Hello, {{name}}!
+```
 
-[Click here]({{url}})
-[{{link_text}}](https://example.com)
+**System Variables:**
 
-# In images
+```markdown
+Your browser language is {{browser_language}}.
+Current year is {{year}}.
+```
 
-![{{alt_text}}]({{image_url}})
+### 2. Variable Replacement
 
-# In code spans
+Before the LLM processes the content, the MarkdownFlow Agent replaces all variables with their values:
 
-The variable `{{varName}}` is used here
+```markdown
+Before: "Welcome {{user}}, you selected {{choice}}!"
+After: "Welcome Alice, you selected Python!"
+```
 
-# In HTML
+### 3. Empty Variables
 
-<div class="{{className}}" id="{{elementId}}">
-  {{content}}
+If a variable has no value, it's replaced with an empty string:
+
+```markdown
+Before: "Hello {{undefined_var}}!"
+After: "Hello !"
+```
+
+**Important:** Always assign values to variables before using them, typically through user input or system defaults.
+
+## Variables in Different Contexts
+
+Variables work everywhere in your document:
+
+### In Text
+
+```markdown
+Welcome back, {{username}}!
+```
+
+### In Headers
+
+```markdown
+# Chapter {{chapter_number}}: {{chapter_title}}
+```
+
+### In Lists
+
+```markdown
+Your selections:
+
+- Color: {{selected_color}}
+- Size: {{selected_size}}
+- Quantity: {{quantity}}
+```
+
+### In Links and Images
+
+```markdown
+[Visit {{site_name}}]({{site_url}})
+![{{image_description}}]({{image_path}})
+```
+
+### In Tables
+
+```markdown
+| Property | Value                 |
+| -------- | --------------------- |
+| Name     | {{user_name}}         |
+| Email    | {{user_email}}        |
+| Plan     | {{subscription_plan}} |
+```
+
+### In HTML
+
+```markdown
+<div class="{{theme_class}}">
+  <span id="user-{{user_id}}">{{display_name}}</span>
 </div>
 ```
 
-### Rule 5: Escaping
+## System Predefined Variables
 
-To display literal braces, use backslash escaping:
+Different platforms provide different system variables:
 
-```markdown
-\{\{literal\}\} → {{literal}} (displayed as text)
-\\{{variable}} → \[value] (backslash then variable)
-```
-
-## Parsing Algorithm
-
-```python
-def parse_variables(text):
-    variables = []
-    i = 0
-    while i < len(text):
-        # Look for opening delimiter
-        if text[i:i+2] == '{{':
-            # Skip if escaped
-            if i > 0 and text[i-1] == '\\':
-                i += 2
-                continue
-
-            # Find closing delimiter
-            j = i + 2
-            brace_count = 0
-            while j < len(text):
-                if text[j:j+2] == '}}':
-                    if brace_count == 0:
-                        # Extract variable name
-                        var_name = text[i+2:j].strip()
-                        if is_valid_identifier(var_name):
-                            variables.append({
-                                'name': var_name,
-                                'start': i,
-                                'end': j+2
-                            })
-                        i = j + 2
-                        break
-                j += 1
-            else:
-                i += 1
-        else:
-            i += 1
-    return variables
-
-def is_valid_identifier(name):
-    import re
-    return bool(re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', name))
-```
-
-## Edge Cases
-
-### Empty Variables
+### MarkdownFlow Playground
 
 ```markdown
-{{}} → Invalid (empty variable name)
-{{ }} → Invalid (whitespace is not a valid name)
+{{browser_language}} # User's browser language (e.g., "en-US", "zh-CN")
 ```
 
-### Nested Braces
+**Example:**
 
 ```markdown
-{{user_{{type}}}} → Invalid (nesting not supported)
-{{user_{type}}} → Invalid (single braces inside)
+{{#if browser_language == "zh-CN"}}
+欢迎！
+{{else}}
+Welcome!
+{{/if}}
 ```
 
-### Adjacent Variables
+### AI-Shifu Platform
 
 ```markdown
-{{first}}{{last}} → Two separate variables
-{{first}} {{last}} → Two variables with space
-{{first}}-{{last}} → Two variables with hyphen
+{{sys_user_nickname}} # User's display name
+{{sys_user_background}} # User's profile information
+{{sys_user_preference}} # User's content preferences
 ```
 
-### Variables in Code Blocks
-
-Variables in fenced code blocks are NOT processed:
-
-````markdown
-```python
-# This is literal text, not a variable
-print("{{not_a_variable}}")
-```
-````
-
-But inline code respects variables:
+**Example:**
 
 ```markdown
-The code `print({{variable}})` uses a variable
+Hi {{sys_user_nickname}}!
+
+Based on your background in {{sys_user_background}},
+here's content tailored to your interests...
 ```
 
-### Unicode in Variable Names
+### Custom Implementations
 
-Currently, variable names are restricted to ASCII characters:
+You can define your own system variables:
 
 ```markdown
-{{user_name}} ✓ Valid
-{{用户名}} ✗ Invalid (non-ASCII)
-{{naïve}} ✗ Invalid (non-ASCII)
+{{company_name}} # Your organization
+{{current_date}} # Today's date
+{{user_role}} # User's permission level
+{{session_id}} # Unique session identifier
 ```
 
-## Replacement Rules
+## Practical Examples
 
-### Rule 1: Value Types
-
-Variables can be replaced with:
-
-- Strings
-- Numbers (converted to strings)
-- Booleans (converted to "true"/"false")
-- null/undefined (handled per implementation)
-
-### Rule 2: Missing Variables
-
-When a variable has no value:
+### 1. Personalized Greeting
 
 ```markdown
-Hello {{undefined}}!
+# Welcome, {{first_name}}!
 
-Option 1: Keep literal → "Hello {{undefined}}!"
-Option 2: Empty string → "Hello !"
-Option 3: Placeholder → "Hello [undefined]!"
-Option 4: Error → Throw exception
+Good {{time_of_day}}, {{first_name}} {{last_name}}.
+
+You last visited on {{last_visit_date}}.
+You have {{unread_count}} new messages.
 ```
 
-Implementation should document chosen behavior.
-
-### Rule 3: HTML Escaping
-
-In HTML context, values should be escaped:
+### 2. Dynamic Configuration
 
 ```markdown
-{{user_input}}
+## {{app_name}} Configuration
 
-If user_input = "<script>alert('xss')</script>"
-Should render as: "&lt;script&gt;alert('xss')&lt;/script&gt;"
+Server: {{server_url}}
+Port: {{server_port}}
+Environment: {{environment}}
+Debug Mode: {{debug_enabled}}
 ```
 
-## Examples
-
-### Basic Usage
+### 3. Conditional Content
 
 ```markdown
-# Input
+Your subscription: {{plan_type}}
 
-Dear {{recipient_name}},
-
-Your order #{{order_number}} has been {{order_status}}.
-
-Best regards,
-{{sender_name}}
-
-# With values
-
-recipient_name = "Alice"
-order_number = "12345"
-order_status = "shipped"
-sender_name = "Bob"
-
-# Output
-
-Dear Alice,
-
-Your order #12345 has been shipped.
-
-Best regards,
-Bob
+{{#if plan_type == "free"}}
+Upgrade to Pro for advanced features!
+{{else}}
+Thank you for being a {{plan_type}} subscriber!
+{{/if}}
 ```
 
-### Complex Document
+### 4. Form Data Collection
 
 ```markdown
-# {{company_name}} Annual Report {{year}}
+## Registration Form
 
-## Financial Summary
+Name: ?[%{{full_name}} ...Enter your full name]
+Email: ?[%{{email}} ...your@email.com]
+Country: ?[%{{country}} USA | UK | Canada | ...Other]
 
-Revenue: ${{revenue}}
-Profit: ${{profit}}
-Growth: {{growth_percentage}}%
+## Confirmation
 
-## Message from {{ceo_title}}
-
-Dear {{shareholder_type}} Shareholders,
-
-This year, {{company_name}} achieved {{performance_summary}}.
-
-{{ceo_signature}}
-{{ceo_name}}
-{{ceo_title}}
+Thank you, {{full_name}}!
+We'll send confirmation to {{email}}.
+Your country selection: {{country}}
 ```
 
-### Template Patterns
-
-Common variable naming patterns:
+### 5. Multi-language Support
 
 ```markdown
-# User data
-
-{{user_name}}, {{user_email}}, {{user_id}}
-
-# Dates and times
-
-{{current_date}}, {{timestamp}}, {{year}}
-
-# Content
-
-{{title}}, {{description}}, {{content}}
-
-# Metadata
-
-{{version}}, {{author}}, {{status}}
-
-# Computed values
-
-{{total_price}}, {{item_count}}, {{percentage}}
+{{#if browser_language starts with "es"}}
+Hola, {{user_name}}!
+{{#elif browser_language starts with "fr"}}
+Bonjour, {{user_name}}!
+{{#elif browser_language starts with "zh"}}
+你好，{{user_name}}！
+{{else}}
+Hello, {{user_name}}!
+{{/if}}
 ```
 
-## Implementation Notes
+## Best Practices
 
-### Performance Considerations
+### 1. Use Descriptive Names
 
-- Pre-compile variable locations for repeated processing
-- Cache parsed variable positions
-- Use efficient string replacement algorithms
+```markdown
+Good: {{user_email}}, {{selected_product}}, {{total_price}}
+Poor: {{e}}, {{prod}}, {{p}}
+```
 
-### Security Considerations
+### 2. Follow Naming Conventions
 
-- Always escape variables in HTML context
-- Validate variable values before replacement
-- Limit variable name length to prevent DoS
-- Sanitize user-provided variable values
+Choose one style and stick to it:
 
-### Internationalization
+```markdown
+camelCase: {{userName}}, {{orderStatus}}, {{isActive}}
+snake_case: {{user_name}}, {{order_status}}, {{is_active}}
+```
 
-- Variable names should remain in ASCII
-- Variable values can contain any Unicode
-- Consider RTL languages in replacement
+### 3. Initialize Before Use
 
-## Conformance Testing
+Always ensure variables have values:
 
-A conformant implementation MUST:
+```markdown
+What's your name?
+?[%{{name}} ...Your name]
 
-1. Parse all valid variable syntax correctly
-2. Reject invalid variable names
-3. Handle escaping properly
-4. Preserve non-variable text exactly
-5. Support variables in all contexts
+<!-- Now safe to use {{name}} -->
 
-Test suite available at: [github.com/ai-shifu/markdown-flow-tests](https://github.com/ai-shifu/markdown-flow)
+Welcome, {{name}}!
+```
+
+### 4. Group Related Variables
+
+```markdown
+User Info:
+
+- {{user_name}}
+- {{user_email}}
+- {{user_role}}
+
+Order Details:
+
+- {{order_id}}
+- {{order_date}}
+- {{order_total}}
+```
+
+### 5. Document System Variables
+
+If creating a template for others:
+
+```markdown
+<!-- Available System Variables:
+{{company_name}} - Organization name
+{{current_year}} - Current year (YYYY)
+{{user_locale}} - User's locale (e.g., en-US)
+-->
+```
+
+## Advanced Usage
+
+### Variable Chains
+
+Variables resolved in sequence:
+
+```markdown
+?[%{{first_name}} ...First name]
+?[%{{last_name}} ...Last name]
+
+Your full name is {{first_name}} {{last_name}}.
+```
+
+### Variables in Prompts
+
+Variables work in document prompts:
+
+```markdown
+---
+Tone: Adjust for {{user_level}} level
+Language: Translate to {{browser_language}}
+Style: Use {{writing_style}} style
+---
+```
+
+### Debugging Variables
+
+To check variable values during development:
+
+```markdown
+<!-- Debug Info -->
+
+Variable values:
+
+- name: {{name}}
+- choice: {{choice}}
+- undefined: {{undefined_var}}
+```
+
+## Summary
+
+Variables in MarkdownFlow:
+
+- Use `{{variable_name}}` syntax
+- Are case-sensitive
+- Get replaced before LLM processing
+- Work everywhere in your document
+- Can be user-defined or system-provided
+
+Start with simple variable substitution, then explore advanced patterns as your documents become more sophisticated. The key is ensuring variables are assigned values before use, typically through user interactions or system defaults.

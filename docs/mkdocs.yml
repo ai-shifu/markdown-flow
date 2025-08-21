@@ -47,10 +47,11 @@ nav:
     - Installation: getting-started/installation.md
     - vs Markdown: getting-started/relationship.md
   - Specification:
-    - Overview: specification/index.md
+    - Overview: specification/overview.md
+    - How It Works: specification/how-it-works.md
     - Variables: specification/variables.md
-    - User Input: specification/user-input.md
-    - AI Instructions: specification/ai-instructions.md
+    - Buttons & Input: specification/button-input.md
+    - Preserved Output: specification/preserved-output.md
   - SDKs:
     - Overview: sdks/index.md
     - JavaScript:
