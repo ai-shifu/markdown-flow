@@ -2,7 +2,7 @@
 
 ## Write Once, Deliver Personally
 
-MarkdownFlow is an extension of the Markdown format. Documents written in MarkdownFlow can be processed by MarkdownFlow Agents to create well-formatted, personalized, and interactive pages tailored to each reader.
+MarkdownFlow extends standard Markdown with three simple additions: variables ({{variable}}), interactive buttons (?[%{{var}}Option1|Option2]), and preserved content (===text===). These extensions enable AI agents to transform your documents into personalized, interactive experiences where content adapts to each reader's choices and context.
 
 **No programming knowledge required. Easy to learn and use. If you can type, you can create.**
 
