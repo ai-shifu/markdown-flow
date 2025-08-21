@@ -20,11 +20,14 @@ Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
 
 ## Variable Naming Rules
 
-Variable names are **case-sensitive** and can use any character combination except `}`:
+**to aichy: 这样宽松的规则，会不会导致一些潜在的问题？比如说安全性问题？**
 
-- **Can contain**: Any characters including letters, numbers, spaces, special characters, emojis, non-ASCII characters
+Variable names are **case-sensitive** and can use any character combination except `}` and spaces:
+
+- **Can contain**: Any characters including letters, numbers, special characters, emojis, non-ASCII characters
 - **Cannot contain**: The `}` character (as it marks the end of the variable)
 - **Cannot be**: Empty (must have at least one character)
+- **No spaces between braces and name**: `{{ var }}` is NOT recognized as a variable
 
 ### Valid Variable Names
 
@@ -40,7 +43,6 @@ Variable names are **case-sensitive** and can use any character combination exce
 {{123user}} ✓ Starts with number
 {{user-name}} ✓ Contains hyphen
 {{user.name}} ✓ Contains dot
-{{user name}} ✓ Contains space
 {{用户}} ✓ Non-ASCII characters
 {{user@email}} ✓ With special characters
 {{🚀rocket}} ✓ With emoji
@@ -51,7 +53,12 @@ Variable names are **case-sensitive** and can use any character combination exce
 
 ```markdown
 {{user}name}} ✗ Contains } character
+{{user name}} ✗ Contains space inside name
 {{}} ✗ Empty variable
+{{   }} ✗ Only spaces
+{{ name }} ✗ Spaces between braces and name (not recognized as variable)
+{{ name}} ✗ Space before name (not recognized as variable)
+{{name }} ✗ Space after name (not recognized as variable)
 ```
 
 ## How Variables Work
