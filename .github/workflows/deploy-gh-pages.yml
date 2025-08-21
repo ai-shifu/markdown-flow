@@ -53,6 +53,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/
+          cp logo.png _site/
 
       - name: Build MkDocs Documentation
         run: |
