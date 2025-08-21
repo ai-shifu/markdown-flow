@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MarkdownFlow is a Markdown format extension that enables AI-powered, personalized, and interactive documents. The tagline is "Write Once, Deliver Personally" (一次创作，千人千面). Documents written in MarkdownFlow can be processed by MarkdownFlow Agents to create beautifully formatted, personalized pages tailored to each reader.
+MarkdownFlow is a Markdown format extension that enables AI-powered, personalized, and interactive documents. The tagline is "Write Once, Deliver Personally" (一次创作，千人千面). Documents written in MarkdownFlow can be processed by MarkdownFlow Agents to create well-formatted, personalized pages tailored to each reader.
 
 ## Repository Structure
 
