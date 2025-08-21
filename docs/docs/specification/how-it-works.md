@@ -1,8 +1,39 @@
 # How It Works
 
-## The MarkdownFlow Processing Pipeline
-
 MarkdownFlow transforms source documents into personalized, interactive pages through a sophisticated processing pipeline. Understanding this workflow helps you write more effective MarkdownFlow documents.
+
+## Writing for AI, Not Humans
+
+!!! tip "Core Principle"
+The content you write is not directly for readers — it's prompts for AI.
+
+This paradigm shift is crucial for creating effective MarkdownFlow documents.
+
+### A Simple Example
+
+Consider these two approaches to the same content:
+
+**Traditional (Writing for Humans):**
+
+```markdown
+Python is a high-level, interpreted programming language known for its simplicity and readability.
+```
+
+**MarkdownFlow (Writing for AI):**
+
+```markdown
+Explain Python to a {{level}} programmer who is interested in {{use_case}}, emphasizing aspects most relevant to their background.
+```
+
+The MarkdownFlow version doesn't tell readers about Python directly. Instead, it instructs the AI how to generate personalized explanations. A beginner interested in web development might receive:
+
+> Python is like writing instructions in plain English—perfect for building your first website with frameworks like Django.
+
+While an advanced programmer interested in data science might get:
+
+> Python's extensive scientific computing ecosystem with NumPy and Pandas makes it the de facto standard for data analysis and machine learning.
+
+This is the essence of MarkdownFlow: **write prompts that guide AI to create content**, rather than writing the content itself.
 
 ## Document Structure
 
@@ -10,29 +41,19 @@ A MarkdownFlow source document consists of two main parts:
 
 ### 1. Content Source
 
-The main body of your document, written in Markdown with MarkdownFlow extensions:
-
-```markdown
-# Welcome {{user_name}}
-
-Your learning path begins here.
-
-?[%{{level}} Beginner | Intermediate | Advanced]
-
-Based on your selection, here's your customized content...
-```
+The main body of your document. All the content will be rendered by the MarkdownFlow agent.
 
 ### 2. Document Prompt
 
-Instructions that guide how the content should be rendered, typically placed at the document's end:
+Instructions that guide how the content source should be rendered by the MarkdownFlow agent. Readers can not see anything in this section.
+
+This section is optional but highly recommended for better results:
 
 ```markdown
----
 Language: Adapt to {{browser_language}}
 Tone: Professional but friendly
 Style: Clear and concise
 Personalization: Adjust complexity based on {{level}}
----
 ```
 
 ## Processing Workflow

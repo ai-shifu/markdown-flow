@@ -1,10 +1,8 @@
 # Overview
 
-## The Relationship Between MarkdownFlow and Markdown
-
 MarkdownFlow is a natural extension of Markdown, not a replacement. Like GitHub Flavored Markdown (GFM) or CommonMark extensions that enhanced the original Markdown, MarkdownFlow adds new capabilities while maintaining complete compatibility.
 
-### Complete Compatibility
+## Complete Compatibility With Markdown
 
 **All your Markdown knowledge and habits remain valid:**
 
@@ -13,7 +11,7 @@ MarkdownFlow is a natural extension of Markdown, not a replacement. Like GitHub 
 - Existing Markdown documents work in MarkdownFlow without modification
 - Your favorite Markdown editors and toolchains continue to work
 
-### Simple Example
+## Simple Example
 
 Here's a standard Markdown document:
 
@@ -32,91 +30,55 @@ This is a **standard** Markdown document.
 
 This document behaves exactly the same in MarkdownFlow. You don't need to change anything.
 
-### Progressive Enhancement
-
-MarkdownFlow follows a "progressive enhancement" philosophy. You can:
+Therefore, you can:
 
 1. **Start from zero**: Use any Markdown document directly as a MarkdownFlow document
 2. **Add gradually**: Add MarkdownFlow features as needed
 3. **Mix freely**: Combine standard Markdown and MarkdownFlow syntax in the same document
 
-### Adding MarkdownFlow Features
+## Adding MarkdownFlow Features
 
 When you need personalization or interactivity, simply add MarkdownFlow's extended syntax:
 
 ```markdown
-# Welcome, {{user_name}}!
+Say hello to {{user_name}}!
 
-This is an **enhanced** MarkdownFlow document.
+Ask about user's **experience level** on Markdown with three options: beginner, intermediate, and expert.
 
-What's your experience level?
 ?[%{{level}} Beginner | Intermediate | Expert]
 
-- List item 1
-- List item 2
-- Personalized content based on {{level}}
+The user's experience level is {{level}}.
 
-> ===Always keep a learning mindset===
+Based on the level, recommend resources for further learning:
 
-[Link](https://example.com)
+- If beginner: "Markdown for Dummies"
+- If intermediate: "Mastering Markdown"
+- If expert: don't learn any more, just do it
 ```
 
-### Key Advantages
+A user named John may get output from MarkdownFlow agent like this:
 
-1. **Zero learning curve**: No need to learn a new markup language
-2. **Backward compatible**: No migration needed for existing documents
-3. **Tool friendly**: Continue using your favorite editors
-4. **Gradual adoption**: Use new features only when needed
+> Hello, John!
+>
+> Before we dive in, I’d like to gauge your experience with Markdown to tailor my help better. How would you **describe your skill level** with Markdown?
+>
+> - 😊 **Beginner** (just starting or rarely use it)
+> - 🚀 **Intermediate** (comfortable with basics like headers, lists, and links)
+> - 🧙 **Expert** (know advanced syntax like tables, footnotes, or HTML integration)
+>
+> Let me know, and I’ll adapt accordingly! 😊
 
-### MarkdownFlow Extensions
+Then, three buttons appear, and the user selects "Expert". Output continues:
 
-MarkdownFlow adds only three new syntax constructs:
+> Since you're at the **Expert** level, the best approach is indeed to **"just do it"**—apply your skills in real-world projects, contribute to open-source documentation, or even create advanced Markdown guides for others.
+>
+> If you still want to push boundaries, consider:
+>
+> - Exploring **extended Markdown flavors** (CommonMark, GitHub Flavored Markdown, Pandoc Markdown).
+> - Automating Markdown workflows with **scripts/tool**s\*\* (Pandoc, VS Code extensions, or custom parsers).
+> - Writing **documentation-as-code** (combining Markdown with static site generators like MkDocs or Jekyll).
+>   But honestly? You’ve got this. Go build something cool. 🚀
 
-| Feature           | Syntax                           | Purpose                     |
-| ----------------- | -------------------------------- | --------------------------- |
-| Variables         | `{{variable}}`                   | Dynamic content replacement |
-| Interactions      | `?[%{{var}} Option1 \| Option2]` | User input collection       |
-| Preserved Content | `===content===`                  | Precise output control      |
+The above example uses MarkdownFlow's [Variable](../variables) and [Button](../button-input) features.
 
-These extensions are **optional**. You can write pure Markdown, or mix these features as needed.
-
-### Practical Examples
-
-**Pure Markdown (completely valid MarkdownFlow):**
-
-```markdown
-# Python Getting Started Guide
-
-Python is an easy-to-learn programming language.
-
-## Installation
-
-1. Download Python
-2. Run the installer
-3. Verify installation
-```
-
-**Enhanced MarkdownFlow version:**
-
-```markdown
-# Python Getting Started Guide
-
-Python is an easy-to-learn programming language.
-
-What operating system are you using?
-?[%{{os}} Windows | macOS | Linux]
-
-## Installation
-
-For your {{os}} system, follow these steps:
-
-1. Download Python for {{os}}
-2. Run the installer
-3. Verify installation: ===python --version===
-```
-
-### Summary
-
-MarkdownFlow doesn't change how you write Markdown—it simply provides more possibilities when you need them. Just as you can write Markdown without using tables, you can write MarkdownFlow documents without using any MarkdownFlow features.
-
-The choice is always yours.
+If you want to know how the magic happens, check out the [How It Works](../how-it-works) section.
