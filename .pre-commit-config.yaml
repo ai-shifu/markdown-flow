@@ -18,12 +18,3 @@ repos:
       - id: check-yaml
       - id: mixed-line-ending
         args: ["--fix=lf"]
-
-  # Prettier for markdown formatting
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
-    hooks:
-      - id: prettier
-        types_or: [markdown]
-        additional_dependencies:
-          - prettier@3.3.3
