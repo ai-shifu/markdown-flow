@@ -70,38 +70,48 @@ Variables get their values from multiple sources:
 **User Input:**
 
 ```markdown
-What's your name?
+Ask the user for their name politely.
 ?[%{{name}} ...Enter your name]
 
-Hello, {{name}}!
+Generate a warm, personalized greeting for {{name}}.
 ```
 
-**System Variables:**
+**System Predefined Variables:**
 
-```markdown
-Your browser language is {{browser_language}}.
-Current year is {{year}}.
-```
+System variables are pre-assigned by the platform and can be used directly without any user input. Different platforms provide different system variables:
+
+**[MarkdownFlow Playground](https://play.mdflow.run):**
+
+- `{{browser_language}}` - User's browser language (e.g., "en-US", "zh-CN")
+
+**[AI-Shifu Platform](https://ai-shifu.com):**
+
+- `{{sys_user_nickname}}` - User's display name
+- `{{sys_user_style}}` - User's preferred content style
+- `{{sys_user_background}}` - User's background information
+- `{{sys_user_language}}` - User's language preference
 
 ### 2. Variable Replacement
 
 Before the LLM processes the content, the MarkdownFlow Agent replaces all variables with their values:
 
 ```markdown
-Before: "Welcome {{user}}, you selected {{choice}}!"
-After: "Welcome Alice, you selected Python!"
+Before: "Generate a personalized greeting for {{user_name}} who is learning {{topic}} at {{level}} level."
+After: "Generate a personalized greeting for Alice who is learning Python at beginner level."
 ```
 
-### 3. Empty Variables
+The LLM then processes this resolved prompt to generate the actual content for the reader.
 
-If a variable has no value, it's replaced with an empty string:
+### 3. Unassigned Variables
+
+If a variable has not been assigned a value, it's replaced with "UNKNOWN":
 
 ```markdown
-Before: "Hello {{undefined_var}}!"
-After: "Hello !"
+Before: "Create content for {{user_type}} interested in {{topic}}."
+After: "Create content for UNKNOWN interested in UNKNOWN."
 ```
 
-**Important:** Always assign values to variables before using them, typically through user input or system defaults.
+**Important:** Always assign values to variables before using them, typically through user input or system defaults, to avoid "UNKNOWN" appearing in your prompts. When the LLM receives "UNKNOWN" in prompts, its output may be random and unpredictable, failing to meet your expectations.
 
 ## Variables in Different Contexts
 
@@ -110,7 +120,7 @@ Variables work everywhere in your document:
 ### In Text
 
 ```markdown
-Welcome back, {{username}}!
+Create a personalized welcome message for {{username}} that feels warm and familiar.
 ```
 
 ### In Headers
@@ -122,23 +132,23 @@ Welcome back, {{username}}!
 ### In Lists
 
 ```markdown
-Your selections:
-
-- Color: {{selected_color}}
-- Size: {{selected_size}}
-- Quantity: {{quantity}}
+Summarize the user's product selections in a clear list format:
+- Their chosen color: {{selected_color}}
+- Their selected size: {{selected_size}}  
+- The quantity they want: {{quantity}}
 ```
 
 ### In Links and Images
 
 ```markdown
 [Visit {{site_name}}]({{site_url}})
-![{{image_description}}]({{image_path}})
+[{{image_description}}]({{image_path}})
 ```
 
 ### In Tables
 
 ```markdown
+Create a formatted table showing the user's account information:
 | Property | Value                 |
 | -------- | --------------------- |
 | Name     | {{user_name}}         |
@@ -153,227 +163,3 @@ Your selections:
   <span id="user-{{user_id}}">{{display_name}}</span>
 </div>
 ```
-
-## System Predefined Variables
-
-Different platforms provide different system variables:
-
-### MarkdownFlow Playground
-
-```markdown
-{{browser_language}} # User's browser language (e.g., "en-US", "zh-CN")
-```
-
-**Example:**
-
-```markdown
-{{#if browser_language == "zh-CN"}}
-欢迎！
-{{else}}
-Welcome!
-{{/if}}
-```
-
-### AI-Shifu Platform
-
-```markdown
-{{sys_user_nickname}} # User's display name
-{{sys_user_background}} # User's profile information
-{{sys_user_preference}} # User's content preferences
-```
-
-**Example:**
-
-```markdown
-Hi {{sys_user_nickname}}!
-
-Based on your background in {{sys_user_background}},
-here's content tailored to your interests...
-```
-
-### Custom Implementations
-
-You can define your own system variables:
-
-```markdown
-{{company_name}} # Your organization
-{{current_date}} # Today's date
-{{user_role}} # User's permission level
-{{session_id}} # Unique session identifier
-```
-
-## Practical Examples
-
-### 1. Personalized Greeting
-
-```markdown
-# Welcome, {{first_name}}!
-
-Good {{time_of_day}}, {{first_name}} {{last_name}}.
-
-You last visited on {{last_visit_date}}.
-You have {{unread_count}} new messages.
-```
-
-### 2. Dynamic Configuration
-
-```markdown
-## {{app_name}} Configuration
-
-Server: {{server_url}}
-Port: {{server_port}}
-Environment: {{environment}}
-Debug Mode: {{debug_enabled}}
-```
-
-### 3. Conditional Content
-
-```markdown
-Your subscription: {{plan_type}}
-
-{{#if plan_type == "free"}}
-Upgrade to Pro for advanced features!
-{{else}}
-Thank you for being a {{plan_type}} subscriber!
-{{/if}}
-```
-
-### 4. Form Data Collection
-
-```markdown
-## Registration Form
-
-Name: ?[%{{full_name}} ...Enter your full name]
-Email: ?[%{{email}} ...your@email.com]
-Country: ?[%{{country}} USA | UK | Canada | ...Other]
-
-## Confirmation
-
-Thank you, {{full_name}}!
-We'll send confirmation to {{email}}.
-Your country selection: {{country}}
-```
-
-### 5. Multi-language Support
-
-```markdown
-{{#if browser_language starts with "es"}}
-Hola, {{user_name}}!
-{{#elif browser_language starts with "fr"}}
-Bonjour, {{user_name}}!
-{{#elif browser_language starts with "zh"}}
-你好，{{user_name}}！
-{{else}}
-Hello, {{user_name}}!
-{{/if}}
-```
-
-## Best Practices
-
-### 1. Use Descriptive Names
-
-```markdown
-Good: {{user_email}}, {{selected_product}}, {{total_price}}
-Poor: {{e}}, {{prod}}, {{p}}
-```
-
-### 2. Follow Naming Conventions
-
-Choose one style and stick to it:
-
-```markdown
-camelCase: {{userName}}, {{orderStatus}}, {{isActive}}
-snake_case: {{user_name}}, {{order_status}}, {{is_active}}
-```
-
-### 3. Initialize Before Use
-
-Always ensure variables have values:
-
-```markdown
-What's your name?
-?[%{{name}} ...Your name]
-
-<!-- Now safe to use {{name}} -->
-
-Welcome, {{name}}!
-```
-
-### 4. Group Related Variables
-
-```markdown
-User Info:
-
-- {{user_name}}
-- {{user_email}}
-- {{user_role}}
-
-Order Details:
-
-- {{order_id}}
-- {{order_date}}
-- {{order_total}}
-```
-
-### 5. Document System Variables
-
-If creating a template for others:
-
-```markdown
-<!-- Available System Variables:
-{{company_name}} - Organization name
-{{current_year}} - Current year (YYYY)
-{{user_locale}} - User's locale (e.g., en-US)
--->
-```
-
-## Advanced Usage
-
-### Variable Chains
-
-Variables resolved in sequence:
-
-```markdown
-?[%{{first_name}} ...First name]
-?[%{{last_name}} ...Last name]
-
-Your full name is {{first_name}} {{last_name}}.
-```
-
-### Variables in Prompts
-
-Variables work in document prompts:
-
-```markdown
----
-Tone: Adjust for {{user_level}} level
-Language: Translate to {{browser_language}}
-Style: Use {{writing_style}} style
----
-```
-
-### Debugging Variables
-
-To check variable values during development:
-
-```markdown
-<!-- Debug Info -->
-
-Variable values:
-
-- name: {{name}}
-- choice: {{choice}}
-- undefined: {{undefined_var}}
-```
-
-## Summary
-
-Variables in MarkdownFlow:
-
-- Use `{{variable_name}}` syntax
-- Are case-sensitive
-- Get replaced before LLM processing
-- Work everywhere in your document
-- Can be user-defined or system-provided
-
-Start with simple variable substitution, then explore advanced patterns as your documents become more sophisticated. The key is ensuring variables are assigned values before use, typically through user interactions or system defaults.
