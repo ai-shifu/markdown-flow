@@ -9,7 +9,7 @@ MarkdownFlow provides a powerful yet simple syntax for creating interactive elem
 The complete syntax for interactive elements is:
 
 ```text
-?[%{{variable}} Button1//id1 | Button2//id2 | ... | ...placeholder]
+?[%{{variable}} Button1//id1 | Button2//id2 | ButtonN//idN | ...input hint]
 ```
 
 **Every component is optional**, giving you flexibility to create exactly the interaction you need.
@@ -18,25 +18,38 @@ The complete syntax for interactive elements is:
 
 Let's break down the syntax step by step:
 
-### The Opening Marker: `?[%`
+### The Framework: `?[` and `]`
 
-- `?[` - Indicates the start of an interactive element
-- `%` - Optional marker for future extension (currently always use `%`)
+Every interactive element starts with `?[` and ends with `]`. These brackets are **mandatory** and mark the boundaries of the interactive element:
 
-### Variable Storage: `{{variable}}`
+```markdown
+?[...content goes here...]
+```
 
-The variable where user input will be stored:
+### Variables: `%{{variable}}` vs `{{variable}}`
+
+The `%` symbol determines how variables behave:
+
+**With `%` - Write Mode (Store Input):**
 
 ```markdown
 ?[%{{choice}} Yes | No]
 ```
 
-When the user clicks "Yes", the value "Yes" is stored in `{{choice}}`.
+When the user clicks "Yes", the value "Yes" is stored into `{{choice}}`.
+
+**Without `%` - Read Mode (Use Variable Value):**
+
+```markdown
+?[{{userName}}, click here to continue]
+```
+
+If `{{userName}}` contains "Alice", the button displays: "Alice, click here to continue"
 
 **Without a variable:**
 
 ```markdown
-?[% Continue]
+?[ Continue ]
 ```
 
 This creates a simple "Continue" button that just resumes content flow without storing any value.
@@ -64,238 +77,127 @@ Clicking "Red" stores "Red" in `{{color}}`.
 
 This is useful when you want user-friendly display text but need specific values for processing.
 
-### Input Field: `...placeholder`
+### Text Adaptation and IDs
 
-Add a text input field by using `...` followed by placeholder text:
+**Important**: Button text and input hints are processed by the LLM, which may adapt them (translate, rephrase, etc.) based on document requirements or user preferences.
+
+**Without IDs - Adapted Values:**
+
+```markdown
+?[%{{action}} Continue | Cancel]
+```
+
+- English user sees: "Continue", "Cancel" → stores "Continue" or "Cancel"
+- Chinese user sees: "继续", "取消" → stores "继续" or "取消"
+
+**With IDs - Fixed Values:**
+
+```markdown
+?[%{{action}} Continue//continue | Cancel//cancel]
+```
+
+- English user sees: "Continue", "Cancel" → stores "continue" or "cancel"
+- Chinese user sees: "继续", "取消" → stores "continue" or "cancel"
+
+**Use IDs when you need consistent values for backend processing or conditional logic.**
+
+### Input Field: `...input hint`
+
+Add a text input field by using `...` followed by input hint:
 
 ```markdown
 ?[%{{name}} ...Enter your name]
 ```
 
-Creates an input field with "Enter your name" as the placeholder.
+Creates an input field with "Enter your name" as the input hint.
 
 ## Progressive Examples
 
 ### 1. Simplest Form - Just Continue
 
 ```markdown
-The story begins here...
+Write an engaging story introduction for {{genre}} enthusiasts.
 
-?[% Continue]
+?[Continue]
 
-And the adventure continues...
+Continue the story with an exciting development that hooks the reader.
 ```
 
-A single button that lets users control reading pace.
+Instructs the AI to pause content delivery, allowing users to control reading pace.
 
 ### 2. Basic Choice
 
 ```markdown
-Do you want to proceed?
+Ask the user if they want to proceed with the {{task_type}}.
 
-?[%{{answer}} Yes | No]
+?[%{{answer}} Yes | No ]
 
-You selected: {{answer}}
+Respond to their choice: {{answer}}. If yes, encourage them. If no, offer alternatives.
 ```
 
-Two buttons storing the selection.
+Instructs the AI to ask a decision question and respond appropriately based on the user's choice.
 
 ### 3. Multiple Options
 
 ```markdown
-Choose your difficulty level:
+Present difficulty options for {{activity_type}} to the user.
 
-?[%{{level}} Easy | Normal | Hard | Expert]
+?[%{{level}} Easy | Normal | Hard | Expert ]
 
-Great! You've selected {{level}} mode.
+Confirm their {{level}} choice and explain what this level entails for {{activity_type}}.
 ```
 
-Four buttons for different difficulty levels.
+Instructs the AI to offer multiple difficulty levels and provide level-appropriate explanations.
 
 ### 4. Buttons with Different Values
 
 ```markdown
-Select your subscription plan:
+Present subscription options for {{service_name}} with clear value propositions.
 
-?[%{{plan}} Free//free_tier | Pro ($9/mo)//pro_monthly | Enterprise//enterprise]
+?[%{{plan}} Free//free_tier | Pro ($9/mo)//pro_monthly | Enterprise ($99/mo)//enterprise ]
 
-Your plan code: {{plan}}
+Confirm their plan selection and explain the benefits of the {{plan}} tier.
 ```
 
-User-friendly labels with backend-friendly values.
+Instructs the AI to present pricing options with user-friendly labels while storing consistent backend identifiers.
 
 ### 5. Text Input Only
 
 ```markdown
-Welcome! What's your name?
+Welcome the user to {{platform_name}} and ask for their name in a friendly way.
 
-?[%{{username}} ...Type your name here]
+?[%{{username}}...Type your name here]
 
-Hello, {{username}}!
+Greet {{username}} personally and explain the next steps for {{platform_name}}.
 ```
 
-Just an input field, no buttons.
+Instructs the AI to collect user information and provide personalized responses.
 
 ### 6. Combining Buttons and Input
 
 ```markdown
-How would you like to be addressed?
+Ask how the user prefers to be addressed in {{context}}.
 
 ?[%{{title}} Mr. | Ms. | Dr. | ...Other (please specify)]
 
-Thank you, {{title}}!
+Acknowledge their preference ({{title}}) and use it appropriately throughout {{context}}.
 ```
 
-Users can click a button OR type custom input.
+Instructs the AI to offer common options while allowing custom input for personalized addressing.
 
 ### 7. Complex Interactive Form
 
 ```markdown
-Let's personalize your experience:
+Introduce the personalization process for {{course_topic}}.
 
-What's your name?
-?[%{{name}} ...Enter your name]
+Ask for the user's name in a welcoming way:
+?[%{{name}}...Enter your name]
 
-What's your experience level?
+Ask about their experience level with {{course_topic}}:
 ?[%{{level}} Beginner//1 | Intermediate//2 | Advanced//3]
 
-Preferred learning style?
+Inquire about their preferred learning approach:
 ?[%{{style}} Visual | Reading | Practice | All]
 
-Perfect, {{name}}! We'll prepare {{style}} content at level {{level}} for you.
+Confirm the personalization: address {{name}} by name, acknowledge their {{level}} level, and explain how you'll deliver {{style}} content for {{course_topic}}.
 ```
-
-## Important Behaviors
-
-### Display Text Adaptation
-
-Button text may be adapted by the LLM based on document requirements:
-
-```markdown
-?[%{{continue}} Continue]
-
----
-
-Document Prompt: Translate to user's language
-```
-
-The button might display:
-
-- "Continue" (English)
-- "继续" (Chinese)
-- "Continuer" (French)
-
-But the value stored in `{{continue}}` remains "Continue".
-
-### No Value Storage
-
-When no variable is specified:
-
-```markdown
-Ready for the next section?
-
-?[% Yes, let's go!]
-
-Here's the next part...
-```
-
-The interaction just controls flow, no value is stored.
-
-### Empty Options
-
-While unusual, empty options are valid:
-
-```markdown
-?[%{{choice}} Option A | | Option C]
-```
-
-This creates three buttons: "Option A", an empty button, and "Option C".
-
-## Best Practices
-
-### 1. Clear Labels
-
-```markdown
-Good: ?[%{{experience}} Less than 1 year | 1-3 years | More than 3 years]
-Poor: ?[%{{experience}} 1 | 2 | 3]
-```
-
-### 2. Consistent IDs
-
-```markdown
-Good: ?[%{{size}} Small//sm | Medium//md | Large//lg]
-Poor: ?[%{{size}} Small//1 | Medium//medium | Large//L]
-```
-
-### 3. Meaningful Variables
-
-```markdown
-Good: ?[%{{preferredLanguage}} Python | JavaScript | Go]
-Poor: ?[%{{var1}} Python | JavaScript | Go]
-```
-
-### 4. Appropriate Input Types
-
-Use buttons for limited choices:
-
-```markdown
-?[%{{rating}} 1 | 2 | 3 | 4 | 5]
-```
-
-Use input fields for open-ended responses:
-
-```markdown
-?[%{{feedback}} ...Share your thoughts]
-```
-
-### 5. Progressive Disclosure
-
-```markdown
-Are you new to programming?
-?[%{{isNew}} Yes | No]
-
-{{#if isNew}}
-Let's start with the basics...
-{{else}}
-What languages do you know?
-?[%{{languages}} Python | JavaScript | Both | ...Other]
-{{/if}}
-```
-
-## Common Patterns
-
-### Yes/No Questions
-
-```markdown
-?[%{{consent}} I agree | I disagree]
-```
-
-### Scale/Rating
-
-```markdown
-?[%{{satisfaction}} Very Unsatisfied//1 | Unsatisfied//2 | Neutral//3 | Satisfied//4 | Very Satisfied//5]
-```
-
-### Navigation
-
-```markdown
-?[%{{section}} Previous | Home | Next]
-```
-
-### Form Fields
-
-```markdown
-Email: ?[%{{email}} ...your@email.com]
-Age: ?[%{{age}} Under 18 | 18-24 | 25-34 | 35-44 | 45-54 | 55+]
-```
-
-## Summary
-
-The button and input syntax in MarkdownFlow is designed to be:
-
-- **Flexible** - Every component is optional
-- **Intuitive** - Natural to read and write
-- **Powerful** - Supports various interaction patterns
-- **Adaptive** - Display text can change while maintaining consistent values
-
-Start simple with basic buttons, then add variables, IDs, and input fields as your needs grow. The system handles all the complexity of rendering and state management—you just focus on designing the interaction.
