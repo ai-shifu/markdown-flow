@@ -158,7 +158,7 @@ Create a formatted table showing the user's account information:
 
 ### In HTML
 
-```markdown
+```html
 <div class="{{theme_class}}">
   <span id="user-{{user_id}}">{{display_name}}</span>
 </div>
