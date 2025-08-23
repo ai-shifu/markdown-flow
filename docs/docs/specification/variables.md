@@ -20,19 +20,17 @@ Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
 
 ## Variable Naming Rules
 
-**to aichy: 这样宽松的规则，会不会导致一些潜在的问题？比如说安全性问题？**
+Variable names are **case-sensitive** and must follow these rules:
 
-Variable names are **case-sensitive** and can use any character combination except `}` and spaces:
-
-- **Can contain**: Any characters including letters, numbers, special characters, emojis, non-ASCII characters
-- **Cannot contain**: The `}` character (as it marks the end of the variable)
+- **Can contain**: Letters (including Unicode letters like Chinese, Japanese, etc.), numbers, and underscores
+- **Cannot contain**: Special characters, spaces, punctuation marks, or the `}` character
 - **Cannot be**: Empty (must have at least one character)
 - **No spaces between braces and name**: `{{ var }}` is NOT recognized as a variable
 
 ### Valid Variable Names
 
 ```markdown
-{{name}} ✓ Simple
+{{name}} ✓ Simple letters
 {{userName}} ✓ camelCase
 {{user_name}} ✓ snake_case
 {{UserName}} ✓ PascalCase
@@ -41,12 +39,10 @@ Variable names are **case-sensitive** and can use any character combination exce
 {{CONSTANT}} ✓ All caps
 {{a}} ✓ Single character
 {{123user}} ✓ Starts with number
-{{user-name}} ✓ Contains hyphen
-{{user.name}} ✓ Contains dot
-{{用户}} ✓ Non-ASCII characters
-{{user@email}} ✓ With special characters
-{{🚀rocket}} ✓ With emoji
-{{name[0]}} ✓ Array-like notation
+{{用户名}} ✓ Unicode characters (Chinese)
+{{ユーザー}} ✓ Unicode characters (Japanese)
+{{пользователь}} ✓ Unicode characters (Russian)
+{{utilisateur}} ✓ Unicode characters (French)
 ```
 
 ### Invalid Variable Names
@@ -54,6 +50,12 @@ Variable names are **case-sensitive** and can use any character combination exce
 ```markdown
 {{user}name}} ✗ Contains } character
 {{user name}} ✗ Contains space inside name
+{{user-name}} ✗ Contains hyphen
+{{user.name}} ✗ Contains dot
+{{user@email}} ✗ Contains special characters
+{{🚀rocket}} ✗ Contains emoji
+{{name[0]}} ✗ Contains brackets
+{{user+id}} ✗ Contains plus sign
 {{}} ✗ Empty variable
 {{   }} ✗ Only spaces
 {{ name }} ✗ Spaces between braces and name (not recognized as variable)
