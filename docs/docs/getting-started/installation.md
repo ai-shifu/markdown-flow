@@ -384,6 +384,6 @@ print(variables)  # ['name']
 
 ## Next Steps
 
-- [Quickstart Tutorial](quickstart.md) - Build your first MarkdownFlow document
+- [Your First MarkdownFlow](first-mdflow.md) - Build your first MarkdownFlow document
 - [SDK Documentation](../sdks/index.md) - Detailed SDK guides
 - [Examples](../examples/index.md) - See real-world implementations

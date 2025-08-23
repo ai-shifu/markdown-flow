@@ -151,4 +151,4 @@ Effortlessly customize your own Agents. Define complex AI behaviors using natura
 
 ---
 
-Ready to begin? Visit the [Quick Start Guide](getting-started/quickstart.md) to experience the power of MarkdownFlow today!
+Ready to begin? Visit the [Getting Started Guide](getting-started/index.md) to experience the power of MarkdownFlow today!

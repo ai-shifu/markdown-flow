@@ -1,6 +1,6 @@
-# 5-Minute Quickstart
+# Your First MarkdownFlow
 
-Let's build your first MarkdownFlow document in 5 minutes. We'll create an interactive welcome message that adapts to each user.
+Let's build your first MDFlow document in 5 minutes. We'll create an interactive welcome message that adapts to each user.
 
 ## Step 1: Start with Regular Markdown (30 seconds)
 
@@ -40,6 +40,8 @@ Based on your interests in {{interests}}, you can:
 
 Now the document adapts to each user. Variables are replaced with actual values when processed.
 
+**Learn more about variables:** [Variables Specification](../specification/variables.md)
+
 ## Step 3: Add User Input (1 minute)
 
 Make it interactive by collecting user choices:
@@ -57,6 +59,8 @@ What's your experience level?
 ```
 
 Users can now make selections that affect the content they see.
+
+**Learn more about interactive elements:** [Buttons & Input Specification](../specification/button-input.md)
 
 ## Step 4: Add AI Instructions (1.5 minutes)
 
@@ -87,6 +91,8 @@ Include:
 Keep it friendly and conversational.
 ```
 
+This is the core of MarkdownFlow: **you write instructions for AI, not content for humans.**
+
 ## Step 5: See It In Action (1 minute)
 
 Here's what happens when this template is processed:
@@ -116,16 +122,19 @@ Here's what happens when this template is processed:
 >
 > **Pro tip:** Since you have some experience, try the "learn by teaching" approach — explain new concepts in our forums. It's the fastest way to master something!
 
-## Complete Example
+The same template would generate completely different content for a beginner interested in building projects!
 
-Here's a more complete welcome flow:
+## Complete Example: Learning Path Generator
+
+Here's a more sophisticated example that demonstrates the full power of MDFlow:
 
 ```markdown
 # Welcome to MarkdownFlow Learning Platform!
 
 ## Quick Setup
 
-What should we call you? {{user_name}}
+What should we call you?
+?[%{{user_name}}...Enter your name]
 
 What are you most interested in learning?
 ?[%{{interest}}Web Development|Data Science|Mobile Apps|AI/Machine Learning|Other]
@@ -166,15 +175,17 @@ For each week, provide:
 Make the plan encouraging and achievable.
 ```
 
+This single template can generate thousands of different learning paths based on user inputs!
+
 ## Try It Yourself
 
-### Option 1: MarkdownFlow Playground
+### Option 1: Online Playground
 
-Visit [markdownflow.streamlit.app](https://markdownflow.streamlit.app) to try these examples live.
+Visit the **[MarkdownFlow Playground](https://play.mdflow.run)** to try these examples live without any installation.
 
 ### Option 2: Use an SDK
 
-**React:**
+**React/Next.js:**
 
 ```jsx
 import { MarkdownFlow } from "markdown-flow-ui";
@@ -193,18 +204,60 @@ agent = FlowAgent()
 result = await agent.process(template, variables)
 ```
 
+**For more SDK options:** [SDKs Documentation](../sdks/index.md)
+
 ## What You've Learned
 
-In 5 minutes, you've learned:
+In 5 minutes, you've learned the three core MDFlow features:
 
-✅ **Variables** - Make content dynamic with `{{variable_name}}`  
-✅ **User Input** - Collect choices with `?[%{{var}}option1|option2]`  
-✅ **AI Instructions** - Generate content with natural language  
-✅ **How they work together** - Create fully personalized experiences
+✅ **Variables (`{{variable}}`)** - Make content dynamic and personalized  
+✅ **Interactive Elements (`?[%{{var}}Option1|Option2]`)** - Collect user input  
+✅ **AI Instructions** - Write prompts that generate personalized content  
 
-## Next Steps
+### Key Insights
 
-- [Installation Guide](installation.md) - Set up MarkdownFlow in your project
-- [Syntax Specification](../specification/index.md) - Deep dive into syntax rules
-- [Examples](../examples/index.md) - See more real-world use cases
-- [SDK Documentation](../sdks/index.md) - Integrate with your tech stack
+1. **Start with Markdown** - Your existing knowledge still applies
+2. **Think in prompts** - Write instructions for AI, not content for readers
+3. **Collect then adapt** - Use interactive elements to gather context, then personalize content
+4. **One source, many experiences** - A single template serves unlimited user scenarios
+
+## Common Patterns
+
+As you build more MDFlow documents, you'll use these patterns frequently:
+
+### Conditional Content
+
+```markdown
+Generate different advice based on {{user_type}}:
+- If student: focus on learning fundamentals
+- If professional: emphasize practical applications
+- If hobbyist: keep it fun and experimental
+```
+
+### Progressive Disclosure
+
+```markdown
+Want to learn more about {{topic}}?
+?[%{{deep_dive}}Yes, tell me more|No, I'm good]
+
+If "Yes": provide detailed explanation with examples
+If "No": summarize key points only
+```
+
+### Contextual Examples
+
+```markdown
+Explain {{concept}} using examples from {{user_industry}} industry
+to make it relevant to {{user_name}}'s daily work.
+```
+
+## What's Next?
+
+Ready to dive deeper? Choose your next step:
+
+- **[Try It Now](playground.md)** - Practice with live examples and playground
+- **[Installation Guide](installation.md)** - Set up MDFlow in your development environment
+- **[Core Concepts](concepts.md)** - Understand the deeper principles
+- **[Examples](../examples/index.md)** - See real-world use cases and templates
+
+Or jump straight into building with the **[Playground →](playground.md)**!

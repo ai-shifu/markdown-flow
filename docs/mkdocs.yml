@@ -30,7 +30,11 @@ extra_css:
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
@@ -40,12 +44,12 @@ markdown_extensions:
 
 nav:
   - Getting Started:
-    - index.md
-    - Complete Example: getting-started/example.md
-    - How It Works: getting-started/how-it-works.md
-    - Quick Start (5 min): getting-started/quickstart.md
+    - Introduction: getting-started/index.md
+    - Core Concepts: getting-started/concepts.md
+    - Your First MarkdownFlow: getting-started/first-mdflow.md
+    - Try It Now: getting-started/playground.md
     - Installation: getting-started/installation.md
-    - vs Markdown: getting-started/relationship.md
+    - Next Steps: getting-started/next-steps.md
   - Specification:
     - Overview: specification/overview.md
     - How It Works: specification/how-it-works.md
