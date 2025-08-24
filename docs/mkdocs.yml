@@ -38,23 +38,8 @@ extra_css:
 plugins:
   - search:
       lang: en
-  - social:
-      cards: true
-      cards_color:
-        fill: "#0F63EE"
-        text: "#FFFFFF"
-      cards_font: Roboto
   - tags:
       tags_file: tags.md
-  - git-revision-date-localized:
-      type: timeago
-      timezone: Asia/Shanghai
-      locale: en
-      fallback_to_build_date: true
-  - git-committers:
-      repository: ai-shifu/markdown-flow
-      branch: main
-      enabled: true
 
 markdown_extensions:
   - pymdownx.highlight:
