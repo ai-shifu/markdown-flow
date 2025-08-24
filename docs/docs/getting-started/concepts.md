@@ -32,26 +32,10 @@ Every MarkdownFlow document has two parts:
 **Document Prompt** - Optional global settings that control how the entire document is processed:
 
 ```markdown
----
 Language: Adapt to {{browser_language}}
 Tone: Professional but friendly
 Style: Clear and concise
----
 ```
-
-Readers never see the document prompt — they only see the AI-generated results.
-
-## How It Works
-
-Here's how your MDFlow source becomes personalized content:
-
-1. **Content Blocking** - Document is divided into logical blocks
-2. **Variable Substitution** - `{{variables}}` are replaced with actual values
-3. **AI Processing** - Each block is sent to AI with your instructions
-4. **Interactive Elements** - System pauses to collect user input if needed
-5. **Continue** - Process repeats until document is complete
-
-**For detailed technical information:** [How It Works Specification](../specification/how-it-works.md)
 
 ## What's Next?
 
