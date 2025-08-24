@@ -87,6 +87,7 @@
   color: #e2e8f0 !important;
 }
 
+
 /* Admonition styling with primary color */
 .md-typeset .admonition,
 .md-typeset details {
@@ -145,6 +146,7 @@
 .md-search-result__link:focus {
   background-color: #0F63EE1a;
 }
+
 
 /* Feature cards styling (if using info-grid) */
 .md-typeset .grid {
