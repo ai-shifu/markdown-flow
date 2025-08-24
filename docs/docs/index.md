@@ -35,13 +35,13 @@ current account balance of {{balance}} in a friendly tone.
 
 **Learn more:** [Variables Specification](../specification/variables.md)
 
-### 2. Interactive Elements: `?[%{{variable}}Option1|Option2]`
+### 2. Interactive Elements: `?[%{{variable}} Option1 | Option2]`
 
 Buttons and input fields that collect user choices and store them in variables.
 
 ```markdown
 Ask the user about their experience level and store the response.
-?[%{{level}}Beginner|Intermediate|Expert]
+?[%{{level}} Beginner | Intermediate | Expert]
 
 Collect the user's name in a friendly way.
 ?[%{{name}}...Enter your name here]
@@ -63,52 +63,16 @@ Provide installation instructions, preserving the exact command:
 
 **Learn more:** [Preserved Output Specification](../specification/preserved-output.md)
 
-## How It Works
+## How It Works (Simple Version)
 
-The key insight: **you write prompts for AI, not content for humans.**
+A **MarkdownFlow Agent** processes your document by:
 
-**Traditional Markdown:**
+1. Reading your MDFlow document (AI instructions)
+2. Incorporating reader's personalized information through variables
+3. Calling a Large Language Model with these combined instructions
+4. Generating personalized content unique to each reader
 
-```markdown
-Python is a high-level programming language known for its simplicity.
-```
-
-**MarkdownFlow:**
-
-```markdown
-Explain Python to a {{level}} programmer interested in {{use_case}},
-emphasizing aspects most relevant to their background.
-```
-
-The MDFlow version generates personalized explanations based on each user's level and interests.
-
-## Quick Preview
-
-Here's a simple interactive learning example:
-
-```markdown
-# Learn Python Programming
-
-What's your programming background?
-?[%{{experience}}Complete beginner|Some experience|Professional developer]
-
-What interests you most about Python?
-?[%{{interest}}Web development|Data analysis|Automation|AI/ML]
-
----
-
-Generate a personalized Python introduction for someone with {{experience}}
-who is interested in {{interest}}. Include:
-
-1. A motivating opening that connects to their {{interest}}
-2. Three key Python advantages for {{interest}}
-3. A simple "Hello World" example with explanation
-4. Next learning steps tailored to {{experience}} level
-
-Keep it encouraging and practical.
-```
-
-This template creates different learning experiences for different users, all from a single source document.
+**For the complete technical workflow:** [See Specification](specification/how-it-works.md)
 
 ## What's Next?
 
