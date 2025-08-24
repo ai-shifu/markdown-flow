@@ -44,13 +44,12 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
+
 plugins:
   - search:
       lang: en
-  - privacy:
-      enabled: true
-      cache: true
-      cache_dir: .cache/plugins/privacy
   - social:
       cards: true
       cards_color:
