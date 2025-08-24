@@ -47,6 +47,10 @@ extra_css:
 plugins:
   - search:
       lang: en
+  - privacy:
+      enabled: true
+      cache: true
+      cache_dir: .cache/plugins/privacy
   - social:
       cards: true
       cards_color:
