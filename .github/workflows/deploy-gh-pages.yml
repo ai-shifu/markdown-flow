@@ -26,24 +26,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full git history for git plugins
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Cache pip packages
+      - name: Cache pip packages and MkDocs plugins
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          path: |
+            ~/.cache/pip
+            ~/.cache/mkdocs-material
+          key: ${{ runner.os }}-mkdocs-${{ hashFiles('**/mkdocs.yml') }}
           restore-keys: |
+            ${{ runner.os }}-mkdocs-
             ${{ runner.os }}-pip-
 
       - name: Install MkDocs dependencies
         run: |
           pip install mkdocs-material
           pip install pymdown-extensions
+          pip install pillow cairosvg
+          pip install mkdocs-git-revision-date-localized-plugin
+          pip install mkdocs-git-committers-plugin-2
 
       - name: Setup Pages
         id: pages
@@ -56,6 +64,9 @@ jobs:
           cp -r assets/* _site/assets/
 
       - name: Build MkDocs Documentation
+        env:
+          CI: true
+          ENABLE_GIT_COMMITTERS: true
         run: |
           cd docs
           mkdocs build --site-dir ../_site/docs --clean
