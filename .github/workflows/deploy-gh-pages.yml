@@ -40,18 +40,15 @@ jobs:
           path: |
             ~/.cache/pip
             ~/.cache/mkdocs-material
-          key: ${{ runner.os }}-mkdocs-${{ hashFiles('**/mkdocs.yml') }}
+          key: ${{ runner.os }}-mkdocs-${{ hashFiles('**/requirements.txt', '**/mkdocs.yml') }}
           restore-keys: |
             ${{ runner.os }}-mkdocs-
             ${{ runner.os }}-pip-
 
       - name: Install MkDocs dependencies
         run: |
-          pip install mkdocs-material
-          pip install pymdown-extensions
-          pip install pillow cairosvg
-          pip install mkdocs-git-revision-date-localized-plugin
-          pip install mkdocs-git-committers-plugin-2
+          cd docs
+          pip install -r requirements.txt
 
       - name: Setup Pages
         id: pages
