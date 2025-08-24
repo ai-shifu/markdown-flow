@@ -1,3 +1,11 @@
+---
+tags:
+  - Core Concepts
+  - Processing
+  - Workflow
+  - AI
+---
+
 # How It Works
 
 MarkdownFlow transforms source documents into personalized, interactive pages through a sophisticated processing pipeline. Understanding this workflow helps you write more effective MarkdownFlow documents.

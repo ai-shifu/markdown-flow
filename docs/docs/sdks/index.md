@@ -1,3 +1,10 @@
+---
+tags:
+  - SDK
+  - Integration
+  - Development
+---
+
 # SDK Documentation
 
 MarkdownFlow provides SDKs for major programming languages and frameworks. Choose the SDK that fits your technology stack.

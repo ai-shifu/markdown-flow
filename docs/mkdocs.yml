@@ -20,15 +20,41 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.tracking
     - search.suggest
     - search.highlight
     - content.code.copy
 
 extra:
   homepage: /
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ai-shifu/markdown-flow
+      name: GitHub Repository
 
 extra_css:
   - stylesheets/extra.css
+
+plugins:
+  - search:
+      lang: en
+  - social:
+      cards: true
+      cards_color:
+        fill: "#0F63EE"
+        text: "#FFFFFF"
+      cards_font: Roboto
+  - tags:
+      tags_file: tags.md
+  - git-revision-date-localized:
+      type: timeago
+      timezone: Asia/Shanghai
+      locale: en
+      fallback_to_build_date: true
+  - git-committers:
+      repository: ai-shifu/markdown-flow
+      branch: main
+      enabled: true
 
 markdown_extensions:
   - pymdownx.highlight:

@@ -1,3 +1,11 @@
+---
+tags:
+  - Interactive
+  - Buttons
+  - Input
+  - User Interface
+---
+
 # Buttons and Input
 
 ## Interactive Elements in MarkdownFlow

@@ -1,3 +1,10 @@
+---
+tags:
+  - Variables
+  - Syntax
+  - Core Features
+---
+
 # Variables
 
 ## Using Variables in MarkdownFlow
