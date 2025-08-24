@@ -56,6 +56,15 @@ The site automatically deploys to GitHub Pages when pushing to main branch via `
 2. Builds MkDocs documentation to `_site/docs/`
 3. Deploys to GitHub Pages
 
+## MarkdownFlow Core Principle
+
+**IMPORTANT**: MarkdownFlow documents are written **for AI agents, not for human readers**. This is the fundamental paradigm that must be understood and applied throughout all documentation and examples.
+
+- Content in MarkdownFlow documents serves as **instructions/prompts for AI** to generate personalized content
+- Examples should demonstrate **AI instructions**, not direct user-facing content
+- Traditional approach: "Welcome, John!" (content for humans)
+- MarkdownFlow approach: "Generate a welcoming message for {{user_name}}" (instruction for AI)
+
 ## MarkdownFlow Syntax
 
 The core MarkdownFlow syntax extensions:
@@ -70,8 +79,10 @@ When updating documentation:
 
 - Main documentation entry point is `docs/docs/index.md`
 - Use formal, official tone for documentation
-- Examples should demonstrate practical use cases
+- **ALL examples must follow MarkdownFlow core principle**: Show AI instructions, not user content
+- Examples should demonstrate practical use cases with proper "writing for AI" approach
 - Navigation structure is defined in `docs/mkdocs.yml`
+- Ensure consistency with the paradigm: "You write prompts for AI, not content for humans"
 
 ## Linting and Formatting
 
