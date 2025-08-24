@@ -1,4 +1,4 @@
-# Your First MarkdownFlow
+# Quick Start
 
 Learn to write instructions for AI that create personalized content. In 5 minutes, you'll build a smart personal introduction that adapts to each visitor.
 

@@ -898,9 +898,9 @@ async def process_template(request: ProcessRequest):
 
 **Next Steps for Your Integration:**
 
-1. **🎨 [Build Your First MarkdownFlow](first-mdflow.md)** - Learn the basics with hands-on tutorial
+1. **🎨 [Quick Start](first-mdflow.md)** - Learn the basics with hands-on tutorial
 2. **🛠️ [SDK Documentation](../sdks/index.md)** - Deep dive into specific SDK features
 3. **🎯 [Real-World Examples](../examples/index.md)** - See complete integration examples
 4. **📈 [Advanced Patterns](../specification/overview.md)** - Master complex use cases
 
-**Ready to integrate MarkdownFlow?** Start with the [hands-on tutorial](first-mdflow.md)!
+**Ready to integrate MarkdownFlow?** Start with the [Quick Start tutorial](first-mdflow.md)!
