@@ -3,6 +3,10 @@ site_url: https://markdownflow.ai/docs/
 site_description: Complete documentation for MarkdownFlow
 site_author: MarkdownFlow Team
 
+repo_url: https://github.com/ai-shifu/markdown-flow
+repo_name: ai-shifu/markdown-flow
+edit_uri: edit/main/docs/docs/
+
 theme:
   name: material
   logo: assets/logo-white.svg
@@ -24,6 +28,11 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.action.edit
+    - content.action.view
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
 
 extra:
   homepage: /
