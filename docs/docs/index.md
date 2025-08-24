@@ -1,154 +1,119 @@
-# MarkdownFlow
+# Getting Started
 
-## Write Once, Deliver Personally
+## What is MarkdownFlow?
 
-MarkdownFlow extends standard Markdown with three simple additions: variables ({{variable}}), interactive buttons (?[%{{var}}Option1|Option2]), and preserved content (===text===). These extensions enable AI agents to transform your documents into personalized, interactive experiences where content adapts to each reader's choices and context.
+MarkdownFlow (简写为 **MDFlow** 或 **MDF**) extends standard Markdown to create personalized, interactive documents. The tagline: **"Write Once, Deliver Personally"** (一次创作，千人千面).
 
-**No programming knowledge required. Easy to learn and use. If you can type, you can create.**
+Instead of writing static content for readers, you write prompts for AI agents. These agents transform your instructions into personalized content that adapts to each user's choices, preferences, and context.
 
-## Use Cases
+## Complete Compatibility with Markdown
 
-### Education
+**MarkdownFlow is not a replacement for Markdown — it's a natural extension:**
 
-Generate personalized learning materials for students at different levels. A single curriculum outline automatically adjusts difficulty and teaching methods based on students' foundation, interests, and learning progress.
+- ✅ All standard Markdown syntax works unchanged
+- ✅ All Markdown extensions (tables, task lists, footnotes) work normally  
+- ✅ Existing Markdown documents work in MDFlow without modification
+- ✅ Your favorite Markdown editors and toolchains continue to work
 
-### Content Creation
+You can start with any existing Markdown document and gradually add MDFlow features as needed.
 
-Articles that automatically adjust technical terminology based on readers' background knowledge. Provide detailed explanations for beginners while delivering key points directly to professionals.
+## Three Simple Extensions
 
-### News Media
+MarkdownFlow adds just three new syntax elements to standard Markdown:
 
-The same news story expands from different angles based on readers' interests. Technology-focused readers see technical details, while business-oriented readers receive market analysis.
+### 1. Variables: `{{variable}}`
 
-### Interactive Storytelling
-
-Create interactive narratives where every reader choice influences the plot direction, generating unique adventure experiences.
-
-### Corporate Training
-
-Automatically generate customized training materials and operation manuals based on employees' departments, positions, and skill levels.
-
-## Getting Started
-
-### Step 1: Inherit Everything from Markdown, But Everything Is a Prompt
-
-MarkdownFlow is fully compatible with standard Markdown, but **everything in the document serves as prompts**. When writing, always remember that you are instructing AI on how to teach, tell stories, deliver news, and more.
-
-**Example:**
+Dynamic content placeholders that get replaced with actual values.
 
 ```markdown
-# Introduction to Python Programming
-
-Please introduce Python programming language in an engaging and accessible manner.
-
-Python is a programming language that is as natural as speaking.
-
-Let's begin with printing "Hello World":
-
-- Explain what printing means in programming
-- Use everyday analogies to illustrate concepts
-- Encourage readers to try it themselves
+Welcome to our platform, {{user_name}}!
+Your account balance is {{balance}}.
 ```
 
-The AI will generate engaging educational content based on these prompts.
+**Learn more:** [Variables Specification](../specification/variables.md)
 
-### Step 2: Collect User Choices with Interactive Buttons
+### 2. Interactive Elements: `?[%{{variable}}Option1|Option2]`
 
-Use the syntax `?[%{{variable}}Option1|Option2]` to create buttons. User selections are stored in `{{variable}}`, allowing subsequent prompts to generate different content based on the stored value.
-
-**Example:**
+Buttons and input fields that collect user choices and store them in variables.
 
 ```markdown
-# Learning Python
+What's your experience level?
+?[%{{level}}Beginner|Intermediate|Expert]
 
-Which area of Python would you like to explore?
-?[%{{direction}}Web Development|Data Analysis|Artificial Intelligence|Automation Scripts]
+What's your name?
+?[%{{name}}...Enter your name here]
+```
+
+**Learn more:** [Buttons & Input Specification](../specification/button-input.md)
+
+### 3. Preserved Content: `===content===`
+
+Text that maintains its exact meaning and style during AI processing.
+
+```markdown
+Remember our motto:
+===Innovation Through Simplicity===
+
+Always follow the exact command:
+===npm install markdown-flow===
+```
+
+**Learn more:** [Preserved Output Specification](../specification/preserved-output.md)
+
+## How It Works
+
+The key insight: **you write prompts for AI, not content for humans.**
+
+**Traditional Markdown:**
+
+```markdown
+Python is a high-level programming language known for its simplicity.
+```
+
+**MarkdownFlow:**
+
+```markdown
+Explain Python to a {{level}} programmer interested in {{use_case}},
+emphasizing aspects most relevant to their background.
+```
+
+The MDFlow version generates personalized explanations based on each user's level and interests.
+
+## Quick Preview
+
+Here's a simple interactive learning example:
+
+```markdown
+# Learn Python Programming
+
+What's your programming background?
+?[%{{experience}}Complete beginner|Some experience|Professional developer]
+
+What interests you most about Python?
+?[%{{interest}}Web development|Data analysis|Automation|AI/ML]
 
 ---
 
-Generate a learning path based on the user's selected {{direction}}:
+Generate a personalized Python introduction for someone with {{experience}}
+who is interested in {{interest}}. Include:
 
-If "Web Development" is selected:
+1. A motivating opening that connects to their {{interest}}
+2. Three key Python advantages for {{interest}}
+3. A simple "Hello World" example with explanation
+4. Next learning steps tailored to {{experience}} level
 
-- Introduce Django and Flask frameworks
-- Recommend HTML/CSS fundamentals
-- Provide a simple website project example
-
-If "Data Analysis" is selected:
-
-- Introduce Pandas and NumPy
-- Explain data visualization tools
-- Present real dataset analysis cases
-
-[And so on...]
+Keep it encouraging and practical.
 ```
 
-### Step 3: Preserve Specific Content from AI Interpretation
+This template creates different learning experiences for different users, all from a single source document.
 
-For content that should remain unchanged by AI interpretation—such as quotations, axioms, or code examples—enclose it with `===`.
+## What's Next?
 
-**Example:**
+Ready to dive in? Follow this learning path:
 
-```markdown
-Let us remember the core principles of The Zen of Python:
+1. **[Core Concepts](concepts.md)** - Understand the fundamental principles
+2. **[Your First MarkdownFlow](first-mdflow.md)** - Build your first interactive document  
+3. **[Try It Now](playground.md)** - Practice with live examples
+4. **[Next Steps](next-steps.md)** - Explore advanced features and get help
 
-===
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-===
-
-Please explain the significance of these principles for programming while preserving the original text.
-```
-
-## Additional Examples
-
-### Interactive Story
-
-```markdown
-# The Mysterious Forest Adventure
-
-You are a brave explorer standing at the entrance to the legendary mysterious forest.
-
-You see two paths before you:
-?[%{{path}}The sunny path on the left|The shadowy trail on the right]
-
----
-
-Generate different adventure stories based on the {{path}} choice:
-
-- If "The sunny path on the left" is chosen: Encounter friendly sprites and receive magical blessings
-- If "The shadowy trail on the right" is chosen: Discover ancient treasures that require solving puzzles
-```
-
-### Personalized News
-
-```markdown
-# Today's Tech News: AI Breakthrough
-
-Which aspect interests you most?
-?[%{{focus}}Technical Principles|Business Applications|Social Impact|Investment Opportunities]
-
----
-
-Expand content based on the reader's selected {{focus}}:
-
-- Maintain objective and neutral journalistic standards
-- Include relevant expert opinions
-- Provide background information and context
-```
-
-## Future Roadmap
-
-### Multimodal Output Support
-
-Generate richly illustrated content. Enable AI not only to narrate but also to create diagrams, charts, and visualizations, making your creations more vivid and engaging.
-
-### Evolution into Universal Agent Expression Language
-
-Effortlessly customize your own Agents. Define complex AI behaviors using natural language. Building intelligent applications has never been simpler.
-
----
-
-Ready to begin? Visit the [Getting Started Guide](getting-started/index.md) to experience the power of MarkdownFlow today!
+Or jump straight to the action with our **[5-minute quickstart](first-mdflow.md)**!
