@@ -79,8 +79,8 @@ A **MarkdownFlow Agent** processes your document by:
 Ready to dive in? Follow this learning path:
 
 1. **[Core Concepts](concepts.md)** - Understand the fundamental principles
-2. **[Quick Start](first-mdflow.md)** - Build your first interactive document  
+2. **[Quick Start](quick-start.md)** - Build your first interactive document  
 3. **[Try It Now](playground.md)** - Practice with live examples
 4. **[Next Steps](next-steps.md)** - Explore advanced features and get help
 
-Or jump straight to the action with our **[5-minute Quick Start](first-mdflow.md)**!
+Or jump straight to the action with our **[5-minute Quick Start](quick-start.md)**!

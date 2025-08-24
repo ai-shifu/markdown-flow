@@ -41,6 +41,6 @@ Style: Clear and concise
 
 Now that you understand the core concepts, let's put them into practice:
 
-**[Quick Start →](first-mdflow.md)**
+**[Quick Start →](quick-start.md)**
 
 Build your first interactive document and see these concepts in action.

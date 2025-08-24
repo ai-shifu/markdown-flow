@@ -46,7 +46,7 @@ nav:
   - Getting Started:
     - Introduction: index.md
     - Core Concepts: getting-started/concepts.md
-    - Quick Start: getting-started/first-mdflow.md
+    - Quick Start: getting-started/quick-start.md
     - Integration: getting-started/integration.md
     - Next Steps: getting-started/next-steps.md
   - Specification:
