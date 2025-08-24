@@ -53,7 +53,7 @@ jobs:
         run: |
           mkdir -p _site/assets
           cp index.html _site/
-          cp assets/* _site/assets/
+          cp -r assets/* _site/assets/
 
       - name: Build MkDocs Documentation
         run: |
