@@ -19,15 +19,18 @@ You can start with any existing Markdown document and gradually add MDFlow featu
 
 ## Three Simple Extensions
 
-MarkdownFlow adds just three new syntax elements to standard Markdown:
+MarkdownFlow adds three new syntax elements to standard Markdown:
+
+!!! tip "Remember the Core Principle"
+    All examples below show **AI instructions**, not direct user content. You write prompts for AI to generate personalized content.
 
 ### 1. Variables: `{{variable}}`
 
 Dynamic content placeholders that get replaced with actual values.
 
 ```markdown
-Welcome to our platform, {{user_name}}!
-Your account balance is {{balance}}.
+Generate a welcoming message for {{user_name}} that mentions their
+current account balance of {{balance}} in a friendly tone.
 ```
 
 **Learn more:** [Variables Specification](../specification/variables.md)
@@ -37,10 +40,10 @@ Your account balance is {{balance}}.
 Buttons and input fields that collect user choices and store them in variables.
 
 ```markdown
-What's your experience level?
+Ask the user about their experience level and store the response.
 ?[%{{level}}Beginner|Intermediate|Expert]
 
-What's your name?
+Collect the user's name in a friendly way.
 ?[%{{name}}...Enter your name here]
 ```
 
@@ -51,10 +54,10 @@ What's your name?
 Text that maintains its exact meaning and style during AI processing.
 
 ```markdown
-Remember our motto:
+Introduce our company values, making sure to preserve the exact motto:
 ===Innovation Through Simplicity===
 
-Always follow the exact command:
+Provide installation instructions, preserving the exact command:
 ===npm install markdown-flow===
 ```
 
