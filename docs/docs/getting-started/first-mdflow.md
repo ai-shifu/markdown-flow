@@ -161,7 +161,7 @@ Do NOT invent additional details. Keep it authentic and engaging.
 You've got the fundamentals! Now choose your path:
 
 🚀 **[Start Building →](https://play.mdflow.run)** - Jump into the Playground and create your own templates  
-🛠️ **[Installation Guide](installation.md)** - Add MarkdownFlow to your projects  
+🛠️ **[Integration Guide](integration.md)** - Add MarkdownFlow to your projects  
 🎯 **[More Examples](../examples/index.md)** - See advanced templates and use cases  
 📚 **[Complete Specification](../specification/overview.md)** - Master every feature  
 

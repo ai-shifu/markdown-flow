@@ -61,7 +61,7 @@ Jump straight into development with your preferred technology.
 - **[Python SDK](../sdks/python.md)** - FastAPI/Django integration
 - **[Go SDK](../sdks/go.md)** - High-performance processing
 
-**Installation details:** [Installation Guide](installation.md)
+**Integration details:** [Integration Guide](integration.md)
 
 ## 📚 Best Practices
 

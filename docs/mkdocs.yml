@@ -47,8 +47,7 @@ nav:
     - Introduction: index.md
     - Core Concepts: getting-started/concepts.md
     - Your First MarkdownFlow: getting-started/first-mdflow.md
-    - Try It Now: getting-started/playground.md
-    - Installation: getting-started/installation.md
+    - Integration: getting-started/integration.md
     - Next Steps: getting-started/next-steps.md
   - Specification:
     - Overview: specification/overview.md
