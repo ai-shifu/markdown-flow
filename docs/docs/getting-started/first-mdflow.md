@@ -1,263 +1,168 @@
 # Your First MarkdownFlow
 
-Let's build your first MDFlow document in 5 minutes. We'll create an interactive welcome message that adapts to each user.
+Learn to write instructions for AI that create personalized content. In 5 minutes, you'll build a smart personal introduction that adapts to each visitor.
 
-## Step 1: Start with Regular Markdown (30 seconds)
+**🌐 [Try it live in the Playground](https://play.mdflow.run)** - Copy each example and test it!
 
-Create a file called `welcome.md`:
+**What we'll build:** We'll start with simple **Content Prompts** - these are instructions that test whether the AI understands your intent and has the relevant knowledge and capabilities. Then we'll gradually make them more sophisticated and personalized.
 
-```markdown
-# Welcome to Our Platform!
+## Step 1: Basic AI Instruction (1 minute)
 
-Thank you for joining us.
-
-## What You Can Do Here
-
-- Learn new skills
-- Connect with others
-- Build projects
-```
-
-This is valid MarkdownFlow (and valid Markdown). It works but it's static — everyone sees the same thing.
-
-## Step 2: Add Variables (1 minute)
-
-Let's personalize it with variables:
+Instead of writing fixed content, write instructions for AI:
 
 ```markdown
-# Welcome to Our Platform, {{user_name}}!
+Generate a personal introduction for Alex Chen.
 
-Thank you for joining us, {{user_name}}.
+Include these facts:
+- Works in technology
+- 5 years of experience
+- Builds apps and websites
+- Enjoys hiking and photography
+- Always learning new technologies
 
-## What You Can Do Here
-
-Based on your interests in {{interests}}, you can:
-
-- Learn new skills in {{interests}}
-- Connect with other {{interests}} enthusiasts
-- Build {{interests}} projects
+Keep it professional and friendly.
 ```
 
-Now the document adapts to each user. Variables are replaced with actual values when processed.
+**🚀 Try this in the Playground now!** You'll see AI generate a complete introduction.
 
-**Learn more about variables:** [Variables Specification](../specification/variables.md)
+But there's a problem - everyone gets the same generic result.
 
-## Step 3: Add User Input (1 minute)
+## Step 2: Add Personalization (1 minute)
 
-Make it interactive by collecting user choices:
+Let's make it adapt to different visitors:
 
 ```markdown
-# Welcome to Our Platform, {{user_name}}!
+Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-Thank you for joining us. Let's personalize your experience.
+?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-What brings you here today?
-?[%{{goal}}Learn something new|Work on projects|Meet people|Just browsing]
+Generate Alex Chen's introduction tailored for {{visitor_type}}.
 
-What's your experience level?
-?[%{{level}}Complete beginner|Some experience|Expert]
+Include these facts:
+- Works in technology  
+- 5 years of experience
+- Builds apps and websites
+- Enjoys hiking and photography
+- Always learning new technologies
+
+Adapt the tone and emphasis for {{visitor_type}}.
 ```
 
-Users can now make selections that affect the content they see.
+**🚀 Test this in the Playground!** Try different visitor types - see how the same facts create completely different introductions.
 
-**Learn more about interactive elements:** [Buttons & Input Specification](../specification/button-input.md)
+## Step 3: Add Detailed Instructions (2 minutes)
 
-## Step 4: Add AI Instructions (1.5 minutes)
-
-Now the magic — let AI generate personalized content:
+Make your instructions more specific to get better, more consistent results:
 
 ```markdown
-# Welcome to Our Platform, {{user_name}}!
+Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-Thank you for joining us. Let's personalize your experience.
+?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-What brings you here today?
-?[%{{goal}}Learn something new|Work on projects|Meet people|Just browsing]
+Generate Alex Chen's introduction tailored for {{visitor_type}}:
 
-What's your experience level?
-?[%{{level}}Complete beginner|Some experience|Expert]
+- For potential clients: emphasize reliability, successful projects, and problem-solving skills
+- For recruiters: highlight technical skills, career achievements, and professional growth  
+- For colleagues: focus on collaboration, shared interests, and teamwork
+- For friends: share personal interests, hobbies, and what makes life fun
+- For potential dates: showcase personality, lifestyle, and what makes relationships enjoyable
 
----
-
-Generate a personalized welcome message for {{user_name}} who wants to "{{goal}}"
-and has "{{level}}" experience.
-
-Include:
-
-1. An encouraging message specific to their goal
-2. Three specific suggestions for getting started
-3. One pro tip based on their experience level
-
-Keep it friendly and conversational.
+Include these specific facts:
+- 5 years in technology
+- Builds apps and websites
+- Enjoys hiking and photography
+- Always learning new technologies
 ```
 
-This is the core of MarkdownFlow: **you write instructions for AI, not content for humans.**
+**🚀 Test in the Playground!** Compare this with Step 2 - notice how more detailed instructions create more focused, relevant introductions.
 
-## Step 5: See It In Action (1 minute)
+**Important:** The more specific facts you provide, the less AI will "hallucinate" (make up information). Always give AI real details to work with.
 
-Here's what happens when this template is processed:
+## Step 4: Prevent AI Hallucination (1 minute)
 
-### Input Values
-
-- `user_name`: "Alice"
-- `goal`: "Learn something new"
-- `level`: "Some experience"
-
-### Generated Output
-
-> # Welcome to Our Platform, Alice
->
-> Thank you for joining us. Let's personalize your experience.
->
-> **Your Goal:** Learn something new  
-> **Your Level:** Some experience
->
-> Hey Alice! It's great to have someone with your experience here who's eager to learn. Since you already have some background, you're perfectly positioned to dive into more advanced topics while still having the foundation to understand them.
->
-> **Here are three great ways to get started:**
->
-> 1. **Explore our intermediate courses** - Skip the basics you already know and jump into topics that will challenge you
-> 2. **Join a study group** - Connect with others at your level who are also expanding their knowledge
-> 3. **Start a learning project** - Apply what you learn immediately to solidify new concepts
->
-> **Pro tip:** Since you have some experience, try the "learn by teaching" approach — explain new concepts in our forums. It's the fastest way to master something!
-
-The same template would generate completely different content for a beginner interested in building projects!
-
-## Complete Example: Learning Path Generator
-
-Here's a more sophisticated example that demonstrates the full power of MDFlow:
+AI sometimes invents information when it doesn't have enough details. Let's fix this:
 
 ```markdown
-# Welcome to MarkdownFlow Learning Platform!
+Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-## Quick Setup
+?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-What should we call you?
-?[%{{user_name}}...Enter your name]
+Generate Alex Chen's introduction tailored for {{visitor_type}}:
 
-What are you most interested in learning?
-?[%{{interest}}Web Development|Data Science|Mobile Apps|AI/Machine Learning|Other]
+- For potential clients: emphasize reliability, successful projects, and problem-solving skills
+- For recruiters: highlight technical skills, career achievements, and professional growth  
+- For colleagues: focus on collaboration, shared interests, and teamwork
+- For friends: share personal interests, hobbies, and what makes life fun
+- For potential dates: showcase personality, lifestyle, and what makes relationships enjoyable
 
-How much time can you dedicate daily?
-?[%{{time}}15-30 minutes|30-60 minutes|1-2 hours|More than 2 hours]
+Use ONLY these verified facts about Alex:
+- Age: 28
+- Location: San Francisco
+- Job: Senior Software Engineer at TechCorp
+- Experience: 5 years in web development
+- Skills: React, Node.js, Python
+- Projects: Led team that built e-commerce platform used by 50K+ users
+- Hobbies: Weekend hiking in Marin County, landscape photography
+- Education: CS degree from UC Berkeley
+- Personal: Loves trying new coffee shops, has a rescue dog named Luna
 
-What's your preferred learning style?
-?[%{{style}}Video tutorials|Written guides|Interactive exercises|Projects]
-
----
-
-## Your Personalized Learning Path
-
-Hi {{user_name}}! Based on your interests in {{interest}} and {{time}} daily availability,
-here's your customized learning path.
-
-Generate a detailed 4-week learning plan for {{user_name}}:
-
-- Topic: {{interest}}
-- Daily time: {{time}}
-- Learning style: {{style}}
-
-Structure the plan with:
-
-1. Week 1: Foundations (what to learn first)
-2. Week 2: Core concepts (building on basics)
-3. Week 3: Practical application (hands-on work)
-4. Week 4: Real project (consolidate learning)
-
-For each week, provide:
-
-- Daily learning objectives
-- Specific resources matching their {{style}} preference
-- Time estimates that fit within {{time}}
-- One checkpoint to verify understanding
-
-Make the plan encouraging and achievable.
+Do NOT invent additional details. Keep it authentic and engaging.
 ```
 
-This single template can generate thousands of different learning paths based on user inputs!
+**🚀 Try this in the Playground!** Notice how providing specific, detailed facts prevents AI from making up information while still creating personalized content.
 
-## Try It Yourself
+## Step 5: Add Document Prompt (1 minute)
 
-### Option 1: Online Playground
+So far we've been writing **Content Prompts**. If you tested in the Playground, you might notice the AI sometimes uses inconsistent tone, writes from wrong perspective, uses inappropriate formatting, or doesn't quite match the intended audience feel.
 
-Visit the **[MarkdownFlow Playground](https://play.mdflow.run)** to try these examples live without any installation.
+**Document Prompt** solves these problems by setting the AI's role and global behavior:
 
-### Option 2: Use an SDK
-
-**React/Next.js:**
-
-```jsx
-import { MarkdownFlow } from "markdown-flow-ui";
-
-function App() {
-  return <MarkdownFlow template={yourTemplate} />;
-}
-```
-
-**Python:**
-
-```python
-from markdown_flow_agent import FlowAgent
-
-agent = FlowAgent()
-result = await agent.process(template, variables)
-```
-
-**For more SDK options:** [SDKs Documentation](../sdks/index.md)
-
-## What You've Learned
-
-In 5 minutes, you've learned the three core MDFlow features:
-
-✅ **Variables (`{{variable}}`)** - Make content dynamic and personalized  
-✅ **Interactive Elements (`?[%{{var}}Option1|Option2]`)** - Collect user input  
-✅ **AI Instructions** - Write prompts that generate personalized content  
-
-### Key Insights
-
-1. **Start with Markdown** - Your existing knowledge still applies
-2. **Think in prompts** - Write instructions for AI, not content for readers
-3. **Collect then adapt** - Use interactive elements to gather context, then personalize content
-4. **One source, many experiences** - A single template serves unlimited user scenarios
-
-## Common Patterns
-
-As you build more MDFlow documents, you'll use these patterns frequently:
-
-### Conditional Content
+**Document Prompt**:
 
 ```markdown
-Generate different advice based on {{user_type}}:
-- If student: focus on learning fundamentals
-- If professional: emphasize practical applications
-- If hobbyist: keep it fun and experimental
+You are a professional personal branding expert representing Alex Chen. Create compelling, authentic introductions on his behalf that highlight his strengths while maintaining his genuine personality. Ensure each introduction feels natural when Alex is introducing himself to {{visitor_type}}.
 ```
 
-### Progressive Disclosure
+**Content Prompt** (what we've been building):
 
 ```markdown
-Want to learn more about {{topic}}?
-?[%{{deep_dive}}Yes, tell me more|No, I'm good]
+Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-If "Yes": provide detailed explanation with examples
-If "No": summarize key points only
+?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
+
+Generate Alex Chen's introduction tailored for {{visitor_type}}:
+
+- For potential clients: emphasize reliability, successful projects, and problem-solving skills
+- For recruiters: highlight technical skills, career achievements, and professional growth  
+- For colleagues: focus on collaboration, shared interests, and teamwork
+- For friends: share personal interests, hobbies, and what makes life fun
+- For potential dates: showcase personality, lifestyle, and what makes relationships enjoyable
+
+Use ONLY these verified facts about Alex:
+- Age: 28
+- Location: San Francisco
+- Job: Senior Software Engineer at TechCorp
+- Experience: 5 years in web development
+- Skills: React, Node.js, Python
+- Projects: Led team that built e-commerce platform used by 50K+ users
+- Hobbies: Weekend hiking in Marin County, landscape photography
+- Education: CS degree from UC Berkeley
+- Personal: Loves trying new coffee shops, has a rescue dog named Luna
+
+Do NOT invent additional details. Keep it authentic and engaging.
 ```
 
-### Contextual Examples
+**🚀 Try the complete template in the Playground!**
 
-```markdown
-Explain {{concept}} using examples from {{user_industry}} industry
-to make it relevant to {{user_name}}'s daily work.
-```
+**Key insight:** Document Prompt sets the overall expertise and tone, while Content Prompt handles the specific personalization. Together they create professional, accurate, and personalized content.
 
 ## What's Next?
 
-Ready to dive deeper? Choose your next step:
+You've got the fundamentals! Now choose your path:
 
-- **[Try It Now](playground.md)** - Practice with live examples and playground
-- **[Installation Guide](installation.md)** - Set up MDFlow in your development environment
-- **[Core Concepts](concepts.md)** - Understand the deeper principles
-- **[Examples](../examples/index.md)** - See real-world use cases and templates
+🚀 **[Start Building →](https://play.mdflow.run)** - Jump into the Playground and create your own templates  
+🛠️ **[Installation Guide](installation.md)** - Add MarkdownFlow to your projects  
+🎯 **[More Examples](../examples/index.md)** - See advanced templates and use cases  
+📚 **[Complete Specification](../specification/overview.md)** - Master every feature  
 
-Or jump straight into building with the **[Playground →](playground.md)**!
+**Ready to create personalized experiences?** Start experimenting in the **[Playground](https://play.mdflow.run)** now!
