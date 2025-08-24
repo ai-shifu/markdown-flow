@@ -5,8 +5,8 @@ site_author: MarkdownFlow Team
 
 theme:
   name: material
-  logo: assets/logo.png
-  favicon: assets/logo.png
+  logo: assets/logo-white.svg
+  favicon: assets/logo-color.svg
   palette:
     - scheme: default
       toggle:
