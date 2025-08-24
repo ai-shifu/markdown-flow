@@ -166,3 +166,14 @@
   transform: translateY(-2px);
   border-color: #0F63EE;
 }
+
+/* Mermaid diagram styling */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}

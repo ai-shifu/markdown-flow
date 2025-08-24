@@ -71,26 +71,44 @@ Constraints: Keep explanations under 100 words unless detail is requested
 
 Here's how MarkdownFlow transforms your source into the final output:
 
+```mermaid
+flowchart LR
+    A[Source Document] --> B[Content Blocking]
+    B --> C[Variable Substitution]
+    C --> D[LLM Generating]
+    D --> E{Interactive Elements?}
+    E -->|Yes| F[User Input]
+    E -->|No| G{More Blocks?}
+    F --> G
+    G -->|Yes| C
+    G -->|No| H[Final Output]
+
+    style A fill:#e1f5fe
+    style H fill:#c8e6c9
+    style D fill:#fff3e0
+    style F fill:#f3e5f5
+```
+
 ### Step 1: Content Blocking
 
-For better processing effectiveness, the MarkdownFlow Agent divides the content prompt into several blocks. The first block is processed first:
+For better processing effectiveness, the MarkdownFlow Agent divides the content prompt into several blocks. The first block is processed first.
 
 ### Step 2: Variable Substitution
 
-Variables in the current block are replaced with concrete values. Unassigned variables are replaced with "UNKNOWN":
+Variables in the current block are replaced with concrete values. Unassigned variables are replaced with "UNKNOWN".
 
 For more details, see the [Variables](../variables) section.
 
-### Step 3: LLM Processing
+### Step 3: LLM Generating
 
-The document prompt and the current content block are sent to the Large Language Model. The LLM outputs transformed content still in MarkdownFlow format:
+The document prompt and the current content block are sent to the Large Language Model. The LLM outputs transformed content still in MarkdownFlow format.
 
 ### Step 4: Interactive Element Processing
 
-If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The input result is stored in variables
+If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The input result is stored in variables.
 
 For more details, see the [Button/Input](../button-input) sections.
 
 ### Step 5: Iterate
 
-Return to Step 2 to process the next block. This continues until all blocks are processed:
+Return to Step 2 to process the next block. This continues until all blocks are processed.
