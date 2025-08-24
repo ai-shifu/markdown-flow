@@ -77,7 +77,7 @@ For better processing effectiveness, the MarkdownFlow Agent divides the content 
 
 ### Step 2: Variable Substitution
 
-Variables in the current block are replaced with concrete values. Unassigned variables are replaced with "Unknown":
+Variables in the current block are replaced with concrete values. Unassigned variables are replaced with "UNKNOWN":
 
 For more details, see the [Variables](../variables) section.
 

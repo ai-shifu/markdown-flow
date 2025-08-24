@@ -51,9 +51,9 @@ jobs:
 
       - name: Copy HTML files to site
         run: |
-          mkdir -p _site
+          mkdir -p _site/assets
           cp index.html _site/
-          cp logo.png _site/
+          cp assets/* _site/assets/
 
       - name: Build MkDocs Documentation
         run: |
