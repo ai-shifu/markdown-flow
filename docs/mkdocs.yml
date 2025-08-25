@@ -104,5 +104,3 @@ nav:
       - markdown-it-flow (Vue/Vanilla): sdks/javascript/markdown-it-flow.md
     - Python: sdks/python.md
     - Go: sdks/go.md
-  - Ecosystem:
-    - Overview: ecosystem/index.md
