@@ -80,16 +80,16 @@ Constraints: Keep explanations under 100 words unless detail is requested
 Here's how MarkdownFlow transforms your source into the final output:
 
 ```mermaid
-flowchart TD
-    A[Source Document] --> B[Content Blocking]
-    B --> C[Variable Substitution]
-    C --> D[LLM Generating]
-    D --> E{Interactive Elements?}
-    E -->|Yes| F[User Input]
-    E -->|No| G{More Blocks?}
+flowchart LR
+    A[Source<br>Document] --> B[Content<br>Blocking]
+    B --> C[Variable<br>Substitution]
+    C --> D[LLM<br>Generating]
+    D --> E{Interactive<br>Elements?}
+    E -->|Yes| F[User<br>Input]
+    E -->|No| G{More<br>Blocks?}
     F --> G
     G -->|Yes| C
-    G -->|No| H[Final Output]
+    G -->|No| H[Final<br>Output]
 
     style A fill:#e1f5fe
     style H fill:#c8e6c9
