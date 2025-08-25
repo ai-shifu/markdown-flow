@@ -40,6 +40,13 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/ai-shifu/markdown-flow
       name: GitHub Repository
+  alternate:
+    - name: English
+      link: /docs/
+      lang: en
+    - name: 中文
+      link: /docs/zh/
+      lang: zh
 
 extra_css:
   - stylesheets/extra.css
@@ -47,8 +54,33 @@ extra_css:
 # Remove external mermaid - Material has built-in support
 
 plugins:
-  - search:
-      lang: en
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+          nav_translations:
+            Getting Started: 快速开始
+            Introduction: 简介
+            Core Concepts: 核心概念
+            Quick Start: 快速上手
+            Integration: 集成
+            Next Steps: 下一步
+            Specification: 规范说明
+            Overview: 概览
+            How It Works: 工作原理
+            Variables: 变量
+            Buttons & Input: 按钮和输入
+            Preserved Output: 确定输出
+            SDKs: SDK
+  - search
   - social:
       cards: true
       cards_layout_options:
