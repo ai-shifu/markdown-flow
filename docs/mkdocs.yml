@@ -51,12 +51,11 @@ plugins:
       lang: en
   - social:
       cards: true
-      cards_color:
-        fill: "#0F63EE"
-        text: "#FFFFFF"
-      cards_font: Roboto
-  - tags:
-      tags_file: tags.md
+      cards_layout_options:
+        background_color: "#0F63EE"
+        color: "#FFFFFF"
+        font_family: Roboto
+  - tags
   - git-revision-date-localized:
       type: timeago
       timezone: Asia/Shanghai
@@ -76,7 +75,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format  # YAML validation requires quotes in CI
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
