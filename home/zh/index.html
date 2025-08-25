@@ -89,6 +89,26 @@
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
         }
 
+        .language-switcher {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 18px;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .language-switcher:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 1);
+            transform: translateY(-1px);
+        }
+
         main {
             background: white;
             border-radius: 10px;
@@ -355,11 +375,10 @@
             <div class="header-content">
                 <h1><img src="/assets/logos/logo-white.svg" alt="MarkdownFlow Logo" class="logo"> MarkdownFlow</h1>
                 <nav style="display: flex; gap: 1rem; align-items: center;">
+                    <a href="/" class="language-switcher" id="language-switcher">🌐 English</a>
                     <a href="/docs/zh/" class="github-link">文档</a>
                     <a href="https://github.com/ai-shifu/markdown-flow" class="github-link">GitHub</a>
                     <a href="https://play.mdflow.run/" class="playground-link">🎮 体验台</a>
-                    <div style="border-left: 1px solid rgba(255,255,255,0.3); height: 20px; margin: 0 0.5rem;"></div>
-                    <a href="/" class="github-link" style="font-size: 0.9rem;" id="language-switcher">English</a>
                 </nav>
             </div>
         </div>
