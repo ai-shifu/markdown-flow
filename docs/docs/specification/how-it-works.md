@@ -80,7 +80,7 @@ Constraints: Keep explanations under 100 words unless detail is requested
 Here's how MarkdownFlow transforms your source into the final output:
 
 ```mermaid
-graph TD
+flowchart TD
     A[Source Document] --> B[Content Blocking]
     B --> C[Variable Substitution]
     C --> D[LLM Generating]
@@ -90,6 +90,11 @@ graph TD
     F --> G
     G -->|Yes| C
     G -->|No| H[Final Output]
+
+    style A fill:#e1f5fe
+    style H fill:#c8e6c9
+    style D fill:#fff3e0
+    style F fill:#f3e5f5
 ```
 
 ### Step 1: Content Blocking
