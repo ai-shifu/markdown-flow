@@ -10,6 +10,9 @@ cairosvg>=2.7.0
 mkdocs-git-revision-date-localized-plugin>=1.2.0
 mkdocs-git-committers-plugin-2>=2.0.0
 
+# Internationalization Plugin
+mkdocs-static-i18n>=1.2.0
+
 # Optional: Additional useful plugins
 # mkdocs-minify-plugin>=0.7.0
 # mkdocs-redirects>=1.2.0
