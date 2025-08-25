@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarkdownFlow - 一次创作，千人千面</title>
     <link rel="icon" type="image/svg+xml" href="/assets/logos/logo-color.svg">
+    <link rel="alternate" hreflang="en" href="/" />
+    <link rel="alternate" hreflang="zh" href="/zh/" />
+    <link rel="alternate" hreflang="x-default" href="/" />
     <style>
         * {
             margin: 0;
@@ -356,7 +359,7 @@
                     <a href="https://github.com/ai-shifu/markdown-flow" class="github-link">GitHub</a>
                     <a href="https://play.mdflow.run/" class="playground-link">🎮 体验台</a>
                     <div style="border-left: 1px solid rgba(255,255,255,0.3); height: 20px; margin: 0 0.5rem;"></div>
-                    <a href="/" class="github-link" style="font-size: 0.9rem;">English</a>
+                    <a href="/" class="github-link" style="font-size: 0.9rem;" id="language-switcher">English</a>
                 </nav>
             </div>
         </div>
@@ -607,6 +610,43 @@
             <p>&copy; 2025 AI-Shifu。<a href="https://github.com/ai-shifu" style="color: white;">ai-shifu</a> 组织下的开源项目。</p>
         </div>
     </footer>
+
+    <script>
+        // Language detection and switcher
+        (function() {
+            const STORAGE_KEY = 'markdownflow_language';
+            const currentLang = 'zh';
+            const alternateLang = 'en';
+            const alternateUrl = '/';
+
+            // Check if user has manually chosen a language before
+            const savedLanguage = localStorage.getItem(STORAGE_KEY);
+
+            // If user previously chose the other language, redirect
+            if (savedLanguage === alternateLang && currentLang !== alternateLang) {
+                window.location.href = alternateUrl;
+                return;
+            } else if (!savedLanguage) {
+                // Save current language as preference
+                localStorage.setItem(STORAGE_KEY, currentLang);
+            }
+
+            // Set up manual language switcher
+            const languageSwitcher = document.getElementById('language-switcher');
+            if (languageSwitcher) {
+                languageSwitcher.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.setItem(STORAGE_KEY, alternateLang);
+
+                    // Add smooth transition effect
+                    document.body.style.opacity = '0.8';
+                    setTimeout(() => {
+                        window.location.href = alternateUrl;
+                    }, 150);
+                });
+            }
+        })();
+    </script>
 
 </body>
 </html>

@@ -54,11 +54,11 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Copy HTML files to site
+      - name: Copy home directory to site root
         run: |
-          mkdir -p _site/assets
-          cp index.html _site/
-          cp -r assets/* _site/assets/
+          mkdir -p _site
+          cp -r home/* _site/
+          cp -r assets _site/
 
       - name: Build MkDocs Documentation
         env:
