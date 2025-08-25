@@ -29,20 +29,12 @@ Master every detail of MDFlow syntax and capabilities.
 
 See MDFlow in action across different domains.
 
-**Browse Real-World Applications:**
+**Explore the Playground:**
 
-- **[Education](../examples/education.md)** - Adaptive learning materials
-- **[Storytelling](../examples/storytelling.md)** - Interactive narratives  
-- **[Forms & Surveys](../examples/forms.md)** - Smart data collection
-- **[Documentation](../examples/documentation.md)** - User-specific guides
-- **[Consultation](../examples/consultation.md)** - Personalized advice
-
-**Each example includes:**
-
-- Complete source code
-- Live demonstration
-- Implementation notes
-- Customization tips
+- Try interactive examples at **[play.mdflow.run](https://play.mdflow.run)**
+- Experiment with different use cases
+- See real-time rendering
+- Copy and modify templates
 
 ### Path 3: Start Building
 
@@ -270,7 +262,6 @@ Track how users interact with your MDFlow content:
 
 - **[Playground](https://play.mdflow.run)** - Try MDFlow online
 - **[Specification](../specification/overview.md)** - Complete syntax reference
-- **[Examples](../examples/index.md)** - Real-world templates
 - **[SDKs](../sdks/index.md)** - Development libraries
 
 ### Cheat Sheet
@@ -317,4 +308,4 @@ You now have everything you need to create amazing MDFlow experiences:
 
 **Start creating your first real project today!**
 
-Return to **[Getting Started](index.md)** | Jump to **[Playground](https://play.mdflow.run)**
+Return to **[Getting Started](../index.md)** | Jump to **[Playground](https://play.mdflow.run)**

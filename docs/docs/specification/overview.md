@@ -79,6 +79,6 @@ Then, three buttons appear, and the user selects "Expert". Output continues:
 > - Writing **documentation-as-code** (combining Markdown with static site generators like MkDocs or Jekyll).
 >   But honestly? You’ve got this. Go build something cool. 🚀
 
-The above example uses MarkdownFlow's [Variable](../variables) and [Button](../button-input) features.
+The above example uses MarkdownFlow's [Variable](variables.md) and [Button](button-input.md) features.
 
-If you want to know how the magic happens, check out the [How It Works](../how-it-works) section.
+If you want to know how the magic happens, check out the [How It Works](how-it-works.md) section.

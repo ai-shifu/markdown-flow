@@ -889,7 +889,6 @@ async def process_template(request: ProcessRequest):
 ## Getting Help
 
 - 📚 [Complete Documentation](https://markdownflow.ai/docs/)
-- 🚀 [Integration Examples](../examples/index.md)
 - 💬 [Community Discussions](https://github.com/ai-shifu/markdown-flow/discussions)
 - 🐛 [Bug Reports](https://github.com/ai-shifu/markdown-flow/issues)
 - 📧 [Integration Support](mailto:integration@markdownflow.ai)
@@ -900,7 +899,6 @@ async def process_template(request: ProcessRequest):
 
 1. **🎨 [Quick Start](quick-start.md)** - Learn the basics with hands-on tutorial
 2. **🛠️ [SDK Documentation](../sdks/index.md)** - Deep dive into specific SDK features
-3. **🎯 [Real-World Examples](../examples/index.md)** - See complete integration examples
-4. **📈 [Advanced Patterns](../specification/overview.md)** - Master complex use cases
+3. **📈 [Advanced Patterns](../specification/overview.md)** - Master complex use cases
 
 **Ready to integrate MarkdownFlow?** Start with the [Quick Start tutorial](quick-start.md)!

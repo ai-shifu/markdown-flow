@@ -105,7 +105,7 @@ For better processing effectiveness, the MarkdownFlow Agent divides the content 
 
 Variables in the current block are replaced with concrete values. Unassigned variables are replaced with "UNKNOWN".
 
-For more details, see the [Variables](../variables) section.
+For more details, see the [Variables](variables.md) section.
 
 ### Step 3: LLM Generating
 
@@ -115,7 +115,7 @@ The document prompt and the current content block are sent to the Large Language
 
 If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The input result is stored in variables.
 
-For more details, see the [Button/Input](../button-input) sections.
+For more details, see the [Button/Input](button-input.md) sections.
 
 ### Step 5: Iterate
 

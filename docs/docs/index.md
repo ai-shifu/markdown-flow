@@ -40,7 +40,7 @@ Generate a welcoming message for {{user_name}} that mentions their
 current account balance of {{balance}} in a friendly tone.
 ```
 
-**Learn more:** [Variables Specification](../specification/variables.md)
+**Learn more:** [Variables Specification](specification/variables.md)
 
 ### 2. Interactive Elements: `?[%{{variable}} Option1 | Option2]`
 
@@ -54,7 +54,7 @@ Collect the user's name in a friendly way.
 ?[%{{name}}...Enter your name here]
 ```
 
-**Learn more:** [Buttons & Input Specification](../specification/button-input.md)
+**Learn more:** [Buttons & Input Specification](specification/button-input.md)
 
 ### 3. Preserved Content: `===content===`
 
@@ -68,7 +68,7 @@ Provide installation instructions, preserving the exact command:
 ===npm install markdown-flow===
 ```
 
-**Learn more:** [Preserved Output Specification](../specification/preserved-output.md)
+**Learn more:** [Preserved Output Specification](specification/preserved-output.md)
 
 ## How It Works (Simple Version)
 
@@ -85,9 +85,9 @@ A **MarkdownFlow Agent** processes your document by:
 
 Ready to dive in? Follow this learning path:
 
-1. **[Core Concepts](concepts.md)** - Understand the fundamental principles
-2. **[Quick Start](quick-start.md)** - Build your first interactive document  
-3. **[Try It Now](playground.md)** - Practice with live examples
-4. **[Next Steps](next-steps.md)** - Explore advanced features and get help
+1. **[Core Concepts](getting-started/concepts.md)** - Understand the fundamental principles
+2. **[Quick Start](getting-started/quick-start.md)** - Build your first interactive document  
+3. **[Try It Now](https://play.mdflow.run)** - Practice with live examples
+4. **[Next Steps](getting-started/next-steps.md)** - Explore advanced features and get help
 
-Or jump straight to the action with our **[5-minute Quick Start](quick-start.md)**!
+Or jump straight to the action with our **[5-minute Quick Start](getting-started/quick-start.md)**!

@@ -167,7 +167,6 @@ You've got the fundamentals! Now choose your path:
 
 🚀 **[Start Building →](https://play.mdflow.run)** - Jump into the Playground and create your own templates  
 🛠️ **[Integration Guide](integration.md)** - Add MarkdownFlow to your projects  
-🎯 **[More Examples](../examples/index.md)** - See advanced templates and use cases  
 📚 **[Complete Specification](../specification/overview.md)** - Master every feature  
 
 **Ready to create personalized experiences?** Start experimenting in the **[Playground](https://play.mdflow.run)** now!
