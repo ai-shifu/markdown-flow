@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <header>
+    <header class="slide-in-from-top">
         <div class="container">
             <div class="header-content">
                 <h1><img src="/assets/logos/logo-white.svg" alt="MarkdownFlow Logo" class="logo"> MarkdownFlow</h1>
                 <nav style="display: flex; gap: 1rem; align-items: center;">
-                    <a href="/" class="language-switcher" id="language-switcher">🌐 English</a>
-                    <a href="/docs/zh/" class="github-link">文档</a>
-                    <a href="https://github.com/ai-shifu/markdown-flow" class="github-link">GitHub</a>
-                    <a href="https://play.mdflow.run/" class="playground-link">🎮 体验台</a>
+                    <a href="/" class="language-switcher ripple" id="language-switcher">🌐 English</a>
+                    <a href="/docs/zh/" class="github-link ripple">文档</a>
+                    <a href="https://github.com/ai-shifu/markdown-flow" class="github-link ripple">GitHub</a>
+                    <a href="https://play.mdflow.run/" class="playground-link pulse-glow">🎮 体验台</a>
                 </nav>
             </div>
         </div>
@@ -28,34 +28,34 @@
     <div class="container">
         <main>
             <section class="hero">
-                <h2>一次创作，千人千面</h2>
-                <p>
+                <h2 class="typewriter fade-in-up stagger-1">一次创作，千人千面</h2>
+                <p class="fade-in-up stagger-2">
                     会用 <a href="https://commonmark.org/help/" target="_blank" rel="noopener noreferrer">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者打造个性化、交互式和精美的内容。
                 </p>
             </section>
 
             <section class="features">
-                <div class="feature">
+                <div class="feature reveal">
                     <div class="feature-icon">📚</div>
                     <h3>教育</h3>
                     <p>为不同程度的学生生成个性化学习材料。单一课程大纲会根据学生的基础、兴趣和学习进度自动调整难度和教学方法。</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal">
                     <div class="feature-icon">✍️</div>
                     <h3>内容创作</h3>
                     <p>根据读者的背景知识自动调整技术术语的文章。为初学者提供详细解释，同时直接为专业人士提供要点。</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal">
                     <div class="feature-icon">📰</div>
                     <h3>新闻媒体</h3>
                     <p>同一新闻报道根据读者兴趣从不同角度展开。技术关注者看到技术细节，商业导向的读者获得市场分析。</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal">
                     <div class="feature-icon">🎮</div>
                     <h3>交互式故事</h3>
                     <p>创建交互式叙事，每位读者的选择都会影响情节发展，生成独特的冒险体验。</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal">
                     <div class="feature-icon">💼</div>
                     <h3>企业培训</h3>
                     <p>根据员工的部门、职位和技能水平自动生成定制的培训材料和操作手册。</p>
@@ -63,32 +63,32 @@
             </section>
 
             <section class="api-section">
-                <h3>示例</h3>
+                <h3 class="reveal">示例</h3>
                 <div class="example-showcase">
-                    <div class="example-item">
+                    <div class="example-item code-reveal">
                         <h4>📖 交互式故事</h4>
-                        <div class="markdown-example">
+                        <div class="markdown-example skeleton">
                             <pre><code></code></pre>
                         </div>
                     </div>
 
-                    <div class="example-item">
+                    <div class="example-item code-reveal">
                         <h4>📰 个性化新闻</h4>
-                        <div class="markdown-example">
+                        <div class="markdown-example skeleton">
                             <pre><code></code></pre>
                         </div>
                     </div>
 
-                    <div class="example-item">
+                    <div class="example-item code-reveal">
                         <h4>💬 个性化咨询</h4>
-                        <div class="markdown-example">
+                        <div class="markdown-example skeleton">
                             <pre><code></code></pre>
                         </div>
                     </div>
 
-                    <div class="example-item">
+                    <div class="example-item code-reveal">
                         <h4>📋 用户信息收集</h4>
-                        <div class="markdown-example">
+                        <div class="markdown-example skeleton">
                             <pre><code></code></pre>
                         </div>
                     </div>
@@ -96,9 +96,9 @@
             </section>
 
             <section class="api-section">
-                <h3>开源项目</h3>
+                <h3 class="reveal">开源项目</h3>
                 <div class="projects-grid">
-                    <a href="https://github.com/ai-shifu/markdown-flow-ui" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow-ui" class="project-card scale-reveal">
                         <div class="project-header">
                             <div class="project-name">markdown-flow-ui</div>
                             <div class="project-type frontend">前端</div>
@@ -107,7 +107,7 @@
                             具有内置功能的完整 UI 组件。适用于交互式 Markdown 文档的即用型 React 组件。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/remark-flow" class="project-card">
+                    <a href="https://github.com/ai-shifu/remark-flow" class="project-card scale-reveal">
                         <div class="project-header">
                             <div class="project-name">remark-flow</div>
                             <div class="project-type frontend">前端</div>
@@ -116,7 +116,7 @@
                             用于 MarkdownFlow 语法的 React-markdown 插件。扩展 react-markdown 支持变量处理和 AI 集成。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-it-flow" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-it-flow" class="project-card scale-reveal">
                         <div class="project-header">
                             <div class="project-name">markdown-it-flow</div>
                             <div class="project-type frontend">前端</div>
@@ -125,7 +125,7 @@
                             用于 MarkdownFlow 语法的 Markdown-it 插件。为任何基于 markdown-it 的应用程序添加 MarkdownFlow 功能。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-flow-agent-py" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow-agent-py" class="project-card scale-reveal">
                         <div class="project-header">
                             <div class="project-name">markdown-flow-agent-py</div>
                             <div class="project-type backend">后端</div>
@@ -134,7 +134,7 @@
                             Python 后端实现。基于 FastAPI 的服务器，具有模板处理和 LLM 集成功能。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-flow-agent-go" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow-agent-go" class="project-card scale-reveal">
                         <div class="project-header">
                             <div class="project-name">markdown-flow-agent-go</div>
                             <div class="project-type backend">后端</div>
@@ -143,7 +143,7 @@
                             Go 后端实现。高性能服务器，具有并发处理和最小资源使用。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-flow" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow" class="project-card scale-reveal">
                         <div class="project-header">
                             <div class="project-name">markdown-flow</div>
                             <div class="project-type demo">演示</div>

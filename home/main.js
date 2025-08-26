@@ -158,10 +158,172 @@
             setupLanguageDetection();
             initializePage();
             setupLanguageSwitcher();
+            initializeAnimations();
         });
     } else {
         setupLanguageDetection();
         initializePage();
         setupLanguageSwitcher();
+        initializeAnimations();
     }
+
+    // Animation enhancements
+    function initializeAnimations() {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            // Skip animation setup if user prefers reduced motion
+            return;
+        }
+
+        // Setup intersection observer for scroll animations
+        setupScrollAnimations();
+
+        // Add ripple effect to buttons
+        setupRippleEffects();
+
+        // Initialize typewriter effect
+        initializeTypewriter();
+
+        // Remove skeleton loading from code examples after content loads
+        setTimeout(removeSkeletonLoading, 1000);
+    }
+
+    function setupScrollAnimations() {
+        // Create intersection observer for reveal animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    // Add staggered delay for multiple elements
+                    const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                    entry.target.style.transitionDelay = `${index * 0.1}s`;
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe all elements with reveal classes
+        document.querySelectorAll('.reveal, .scale-reveal, .code-reveal').forEach(element => {
+            revealObserver.observe(element);
+        });
+    }
+
+    function setupRippleEffects() {
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Don't interfere with navigation
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                // Create ripple element
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    pointer-events: none;
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s ease-out;
+                `;
+
+                this.appendChild(ripple);
+
+                // Remove ripple after animation
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+            });
+        });
+
+        // Add ripple animation keyframes to document if not already present
+        if (!document.querySelector('#ripple-styles')) {
+            const style = document.createElement('style');
+            style.id = 'ripple-styles';
+            style.textContent = `
+                @keyframes ripple-animation {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    function initializeTypewriter() {
+        const typewriterElement = document.querySelector('.typewriter');
+        if (typewriterElement) {
+            // Get the text content
+            const text = typewriterElement.textContent;
+
+            // Clear the content initially
+            typewriterElement.textContent = '';
+            typewriterElement.style.width = 'auto';
+
+            // Start typewriter effect after a short delay
+            setTimeout(() => {
+                let charIndex = 0;
+                const typeInterval = setInterval(() => {
+                    if (charIndex < text.length) {
+                        typewriterElement.textContent += text[charIndex];
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                        // Remove cursor after typing is complete
+                        setTimeout(() => {
+                            typewriterElement.style.borderRight = 'none';
+                        }, 2000);
+                    }
+                }, 50); // Adjust typing speed
+            }, 500);
+        }
+    }
+
+    function removeSkeletonLoading() {
+        // Remove skeleton class and add actual content
+        document.querySelectorAll('.skeleton').forEach(element => {
+            element.classList.remove('skeleton');
+        });
+    }
+
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Add performance optimization for animations
+    function optimizeAnimationPerformance() {
+        // Add will-change property to animated elements when they're about to animate
+        const animatedElements = document.querySelectorAll('.reveal, .scale-reveal, .code-reveal');
+
+        const performanceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.willChange = 'transform, opacity';
+                } else {
+                    entry.target.style.willChange = 'auto';
+                }
+            });
+        }, {
+            rootMargin: '100px 0px'
+        });
+
+        animatedElements.forEach(element => {
+            performanceObserver.observe(element);
+        });
+    }
+
+    // Initialize performance optimizations
+    setTimeout(optimizeAnimationPerformance, 100);
 })();
