@@ -293,6 +293,10 @@
             // Start typewriter effect after delay
             setTimeout(() => {
                 let charIndex = 0;
+                // Detect language and adjust typing speed
+                const isChinesePage = document.documentElement.lang === 'zh';
+                const typingSpeed = isChinesePage ? 100 : 50; // Chinese: 100ms, English: 50ms
+
                 const typeInterval = setInterval(() => {
                     if (charIndex < text.length) {
                         typewriterElement.textContent += text[charIndex];
@@ -302,7 +306,7 @@
                         // Remove cursor immediately after completion
                         typewriterElement.classList.add('typing-complete');
                     }
-                }, 50); // 50ms per character for natural typing speed
+                }, typingSpeed); // Dynamic typing speed based on language
             }, 500 + (index * 300)); // Stagger multiple typewriters
         });
     }
