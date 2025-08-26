@@ -151,7 +151,7 @@ Summarize the user's product selections in a clear list format:
 
 ```markdown
 [Visit {{site_name}}]({{site_url}})
-[{{image_description}}]({{image_path}})
+![{{image_description}}]({{image_path}})
 ```
 
 ### In Tables
