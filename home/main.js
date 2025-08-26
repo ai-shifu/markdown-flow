@@ -299,10 +299,8 @@
                         charIndex++;
                     } else {
                         clearInterval(typeInterval);
-                        // Remove cursor after completion
-                        setTimeout(() => {
-                            typewriterElement.classList.add('typing-complete');
-                        }, 2000);
+                        // Remove cursor immediately after completion
+                        typewriterElement.classList.add('typing-complete');
                     }
                 }, 50); // 50ms per character for natural typing speed
             }, 500 + (index * 300)); // Stagger multiple typewriters
