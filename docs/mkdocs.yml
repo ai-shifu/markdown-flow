@@ -51,6 +51,9 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - /umami.js
+
 # Remove external mermaid - Material has built-in support
 
 plugins:
