@@ -37,8 +37,14 @@
 
         // Update hero section
         const heroTitle = document.querySelector('.hero h2');
-        if (heroTitle) {
-            heroTitle.textContent = t.hero.title;
+        if (heroTitle && t.hero && t.hero.title) {
+            // Save text for typewriter effect
+            heroTitle.setAttribute('data-text', t.hero.title);
+
+            // Set content directly if not a typewriter element
+            if (!heroTitle.classList.contains('typewriter')) {
+                heroTitle.textContent = t.hero.title;
+            }
         }
 
         const heroDescription = document.querySelector('.hero p');
@@ -119,7 +125,7 @@
             if (isChineseUser && currentLang !== 'zh') {
                 localStorage.setItem(STORAGE_KEY, 'zh');
                 window.location.href = '/zh/';
-                return false; // Indicate redirect will happen
+                return false; // Redirect will happen
             }
 
             // Save detected language
@@ -128,10 +134,10 @@
             // User previously chose a different language, redirect
             const targetUrl = savedLanguage === 'zh' ? '/zh/' : '/';
             window.location.href = targetUrl;
-            return false; // Indicate redirect will happen
+            return false; // Redirect will happen
         }
 
-        return true; // Indicate no redirect, safe to proceed
+        return true; // No redirect needed
     }
 
     function setupLanguageSwitcher() {
@@ -173,31 +179,23 @@
         }
     }
 
-    // Animation enhancements
     function initializeAnimations() {
         // Check if user prefers reduced motion
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         if (prefersReducedMotion) {
-            // Skip animation setup if user prefers reduced motion
             return;
         }
 
-        // Setup intersection observer for scroll animations
         setupScrollAnimations();
-
-        // Add ripple effect to buttons
         setupRippleEffects();
-
-        // Initialize typewriter effect
         initializeTypewriter();
 
-        // Remove skeleton loading from code examples after content loads
+        // Remove skeleton loading after content loads
         setTimeout(removeSkeletonLoading, 1000);
     }
 
     function setupScrollAnimations() {
-        // Create intersection observer for reveal animations
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -221,13 +219,11 @@
     function setupRippleEffects() {
         document.querySelectorAll('.ripple').forEach(button => {
             button.addEventListener('click', function(e) {
-                // Don't interfere with navigation
                 const rect = this.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
 
-                // Create ripple element
                 const ripple = document.createElement('span');
                 ripple.style.cssText = `
                     position: absolute;
@@ -253,7 +249,7 @@
             });
         });
 
-        // Add ripple animation keyframes to document if not already present
+        // Add ripple animation keyframes if not present
         if (!document.querySelector('#ripple-styles')) {
             const style = document.createElement('style');
             style.id = 'ripple-styles';
@@ -270,45 +266,50 @@
     }
 
     function initializeTypewriter() {
-        const typewriterElement = document.querySelector('.typewriter');
-        if (typewriterElement) {
-            // Get the text content
-            const text = typewriterElement.textContent.trim();
-
-            // Debug: Log the text content
-            console.log('Typewriter text:', text);
-
-            // Only proceed if there's actual text
-            if (text && text.length > 0) {
-                // Clear the content initially
-                typewriterElement.textContent = '';
-
-                // Start typewriter effect after a short delay
-                setTimeout(() => {
-                    let charIndex = 0;
-                    const typeInterval = setInterval(() => {
-                        if (charIndex < text.length) {
-                            typewriterElement.textContent += text[charIndex];
-                            charIndex++;
-                        } else {
-                            clearInterval(typeInterval);
-                            // Remove cursor after typing is complete
-                            setTimeout(() => {
-                                typewriterElement.classList.add('typing-complete');
-                            }, 2000);
-                        }
-                    }, 50); // Adjust typing speed
-                }, 500);
-            } else {
-                console.log('No text found for typewriter effect');
-            }
-        } else {
-            console.log('No typewriter element found');
+        const typewriterElements = document.querySelectorAll('.typewriter');
+        if (typewriterElements.length === 0) {
+            return;
         }
+
+        // Process each typewriter element
+        typewriterElements.forEach((typewriterElement, index) => {
+            // Get text from data attribute or current content
+            let text = typewriterElement.getAttribute('data-text');
+            if (!text) {
+                text = typewriterElement.textContent.trim();
+            }
+
+            if (!text || text.length === 0 || text === 'undefined') {
+                return;
+            }
+
+            // Clear content and keep cursor blinking
+            typewriterElement.textContent = '';
+
+            // Force visibility (fixes fade-in-up animation conflict)
+            typewriterElement.style.opacity = '1';
+            typewriterElement.style.transform = 'translateY(0)';
+
+            // Start typewriter effect after delay
+            setTimeout(() => {
+                let charIndex = 0;
+                const typeInterval = setInterval(() => {
+                    if (charIndex < text.length) {
+                        typewriterElement.textContent += text[charIndex];
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                        // Remove cursor after completion
+                        setTimeout(() => {
+                            typewriterElement.classList.add('typing-complete');
+                        }, 2000);
+                    }
+                }, 50); // 50ms per character for natural typing speed
+            }, 500 + (index * 300)); // Stagger multiple typewriters
+        });
     }
 
     function removeSkeletonLoading() {
-        // Remove skeleton class and add actual content
         document.querySelectorAll('.skeleton').forEach(element => {
             element.classList.remove('skeleton');
         });
@@ -317,9 +318,8 @@
     // Add smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    // Add performance optimization for animations
+    // Performance optimization for animations
     function optimizeAnimationPerformance() {
-        // Add will-change property to animated elements when they're about to animate
         const animatedElements = document.querySelectorAll('.reveal, .scale-reveal, .code-reveal');
 
         const performanceObserver = new IntersectionObserver((entries) => {

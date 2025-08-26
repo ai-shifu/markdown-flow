@@ -471,6 +471,8 @@ header {
     border-right: 2px solid #333;
     white-space: nowrap;
     animation: blinkCursor 1s infinite step-end;
+    display: inline-block; /* Make element width adapt to content */
+    min-width: 1px; /* Ensure cursor shows even when content is empty */
 }
 
 .typewriter.typing-complete {
