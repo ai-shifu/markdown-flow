@@ -267,27 +267,37 @@
         const typewriterElement = document.querySelector('.typewriter');
         if (typewriterElement) {
             // Get the text content
-            const text = typewriterElement.textContent;
+            const text = typewriterElement.textContent.trim();
 
-            // Clear the content initially
-            typewriterElement.textContent = '';
+            // Debug: Log the text content
+            console.log('Typewriter text:', text);
 
-            // Start typewriter effect after a short delay
-            setTimeout(() => {
-                let charIndex = 0;
-                const typeInterval = setInterval(() => {
-                    if (charIndex < text.length) {
-                        typewriterElement.textContent += text[charIndex];
-                        charIndex++;
-                    } else {
-                        clearInterval(typeInterval);
-                        // Remove cursor after typing is complete
-                        setTimeout(() => {
-                            typewriterElement.style.borderRight = 'none';
-                        }, 2000);
-                    }
-                }, 50); // Adjust typing speed
-            }, 500);
+            // Only proceed if there's actual text
+            if (text && text.length > 0) {
+                // Clear the content initially
+                typewriterElement.textContent = '';
+
+                // Start typewriter effect after a short delay
+                setTimeout(() => {
+                    let charIndex = 0;
+                    const typeInterval = setInterval(() => {
+                        if (charIndex < text.length) {
+                            typewriterElement.textContent += text[charIndex];
+                            charIndex++;
+                        } else {
+                            clearInterval(typeInterval);
+                            // Remove cursor after typing is complete
+                            setTimeout(() => {
+                                typewriterElement.classList.add('typing-complete');
+                            }, 2000);
+                        }
+                    }, 50); // Adjust typing speed
+                }, 500);
+            } else {
+                console.log('No text found for typewriter effect');
+            }
+        } else {
+            console.log('No typewriter element found');
         }
     }
 
