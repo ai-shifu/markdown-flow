@@ -119,7 +119,7 @@
             if (isChineseUser && currentLang !== 'zh') {
                 localStorage.setItem(STORAGE_KEY, 'zh');
                 window.location.href = '/zh/';
-                return;
+                return false; // Indicate redirect will happen
             }
 
             // Save detected language
@@ -128,8 +128,10 @@
             // User previously chose a different language, redirect
             const targetUrl = savedLanguage === 'zh' ? '/zh/' : '/';
             window.location.href = targetUrl;
-            return;
+            return false; // Indicate redirect will happen
         }
+
+        return true; // Indicate no redirect, safe to proceed
     }
 
     function setupLanguageSwitcher() {
@@ -155,16 +157,20 @@
     // Initialize when DOM is loaded
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-            setupLanguageDetection();
+            const shouldProceed = setupLanguageDetection();
+            if (shouldProceed) {
+                initializePage();
+                setupLanguageSwitcher();
+                initializeAnimations();
+            }
+        });
+    } else {
+        const shouldProceed = setupLanguageDetection();
+        if (shouldProceed) {
             initializePage();
             setupLanguageSwitcher();
             initializeAnimations();
-        });
-    } else {
-        setupLanguageDetection();
-        initializePage();
-        setupLanguageSwitcher();
-        initializeAnimations();
+        }
     }
 
     // Animation enhancements
