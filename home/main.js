@@ -271,7 +271,6 @@
 
             // Clear the content initially
             typewriterElement.textContent = '';
-            typewriterElement.style.width = 'auto';
 
             // Start typewriter effect after a short delay
             setTimeout(() => {

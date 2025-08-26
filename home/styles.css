@@ -468,17 +468,14 @@ header {
 
 /* Typewriter effect for hero title */
 .typewriter {
-    overflow: hidden;
     border-right: 2px solid #333;
     white-space: nowrap;
-    animation:
-        typing 2s steps(40) forwards,
-        blinkCursor 1s infinite step-end;
+    animation: blinkCursor 1s infinite step-end;
 }
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+.typewriter.typing-complete {
+    animation: none;
+    border-right: none;
 }
 
 @keyframes blinkCursor {
