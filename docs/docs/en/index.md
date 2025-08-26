@@ -9,7 +9,7 @@ tags:
 
 ## What is MarkdownFlow?
 
-MarkdownFlow (also known as **MDFlow** or **MDF**) extends standard Markdown to create personalized, interactive documents. The tagline: **"Write Once, Deliver Personally"**.
+MarkdownFlow (also known as **MDFlow** or **MDF**) extends standard Markdown with AI-powered intelligence to create personalized, interactive documents. The tagline: **"Write Once, Deliver Personally"**.
 
 Instead of writing static content for readers, you write prompts for AI agents. These agents transform your instructions into personalized content that adapts to each user's choices, preferences, and context.
 
