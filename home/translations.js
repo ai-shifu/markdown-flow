@@ -207,6 +207,6 @@ const translations = {
                 }
             ]
         },
-        footer: '© 2025 哎师傅公司。'
+        footer: '©2025 AI师傅公司。'
     }
 };
