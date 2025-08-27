@@ -9,7 +9,7 @@ tags:
 
 ## 什么是 MarkdownFlow？
 
-MarkdownFlow（也称为 **MDFlow**）通过 AI 智能技术扩展了标准 Markdown，用于创建个性化的交互式文档。标语：**“一次创作，千人千面”**。
+MarkdownFlow（也称为 MDFlow 或 markdown-flow）通过 AI 智能技术扩展了标准 Markdown，用于创建个性化的交互式文档。标语：**“一次创作，千人千面”**。
 
 您不再为读者编写静态内容，而是为 AI 智能体编写提示词。这些智能体将您的指令转化为个性化内容，能够适应每个用户的选择、偏好和上下文。
 
