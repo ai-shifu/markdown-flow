@@ -32,7 +32,7 @@ const translations = {
             {
                 icon: '👩‍💻',
                 title: 'Developers',
-                description: 'Integrate MarkdownFlow into your applications with our comprehensive SDKs. Build AI-powered personalized content experiences for your users with simple APIs.'
+                description: 'Open source SDK for intelligent content. Build forms that adapt to answers, docs that change by user role, and tutorials that adjust to progress.'
             }
         ],
         playground: {
@@ -99,12 +99,12 @@ const translations = {
         features: [
             {
                 icon: '👨‍🏫',
-                title: '教育工作者',
+                title: '教育者',
                 description: '创建能自动适应每位学生水平和学习方式的教学材料。一次编写，为每位学习者提供个性化的教育体验。'
             },
             {
                 icon: '📰',
-                title: '媒体从业者',
+                title: '媒体人',
                 description: '根据读者兴趣从多个角度呈现同一故事。技术爱好者获得技术细节，商业读者获得市场分析，一个源头满足所有需求。'
             },
             {
@@ -115,7 +115,7 @@ const translations = {
             {
                 icon: '👩‍💻',
                 title: '开发者',
-                description: '通过我们的综合 SDK 将 MarkdownFlow 集成到你的应用程序中。使用简单的 API 为用户构建 AI 驱动的个性化内容体验。'
+                description: '开源SDK，快速构建智能内容系统。让表单根据答案动态调整、文档按角色显示内容、教程随用户进度自适应。'
             }
         ],
         playground: {
