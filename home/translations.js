@@ -15,29 +15,24 @@ const translations = {
         },
         features: [
             {
-                icon: '📚',
-                title: 'Education',
-                description: 'Generate personalized learning materials for students at different levels. A single curriculum outline automatically adjusts difficulty and teaching methods based on students\' foundation, interests, and learning progress.'
-            },
-            {
-                icon: '✍️',
-                title: 'Content Creation',
-                description: 'Articles that automatically adjust technical terminology based on readers\' background knowledge. Provide detailed explanations for beginners while delivering key points directly to professionals.'
+                icon: '👨‍🏫',
+                title: 'Educators',
+                description: 'Create adaptive learning materials that automatically adjust to each student\'s level and learning style. Write once, deliver personalized educational experiences that engage every learner.'
             },
             {
                 icon: '📰',
-                title: 'News Media',
-                description: 'The same news story expands from different angles based on readers\' interests. Technology-focused readers see technical details, while business-oriented readers receive market analysis.'
+                title: 'Media Professionals',
+                description: 'Deliver the same story from multiple perspectives based on reader interests. Technology enthusiasts get technical details, business readers receive market analysis, all from one source.'
             },
             {
-                icon: '🎮',
-                title: 'Interactive Storytelling',
-                description: 'Create interactive narratives where every reader choice influences the plot direction, generating unique adventure experiences.'
+                icon: '📚',
+                title: 'Publishers',
+                description: 'Build interactive narratives and adaptive content where reader choices shape their experience. Transform static publications into personalized reading journeys.'
             },
             {
-                icon: '💼',
-                title: 'Corporate Training',
-                description: 'Automatically generate customized training materials and operation manuals based on employees\' departments, positions, and skill levels.'
+                icon: '👩‍💻',
+                title: 'Developers',
+                description: 'Integrate MarkdownFlow into your applications with our comprehensive SDKs. Build AI-powered personalized content experiences for your users with simple APIs.'
             }
         ],
         playground: {
@@ -93,39 +88,34 @@ const translations = {
         languageSwitcher: '🌐 English',
         languageSwitcherUrl: '/',
         navigation: {
-            documentation: '文档',
+            documentation: '帮助文档',
             github: 'GitHub',
             playground: '🎮 体验台'
         },
         hero: {
             title: '一次创作，千人千面',
-            description: '会用 <a href="https://commonmark.org/help/" target="_blank" rel="noopener noreferrer">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者打造个性化、交互式和精美的内容。'
+            description: '会用 <a href="https://baike.baidu.com/item/markdown/3245829#3" target="_blank" rel="noopener noreferrer">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者演绎出个性化、交互式和精美的内容。'
         },
         features: [
             {
-                icon: '📚',
-                title: '教育',
-                description: '为不同程度的学生生成个性化学习材料。单一课程大纲会根据学生的基础、兴趣和学习进度自动调整难度和教学方法。'
-            },
-            {
-                icon: '✍️',
-                title: '内容创作',
-                description: '根据读者的背景知识自动调整技术术语的文章。为初学者提供详细解释，同时直接为专业人士提供要点。'
+                icon: '👨‍🏫',
+                title: '教育工作者',
+                description: '创建能自动适应每位学生水平和学习方式的教学材料。一次编写，为每位学习者提供个性化的教育体验。'
             },
             {
                 icon: '📰',
-                title: '新闻媒体',
-                description: '同一新闻报道根据读者兴趣从不同角度展开。技术关注者看到技术细节，商业导向的读者获得市场分析。'
+                title: '媒体从业者',
+                description: '根据读者兴趣从多个角度呈现同一故事。技术爱好者获得技术细节，商业读者获得市场分析，一个源头满足所有需求。'
             },
             {
-                icon: '🎮',
-                title: '交互式故事',
-                description: '创建交互式叙事，每位读者的选择都会影响情节发展，生成独特的冒险体验。'
+                icon: '📚',
+                title: '出版人',
+                description: '构建交互式叙事和自适应内容，让读者的选择塑造他们的体验。将静态出版物转化为个性化的阅读之旅。'
             },
             {
-                icon: '💼',
-                title: '企业培训',
-                description: '根据员工的部门、职位和技能水平自动生成定制的培训材料和操作手册。'
+                icon: '👩‍💻',
+                title: '开发者',
+                description: '通过我们的综合 SDK 将 MarkdownFlow 集成到你的应用程序中。使用简单的 API 为用户构建 AI 驱动的个性化内容体验。'
             }
         ],
         playground: {
