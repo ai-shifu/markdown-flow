@@ -660,3 +660,59 @@ header {
         background-position: -200% 0;
     }
 }
+
+/* Playground CTA Button Styles */
+.playground-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #0F63EE 0%, #A665F6 100%);
+    background-size: 200% 200%;
+    color: white;
+    padding: 1.5rem 4rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(15, 99, 238, 0.4);
+    transform: translateY(0) scale(1);
+    transition: all 0.3s ease;
+    animation: pulse-glow 2s infinite, gradientShift 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.playground-cta:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(15, 99, 238, 0.6);
+    background-position: 100% 0;
+    animation-play-state: paused;
+}
+
+.playground-cta:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 8px 25px rgba(15, 99, 238, 0.5);
+}
+
+.playground-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.playground-cta:hover::before {
+    left: 100%;
+}
+
+/* Enhanced pulse animation for playground button */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
