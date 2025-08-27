@@ -66,22 +66,16 @@
             }
         });
 
-        // Update examples section
-        const examplesTitle = document.querySelector('.api-section h3');
-        if (examplesTitle) {
-            examplesTitle.textContent = t.examples.title;
+        // Update playground section
+        const playgroundCta = document.querySelector('.playground-section .playground-cta');
+        if (playgroundCta) {
+            playgroundCta.innerHTML = t.playground.cta;
         }
 
-        const exampleItems = document.querySelectorAll('.example-item');
-        exampleItems.forEach((item, index) => {
-            if (t.examples.items[index]) {
-                const title = item.querySelector('h4');
-                const code = item.querySelector('code');
-
-                if (title) title.textContent = t.examples.items[index].title;
-                if (code) code.textContent = t.examples.items[index].code;
-            }
-        });
+        const playgroundSubtext = document.querySelector('.playground-section .playground-subtext');
+        if (playgroundSubtext) {
+            playgroundSubtext.textContent = t.playground.subtext;
+        }
 
         // Update projects section
         const projectsTitle = document.querySelector('.api-section:last-of-type h3');
