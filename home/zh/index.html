@@ -17,10 +17,10 @@
             <div class="header-content">
                 <h1><img src="/assets/logos/logo-white.svg" alt="MarkdownFlow Logo" class="logo"> MarkdownFlow</h1>
                 <nav style="display: flex; gap: 1rem; align-items: center;">
-                    <a href="/" class="language-switcher ripple" id="language-switcher">🌐 English</a>
-                    <a href="/docs/zh/" class="github-link ripple">帮助文档</a>
-                    <a href="https://github.com/ai-shifu/markdown-flow" class="github-link ripple">GitHub</a>
-                    <a href="https://play.mdflow.run/" class="playground-link pulse-glow">🎮 体验台</a>
+                    <a href="/" class="language-switcher ripple" id="language-switcher" data-umami-event="zh_language_switch" data-umami-event-from="zh" data-umami-event-to="en">🌐 English</a>
+                    <a href="/docs/zh/" class="github-link ripple" data-umami-event="zh_nav_documentation" data-umami-event-category="navigation">帮助文档</a>
+                    <a href="https://github.com/ai-shifu/markdown-flow" class="github-link ripple" data-umami-event="zh_nav_github" data-umami-event-category="navigation">GitHub</a>
+                    <a href="https://play.mdflow.run/" class="playground-link pulse-glow" data-umami-event="zh_playground_header" data-umami-event-category="playground" data-umami-event-location="header">🎮 体验台</a>
                 </nav>
             </div>
         </div>
@@ -31,7 +31,7 @@
             <section class="hero">
                 <h2 class="typewriter fade-in-up stagger-1">一次创作，千人千面</h2>
                 <p class="fade-in-up stagger-2">
-                    会用 <a href="https://baike.baidu.com/item/markdown/3245829#3" target="_blank" rel="noopener noreferrer">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者演绎出个性化、交互式和精美的内容。
+                    会用 <a href="https://baike.baidu.com/item/markdown/3245829#3" target="_blank" rel="noopener noreferrer" data-umami-event="zh_markdown_reference" data-umami-event-category="external_links">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者演绎出个性化、交互式和精美的内容。
                 </p>
             </section>
 
@@ -61,7 +61,7 @@
             <section class="playground-section api-section" style="padding: 2rem 2rem; margin: 2rem 0; text-align: center;">
                 <div class="playground-content">
                     <div class="playground-cta-container reveal">
-                        <a href="https://play.mdflow.run/" class="playground-cta">🎮 立即体验</a>
+                        <a href="https://play.mdflow.run/" class="playground-cta" data-umami-event="zh_playground_main_cta" data-umami-event-category="playground" data-umami-event-location="main_section">🎮 立即体验</a>
                         <div class="playground-subtext" style="margin-top: 1.5rem; font-size: 0.95rem; color: #666;">完全免费 • 无需注册 • 即刻分享你的创作</div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
             <section class="api-section">
                 <h3 class="reveal">开源项目</h3>
                 <div class="projects-grid">
-                    <a href="https://github.com/ai-shifu/markdown-flow" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow" class="project-card" data-umami-event="zh_project_click" data-umami-event-category="projects" data-umami-event-project="markdown-flow">
                         <div class="project-header">
                             <div class="project-name">markdown-flow</div>
                             <div class="project-badges">
@@ -82,7 +82,7 @@
                             主仓库，包含首页、文档和交互式 Playground。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-flow-ui" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow-ui" class="project-card" data-umami-event="zh_project_click" data-umami-event-category="projects" data-umami-event-project="markdown-flow-ui">
                         <div class="project-header">
                             <div class="project-name">markdown-flow-ui</div>
                             <div class="project-badges">
@@ -94,7 +94,7 @@
                             用于渲染交互式 MarkdownFlow 文档的 React 组件库，包含内置 UI 元素。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/remark-flow" class="project-card">
+                    <a href="https://github.com/ai-shifu/remark-flow" class="project-card" data-umami-event="zh_project_click" data-umami-event-category="projects" data-umami-event-project="remark-flow">
                         <div class="project-header">
                             <div class="project-name">remark-flow</div>
                             <div class="project-badges">
@@ -106,7 +106,7 @@
                             用于在 React 应用中解析和处理 MarkdownFlow 语法的 remark 插件。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-it-flow" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-it-flow" class="project-card" data-umami-event="zh_project_click" data-umami-event-category="projects" data-umami-event-project="markdown-it-flow">
                         <div class="project-header">
                             <div class="project-name">markdown-it-flow</div>
                             <div class="project-badges">
@@ -118,7 +118,7 @@
                             用于解析和渲染 MarkdownFlow 语法的 markdown-it 插件。（即将推出）
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-flow-agent-py" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow-agent-py" class="project-card" data-umami-event="zh_project_click" data-umami-event-category="projects" data-umami-event-project="markdown-flow-agent-py">
                         <div class="project-header">
                             <div class="project-name">markdown-flow-agent-py</div>
                             <div class="project-badges">
@@ -130,7 +130,7 @@
                             用于将 MarkdownFlow 文档转换为个性化内容的 Python 库。
                         </div>
                     </a>
-                    <a href="https://github.com/ai-shifu/markdown-flow-agent-go" class="project-card">
+                    <a href="https://github.com/ai-shifu/markdown-flow-agent-go" class="project-card" data-umami-event="zh_project_click" data-umami-event-category="projects" data-umami-event-project="markdown-flow-agent-go">
                         <div class="project-header">
                             <div class="project-name">markdown-flow-agent-go</div>
                             <div class="project-badges">

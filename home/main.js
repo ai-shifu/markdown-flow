@@ -156,6 +156,108 @@
         }
     }
 
+    function setupUmamiTracking() {
+        // Wait for Umami to be available
+        if (typeof umami === 'undefined') {
+            // Retry after a short delay if Umami isn't loaded yet
+            setTimeout(setupUmamiTracking, 100);
+            return;
+        }
+
+        const currentLang = detectLanguage();
+        const langPrefix = currentLang === 'zh' ? 'zh_' : 'en_';
+
+        // Track language switcher clicks
+        const languageSwitcher = document.getElementById('language-switcher');
+        if (languageSwitcher && !languageSwitcher.hasAttribute('data-umami-event')) {
+            languageSwitcher.setAttribute('data-umami-event', `${langPrefix}language_switch`);
+            languageSwitcher.setAttribute('data-umami-event-from', currentLang);
+            languageSwitcher.setAttribute('data-umami-event-to', currentLang === 'en' ? 'zh' : 'en');
+        }
+
+        // Track navigation links
+        const docsLink = document.querySelector('.github-link[href*="docs"]');
+        if (docsLink && !docsLink.hasAttribute('data-umami-event')) {
+            docsLink.setAttribute('data-umami-event', `${langPrefix}nav_documentation`);
+            docsLink.setAttribute('data-umami-event-category', 'navigation');
+        }
+
+        const githubLink = document.querySelector('.github-link[href*="github.com"]');
+        if (githubLink && !githubLink.hasAttribute('data-umami-event')) {
+            githubLink.setAttribute('data-umami-event', `${langPrefix}nav_github`);
+            githubLink.setAttribute('data-umami-event-category', 'navigation');
+        }
+
+        const playgroundHeaderLink = document.querySelector('header .playground-link');
+        if (playgroundHeaderLink && !playgroundHeaderLink.hasAttribute('data-umami-event')) {
+            playgroundHeaderLink.setAttribute('data-umami-event', `${langPrefix}playground_header`);
+            playgroundHeaderLink.setAttribute('data-umami-event-category', 'playground');
+            playgroundHeaderLink.setAttribute('data-umami-event-location', 'header');
+        }
+
+        // Track main playground CTA button
+        const playgroundCTA = document.querySelector('.playground-section .playground-cta');
+        if (playgroundCTA && !playgroundCTA.hasAttribute('data-umami-event')) {
+            playgroundCTA.setAttribute('data-umami-event', `${langPrefix}playground_main_cta`);
+            playgroundCTA.setAttribute('data-umami-event-category', 'playground');
+            playgroundCTA.setAttribute('data-umami-event-location', 'main_section');
+        }
+
+        // Track project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            if (!card.hasAttribute('data-umami-event')) {
+                const projectName = card.querySelector('.project-name')?.textContent || `project_${index}`;
+                card.setAttribute('data-umami-event', `${langPrefix}project_click`);
+                card.setAttribute('data-umami-event-category', 'projects');
+                card.setAttribute('data-umami-event-project', projectName);
+            }
+        });
+
+        // Track external Markdown reference links
+        const markdownLinks = document.querySelectorAll('a[href*="commonmark.org"], a[href*="baidu.com/item/markdown"]');
+        markdownLinks.forEach(link => {
+            if (!link.hasAttribute('data-umami-event')) {
+                link.setAttribute('data-umami-event', `${langPrefix}markdown_reference`);
+                link.setAttribute('data-umami-event-category', 'external_links');
+            }
+        });
+
+        // Track ripple effect buttons (if they don't already have tracking)
+        const rippleButtons = document.querySelectorAll('.ripple');
+        rippleButtons.forEach(button => {
+            if (!button.hasAttribute('data-umami-event') && !button.id) {
+                // Only add generic tracking if no specific tracking exists
+                const buttonText = button.textContent.trim().toLowerCase().replace(/\s+/g, '_');
+                button.setAttribute('data-umami-event', `${langPrefix}button_${buttonText}`);
+                button.setAttribute('data-umami-event-category', 'interaction');
+            }
+        });
+
+        // Add click event listener to track custom events with additional data
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('[data-umami-event]');
+            if (target && typeof umami !== 'undefined') {
+                const eventName = target.getAttribute('data-umami-event');
+                const eventData = {};
+
+                // Collect all data-umami-event-* attributes as event data
+                Array.from(target.attributes).forEach(attr => {
+                    if (attr.name.startsWith('data-umami-event-') && attr.name !== 'data-umami-event') {
+                        const key = attr.name.replace('data-umami-event-', '').replace(/-/g, '_');
+                        eventData[key] = attr.value;
+                    }
+                });
+
+                // Send event to Umami with additional data if available
+                if (Object.keys(eventData).length > 0) {
+                    umami.track(eventName, eventData);
+                }
+                // Note: Basic tracking is handled automatically by Umami via data-umami-event attribute
+            }
+        }, true);
+    }
+
     // Initialize when DOM is loaded
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
@@ -164,6 +266,7 @@
                 initializePage();
                 setupLanguageSwitcher();
                 initializeAnimations();
+                setupUmamiTracking();
             }
         });
     } else {
@@ -172,6 +275,7 @@
             initializePage();
             setupLanguageSwitcher();
             initializeAnimations();
+            setupUmamiTracking();
         }
     }
 
