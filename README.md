@@ -33,8 +33,8 @@ MarkdownFlow extends standard Markdown with AI intelligence to create personaliz
 
 | Project | Description | Language | License |
 |---------|-------------|----------|---------|
-| [**markdown-flow-agent-py**](https://github.com/ai-shifu/markdown-flow-agent-py) | Python backend implementation. FastAPI-based server with template processing and LLM integration capabilities. | Python | MIT |
-| [**markdown-flow-agent-go**](https://github.com/ai-shifu/markdown-flow-agent-go) | Go backend implementation. High-performance server with concurrent processing and minimal resource usage. | Go | MIT |
+| [**markdown-flow-agent-py**](https://github.com/ai-shifu/markdown-flow-agent-py) | A Python library to transform MarkdownFlow documents into personalized content. | Python | MIT |
+| [**markdown-flow-agent-go**](https://github.com/ai-shifu/markdown-flow-agent-go) | A Go library to transform MarkdownFlow documents into personalized content. (Coming soon) | Go | MIT |
 
 ### Core Documentation
 

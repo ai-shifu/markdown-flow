@@ -33,8 +33,8 @@ MarkdownFlow 通过 AI 智能技术扩展了标准 Markdown，用于创建个性
 
 | 项目 | 描述 | 语言 | 许可证 |
 |------|------|------|--------|
-| [**markdown-flow-agent-py**](https://github.com/ai-shifu/markdown-flow-agent-py) | Python 后端实现。基于 FastAPI 的服务器，具有模板处理和大语言模型集成功能。 | Python | MIT |
-| [**markdown-flow-agent-go**](https://github.com/ai-shifu/markdown-flow-agent-go) | Go 后端实现。高性能服务器，具有并发处理和最小资源使用。 | Go | MIT |
+| [**markdown-flow-agent-py**](https://github.com/ai-shifu/markdown-flow-agent-py) | 用于将 MarkdownFlow 文档转换为个性化内容的 Python 库。 | Python | MIT |
+| [**markdown-flow-agent-go**](https://github.com/ai-shifu/markdown-flow-agent-go) | 用于将 MarkdownFlow 文档转换为个性化内容的 Go 库。（即将推出） | Go | MIT |
 
 ### 核心文档
 

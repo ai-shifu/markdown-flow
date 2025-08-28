@@ -7,144 +7,56 @@ tags:
 
 # SDK Documentation
 
-MarkdownFlow provides SDKs for major programming languages and frameworks. Choose the SDK that fits your technology stack.
+MarkdownFlow provides SDKs for major programming languages and frameworks. Each SDK is maintained as a separate open source project with its own comprehensive documentation.
 
-## Quick Comparison
+## Available SDKs
 
-| SDK                                                | Language   | Use Case                 | Package                                             |
-| -------------------------------------------------- | ---------- | ------------------------ | --------------------------------------------------- |
-| [markdown-flow-ui](javascript/markdown-flow-ui.md) | React      | Full UI components       | `npm install markdown-flow-ui`                      |
-| [remark-flow](javascript/remark-flow.md)           | React      | Markdown plugin          | `npm install remark-flow`                           |
-| [markdown-it-flow](javascript/markdown-it-flow.md) | JavaScript | Parser plugin            | `npm install markdown-it-flow`                      |
-| [Python Agent](python.md)                          | Python     | Backend processing       | `pip install markdown-flow-agent`                   |
-| [Go Agent](go.md)                                  | Go         | High-performance backend | `go get github.com/ai-shifu/markdown-flow-agent-go` |
+| SDK | Language | Use Case | Repository | Installation |
+|-----|----------|----------|------------|--------------|
+| [markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui) | React/TypeScript | Complete UI components | [GitHub →](https://github.com/ai-shifu/markdown-flow-ui) | `npm install markdown-flow-ui` |
+| [remark-flow](https://github.com/ai-shifu/remark-flow) | TypeScript | React-markdown plugin | [GitHub →](https://github.com/ai-shifu/remark-flow) | `npm install remark-flow` |
+| [markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow) | TypeScript | Parser plugin | [GitHub →](https://github.com/ai-shifu/markdown-it-flow) | `npm install markdown-it-flow` |
+| [markdown-flow-agent-py](https://github.com/ai-shifu/markdown-flow-agent-py) | Python | Backend processing | [GitHub →](https://github.com/ai-shifu/markdown-flow-agent-py) | `pip install markdown-flow-agent` |
+| [markdown-flow-agent-go](https://github.com/ai-shifu/markdown-flow-agent-go) | Go | High-performance backend | [GitHub →](https://github.com/ai-shifu/markdown-flow-agent-go) | `go get github.com/ai-shifu/...` |
 
 ## Frontend SDKs
 
 ### React
 
-- **[markdown-flow-ui](javascript/markdown-flow-ui.md)** - Complete React components with styling
-- **[remark-flow](javascript/remark-flow.md)** - Plugin for react-markdown
+- **[markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui)** - Ready-to-use React components for interactive MarkdownFlow documents
+- **[remark-flow](https://github.com/ai-shifu/remark-flow)** - Plugin for react-markdown with variable processing and AI integration
 
-### Vue.js
+### Vue.js & Vanilla JavaScript
 
-- **[markdown-it-flow](javascript/markdown-it-flow.md)** - Works with Vue's markdown-it integration
-
-### Vanilla JavaScript
-
-- **[markdown-it-flow](javascript/markdown-it-flow.md)** - Pure JavaScript implementation
+- **[markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow)** - Parser plugin for any markdown-it powered application
 
 ## Backend SDKs
 
 ### Python
 
-- **[markdown-flow-agent](python.md)** - FastAPI-based backend with AI integration
+- **[markdown-flow-agent-py](https://github.com/ai-shifu/markdown-flow-agent-py)** - Python library for transforming MarkdownFlow documents into personalized content
 
 ### Go
 
-- **[markdown-flow-agent-go](go.md)** - High-performance Go implementation
+- **[markdown-flow-agent-go](https://github.com/ai-shifu/markdown-flow-agent-go)** - High-performance Go library for MarkdownFlow processing
 
-## Choosing an SDK
+## Getting Started
 
-### For Web Applications
+1. **Choose your SDK** based on your technology stack
+2. **Visit the GitHub repository** for detailed documentation
+3. **Follow the installation and setup guides** in each project's README
+4. **Explore examples and tutorials** in each repository
 
-**Need a complete solution?**
-→ Use `markdown-flow-ui` (React)
+Each SDK repository contains:
 
-**Already using react-markdown?**
-→ Add `remark-flow` plugin
+- Complete installation instructions
+- Usage examples and tutorials  
+- API documentation
+- Configuration options
+- Troubleshooting guides
 
-**Using Vue or vanilla JS?**
-→ Use `markdown-it-flow`
+## Next Steps
 
-### For Backend Services
-
-**Need rapid development?**
-→ Python Agent with FastAPI
-
-**Need maximum performance?**
-→ Go Agent
-
-**Existing microservices?**
-→ Either, both support REST APIs
-
-## Common Integration Patterns
-
-### Full-Stack React + Python
-
-```text
-React App (markdown-flow-ui)
-    ↓ HTTP/WebSocket
-Python Backend (markdown-flow-agent)
-    ↓ API calls
-LLM Provider (OpenAI/Anthropic)
-```
-
-### Vue + Go High-Performance
-
-```text
-Vue App (markdown-it-flow)
-    ↓ HTTP/WebSocket
-Go Backend (markdown-flow-agent-go)
-    ↓ API calls
-LLM Provider
-```
-
-### Microservices Architecture
-
-```text
-Frontend (Any SDK)
-    ↓
-API Gateway
-    ↓
-Multiple Backends (Python/Go)
-    ↓
-LLM Service
-```
-
-## Quick Start Examples
-
-### React
-
-```jsx
-import { MarkdownFlow } from "markdown-flow-ui";
-
-<MarkdownFlow template={template} />;
-```
-
-### Python
-
-```python
-from markdown_flow_agent import FlowAgent
-
-agent = FlowAgent()
-result = await agent.process(template, variables)
-```
-
-### Go
-
-```go
-agent := mf.NewAgent(config)
-result, err := agent.Process(template, variables)
-```
-
-## Feature Matrix
-
-| Feature       | UI  | remark | markdown-it | Python | Go  |
-| ------------- | --- | ------ | ----------- | ------ | --- |
-| Variables     | ✅  | ✅     | ✅          | ✅     | ✅  |
-| User Input    | ✅  | ✅     | ✅          | ✅     | ✅  |
-| AI Processing | ✅  | ⚠️     | ⚠️          | ✅     | ✅  |
-| Styling       | ✅  | ❌     | ❌          | N/A    | N/A |
-| TypeScript    | ✅  | ✅     | ✅          | N/A    | N/A |
-| Streaming     | ✅  | ❌     | ❌          | ✅     | ✅  |
-| Caching       | ✅  | ❌     | ❌          | ✅     | ✅  |
-
-Legend: ✅ Full support | ⚠️ Requires backend | ❌ Not supported | N/A Not applicable
-
-## Getting Help
-
-- 📖 Browse individual SDK docs for detailed API references
-- 💬 [GitHub Discussions](https://github.com/ai-shifu/markdown-flow/discussions)
-- 🐛 Report issues on each SDK's repository
-- 📧 [Contact support](mailto:support@markdownflow.ai)
+- **🎮 [Try the Playground](https://play.mdflow.run)** - Experiment with MarkdownFlow syntax
+- **📖 [Integration Guide](../getting-started/integration.md)** - Learn integration approaches
+- **🚀 [Quick Start](../getting-started/quick-start.md)** - Build your first document

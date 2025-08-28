@@ -187,3 +187,34 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 | Specification | 规范说明 | |
 | Overview | 概览 | |
 | How It Works | 工作原理 | |
+
+## Content Consistency Rules
+
+### Homepage Content Management
+
+**CRITICAL**: The homepage has two content sources that MUST be kept in sync:
+
+1. **Static HTML** (`home/index.html` and `home/zh/index.html`) - For SEO and initial page load
+2. **Dynamic JavaScript** (`home/translations.js`) - The actual content users see
+
+**The single source of truth is `home/translations.js`**. When updating homepage content:
+
+1. ALWAYS update `home/translations.js` first (both English and Chinese sections)
+2. Then update `home/index.html` to match the English version from translations.js
+3. Update `home/zh/index.html` to match the Chinese version from translations.js
+4. Update README files to use the same descriptions from translations.js
+5. Never update only one file - they must always be synchronized
+
+This prevents inconsistencies where:
+
+- Search engines index different content than what users see
+- Static HTML shows outdated information before JavaScript loads
+- Different descriptions appear in various project locations
+
+### Areas Requiring Synchronization
+
+- Hero section (title and description)
+- Features section (icons, titles, descriptions)  
+- Playground section (CTA text and subtext)
+- Projects section (all project descriptions)
+- Footer text
