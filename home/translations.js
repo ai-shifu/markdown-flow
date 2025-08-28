@@ -43,6 +43,13 @@ const translations = {
             title: 'Open Source Projects',
             items: [
                 {
+                    name: 'markdown-flow',
+                    type: 'MAIN',
+                    typeClass: 'main',
+                    license: 'CC',
+                    description: 'The main repository containing homepage, documentation, and interactive playground.'
+                },
+                {
                     name: 'markdown-flow-ui',
                     type: 'FRONTEND',
                     typeClass: 'frontend',
@@ -76,13 +83,6 @@ const translations = {
                     typeClass: 'backend',
                     license: 'MIT',
                     description: 'A Go library to transform MarkdownFlow documents into personalized content. (Coming soon)'
-                },
-                {
-                    name: 'markdown-flow',
-                    type: 'MAIN',
-                    typeClass: 'main',
-                    license: 'CC',
-                    description: 'The main repository containing homepage, documentation, and interactive playground.'
                 }
             ]
         },
@@ -132,6 +132,13 @@ const translations = {
             title: '开源项目',
             items: [
                 {
+                    name: 'markdown-flow',
+                    type: '主仓库',
+                    typeClass: 'main',
+                    license: 'CC',
+                    description: '主仓库，包含首页、文档和交互式 Playground。'
+                },
+                {
                     name: 'markdown-flow-ui',
                     type: '前端',
                     typeClass: 'frontend',
@@ -165,13 +172,6 @@ const translations = {
                     typeClass: 'backend',
                     license: 'MIT',
                     description: '用于将 MarkdownFlow 文档转换为个性化内容的 Go 库。（即将推出）'
-                },
-                {
-                    name: 'markdown-flow',
-                    type: '主仓库',
-                    typeClass: 'main',
-                    license: 'CC',
-                    description: '主仓库，包含首页、文档和交互式 Playground。'
                 }
             ]
         },
