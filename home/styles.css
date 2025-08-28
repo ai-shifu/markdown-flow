@@ -193,7 +193,7 @@ main {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 1.5rem;
 }
 
@@ -223,11 +223,18 @@ main {
     margin-bottom: 1rem;
 }
 
+.project-badges {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
 .project-name {
     font-family: 'Courier New', monospace;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #333;
+    line-height: 1.3;
 }
 
 .project-type {
@@ -247,8 +254,18 @@ main {
     background: #d97706;
 }
 
-.project-type.demo {
-    background: #7c3aed;
+.project-type.main {
+    background: #dc2626;
+}
+
+.project-license {
+    background: #6b7280;
+    color: white;
+    padding: 0.2rem 0.4rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .project-description {
@@ -401,6 +418,15 @@ footer {
 
     .feature {
         padding: 1.25rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-name {
+        font-size: 0.95rem;
     }
 }
 

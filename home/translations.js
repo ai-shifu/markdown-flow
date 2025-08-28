@@ -43,40 +43,46 @@ const translations = {
             title: 'Open Source Projects',
             items: [
                 {
+                    name: 'markdown-flow',
+                    type: 'MAIN',
+                    typeClass: 'main',
+                    license: 'CC',
+                    description: 'The main repository containing homepage, documentation, and interactive playground.'
+                },
+                {
                     name: 'markdown-flow-ui',
                     type: 'FRONTEND',
                     typeClass: 'frontend',
-                    description: 'Complete UI components with built-in functionality. Ready-to-use React components for interactive markdown documents.'
+                    license: 'MIT',
+                    description: 'A React component library to render interactive MarkdownFlow documents with built-in UI elements.'
                 },
                 {
                     name: 'remark-flow',
                     type: 'FRONTEND',
                     typeClass: 'frontend',
-                    description: 'React-markdown plugin for MarkdownFlow syntax. Extends react-markdown with variable processing and AI integration.'
+                    license: 'MIT',
+                    description: 'A remark plugin to parse and process MarkdownFlow syntax in React applications.'
                 },
                 {
                     name: 'markdown-it-flow',
                     type: 'FRONTEND',
                     typeClass: 'frontend',
-                    description: 'Markdown-it plugin for MarkdownFlow syntax. Adds MarkdownFlow capabilities to any markdown-it powered application.'
+                    license: 'MIT',
+                    description: 'A markdown-it plugin to parse and render MarkdownFlow syntax. (Coming soon)'
                 },
                 {
                     name: 'markdown-flow-agent-py',
                     type: 'BACKEND',
                     typeClass: 'backend',
-                    description: 'Python backend implementation. FastAPI-based server with template processing and LLM integration capabilities.'
+                    license: 'MIT',
+                    description: 'A Python library to transform MarkdownFlow documents into personalized content.'
                 },
                 {
                     name: 'markdown-flow-agent-go',
                     type: 'BACKEND',
                     typeClass: 'backend',
-                    description: 'Go backend implementation. High-performance server with concurrent processing and minimal resource usage.'
-                },
-                {
-                    name: 'markdown-flow',
-                    type: 'DEMO',
-                    typeClass: 'demo',
-                    description: 'Testing and development platform. Interactive demo showcasing MarkdownFlow capabilities with live examples.'
+                    license: 'MIT',
+                    description: 'A Go library to transform MarkdownFlow documents into personalized content. (Coming soon)'
                 }
             ]
         },
@@ -126,40 +132,46 @@ const translations = {
             title: '开源项目',
             items: [
                 {
+                    name: 'markdown-flow',
+                    type: '主仓库',
+                    typeClass: 'main',
+                    license: 'CC',
+                    description: '主仓库，包含首页、文档和交互式 Playground。'
+                },
+                {
                     name: 'markdown-flow-ui',
                     type: '前端',
                     typeClass: 'frontend',
-                    description: '具有内置功能的完整 UI 组件。适用于交互式 Markdown 文档的即用型 React 组件。'
+                    license: 'MIT',
+                    description: '用于渲染交互式 MarkdownFlow 文档的 React 组件库，包含内置 UI 元素。'
                 },
                 {
                     name: 'remark-flow',
                     type: '前端',
                     typeClass: 'frontend',
-                    description: '用于 MarkdownFlow 语法的 React-markdown 插件。扩展 react-markdown 支持变量处理和 AI 集成。'
+                    license: 'MIT',
+                    description: '用于在 React 应用中解析和处理 MarkdownFlow 语法的 remark 插件。'
                 },
                 {
                     name: 'markdown-it-flow',
                     type: '前端',
                     typeClass: 'frontend',
-                    description: '用于 MarkdownFlow 语法的 Markdown-it 插件。为任何基于 markdown-it 的应用程序添加 MarkdownFlow 功能。'
+                    license: 'MIT',
+                    description: '用于解析和渲染 MarkdownFlow 语法的 markdown-it 插件。（即将推出）'
                 },
                 {
                     name: 'markdown-flow-agent-py',
                     type: '后端',
                     typeClass: 'backend',
-                    description: 'Python 后端实现。基于 FastAPI 的服务器，具有模板处理和 LLM 集成功能。'
+                    license: 'MIT',
+                    description: '用于将 MarkdownFlow 文档转换为个性化内容的 Python 库。'
                 },
                 {
                     name: 'markdown-flow-agent-go',
                     type: '后端',
                     typeClass: 'backend',
-                    description: 'Go 后端实现。高性能服务器，具有并发处理和最小资源使用。'
-                },
-                {
-                    name: 'markdown-flow',
-                    type: '演示',
-                    typeClass: 'demo',
-                    description: '测试和开发平台。展示 MarkdownFlow 功能的交互式演示，包含实时示例。'
+                    license: 'MIT',
+                    description: '用于将 MarkdownFlow 文档转换为个性化内容的 Go 库。（即将推出）'
                 }
             ]
         },

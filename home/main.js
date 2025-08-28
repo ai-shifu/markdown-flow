@@ -88,6 +88,7 @@
             if (t.projects.items[index]) {
                 const name = card.querySelector('.project-name');
                 const type = card.querySelector('.project-type');
+                const license = card.querySelector('.project-license');
                 const description = card.querySelector('.project-description');
 
                 if (name) name.textContent = t.projects.items[index].name;
@@ -95,6 +96,7 @@
                     type.textContent = t.projects.items[index].type;
                     type.className = `project-type ${t.projects.items[index].typeClass}`;
                 }
+                if (license) license.textContent = t.projects.items[index].license;
                 if (description) description.textContent = t.projects.items[index].description;
             }
         });
