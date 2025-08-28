@@ -1,4 +1,4 @@
-# <img src="assets/logos/logo-color.svg" alt="MarkdownFlow Logo" height="32" style="vertical-align: middle;"> MarkdownFlow
+# <img src="assets/logos/logo-color.svg" alt="MarkdownFlow Logo" height="28"> MarkdownFlow
 
 > **Write Once, Deliver Personally**
 
