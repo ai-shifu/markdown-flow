@@ -213,3 +213,6 @@ pyrightconfig.json
 
 # mkdocs
 docs/site
+
+# Generated files
+home/llms-full.txt

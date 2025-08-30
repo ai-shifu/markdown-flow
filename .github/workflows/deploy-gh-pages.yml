@@ -54,6 +54,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Generate llms-full.txt
+        run: |
+          python scripts/generate-llms-full.py
+
       - name: Copy home directory to site root
         run: |
           mkdir -p _site
