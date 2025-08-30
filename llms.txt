@@ -1,0 +1,193 @@
+# MarkdownFlow
+
+> Write Once, Deliver Personally | 一次创作，千人千面
+
+## Overview
+
+MarkdownFlow extends standard Markdown with AI intelligence to create personalized, interactive documents. Instead of writing static content for readers, you write prompts for AI agents that transform your instructions into personalized content adapting to each user's choices, preferences, and context.
+
+Key principle: **You write prompts for AI, not content for humans.**
+
+## Core Features
+
+- **100% Markdown Compatible**: All standard Markdown syntax works unchanged
+- **AI-Powered Personalization**: Documents adapt to each reader dynamically
+- **Simple Extensions**: Just three new syntax elements added to Markdown
+- **Multi-Language**: Built for international audiences (English/Chinese)
+
+## Syntax Extensions
+
+MarkdownFlow adds three simple extensions to standard Markdown:
+
+### 1. Variables: `{{variable_name}}`
+Dynamic content placeholders replaced with actual values.
+
+Example:
+```markdown
+Generate a welcoming message for {{user_name}} that mentions their
+current account balance of {{balance}} in a friendly tone.
+```
+
+### 2. Interactive Elements: `?[%{{variable}}Option1|Option2]`
+Buttons and input fields that collect user choices.
+
+Button example:
+```markdown
+Ask about experience level and store the response.
+?[%{{level}}Beginner|Intermediate|Expert]
+```
+
+Input field example:
+```markdown
+Collect the user's name in a friendly way.
+?[%{{name}}...Enter your name here]
+```
+
+### 3. Preserved Content: `===content===`
+Text that maintains exact meaning during AI processing.
+
+Example:
+```markdown
+Provide installation instructions, preserving the exact command:
+===npm install markdown-flow===
+```
+
+## Project Structure
+
+This is a multi-repository ecosystem under the ai-shifu organization on GitHub:
+
+### Main Repository
+- **markdown-flow**: Documentation, homepage, and interactive playground
+  - Homepage: `/index.html` and `/zh/index.html`
+  - Documentation: `/docs/` (MkDocs-based)
+  - Deployment: GitHub Pages via GitHub Actions
+
+### Frontend Libraries
+- **markdown-flow-ui**: React component library with built-in UI elements
+- **remark-flow**: React-markdown plugin for MarkdownFlow syntax
+- **markdown-it-flow**: Markdown-it plugin (coming soon)
+
+### Backend Implementations
+- **markdown-flow-agent-py**: Python library for document transformation
+- **markdown-flow-agent-go**: Go library (coming soon)
+
+## How It Works
+
+1. **Write**: Create MDFlow document with AI instructions
+2. **Parse**: MarkdownFlow Agent reads the document
+3. **Personalize**: Variables and user choices are incorporated
+4. **Generate**: LLM transforms instructions into personalized content
+5. **Render**: Final content displayed to each reader uniquely
+
+## Quick Start
+
+### Basic Example
+
+```markdown
+# Welcome Document
+
+Generate a personalized greeting for {{user_name}}.
+
+Ask about their role:
+?[%{{role}}Developer|Designer|Manager]
+
+Based on {{role}}, provide relevant getting started tips.
+Remember our motto: ===Innovation Through Simplicity===
+```
+
+### Integration Example (React)
+
+```javascript
+import { MarkdownFlowUI } from 'markdown-flow-ui';
+
+function App() {
+  return (
+    <MarkdownFlowUI
+      content={markdownContent}
+      variables={{ user_name: 'Alice' }}
+      onVariableChange={(name, value) => console.log(name, value)}
+    />
+  );
+}
+```
+
+## Key Resources
+
+### Live Demos
+- **Official Website**: https://markdownflow.ai
+- **Interactive Playground**: https://play.mdflow.run
+- **Chinese Homepage**: https://markdownflow.ai/zh/
+
+### Documentation
+- **English Docs**: https://markdownflow.ai/docs/en/
+- **Chinese Docs**: https://markdownflow.ai/docs/zh/
+- **API Reference**: https://markdownflow.ai/docs/en/api/
+
+### Source Code
+- **GitHub Organization**: https://github.com/ai-shifu
+- **Main Repo**: https://github.com/ai-shifu/markdown-flow
+- **UI Components**: https://github.com/ai-shifu/markdown-flow-ui
+- **Python Agent**: https://github.com/ai-shifu/markdown-flow-agent-py
+
+## Use Cases
+
+### Education
+Create adaptive learning materials that adjust to each student's level and learning style. Write once, deliver personalized educational experiences.
+
+### Media & Publishing
+Deliver the same story from multiple perspectives. Technology enthusiasts get technical details, business readers receive market analysis, all from one source.
+
+### Interactive Narratives
+Build stories where reader choices shape their experience. Transform static publications into personalized reading journeys.
+
+### Developer Tools
+Build forms that adapt to answers, documentation that changes by user role, and tutorials that adjust to progress.
+
+## Development
+
+### Local Documentation Development
+```bash
+# Install dependencies
+pip install mkdocs-material pymdown-extensions
+
+# Run locally
+cd docs
+mkdocs serve
+
+# Build
+mkdocs build --site-dir site --clean
+```
+
+### Testing Playground Locally
+The playground is available at https://play.mdflow.run for testing MarkdownFlow documents interactively.
+
+### Contributing
+All projects use standard open-source workflows:
+- MIT License for libraries
+- CC License for documentation
+- Pre-commit hooks for code quality
+- GitHub Actions for CI/CD
+
+## Technical Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Backend**: Python (FastAPI), Go (upcoming)
+- **Documentation**: MkDocs with Material theme
+- **Deployment**: GitHub Pages, Cloudflare
+- **AI Integration**: OpenAI API, custom LLM support
+
+## Support
+
+- **Issues**: Report bugs on respective GitHub repositories
+- **Discussions**: GitHub Discussions on main repo
+- **Email**: Contact through website
+
+## License
+
+- Libraries: MIT License
+- Documentation: Creative Commons License
+- Brand: MarkdownFlow is a trademark of AI Shifu, LLC
+
+---
+Last Updated: August 2025
+Version: 1.0.0
