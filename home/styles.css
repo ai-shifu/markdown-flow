@@ -392,6 +392,45 @@ footer {
     .header-content {
         flex-direction: column;
         gap: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    /* Mobile navigation styles */
+    .header-content nav {
+        flex-direction: column !important;
+        width: 100%;
+        gap: 0.75rem !important;
+    }
+
+    /* Logo and title adjustments */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        height: 32px;
+    }
+
+    /* Mobile button styles */
+    .github-link,
+    .playground-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem !important;
+        font-size: 1rem;
+        min-height: 44px; /* Touch target minimum */
+    }
+
+    .language-switcher {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        width: auto;
+        align-self: center;
+    }
+
+    /* Playground button specific mobile styles */
+    .playground-link {
+        margin-top: 0.25rem;
     }
 
     .hero {
