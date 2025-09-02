@@ -366,7 +366,43 @@ footer {
     padding: 2rem 0;
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
+/* Tablet styles (601px to 1024px) */
+@media (max-width: 1024px) and (min-width: 601px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Tablet navigation - horizontal with wrap */
+    .header-content nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .logo {
+        height: 35px;
+    }
+
+    /* Tablet button styles - smaller but not full width */
+    .github-link,
+    .playground-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+
+    .language-switcher {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
     .hero {
         padding: 3rem 0 1.5rem 0;
         margin-bottom: 1.5rem;
@@ -379,80 +415,118 @@ footer {
 
     .hero p {
         max-width: 600px;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
 
     .features {
         max-width: 900px;
         gap: 2rem;
     }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
 }
 
-@media (max-width: 768px) {
+/* Mobile styles (up to 600px) */
+@media (max-width: 600px) {
     .header-content {
         flex-direction: column;
-        gap: 1rem;
-        padding: 0.5rem 0;
+        gap: 0.75rem;
     }
 
-    /* Mobile navigation styles */
+    /* Mobile navigation - 3+1 grid layout */
     .header-content nav {
-        flex-direction: column !important;
+        display: grid !important; /* Override inline style */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem !important;
         width: 100%;
-        gap: 0.75rem !important;
     }
 
-    /* Logo and title adjustments */
+    /* Position each button using nth-child */
+    .header-content nav a:nth-child(1) { grid-column: 1; }  /* Language */
+    .header-content nav a:nth-child(2) { grid-column: 2; }  /* Documentation */
+    .header-content nav a:nth-child(3) { grid-column: 3; }  /* GitHub */
+    .header-content nav a:nth-child(4) {
+        grid-column: 1 / -1;  /* Playground - full width */
+    }
+
     h1 {
         font-size: 1.5rem;
     }
 
     .logo {
-        height: 32px;
+        height: 30px;
     }
 
-    /* Mobile button styles */
-    .github-link,
+    /* Compact styling for Documentation and GitHub buttons */
+    .github-link {
+        width: 100%;
+        padding: 0.5rem 0.4rem;
+        font-size: 0.85rem;
+        min-height: 42px;
+        text-align: center;
+        border: 2px solid white;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;  /* Prevent text wrapping */
+    }
+
+    /* Language switcher - keep original styling, no border */
+    .language-switcher {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.3rem;
+        min-height: 42px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        /* Inherits original styling - no border added */
+    }
+
+    /* Playground button - larger and prominent */
     .playground-link {
         width: 100%;
+        padding: 0.7rem 1rem !important;
+        font-size: 1rem !important;
+        min-height: 48px !important;
+        font-weight: 600;
         text-align: center;
-        padding: 0.75rem 1rem !important;
-        font-size: 1rem;
-        min-height: 44px; /* Touch target minimum */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .language-switcher {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-        width: auto;
-        align-self: center;
-    }
-
-    /* Playground button specific mobile styles */
-    .playground-link {
-        margin-top: 0.25rem;
+    main {
+        padding: 1.5rem;
+        border-radius: 8px;
     }
 
     .hero {
-        padding: 2.5rem 0 1rem 0;
-        margin-bottom: 2rem;
+        padding: 2rem 0 1rem 0;
+        margin-bottom: 1.5rem;
     }
 
     .hero h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
         letter-spacing: -0.01em;
     }
 
     .hero p {
-        font-size: 1.1rem;
-        line-height: 1.7;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
     }
 
     .features {
         grid-template-columns: 1fr;
         max-width: 500px;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .feature {
@@ -465,7 +539,77 @@ footer {
     }
 
     .project-name {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small mobile styles (up to 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .header-content nav {
+        gap: 0.3rem !important;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .logo {
+        height: 28px;
+    }
+
+    /* Even more compact for small screens */
+    .language-switcher {
+        padding: 0.4rem 0.2rem;
+        font-size: 0.75rem;
+        min-height: 40px;
+    }
+
+    .github-link {
+        padding: 0.45rem 0.3rem;
+        font-size: 0.8rem;
+        min-height: 40px;
+    }
+
+    .playground-link {
+        padding: 0.6rem 0.8rem !important;
+        font-size: 0.95rem !important;
+        min-height: 44px !important;
+    }
+
+    .hero {
+        padding: 1.5rem 0 0.75rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 0.75rem;
+    }
+
+    .feature {
+        padding: 1rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .project-card {
+        padding: 1.25rem;
     }
 }
 
