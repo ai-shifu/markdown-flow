@@ -2,7 +2,7 @@
 
 > **Write Once, Deliver Personally**
 
-MarkdownFlow extends standard Markdown with AI intelligence to create personalized, interactive pages. Instead of writing static content for readers, you write prompts for AI agents that transform your instructions into personalized content adapting to each user's choices, preferences, and context.
+MarkdownFlow extends standard Markdown with AI to create personalized, interactive pages. Instead of writing static content for readers, you write prompts for AI agents that transform your instructions into personalized content adapting to each user's choices, preferences, and context.
 
 ## ✨ What Makes MarkdownFlow Special
 
