@@ -273,6 +273,51 @@ main {
     line-height: 1.5;
 }
 
+/* Sponsors Section - Simplified */
+.sponsors-section {
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+}
+
+.sponsors-section h3 {
+    margin-bottom: 2.5rem;
+    color: #333;
+    border-bottom: 2px solid #0F63EE;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.sponsors-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.sponsor-item {
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0.9;
+}
+
+.sponsor-item:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.sponsor-item img {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    filter: grayscale(0);
+    transition: filter 0.3s ease;
+}
+
+.sponsor-item:hover img {
+    filter: grayscale(0) drop-shadow(0 4px 8px rgba(15, 99, 238, 0.2));
+}
+
 .quick-start {
     background: #f8f9fa;
     padding: 2rem;
@@ -541,6 +586,11 @@ footer {
     .project-name {
         font-size: 0.9rem;
     }
+
+    /* Sponsor logo responsive sizing */
+    .sponsor-item img {
+        max-width: 140px;
+    }
 }
 
 /* Small mobile styles (up to 480px) */
@@ -610,6 +660,11 @@ footer {
 
     .project-card {
         padding: 1.25rem;
+    }
+
+    /* Sponsor logo small screen sizing */
+    .sponsor-item img {
+        max-width: 120px;
     }
 }
 

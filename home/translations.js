@@ -86,6 +86,16 @@ const translations = {
                 }
             ]
         },
+        sponsors: {
+            title: 'Sponsors',
+            items: [
+                {
+                    logo: '/assets/sponsors/ai-shifu/logo_en.png',
+                    website: 'https://ai-shifu.com',
+                    alt: 'AI-Shifu'
+                }
+            ]
+        },
         footer: '© 2025 AI Shifu, LLC.'
     },
     zh: {
@@ -172,6 +182,16 @@ const translations = {
                     typeClass: 'backend',
                     license: 'MIT',
                     description: '用于将 MarkdownFlow 文档转换为个性化内容的 Go 库。（即将推出）'
+                }
+            ]
+        },
+        sponsors: {
+            title: '赞助商',
+            items: [
+                {
+                    logo: '/assets/sponsors/ai-shifu/logo_zh.png',
+                    website: 'https://ai-shifu.cn',
+                    alt: 'AI 师傅'
                 }
             ]
         },

@@ -101,6 +101,29 @@
             }
         });
 
+        // Update sponsors section
+        const sponsorsTitle = document.querySelector('.sponsors-section h3');
+        if (sponsorsTitle && t.sponsors) {
+            sponsorsTitle.textContent = t.sponsors.title;
+        }
+
+        const sponsorItems = document.querySelectorAll('.sponsor-item');
+        sponsorItems.forEach((item, index) => {
+            if (t.sponsors && t.sponsors.items[index]) {
+                const sponsor = t.sponsors.items[index];
+                const img = item.querySelector('img');
+
+                // Update link
+                item.href = sponsor.website;
+
+                // Update image
+                if (img) {
+                    img.src = sponsor.logo;
+                    img.alt = sponsor.alt;
+                }
+            }
+        });
+
         // Update footer
         const footer = document.querySelector('footer p');
         if (footer) {
