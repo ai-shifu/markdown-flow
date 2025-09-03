@@ -326,6 +326,15 @@
                     // Add staggered delay for multiple elements
                     const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
                     entry.target.style.transitionDelay = `${index * 0.1}s`;
+
+                    // Clear transition delay after animation completes to avoid affecting hover
+                    entry.target.addEventListener('transitionend', function handler(e) {
+                        // Only clear when the main animation properties complete
+                        if (e.propertyName === 'transform' || e.propertyName === 'opacity') {
+                            e.target.style.transitionDelay = '';
+                            e.target.removeEventListener('transitionend', handler);
+                        }
+                    });
                 }
             });
         }, {
