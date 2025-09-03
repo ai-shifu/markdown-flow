@@ -208,12 +208,6 @@ main {
     display: block;
 }
 
-.project-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-    text-decoration: none;
-    color: inherit;
-}
 
 .project-header {
     display: flex;
@@ -899,13 +893,15 @@ header {
 .project-card {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease;
     will-change: transform, opacity;
 }
 
 .project-card.revealed {
     opacity: 1;
     transform: translateY(0) scale(1);
+    /* Quick transitions for hover after animation completes */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Sponsor items entrance animation */
@@ -919,6 +915,8 @@ header {
 .sponsor-item.revealed {
     opacity: 1;
     transform: translateY(0) scale(1);
+    /* Quick transitions for hover after animation completes */
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 
