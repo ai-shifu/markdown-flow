@@ -203,7 +203,6 @@ main {
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
     text-decoration: none;
     color: inherit;
     display: block;
@@ -297,8 +296,6 @@ main {
 
 .sponsor-item {
     display: inline-block;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    opacity: 0.9;
 }
 
 .sponsor-item:hover {
@@ -821,11 +818,7 @@ header {
     }
 }
 
-/* Enhanced project cards */
-.project-card {
-    will-change: transform, box-shadow;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+/* Enhanced project cards hover state */
 
 .project-card:hover {
     transform: translateY(-4px);
@@ -901,6 +894,33 @@ header {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Project cards entrance animation */
+.project-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s ease;
+    will-change: transform, opacity;
+}
+
+.project-card.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Sponsor items entrance animation */
+.sponsor-item {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: transform, opacity;
+}
+
+.sponsor-item.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
 
 /* Scale reveal for cards */
 .scale-reveal {

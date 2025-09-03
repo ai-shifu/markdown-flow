@@ -334,7 +334,7 @@
         });
 
         // Observe all elements with reveal classes
-        document.querySelectorAll('.reveal, .scale-reveal, .code-reveal').forEach(element => {
+        document.querySelectorAll('.reveal, .scale-reveal, .code-reveal, .project-card, .sponsor-item').forEach(element => {
             revealObserver.observe(element);
         });
     }
@@ -445,7 +445,7 @@
 
     // Performance optimization for animations
     function optimizeAnimationPerformance() {
-        const animatedElements = document.querySelectorAll('.reveal, .scale-reveal, .code-reveal');
+        const animatedElements = document.querySelectorAll('.reveal, .scale-reveal, .code-reveal, .project-card, .sponsor-item');
 
         const performanceObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
