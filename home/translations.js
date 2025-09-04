@@ -7,7 +7,7 @@ const translations = {
         navigation: {
             documentation: 'Documentation',
             github: 'GitHub',
-            playground: '🎮 Try Playground'
+            playground: '🎮 Try It Now'
         },
         hero: {
             title: 'Write Once, Deliver Personally',
@@ -106,7 +106,7 @@ const translations = {
         navigation: {
             documentation: '帮助文档',
             github: 'GitHub',
-            playground: '🎮 体验台'
+            playground: '🎮 立即体验'
         },
         hero: {
             title: '一次创作，千人千面',
