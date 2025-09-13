@@ -12,10 +12,20 @@ Sometimes you need certain content to maintain its exact meaning, style, and emp
 
 ## Basic Syntax
 
-Use three equal signs `===` to mark preserved content:
+There are two forms:
+
+- Inline or single-line: wrap content with `===...===`
+- Multi-line block: fence with a line containing `!===` (start and end)
 
 ```markdown
-===This text will appear exactly as written===
+# Inline or single-line
+Explain the command ===npm install markdown-flow=== exactly as written.
+
+# Multi-line block
+!===
+Line A that must be preserved
+Line B that must be preserved
+!===
 ```
 
 ## Why Use Preserved Output?
@@ -101,14 +111,18 @@ For preserving blocks of text:
 ```markdown
 Share an inspirational quote:
 
-===
+!===
 "The only way to do great work is to love what you do.
 If you haven't found it yet, keep looking.
 Don't settle."
 - Steve Jobs
-===
+!===
 
 Explain how this quote relates to {{user_interest}} and why it inspires many entrepreneurs.
 ```
 
 Instructs the AI to contextualize the quote for the user's interests while preserving the exact quote text and attribution.
+
+### Why different markers for multi-line?
+
+Using a bare `===` line as a fence can conflict with Markdown's Setext-style headings, where a line of `===` under text denotes an H1. To avoid parsing and linting ambiguities, multi-line preserved blocks use `!===` as the fence, and inline/single-line forms use `===...===`.
