@@ -18,8 +18,11 @@ There are two forms:
 - Multi-line block: fence with a line containing `!===` (start and end)
 
 ```markdown
-# Inline or single-line
+# Inline
 Explain the command ===npm install markdown-flow=== exactly as written.
+
+# Single-line
+===This text will appear exactly as written===
 
 # Multi-line block
 !===
