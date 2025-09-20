@@ -22,6 +22,29 @@ The complete syntax for interactive elements is:
 
 **Every component is optional**, giving you flexibility to create exactly the interaction you need.
 
+## Single Select vs Multi-Select
+
+MarkdownFlow supports two selection modes:
+
+**Single Select Mode (Traditional)**: Use single pipe `|` to separate options
+
+```markdown
+?[%{{language}} Python | JavaScript | Go]
+```
+
+**Multi-Select Mode (New)**: Use double pipe `||` to separate options
+
+```markdown
+?[%{{skills}} Python||JavaScript||Go||Rust]
+```
+
+**Selection Mode Determination Rules**:
+
+- The first separator type encountered in the document determines the entire interaction mode
+- `A||B|C` will be recognized as multi-select mode (because `||` appears first)
+- `A|B||C` will be recognized as single-select mode (because `|` appears first)
+- Single-select returns a single value, multi-select returns an array of values
+
 ## Understanding Each Component
 
 Let's break down the syntax step by step:
@@ -64,15 +87,23 @@ This creates a simple "Continue" button that just resumes content flow without s
 
 ### Buttons: Text and IDs
 
-Buttons are separated by the pipe character `|`. You can have 0 to 10 buttons.
+Buttons are separated by pipe characters. You can have 0 to 10 buttons. The separator type determines the selection mode:
 
-**Simple buttons (text becomes the value):**
+**Single-select buttons (using single pipe `|`):**
 
 ```markdown
 ?[%{{color}} Red | Green | Blue]
 ```
 
 Clicking "Red" stores "Red" in `{{color}}`.
+
+**Multi-select buttons (using double pipe `||`):**
+
+```markdown
+?[%{{skills}} Python||JavaScript||Go||Rust]
+```
+
+Users can select multiple options. Selected values are stored as an array in `{{skills}}`, such as `["Python", "JavaScript"]`.
 
 **Buttons with IDs (ID becomes the value):**
 
@@ -82,6 +113,12 @@ Clicking "Red" stores "Red" in `{{color}}`.
 
 - Display: "Small", "Medium", "Large"
 - Values stored: "S", "M", "L"
+
+Multi-select mode also supports IDs:
+
+```markdown
+?[%{{frameworks}} React//react||Vue//vue||Angular//angular]
+```
 
 This is useful when you want user-friendly display text but need specific values for processing.
 
@@ -209,3 +246,78 @@ Inquire about their preferred learning approach:
 
 Confirm the personalization: address {{name}} by name, acknowledge their {{level}} level, and explain how you'll deliver {{style}} content for {{course_topic}}.
 ```
+
+Instructs the AI to collect multiple aspects of user information and provide comprehensive personalized responses.
+
+### 8. Multi-Select Skills Selection
+
+```markdown
+Ask about the programming languages the user knows to create a personalized learning plan.
+
+?[%{{skills}} Python||JavaScript||Go||Rust||Java||C++]
+
+Recommend appropriate learning paths and projects based on their selected skill set {{skills}}.
+```
+
+Instructs the AI to collect multiple skills information and provide personalized recommendations based on the skill combination.
+
+### 9. Multi-Select with Text Input
+
+```markdown
+Learn about the developer's frontend framework experience to provide targeted guidance.
+
+?[%{{frameworks}} React||Vue||Angular||Svelte||...please specify others]
+
+Provide best practices and migration advice based on the frameworks {{frameworks}} they're familiar with.
+```
+
+Instructs the AI to use multi-select mode to collect framework information while providing a text input fallback option.
+
+### 10. Mixed Single and Multi-Select Comprehensive Form
+
+```markdown
+Collect user development background information to customize training content.
+
+Ask about their primary programming role (single-select):
+?[%{{role}} Frontend//fe | Backend//be | Fullstack//fs | DevOps//ops]
+
+Select areas of interest (multi-select):
+?[%{{interests}} Web Development||Mobile Development||Data Science||AI||Cloud Computing||Blockchain]
+
+Ask about preferred learning schedule:
+?[%{{schedule}} Weekday//weekday | Weekend//weekend | Evening//evening | Flexible//flexible]
+
+Create a personalized learning plan based on their role {{role}}, areas of interest {{interests}}, and schedule {{schedule}}.
+```
+
+Instructs the AI to combine single-select and multi-select to collect different types of user information and provide comprehensive recommendations.
+
+## Single-Select vs Multi-Select Processing Principles
+
+### Separator Recognition Rules
+
+1. **First separator determines mode**: The first separator type encountered in the document determines the entire interaction's selection mode
+2. **Fault tolerance**: When separators are mixed, the first occurrence takes precedence
+   - `A||B|C` → Multi-select mode (because `||` appears first)
+   - `A|B||C` → Single-select mode (because `|` appears first)
+
+### Return Value Formats
+
+- **Single-select**: Returns a single string value
+
+  ```
+  {{color}} = "Red"
+  ```
+
+- **Multi-select**: Returns an array of strings
+
+  ```
+  {{skills}} = ["Python", "JavaScript", "Go"]
+  ```
+
+### Usage Guidelines
+
+- **Use single-select**: When users can only choose one option (e.g., difficulty level, account type)
+- **Use multi-select**: When users can choose multiple options (e.g., skill lists, interests)
+- **Maintain consistency**: Similar interactions in the same document should use the same separator type
+- **Add text input**: Add `...` after multi-select options to provide additional custom options
