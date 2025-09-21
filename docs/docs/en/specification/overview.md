@@ -81,17 +81,17 @@ Then, three buttons appear, and the user selects "Expert". Output continues:
 
 ## Multi-Select Interaction Example
 
-MarkdownFlow also supports multi-select interactions, allowing users to choose multiple options:
+MarkdownFlow also supports button groups where readers can pick more than one answer:
 
 ```markdown
-Ask about the programming languages the user knows to create a learning plan.
+Ask how the reader would like to receive updates about the program.
 
-?[%{{skills}} Python||JavaScript||Go||Rust||Java||C++]
+?[%{{update_preferences}} Email||SMS||Push Notification||Weekly Recap]
 
-Recommend relevant learning resources and projects based on their selected skill set {{skills}}.
+Confirm their choices {{update_preferences}} and explain how you will use each channel.
 ```
 
-Here we use double pipes `||` to indicate multi-select mode. Users can select multiple programming languages, and the selected values are stored as an array.
+Double pipes `||` signal that this block is multi-select, so the stored value becomes an array. You can still keep other button blocks in the same document single-select—the mode is decided within each block.
 
 ## Syntax Summary
 
