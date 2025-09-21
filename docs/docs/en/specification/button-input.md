@@ -38,11 +38,12 @@ MarkdownFlow supports two selection modes:
 ?[%{{skills}} Python||JavaScript||Go||Rust]
 ```
 
-**Selection Mode Determination Rules**:
+**How MarkdownFlow decides the selection mode**:
 
-- The first separator type encountered in the document determines the entire interaction mode
-- `A||B|C` will be recognized as multi-select mode (because `||` appears first)
-- `A|B||C` will be recognized as single-select mode (because `|` appears first)
+- Look at the first separator inside the current button block
+- `|` as the first separator → single-select (one choice, like radio buttons)
+- `||` as the first separator → multi-select (many choices, like checkboxes)
+- You can freely mix single-select and multi-select blocks in the same document because each block decides its own mode
 - Single-select returns a single value, multi-select returns an array of values
 
 ## Understanding Each Component
@@ -249,57 +250,58 @@ Confirm the personalization: address {{name}} by name, acknowledge their {{level
 
 Instructs the AI to collect multiple aspects of user information and provide comprehensive personalized responses.
 
-### 8. Multi-Select Skills Selection
+### 8. Multi-Select for Event Planning
 
 ```markdown
-Ask about the programming languages the user knows to create a personalized learning plan.
+Plan a neighborhood fun day by letting residents pick the activities they care about most.
 
-?[%{{skills}} Python||JavaScript||Go||Rust||Java||C++]
+?[%{{activities}} Crafts||Live Music||Food Trucks||Story Time||Petting Zoo||Outdoor Games]
 
-Recommend appropriate learning paths and projects based on their selected skill set {{skills}}.
+Describe how the event team will set up the day based on the chosen activities {{activities}}.
 ```
 
-Instructs the AI to collect multiple skills information and provide personalized recommendations based on the skill combination.
+Instructs the AI to collect several interests at once so the event plan highlights what matters to the community.
 
 ### 9. Multi-Select with Text Input
 
 ```markdown
-Learn about the developer's frontend framework experience to provide targeted guidance.
+Ask participants to share the kinds of refreshments they would enjoy during the session.
 
-?[%{{frameworks}} React||Vue||Angular||Svelte||...please specify others]
+?[%{{snacks}} Fresh Fruit||Tea||Coffee||Pastries||...add another idea]
 
-Provide best practices and migration advice based on the frameworks {{frameworks}} they're familiar with.
+Summarize their selections {{snacks}} and confirm how you will accommodate them.
 ```
 
-Instructs the AI to use multi-select mode to collect framework information while providing a text input fallback option.
+Instructs the AI to use multi-select mode with an optional text field so people can suggest something beyond the preset buttons.
 
 ### 10. Mixed Single and Multi-Select Comprehensive Form
 
 ```markdown
-Collect user development background information to customize training content.
+Gather background information to welcome someone to a learning circle.
 
-Ask about their primary programming role (single-select):
-?[%{{role}} Frontend//fe | Backend//be | Fullstack//fs | DevOps//ops]
+Ask about their preferred support style (single-select):
+?[%{{support_style}} Step-by-step guides//guide | Short video tips//video | Live check-ins//live | Self-paced articles//articles]
 
-Select areas of interest (multi-select):
-?[%{{interests}} Web Development||Mobile Development||Data Science||AI||Cloud Computing||Blockchain]
+Let them choose topics they hope to explore (multi-select):
+?[%{{topics}} Time Management||Career Change||Wellness||Creative Projects||Financial Planning]
 
-Ask about preferred learning schedule:
-?[%{{schedule}} Weekday//weekday | Weekend//weekend | Evening//evening | Flexible//flexible]
+Check when they have time to participate:
+?[%{{availability}} Weekdays//weekdays | Weeknights//weeknights | Weekends//weekends | Flexible//flexible]
 
-Create a personalized learning plan based on their role {{role}}, areas of interest {{interests}}, and schedule {{schedule}}.
+Explain how the learning circle will tailor resources to their support style {{support_style}}, chosen topics {{topics}}, and availability {{availability}}.
 ```
 
-Instructs the AI to combine single-select and multi-select to collect different types of user information and provide comprehensive recommendations.
+Instructs the AI to gather different kinds of input in one flow so the welcome message feels personal and practical.
 
 ## Single-Select vs Multi-Select Processing Principles
 
 ### Separator Recognition Rules
 
-1. **First separator determines mode**: The first separator type encountered in the document determines the entire interaction's selection mode
-2. **Fault tolerance**: When separators are mixed, the first occurrence takes precedence
-   - `A||B|C` → Multi-select mode (because `||` appears first)
-   - `A|B||C` → Single-select mode (because `|` appears first)
+1. **Per-block detection**: Each button block checks the first separator that appears inside the same `?[ ... ]` block to decide the selection mode
+2. **Fault tolerance inside a block**: After the first separator is read, MarkdownFlow sticks with that mode even if later separators differ
+   - `A||B|C` → Multi-select mode (because `||` appears first in that block)
+   - `A|B||C` → Single-select mode (because `|` appears first in that block)
+3. **Mixing blocks is expected**: A document can include both single-select and multi-select blocks. Example 10 shows how different sections can gather different kinds of answers without conflict.
 
 ### Return Value Formats
 
