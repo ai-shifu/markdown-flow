@@ -79,30 +79,6 @@ Then, three buttons appear, and the user selects "Expert". Output continues:
 > - Writing **documentation-as-code** (combining Markdown with static site generators like MkDocs or Jekyll).
 >   But honestly? You’ve got this. Go build something cool. 🚀
 
-## Multi-Select Interaction Example
-
-MarkdownFlow also supports button groups where readers can pick more than one answer:
-
-```markdown
-Ask how the reader would like to receive updates about the program.
-
-?[%{{update_preferences}} Email||SMS||Push Notification||Weekly Recap]
-
-Confirm their choices {{update_preferences}} and explain how you will use each channel.
-```
-
-Double pipes `||` signal that this block is multi-select, so the stored value becomes an array. You can still keep other button blocks in the same document single-select—the mode is decided within each block.
-
-## Syntax Summary
-
-MarkdownFlow's core syntax extensions:
-
-- **Variables**: `{{variable_name}}` - Dynamic content placeholders
-- **Interactive Elements**: `?[%{{variable}} Option1|Option2]` - Single-select buttons
-- **Multi-Select Interaction**: `?[%{{variable}} Option1||Option2||Option3]` - Multi-select buttons
-- **Text Input**: `?[%{{variable}} ...input hint]` - Text input field
-- **Preserved Content**: `===content===` - Content not interpreted by AI
-
-The above examples use MarkdownFlow's [Variable](variables.md) and [Button](button-input.md) features.
+The above example uses MarkdownFlow's [Variable](variables.md) and [Button](button-input.md) features.
 
 If you want to know how the magic happens, check out the [How It Works](how-it-works.md) section.
