@@ -19,7 +19,7 @@
 3. **[变量](../specification/variables.md)**  
    掌握变量命名、赋值和使用模式
 
-4. **[按钮和输入](../specification/button-input.md)**  
+4. **[交互](../specification/interaction.md)**
    探索所有交互元素选项
 
 5. **[确定输出](../specification/preserved-output.md)**  

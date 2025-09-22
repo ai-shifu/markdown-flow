@@ -19,7 +19,7 @@ Master every detail of MDFlow syntax and capabilities.
 3. **[Variables](../specification/variables.md)**  
    Master variable naming, assignment, and usage patterns
 
-4. **[Buttons & Input](../specification/button-input.md)**  
+4. **[Interaction](../specification/interaction.md)**
    Explore all interactive element options
 
 5. **[Preserved Output](../specification/preserved-output.md)**  
