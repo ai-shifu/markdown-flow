@@ -115,7 +115,7 @@ The document prompt and the current content block are sent to the Large Language
 
 If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The input result is stored in variables.
 
-For more details, see the [Button/Input](button-input.md) sections.
+For more details, see the [Interaction](interaction.md) section.
 
 ### Step 5: Iterate
 

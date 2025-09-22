@@ -57,7 +57,7 @@ MarkdownFlow 为标准 Markdown 添加了三个新的语法元素：
 ?[%{{name}}...在此输入您的姓名]
 ```
 
-**了解更多：** [按钮和输入规范](specification/button-input.md)
+**了解更多：** [交互规范](specification/interaction.md)
 
 ### 3. 确定内容
 

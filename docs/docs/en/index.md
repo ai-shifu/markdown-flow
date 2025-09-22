@@ -57,7 +57,7 @@ Collect the user's name in a friendly way.
 ?[%{{name}}...Enter your name here]
 ```
 
-**Learn more:** [Buttons & Input Specification](specification/button-input.md)
+**Learn more:** [Interaction Specification](specification/interaction.md)
 
 ### 3. Preserved Content
 
