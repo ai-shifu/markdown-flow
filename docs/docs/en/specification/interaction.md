@@ -39,7 +39,7 @@ Every interactive element starts with `?[` and ends with `]`. These brackets are
 ?[...content goes here...]
 ```
 
-## 1. Buttons (Single Selection)
+## Buttons (Single Selection)
 
 Buttons allow users to make a single choice from multiple options. They use a single vertical bar (`|`) as the separator between options.
 
@@ -94,7 +94,7 @@ This is useful when you need:
 - Shorter values for processing
 - User-friendly display with technical values
 
-## 2. Options (Multiple Selection)
+## Options (Multiple Selection)
 
 Options allow users to select multiple items. They use double vertical bars (`||`) as separators between options.
 
@@ -119,7 +119,7 @@ Variables and IDs work the same as with buttons:
 - `//id` separates display from value
 - Without `%`, uses variable value for display
 
-## 3. Input (Text Entry)
+## Input (Text Entry)
 
 Input fields allow users to enter custom text. They use `...` followed by a hint.
 
@@ -133,7 +133,7 @@ Input fields allow users to enter custom text. They use `...` followed by a hint
 
 Variables work the same as described above - use `%{{variable}}` to store the input.
 
-## 4. Combining Elements
+## Combining Elements
 
 You can combine buttons/options with input fields to provide both preset choices and custom entry.
 
