@@ -80,7 +80,7 @@ plugins:
             Overview: 概览
             How It Works: 工作原理
             Variables: 变量
-            Buttons & Input: 按钮和输入
+            Interaction: 交互
             Preserved Output: 确定输出
             SDKs: SDK
   - search
