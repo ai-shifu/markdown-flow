@@ -106,10 +106,10 @@ Options allow users to select multiple items. They use double vertical bars (`||
 
 ### Return Value Format
 
-Unlike buttons which return a single string, options return an **array of strings**:
+Unlike buttons which return a single string, options return a **comma-separated string** of selected values:
 
 - Buttons: `{{color}} = "Red"`
-- Options: `{{skills}} = ["Python", "JavaScript", "Go"]`
+- Options: `{{skills}} = "Python, JavaScript, Go"`
 
 ### Variable and ID Usage
 
