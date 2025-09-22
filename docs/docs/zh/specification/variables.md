@@ -9,20 +9,20 @@ tags:
 
 ## 在 MarkdownFlow 中使用变量
 
-变量是 MarkdownFlow 动态内容的基础。它们充当占位符，在处理过程中被实际值替换，从而实现个性化和上下文感知的文档。
+变量是 MarkdownFlow 动态内容的基础。它们作为占位符，在处理时被替换为实际值，从而实现个性化和上下文感知的文档。
 
 ## 基本语法
 
 变量使用双大括号：
 
 ```markdown
-{{variable_name}}
+{{变量名}}
 ```
 
 **简单示例：**
 
 ```markdown
-Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
+向 {{用户名}} 打招呼，并提醒他们当前账户余额为 {{余额}}。
 ```
 
 ## 变量命名规则
@@ -79,15 +79,15 @@ Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
 **用户输入：**
 
 ```markdown
-Ask the user for their name politely.
-?[%{{name}} ...Enter your name]
+请有礼貌地询问用户的姓名。
+?[%{{姓名}} ...请输入您的姓名]
 
-Generate a warm, personalized greeting for {{name}}.
+为 {{姓名}} 生成温暖的个性化问候。
 ```
 
 **系统预定义变量：**
 
-系统变量由平台预先赋值，可以直接使用而无需任何用户输入。不同平台提供不同的系统变量：
+系统变量由平台预先定义，无需用户输入即可直接使用。不同平台提供不同的系统变量：
 
 **[MarkdownFlow Playground](https://play.mdflow.run)：**
 
@@ -102,25 +102,25 @@ Generate a warm, personalized greeting for {{name}}.
 
 ### 2. 变量替换
 
-在 LLM 处理内容之前，MarkdownFlow 智能体会用实际值替换所有变量：
+在 LLM 处理内容之前，MarkdownFlow 智能体会将所有变量替换为实际值：
 
 ```markdown
-之前："Generate a personalized greeting for {{user_name}} who is learning {{topic}} at {{level}} level."
-之后："Generate a personalized greeting for Alice who is learning Python at beginner level."
+之前："为正在以 {{水平}} 水平学习 {{主题}} 的 {{用户名}} 生成个性化问候。"
+之后："为正在以 初级水平 学习 Python 的 张三 生成个性化问候。"
 ```
 
 然后 LLM 处理这个解析后的提示词，为读者生成实际内容。
 
 ### 3. 未赋值的变量
 
-如果变量尚未赋值，它会被替换为 "UNKNOWN"：
+如果变量尚未赋值，将被替换为 "UNKNOWN"：
 
 ```markdown
-之前："Create content for {{user_type}} interested in {{topic}}."
-之后："Create content for UNKNOWN interested in UNKNOWN."
+之前："为对 {{主题}} 感兴趣的 {{用户类型}} 生成内容。"
+之后："为对 UNKNOWN 感兴趣的 UNKNOWN 生成内容。"
 ```
 
-**重要提示：** 在使用变量之前，请始终为变量赋值，通常通过用户输入或系统默认值来实现，以避免提示词中出现 "UNKNOWN"。当 LLM 在提示词中接收到 "UNKNOWN" 时，其输出可能是随机且不可预测的，无法满足您的期望。
+**重要提示：** 请确保在使用变量前为其赋值（通过用户输入或系统默认值），避免提示词中出现 "UNKNOWN"。当 LLM 接收到含有 "UNKNOWN" 的提示词时，可能会产生不可预测的结果。
 
 ## 不同上下文中的变量
 
@@ -129,40 +129,40 @@ Generate a warm, personalized greeting for {{name}}.
 ### 在文本中
 
 ```markdown
-Create a personalized welcome message for {{username}} that feels warm and familiar.
+生成一个让 {{用户名}} 感到亲切的个性化欢迎词。
 ```
 
 ### 在标题中
 
 ```markdown
-# Chapter {{chapter_number}}: {{chapter_title}}
+# 第 {{章节编号}} 章：{{章节标题}}
 ```
 
 ### 在列表中
 
 ```markdown
-Summarize the user's product selections in a clear list format:
-- Their chosen color: {{selected_color}}
-- Their selected size: {{selected_size}}  
-- The quantity they want: {{quantity}}
+以清晰的列表格式总结用户的产品选择：
+- 选择的颜色：{{选定颜色}}
+- 选择的尺寸：{{选定尺寸}}  
+- 期望的数量：{{数量}}
 ```
 
 ### 在链接和图片中
 
 ```markdown
-[Visit {{site_name}}]({{site_url}})
-![{{image_description}}]({{image_path}})
+[访问 {{网站名称}}]({{网站网址}})
+![{{图片描述}}]({{图片路径}})
 ```
 
 ### 在表格中
 
 ```markdown
-Create a formatted table showing the user's account information:
-| Property | Value                 |
-| -------- | --------------------- |
-| Name     | {{user_name}}         |
-| Email    | {{user_email}}        |
-| Plan     | {{subscription_plan}} |
+创建一个格式化表格展示用户的账户信息：
+| 属性 | 值 |
+| ---- | --------------------- |
+| 姓名 | {{用户名}} |
+| 邮箱 | {{用户邮箱}} |
+| 方案 | {{订阅方案}} |
 ```
 
 ### 在 HTML 中

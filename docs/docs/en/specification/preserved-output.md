@@ -6,8 +6,8 @@ Sometimes you need certain content to maintain its exact meaning, style, and emp
 
 **What "Preserved" Means:**
 
-- **Without language instructions**: Content appears exactly as written
-- **With language instructions in document prompt**: Content is translated while maintaining original style, tone, and emphasis
+- **Without translation instructions in document prompt**: Content appears exactly as written
+- **With translation instructions in document prompt**: Content is translated while maintaining original style, tone, and emphasis
 - **All cases**: Meaning and formatting fidelity are maintained
 
 ## Basic Syntax
@@ -88,7 +88,7 @@ For preserving words or short phrases within a sentence:
 ```markdown
 Explain to {{user_type}} that the command ===npm install=== must be typed exactly as shown.
 
-Introduce {{company_name}} and mention that our motto is ===Innovation Through Simplicity===.
+Introduce AI Shifu and mention that our motto is ===Amplifying humanity’s eternal values===.
 ```
 
 Instructs the AI to explain the command while preserving the exact command text, and introduce the company while preserving the exact motto.

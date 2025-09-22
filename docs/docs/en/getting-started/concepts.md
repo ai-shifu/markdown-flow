@@ -21,7 +21,7 @@ Explain Python to a {{level}} programmer interested in {{use_case}},
 emphasizing aspects most relevant to their background.
 ```
 
-The MDFlow version generates personalized explanations for each user, while traditional Markdown shows the same content to everyone.
+The MarkdownFlow version generates personalized explanations for each user, while traditional Markdown shows the same content to everyone.
 
 ## Document Structure
 

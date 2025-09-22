@@ -65,7 +65,7 @@ Text that maintains its exact meaning and style during AI processing.
 
 ```markdown
 Introduce our company values, making sure to preserve the exact motto:
-===Innovation Through Simplicity===
+===Amplifying humanity’s eternal values===
 
 Provide installation instructions, preserving the exact command:
 ===npm install markdown-flow===
