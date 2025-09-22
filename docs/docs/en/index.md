@@ -31,7 +31,7 @@ MarkdownFlow adds three new syntax elements to standard Markdown:
 !!! tip "Remember the Core Principle"
     All examples below show **AI instructions**, not direct user content. You write prompts for AI to generate personalized content.
 
-### 1. Variables: `{{variable}}`
+### 1. Variables
 
 Dynamic content placeholders that get replaced with actual values.
 
@@ -42,7 +42,7 @@ current account balance of {{balance}} in a friendly tone.
 
 **Learn more:** [Variables Specification](specification/variables.md)
 
-### 2. Interactive Elements: `?[%{{variable}} Option1 | Option2]`
+### 2. Interactive Elements
 
 Buttons and input fields that collect user choices and store them in variables.
 
@@ -50,13 +50,16 @@ Buttons and input fields that collect user choices and store them in variables.
 Ask the user about their experience level and store the response.
 ?[%{{level}} Beginner | Intermediate | Expert]
 
+Ask the user about their habits. Can be single or multiple choice.
+?[%{{habits}} Movies || Sports || Reading || Traveling]
+
 Collect the user's name in a friendly way.
 ?[%{{name}}...Enter your name here]
 ```
 
 **Learn more:** [Buttons & Input Specification](specification/button-input.md)
 
-### 3. Preserved Content: `===content===`
+### 3. Preserved Content
 
 Text that maintains its exact meaning and style during AI processing.
 
