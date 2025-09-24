@@ -22,7 +22,7 @@ Master every detail of MDFlow syntax and capabilities.
 4. **[Interaction](../specification/interaction.md)**
    Explore all interactive element options
 
-5. **[Preserved Output](../specification/preserved-output.md)**  
+5. **[Preserved Output](../specification/preserved.md)**
    Control content preservation and translation
 
 ### Path 2: Learn from Examples

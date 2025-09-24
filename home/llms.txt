@@ -28,7 +28,7 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 - [Overview](https://markdownflow.ai/docs/specification/overview/): Complete MarkdownFlow syntax specification
 - [Variables](https://markdownflow.ai/docs/specification/variables/): Dynamic content placeholders and variable system
 - [Interactive Elements](https://markdownflow.ai/docs/specification/interaction/): Buttons and input fields for user interaction
-- [Preserved Content](https://markdownflow.ai/docs/specification/preserved-output/): Content that maintains exact meaning during AI processing
+- [Preserved Content](https://markdownflow.ai/docs/specification/preserved/): Content that maintains exact meaning during AI processing
 - [How It Works](https://markdownflow.ai/docs/specification/how-it-works/): Technical architecture and processing pipeline
 
 ## SDKs & Libraries

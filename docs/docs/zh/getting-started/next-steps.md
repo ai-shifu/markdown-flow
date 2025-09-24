@@ -22,7 +22,7 @@
 4. **[交互](../specification/interaction.md)**
    探索所有交互元素选项
 
-5. **[确定内容](../specification/preserved-output.md)**
+5. **[确定内容](../specification/preserved.md)**
    控制内容保留和转换
 
 ### 路径2：从示例中学习

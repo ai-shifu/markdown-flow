@@ -130,7 +130,7 @@ nav:
     - How It Works: specification/how-it-works.md
     - Variables: specification/variables.md
     - Interaction: specification/interaction.md
-    - Preserved Output: specification/preserved-output.md
+    - Preserved Output: specification/preserved.md
   - SDKs:
     - Overview: sdks/index.md
     - JavaScript:

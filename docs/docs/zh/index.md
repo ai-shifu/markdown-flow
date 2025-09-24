@@ -70,7 +70,7 @@ MarkdownFlow 为标准 Markdown 添加了三个新的语法元素：
 ===npm install markdown-flow===
 ```
 
-**了解更多：** [确定内容规范](specification/preserved-output.md)
+**了解更多：** [确定内容规范](specification/preserved.md)
 
 ## 工作原理（简化版）
 

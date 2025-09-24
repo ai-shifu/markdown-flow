@@ -71,7 +71,7 @@ Provide installation instructions, preserving the exact command:
 ===npm install markdown-flow===
 ```
 
-**Learn more:** [Preserved Output Specification](specification/preserved-output.md)
+**Learn more:** [Preserved Output Specification](specification/preserved.md)
 
 ## How It Works (Simple Version)
 
