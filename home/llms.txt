@@ -9,12 +9,26 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 1. **Variables**: `{{variable_name}}` - Dynamic content placeholders replaced with actual values
    Example: `Generate a welcome for {{user_name}} mentioning {{balance}}`
 
-2. **Interactive Elements**: `?[%{{variable}}Option1|Option2|Option3]` - Buttons for user choices
-   Example: `?[%{{level}}Beginner|Intermediate|Expert]`
-   Input fields: `?[%{{name}}...Enter your name]` - Text input with placeholder
+2. **Interactive Elements**: Create buttons, multi-select options, and input fields for user interaction
+   - Single selection (buttons): `?[%{{variable}}Option1|Option2|Option3]` - User picks one
+     Example: `?[%{{level}}Beginner|Intermediate|Expert]` - Returns single value: "Beginner"
+   - Multiple selection (options): `?[%{{variable}}Option1||Option2||Option3]` - User picks multiple
+     Example: `?[%{{skills}}Python||JavaScript||Go||Rust]` - Returns comma-separated: "Python, JavaScript, Go"
+   - Text input: `?[%{{name}}...Enter your name]` - Free text entry with placeholder
+   - Combined: `?[%{{color}}Red|Blue|Green|...Other color]` - Preset choices + custom input
 
-3. **Preserved Content**: `===content===` - Text that maintains exact meaning during AI processing
-   Example: `Remember our motto: ===Innovation Through Simplicity===`
+3. **Preserved Content**: Text that maintains exact meaning during AI processing
+   - Inline/single-line: `===content===` - Preserve words, phrases, or single lines
+     Example: `Remember our motto: ===Innovation Through Simplicity===`
+   - Multi-line block: Fence with `!===` markers for preserving multiple lines
+     Example:
+     ```
+     !===
+     "The only way to do great work is to love what you do.
+     If you haven't found it yet, keep looking."
+     - Steve Jobs
+     !===
+     ```
 
 ## Core Documentation
 
