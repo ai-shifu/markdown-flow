@@ -11,7 +11,7 @@ const translations = {
         },
         hero: {
             title: 'Write Once, Deliver Personally',
-            description: 'Know <a href="https://commonmark.org/help/" target="_blank" rel="noopener noreferrer">Markdown</a>? You\'re ready. Just write Markdown, and AI makes it personal, interactive, and beautiful for every reader.'
+            description: 'Know <a href="https://commonmark.org/help/" target="_blank" rel="noopener">Markdown</a>? You\'re ready. Just write Markdown, and AI makes it personal, interactive, and beautiful for every reader.'
         },
         features: [
             {
@@ -110,7 +110,7 @@ const translations = {
         },
         hero: {
             title: '一次创作，千人千面',
-            description: '会用 <a href="https://baike.baidu.com/item/markdown/3245829#3" target="_blank" rel="noopener noreferrer">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者演绎出个性化、交互式和精美的内容。'
+            description: '会用 <a href="https://baike.baidu.com/item/markdown/3245829#3" target="_blank" rel="noopener">Markdown</a>？那你就准备好了。只需编写 Markdown，AI 就能为每位读者演绎出个性化、交互式和精美的内容。'
         },
         features: [
             {
