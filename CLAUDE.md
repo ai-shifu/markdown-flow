@@ -1,6 +1,8 @@
-# CLAUDE.md
+# MarkdownFlow Agent Guide
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+_This document is shared by `CLAUDE.md`, `AGENTS.md`, and `GEMINI.md`._
+
+Follow these notes alongside any agent-specific instructions provided by the hosting platform.
 
 ## Project Overview
 
@@ -10,7 +12,7 @@ MarkdownFlow is a Markdown format extension that enables AI-powered, personalize
 
 This is the main documentation and landing page repository for the MarkdownFlow ecosystem. It contains:
 
-- `index.html` - Homepage with project overview and examples
+- `home/index.html` - Homepage with project overview and examples
 - `docs/` - MkDocs-based documentation site
 - `.github/workflows/` - GitHub Actions for automated deployment
 
@@ -52,7 +54,7 @@ pre-commit run --all-files
 
 The site automatically deploys to GitHub Pages when pushing to main branch via `.github/workflows/deploy-gh-pages.yml`. The workflow:
 
-1. Copies `index.html` and `logo.png` to `_site/`
+1. Copies the static homepage from `home/` and shared assets into `_site/`
 2. Builds MkDocs documentation to `_site/docs/`
 3. Deploys to GitHub Pages
 
@@ -77,7 +79,7 @@ The core MarkdownFlow syntax extensions:
 
 When updating documentation:
 
-- Main documentation entry point is `docs/docs/index.md`
+- Main documentation entry point is `docs/docs/en/index.md`
 - Use formal, official tone for documentation
 - **ALL examples must follow MarkdownFlow core principle**: Show AI instructions, not user content
 - Examples should demonstrate practical use cases with proper "writing for AI" approach
@@ -148,6 +150,8 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 | Block | 块 | |
 | Content Block | 内容块 | |
 | Interaction Block | 交互块 | |
+| Interaction | 交互 | |
+| Preserved Content |  确定内容 | |
 
 ### Technical Components
 

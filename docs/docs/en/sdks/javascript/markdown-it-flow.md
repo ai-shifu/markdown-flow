@@ -1,6 +1,6 @@
 # markdown-it-flow
 
-A markdown-it plugin to parse and render MarkdownFlow syntax. Adds MarkdownFlow capabilities to any markdown-it powered application, including Vue.js and vanilla JavaScript projects.
+A markdown-it plugin to parse and render MarkdownFlow syntax. The project is currently under active development and will add MarkdownFlow capabilities to markdown-it powered applications, including Vue.js and vanilla JavaScript projects.
 
 ## Overview
 
@@ -8,11 +8,7 @@ The markdown-it plugin provides MarkdownFlow syntax parsing for applications usi
 
 ## Installation
 
-```bash
-npm install markdown-it-flow
-# or
-yarn add markdown-it-flow
-```
+The package has not been published yet. Watch the [GitHub repository](https://github.com/ai-shifu/markdown-it-flow) for release updates.
 
 ## Documentation
 
@@ -31,6 +27,6 @@ The repository includes:
 ## Repository
 
 - **GitHub**: [ai-shifu/markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow)
-- **Package**: [markdown-it-flow on npm](https://www.npmjs.com/package/markdown-it-flow)
+- **Package**: Coming soon on npm
 - **License**: MIT
 - **Status**: Coming soon

@@ -25,11 +25,11 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 
 ## Specification
 
-- [Overview](https://markdownflow.ai/docs/en/specification/overview/): Complete MarkdownFlow syntax specification
-- [Variables](https://markdownflow.ai/docs/en/specification/variables/): Dynamic content placeholders and variable system
-- [Interactive Elements](https://markdownflow.ai/docs/en/specification/button-input/): Buttons and input fields for user interaction
-- [Preserved Content](https://markdownflow.ai/docs/en/specification/preserved-output/): Content that maintains exact meaning during AI processing
-- [How It Works](https://markdownflow.ai/docs/en/specification/how-it-works/): Technical architecture and processing pipeline
+- [Overview](https://markdownflow.ai/docs/specification/overview/): Complete MarkdownFlow syntax specification
+- [Variables](https://markdownflow.ai/docs/specification/variables/): Dynamic content placeholders and variable system
+- [Interactive Elements](https://markdownflow.ai/docs/specification/interaction/): Buttons and input fields for user interaction
+- [Preserved Content](https://markdownflow.ai/docs/specification/preserved-output/): Content that maintains exact meaning during AI processing
+- [How It Works](https://markdownflow.ai/docs/specification/how-it-works/): Technical architecture and processing pipeline
 
 ## SDKs & Libraries
 
@@ -42,20 +42,18 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 ## Examples & Playground
 
 - [Interactive Playground](https://play.mdflow.run): Try MarkdownFlow with live examples
-- [Example Documents](https://github.com/ai-shifu/markdown-flow/tree/main/examples): Sample MarkdownFlow documents
-- [Demo Applications](https://markdownflow.ai/demos): Real-world implementations
+- [Template Patterns](https://markdownflow.ai/docs/getting-started/quick-start/): Hands-on walkthroughs of core patterns
+- [Concept Deep Dive](https://markdownflow.ai/docs/getting-started/concepts/): Guidance on writing instructions for AI
 
 ## Source Code
 
 - [Main Repository](https://github.com/ai-shifu/markdown-flow): Documentation, website, and development platform
 - [GitHub Organization](https://github.com/ai-shifu): All MarkdownFlow projects and libraries
-- [Contributing Guide](https://github.com/ai-shifu/markdown-flow/blob/main/CONTRIBUTING.md): How to contribute to the project
+- [Issue Tracker](https://github.com/ai-shifu/markdown-flow/issues): Report bugs or request features
 
 ## Optional
 
 - [Chinese Documentation](https://markdownflow.ai/docs/zh/): 中文文档
 - [Chinese Homepage](https://markdownflow.ai/zh/): 中文主页
-- [API Reference](https://markdownflow.ai/docs/en/api/): Detailed API documentation
-- [Blog Posts](https://markdownflow.ai/blog): Articles and tutorials about MarkdownFlow
-- [Community Forum](https://github.com/ai-shifu/markdown-flow/discussions): Ask questions and share ideas
 - [Release Notes](https://github.com/ai-shifu/markdown-flow/releases): Version history and updates
+- [Community Discussions](https://github.com/ai-shifu/markdown-flow/discussions): Ask questions and share ideas
