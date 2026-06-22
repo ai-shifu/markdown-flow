@@ -115,7 +115,7 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 ### Core Brand Terms
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | MarkdownFlow | MarkdownFlow | Keep English brand name |
 | MDFlow | MDFlow | Keep English abbreviation |
 | MDF | MDF | Keep English abbreviation |
@@ -123,7 +123,7 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 ### Core Concepts
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | Write Once, Deliver Personally | 一次创作，千人千面 | Project tagline |
 | Write prompts for AI, not content for humans | 为 AI 写提示词，而非为人类写内容 | Core principle |
 | AI-powered personalized documents | AI 驱动的个性化文档 | |
@@ -132,18 +132,18 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 ### Syntax Elements
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | Variables | 变量 | `{{variable}}` |
 | Interactive Elements | 交互元素 | |
-| Button| 按钮| `?[%{{var}}Option]` |
-| Input | 输入框| `?[%{{var}}...input hint]` |
+| Button | 按钮 | `?[%{{var}}Option]` |
+| Input | 输入框 | `?[%{{var}}...input hint]` |
 | Preserved Content | 确定内容 | `===content===` |
-| Preserved Output | 确定输出| Same as above |
+| Preserved Output | 确定输出 | Same as above |
 
 ### Document Structure
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | Content Prompt | 内容提示词 | Document body |
 | Document Prompt | 文档提示词 | Global settings |
 | Template | 模板 | |
@@ -151,12 +151,12 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 | Content Block | 内容块 | |
 | Interaction Block | 交互块 | |
 | Interaction | 交互 | |
-| Preserved Content |  确定内容 | |
+| Preserved Content | 确定内容 | |
 
 ### Technical Components
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | MarkdownFlow Agent | MarkdownFlow 智能体 | Processing engine |
 | Frontend | 前端 | |
 | Backend | 后端 | |
@@ -168,7 +168,7 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 ### Operations
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | Parse | 解析 | |
 | Render | 渲染 | |
 | Generate | 生成 | |
@@ -181,7 +181,7 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 ### Documentation Sections
 
 | English | Chinese | Notes |
-|---------|---------|-------|
+| --------- | --------- | ------- |
 | Getting Started | 快速开始 | |
 | Introduction | 简介 | |
 | Core Concepts | 核心概念 | |

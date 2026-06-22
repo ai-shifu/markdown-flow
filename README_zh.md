@@ -14,7 +14,7 @@ MarkdownFlow 通过 AI 扩展了标准 Markdown，用于创建个性化的交互
 ## 🚀 快速链接
 
 | 资源 | 描述 | 链接 |
-|------|------|------|
+| ------ | ------ | ------ |
 | **🌐 官方网站** | 项目主页和概览 | [markdownflow.ai](https://markdownflow.ai) |
 | **🎮 体验台** | 交互式体验 MarkdownFlow | [play.mdflow.run](https://play.mdflow.run) |
 | **📚 文档** | 完整指南和参考 | [markdownflow.ai/docs](https://markdownflow.ai/docs) |
@@ -24,7 +24,7 @@ MarkdownFlow 通过 AI 扩展了标准 Markdown，用于创建个性化的交互
 ### 前端库
 
 | 项目 | 描述 | 语言 | 许可证 |
-|------|------|------|--------|
+| ------ | ------ | ------ | -------- |
 | [**markdown-flow-ui**](https://github.com/ai-shifu/markdown-flow-ui) | 具有内置功能的完整 UI 组件。为交互式 markdown 文档提供即用的 React 组件。 | React/TypeScript | MIT |
 | [**remark-flow**](https://github.com/ai-shifu/remark-flow) | MarkdownFlow 语法的 React-markdown 插件。通过变量处理和 AI 集成扩展 react-markdown。 | TypeScript | MIT |
 | [**markdown-it-flow**](https://github.com/ai-shifu/markdown-it-flow) | MarkdownFlow 语法的 Markdown-it 插件。为任何基于 markdown-it 的应用程序添加 MarkdownFlow 功能。 | TypeScript | MIT |

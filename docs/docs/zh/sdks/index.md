@@ -12,7 +12,7 @@ MarkdownFlow 为主要编程语言和框架提供 SDK。每个 SDK 都作为独�
 ## 可用的 SDK
 
 | SDK | 语言 | 用途 | 仓库 | 安装 |
-|-----|------|------|------|------|
+| ----- | ------ | ------ | ------ | ------ |
 | [markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui) | React/TypeScript | 完整的 UI 组件 | [GitHub →](https://github.com/ai-shifu/markdown-flow-ui) | `npm install markdown-flow-ui` |
 | [remark-flow](https://github.com/ai-shifu/remark-flow) | TypeScript | React-markdown 插件 | [GitHub →](https://github.com/ai-shifu/remark-flow) | `npm install remark-flow` |
 | [markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow) | TypeScript | 解析器插件 | [GitHub →](https://github.com/ai-shifu/markdown-it-flow) | `npm install markdown-it-flow` |

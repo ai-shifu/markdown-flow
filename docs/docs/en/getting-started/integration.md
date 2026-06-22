@@ -7,7 +7,7 @@ Learn how to integrate MarkdownFlow into your existing applications. Choose the 
 All MarkdownFlow functionality is available through our open source SDKs and libraries. Each project maintains its own comprehensive documentation with examples, tutorials, and API references.
 
 | Project | Description | Repository | Installation |
-|---------|-------------|------------|--------------|
+| --------- | ------------- | ------------ | -------------- |
 | **[markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui)** | A React component library to render interactive MarkdownFlow documents with built-in UI elements | GitHub | `npm install markdown-flow-ui` |
 | **[remark-flow](https://github.com/ai-shifu/remark-flow)** | A remark plugin to parse and process MarkdownFlow syntax in React applications | GitHub | `npm install remark-flow` |
 | **[markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow)** | A markdown-it plugin to parse and render MarkdownFlow syntax (Coming soon) | GitHub | Coming soon |
