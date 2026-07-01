@@ -8,7 +8,7 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 
 - **📝 Fully Compatible with Markdown** - All standard Markdown syntax works unchanged
 - **🤖 AI-Powered Personalization** - Write prompts for AI, not content for humans
-- **🎯 Three Simple Extensions** - Variables, interactive elements, and preserved content
+- **🎯 Simple Extensions** - Interactive elements, preserved content, and advanced variables
 - **🌍 Multi-Language Support** - Built with international audiences in mind
 
 ## 🚀 Quick Links
@@ -44,36 +44,44 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 
 ## 📖 Quick Start
 
-MarkdownFlow adds three simple extensions to standard Markdown:
+MarkdownFlow adds two everyday extensions to standard Markdown, plus variables for advanced shared context:
 
-### 1. Variables: `{{variable}}`
+### 1. Interactive Elements: `?[Option1 | Option2]`
 
-Dynamic content placeholders that get replaced with actual values.
-
-```markdown
-Generate a welcoming message for {{user_name}} that mentions their
-current account balance of {{balance}} in a friendly tone.
-```
-
-### 2. Interactive Elements: `?[%{{variable}} Option1 | Option2]`
-
-Buttons and input fields that collect user choices.
+Buttons and input fields that collect user choices. A single MarkdownFlow document usually does not need variables.
 
 ```markdown
 Ask the user about their experience level:
-?[%{{level}} Beginner | Intermediate | Expert]
+?[Beginner | Intermediate | Expert]
+
+Generate a recommendation based on the experience level the user just selected.
 
 Collect the user's name:
-?[%{{name}}...Enter your name here]
+?[...Enter your name here]
 ```
 
-### 3. Preserved Content: `===content===`
+### 2. Preserved Content: `===content===`
 
 Text that maintains its exact meaning during AI processing.
 
 ```markdown
 Introduce our company values, preserving the exact motto:
 ===Innovation Through Simplicity===
+```
+
+### 3. Variables: `{{variable}}`
+
+Advanced placeholders for shared context, especially when a value must be supplied by the platform or shared across different MarkdownFlow documents.
+
+```markdown
+Generate a welcoming message for {{user_name}} that mentions their
+current account balance of {{balance}} in a friendly tone.
+```
+
+For interaction controls, add `%{{variable}}` only when the answer needs cross-document sharing:
+
+```markdown
+?[%{{shared_level}} Beginner | Intermediate | Expert]
 ```
 
 ## 🌟 Use Cases

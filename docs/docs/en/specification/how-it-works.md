@@ -30,7 +30,7 @@ Python is a high-level, interpreted programming language known for its simplicit
 **MarkdownFlow (Writing for AI):**
 
 ```markdown
-Explain Python to a {{level}} programmer who is interested in {{use_case}}, emphasizing aspects most relevant to their background.
+Explain Python to the reader using their selected experience level and use case, emphasizing aspects most relevant to their background.
 ```
 
 The MarkdownFlow version doesn't tell readers about Python directly. Instead, it instructs the AI how to generate personalized explanations. A beginner interested in web development might receive:
@@ -62,16 +62,16 @@ While optional, document prompts are highly recommended as they provide global c
 - **Output Format**: Specify language, tone, and writing style
 - **Personalization Rules**: Define how content adapts to different user types
 - **Content Guidelines**: Set boundaries and requirements for generated content
-- **Global Variables**: Establish document-wide parameters
+- **Interaction Context**: Define how content responds to choices made in the document
 
 Example document prompt:
 
 ```markdown
-Language: Adapt to {{browser_language}}
+Audience: Adults learning a technical topic for the first time
 Tone: Professional but friendly
 Style: Clear and concise
-Personalization: Adjust complexity based on {{level}}
-Format: Use examples relevant to {{industry}}
+Personalization: Use the reader's latest interaction choice to decide which path to emphasize
+Format: Start with one example, then explain the concept
 Constraints: Keep explanations under 100 words unless detail is requested
 ```
 
@@ -82,7 +82,7 @@ Here's how MarkdownFlow transforms your source into the final output:
 ```mermaid
 flowchart LR
     A[Source<br>Document] --> B[Content<br>Blocking]
-    B --> C[Variable<br>Substitution]
+    B --> C[Context<br>Resolution]
     C --> D[LLM<br>Generating]
     D --> E{Interactive<br>Elements?}
     E -->|Yes| F[User<br>Input]
@@ -101,11 +101,11 @@ flowchart LR
 
 For better processing effectiveness, the MarkdownFlow Agent divides the content prompt into several blocks. The first block is processed first.
 
-### Step 2: Variable Substitution
+### Step 2: Context Resolution
 
-Variables in the current block are replaced with concrete values. Unassigned variables are replaced with "UNKNOWN".
+The MarkdownFlow Agent prepares the context for the current block. This includes recent interaction answers from the same document and, only when used, shared variables from the platform or other MarkdownFlow documents.
 
-For more details, see the [Variables](variables.md) section.
+If a block contains a variable, the variable is replaced with its concrete value. Unassigned variables are replaced with "UNKNOWN". For more details, see the [Variables](variables.md) section.
 
 ### Step 3: LLM Generating
 
@@ -113,7 +113,7 @@ The document prompt and the current content block are sent to the Large Language
 
 ### Step 4: Interactive Element Processing
 
-If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The input result is stored in variables.
+If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The answer becomes context for the following content in the same MarkdownFlow document. If the control uses `%{{variable}}`, the answer is also stored in that named variable for cross-document sharing.
 
 For more details, see the [Interaction](interaction.md) section.
 

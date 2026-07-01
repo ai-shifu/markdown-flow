@@ -2,22 +2,19 @@
 
 > MarkdownFlow extends standard Markdown with AI intelligence to create personalized, interactive documents. Instead of writing static content for readers, you write prompts for AI agents that transform your instructions into personalized content adapting to each user's choices, preferences, and context. Core principle: You write prompts for AI, not content for humans.
 
-MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, personalized, and interactive documents. With the tagline "Write Once, Deliver Personally" (一次创作，千人千面), it allows developers and content creators to build dynamic documents that adapt to each reader. The system is 100% compatible with standard Markdown while adding three simple extensions:
+MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, personalized, and interactive documents. With the tagline "Write Once, Deliver Personally" (一次创作，千人千面), it allows developers and content creators to build dynamic documents that adapt to each reader. The system is 100% compatible with standard Markdown while adding everyday interaction and preservation syntax plus advanced variables for shared context:
 
 ### Basic Syntax
 
-1. **Variables**: `{{variable_name}}` - Dynamic content placeholders replaced with actual values
-   Example: `Generate a welcome for {{user_name}} mentioning {{balance}}`
+1. **Interactive Elements**: Create buttons, multi-select options, and input fields for user interaction. Variables are not required for a single MarkdownFlow document.
+   - Single selection (buttons): `?[Option1|Option2|Option3]` - User picks one
+     Example: `?[Beginner|Intermediate|Expert]`, then the next prompt can refer to the selected level
+   - Multiple selection (options): `?[Option1||Option2||Option3]` - User picks multiple
+     Example: `?[Python||JavaScript||Go||Rust]`
+   - Text input: `?[...Enter your name]` - Free text entry with placeholder
+   - Combined: `?[Red|Blue|Green|...Other color]` - Preset choices + custom input
 
-2. **Interactive Elements**: Create buttons, multi-select options, and input fields for user interaction
-   - Single selection (buttons): `?[%{{variable}}Option1|Option2|Option3]` - User picks one
-     Example: `?[%{{level}}Beginner|Intermediate|Expert]` - Returns single value: "Beginner"
-   - Multiple selection (options): `?[%{{variable}}Option1||Option2||Option3]` - User picks multiple
-     Example: `?[%{{skills}}Python||JavaScript||Go||Rust]` - Returns comma-separated: "Python, JavaScript, Go"
-   - Text input: `?[%{{name}}...Enter your name]` - Free text entry with placeholder
-   - Combined: `?[%{{color}}Red|Blue|Green|...Other color]` - Preset choices + custom input
-
-3. **Preserved Content**: Text that maintains exact meaning during AI processing
+2. **Preserved Content**: Text that maintains exact meaning during AI processing
    - Inline/single-line: `===content===` - Preserve words, phrases, or single lines
      Example: `Remember our motto: ===Innovation Through Simplicity===`
    - Multi-line block: Fence with `!===` markers for preserving multiple lines
@@ -30,6 +27,10 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
      !===
      ```
 
+3. **Variables**: `{{variable_name}}` - Advanced shared-context placeholders replaced with actual values
+   Example: `Generate a welcome for {{user_name}} mentioning {{balance}}`
+   - For interaction controls, use `?[%{{shared_var}}Option1|Option2]` only when the answer must be stored for cross-document sharing
+
 ## Core Documentation
 
 - [Getting Started](https://markdownflow.ai/docs/en/): Introduction to MarkdownFlow concepts and quick start guide
@@ -40,8 +41,8 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 ## Specification
 
 - [Overview](https://markdownflow.ai/docs/specification/overview/): Complete MarkdownFlow syntax specification
-- [Variables](https://markdownflow.ai/docs/specification/variables/): Dynamic content placeholders and variable system
 - [Interactive Elements](https://markdownflow.ai/docs/specification/interaction/): Buttons and input fields for user interaction
+- [Variables](https://markdownflow.ai/docs/specification/variables/): Advanced shared-context placeholders and variable system
 - [Preserved Content](https://markdownflow.ai/docs/specification/preserved/): Content that maintains exact meaning during AI processing
 - [How It Works](https://markdownflow.ai/docs/specification/how-it-works/): Technical architecture and processing pipeline
 

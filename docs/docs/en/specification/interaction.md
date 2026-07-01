@@ -13,21 +13,23 @@ tags:
 
 MarkdownFlow provides a powerful yet simple syntax for creating interactive elements that collect user input. These interactions pause content delivery, wait for user response, and then continue with personalized content based on the input.
 
+For a single MarkdownFlow document, interaction controls do **not** need variables. Write the control, then refer to the user's answer naturally in the following prompt. Use variables only when an interaction answer must be shared across different MarkdownFlow documents.
+
 ## Complete Syntax
 
-The complete syntax for interactive elements is:
+The everyday syntax for interactive elements is:
 
 ```text
-?[%{{variable}} Button1//id1 | Button2//id2 | ...input hint]
+?[Button1//id1 | Button2//id2 | ...input hint]
 ```
 
 Or for options (multiple selection):
 
 ```text
-?[%{{variable}} Option1//id1 || Option2//id2 || ...input hint]
+?[Option1//id1 || Option2//id2 || ...input hint]
 ```
 
-**Every component is optional**, giving you flexibility to create exactly the interaction you need.
+**Every component is optional**, giving you flexibility to create exactly the interaction you need. The variable prefix `%{{variable}}` is an advanced optional component, not a requirement.
 
 ## Core Components
 
@@ -46,22 +48,29 @@ Buttons allow users to make a single choice from multiple options. They use a si
 ### Basic Syntax
 
 ```markdown
-?[%{{variable}} Button1 | Button2 | Button3]
+?[Button1 | Button2 | Button3]
 ```
 
-### Variable Storage with `%{{variable}}`
-
-The `%` symbol determines how variables behave:
-
-**With `%` - Write Mode (Store Input):**
+The following prompt can refer to the user's answer directly:
 
 ```markdown
-?[%{{choice}} Yes | No]
+Ask the user which learning path they want.
+?[Concepts | Examples | Integration]
+
+Recommend the next section based on the learning path the user just selected.
 ```
 
-When the user clicks "Yes", the value "Yes" is stored into `{{choice}}`.
+### Named Variable Storage with `%{{variable}}` (Advanced)
 
-**Without `%` - Read Mode (Use Variable Value):**
+Use `%{{variable}}` only when the answer must be stored for cross-document sharing. The `%` prefix writes the interaction result into that variable:
+
+```markdown
+?[%{{shared_choice}} Yes | No]
+```
+
+When the user clicks "Yes", the value "Yes" is stored into `{{shared_choice}}` and can be used by other MarkdownFlow documents that receive the same shared variable context.
+
+Without `%`, variables inside a control are read as normal placeholders:
 
 ```markdown
 ?[{{userName}}, click here to continue]
@@ -69,24 +78,16 @@ When the user clicks "Yes", the value "Yes" is stored into `{{choice}}`.
 
 If `{{userName}}` contains "Alice", the button displays: "Alice, click here to continue"
 
-**Without a variable:**
-
-```markdown
-?[ Continue ]
-```
-
-This creates a simple "Continue" button that just resumes content flow without storing any value.
-
 ### Button IDs with `//id`
 
-You can assign IDs to buttons to separate display text from stored values:
+You can assign IDs to buttons to separate display text from stable values:
 
 ```markdown
-?[%{{size}} Small//S | Medium//M | Large//L]
+?[Small//S | Medium//M | Large//L]
 ```
 
 - Display: "Small", "Medium", "Large"
-- Values stored: "S", "M", "L"
+- Stable values: "S", "M", "L"
 
 This is useful when you need:
 
@@ -101,21 +102,21 @@ Options allow users to select multiple items. They use double vertical bars (`||
 ### Basic Syntax
 
 ```markdown
-?[%{{variable}} Option1 || Option2 || Option3]
+?[Option1 || Option2 || Option3]
 ```
 
 ### Return Value Format
 
-Unlike buttons which return a single string, options return a **comma-separated string** of selected values:
+Unlike buttons which return a single value, options return a **comma-separated string** of selected values when a named variable is used:
 
-- Buttons: `{{color}} = "Red"`
-- Options: `{{skills}} = "Python, JavaScript, Go"`
+- Buttons: `{{shared_color}} = "Red"`
+- Options: `{{shared_skills}} = "Python, JavaScript, Go"`
 
 ### Variable and ID Usage
 
 Variables and IDs work the same as with buttons:
 
-- `%{{variable}}` stores the selections
+- `%{{variable}}` stores selections only when cross-document sharing is needed
 - `//id` separates display from value
 - Without `%`, uses variable value for display
 
@@ -126,12 +127,16 @@ Input fields allow users to enter custom text. They use `...` followed by a hint
 ### Basic Syntax
 
 ```markdown
-?[%{{variable}}...Enter text here]
+?[...Enter text here]
 ```
 
 ### Variable Usage
 
-Variables work the same as described above - use `%{{variable}}` to store the input.
+Variables work the same as described above. Use `%{{variable}}` only when the input must be shared beyond the current MarkdownFlow document:
+
+```markdown
+?[%{{shared_name}}...Enter your name]
+```
 
 ## Combining Elements
 
@@ -144,9 +149,9 @@ Example:
 ```markdown
 How should we address you?
 
-?[%{{title}} Mr. | Ms. | Dr. | Prof. | ...Other (please specify)]
+?[Mr. | Ms. | Dr. | Prof. | ...Other (please specify)]
 
-We'll address you as: {{title}}
+Use the user's chosen form of address in the next greeting.
 ```
 
 ### Input with Options
@@ -156,9 +161,9 @@ Example:
 ```markdown
 Select your skills or add new ones:
 
-?[%{{skills}} Python || JavaScript || Go || Rust || ...Add another skill]
+?[Python || JavaScript || Go || Rust || ...Add another skill]
 
-Your skillset includes: {{skills}}
+Summarize the user's skillset based on the selected options and any custom entry.
 ```
 
 ## Tips and Best Practices
@@ -183,4 +188,5 @@ The LLM may adapt button/option text and input hints based on context (translati
 2. **Use Options** when users can choose multiple items (skills, preferences)
 3. **Use Input** when you need custom text (names, feedback, quantities)
 4. **Use IDs** when you need consistent backend values across languages
-5. **Combine elements** to provide both convenience and flexibility
+5. **Use Variables** only when an answer must be shared across MarkdownFlow documents
+6. **Combine elements** to provide both convenience and flexibility

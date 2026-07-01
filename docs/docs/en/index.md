@@ -24,48 +24,39 @@ Instead of writing static content for readers, you write prompts for AI agents. 
 
 You can start with any existing Markdown document and gradually add MDFlow features as needed.
 
-## Three Simple Extensions
+## Everyday Syntax First
 
-MarkdownFlow adds three new syntax elements to standard Markdown:
+MarkdownFlow adds two everyday syntax elements to standard Markdown, plus variables for advanced shared context:
 
 !!! tip "Remember the Core Principle"
     All examples below show **AI instructions**, not direct user content. You write prompts for AI to generate personalized content.
 
-### 1. Variables
+### 1. Interactive Elements
 
-Dynamic content placeholders that get replaced with actual values.
-
-```markdown
-Generate a welcoming message for {{user_name}} that mentions their
-current account balance of {{balance}} in a friendly tone.
-```
-
-**Learn more:** [Variables Specification](specification/variables.md)
-
-### 2. Interactive Elements
-
-Buttons and input fields that collect user choices and store them in variables.
+Buttons and input fields that collect user choices. For a single MarkdownFlow document, you normally do not need variables; the user's response becomes context for the following content.
 
 ```markdown
-Ask the user about their experience level and store the response.
-?[%{{level}} Beginner | Intermediate | Expert]
+Ask the user about their experience level.
+?[Beginner | Intermediate | Expert]
+
+Generate a learning recommendation based on the experience level the user just selected.
 
 Ask the user about their habits. Can be single or multiple choice.
-?[%{{habits}} Movies || Sports || Reading || Traveling]
+?[Movies || Sports || Reading || Traveling]
 
 Collect the user's name in a friendly way.
-?[%{{name}}...Enter your name here]
+?[...Enter your name here]
 ```
 
 **Learn more:** [Interaction Specification](specification/interaction.md)
 
-### 3. Preserved Content
+### 2. Preserved Content
 
 Text that maintains its exact meaning and style during AI processing.
 
 ```markdown
 Introduce our company values, making sure to preserve the exact motto:
-===Amplifying humanity’s eternal values===
+===Amplifying humanity's eternal values===
 
 Provide installation instructions, preserving the exact command:
 ===npm install markdown-flow===
@@ -73,12 +64,29 @@ Provide installation instructions, preserving the exact command:
 
 **Learn more:** [Preserved Output Specification](specification/preserved.md)
 
+### 3. Variables
+
+Advanced placeholders for shared context. Use variables when a value must be supplied by the platform or shared across different MarkdownFlow documents.
+
+```markdown
+Generate a welcoming message for {{user_name}} that mentions their
+current account balance of {{balance}} in a friendly tone.
+```
+
+For interaction controls, add `%{{variable}}` only when the answer needs to be stored for cross-document use:
+
+```markdown
+?[%{{shared_level}} Beginner | Intermediate | Expert]
+```
+
+**Learn more:** [Variables Specification](specification/variables.md)
+
 ## How It Works (Simple Version)
 
 A **MarkdownFlow Agent** processes your document by:
 
 1. Reading your MDFlow document (AI instructions)
-2. Incorporating reader's personalized information through variables
+2. Incorporating reader responses from interaction controls
 3. Calling a Large Language Model with these combined instructions
 4. Generating personalized content unique to each reader
 

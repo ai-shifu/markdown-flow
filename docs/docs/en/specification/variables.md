@@ -9,7 +9,9 @@ tags:
 
 ## Using Variables in MarkdownFlow
 
-Variables are the foundation of dynamic content in MarkdownFlow. They act as placeholders that get replaced with actual values during processing, enabling personalized and context-aware documents.
+Variables are an advanced way to name shared context in MarkdownFlow. They act as placeholders that get replaced with actual values during processing.
+
+For most single-document MarkdownFlow experiences, you do **not** need variables in interaction controls. Write `?[Option A | Option B]` or `?[...input hint]`, then refer to the user's answer naturally in the following prompt. Use variables when a value must come from the platform or be shared across different MarkdownFlow documents.
 
 ## Basic Syntax
 
@@ -19,7 +21,7 @@ Variables use double curly braces:
 {{variable_name}}
 ```
 
-**Simple example:**
+**Simple shared-context example:**
 
 ```markdown
 Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
@@ -72,18 +74,20 @@ Variable names are **case-sensitive** and must follow these rules:
 
 ## How Variables Work
 
-### 1. Declaration and Assignment
+### 1. Sources
 
 Variables get their values from multiple sources:
 
-**User Input:**
+**Named interaction input for cross-document sharing:**
 
 ```markdown
-Ask the user for their name politely.
-?[%{{name}} ...Enter your name]
+Ask the user for a profile name that should be available to later MarkdownFlow documents.
+?[%{{shared_profile_name}} ...Enter your name]
 
-Generate a warm, personalized greeting for {{name}}.
+In a different MarkdownFlow document, generate a warm greeting for {{shared_profile_name}}.
 ```
+
+Do not add `%{{variable}}` to ordinary single-document interactions. The named variable form is for shared state.
 
 **System Predefined Variables:**
 
@@ -120,11 +124,11 @@ Before: "Create content for {{user_type}} interested in {{topic}}."
 After: "Create content for UNKNOWN interested in UNKNOWN."
 ```
 
-**Important:** Always assign values to variables before using them, typically through user input or system defaults, to avoid "UNKNOWN" appearing in your prompts. When the LLM receives "UNKNOWN" in prompts, its output may be random and unpredictable, failing to meet your expectations.
+**Important:** Always assign values to variables before using them, typically through shared interaction state or system defaults, to avoid "UNKNOWN" appearing in your prompts. When the LLM receives "UNKNOWN" in prompts, its output may be random and unpredictable, failing to meet your expectations.
 
 ## Variables in Different Contexts
 
-Variables work everywhere in your document:
+When you use shared variables, they can appear anywhere in your document:
 
 ### In Text
 
