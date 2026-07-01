@@ -17,7 +17,7 @@ It was created by Guido van Rossum in 1991.
 **MarkdownFlow:**
 
 ```markdown
-Explain Python to a {{level}} programmer interested in {{use_case}},
+Explain Python to the reader using their selected experience level and use case,
 emphasizing aspects most relevant to their background.
 ```
 
@@ -32,9 +32,9 @@ Every MarkdownFlow document has two parts:
 **Document Prompt** - Optional global settings that control how the entire document is processed:
 
 ```markdown
-Language: Adapt to {{browser_language}}
+Audience: Curious beginners
 Tone: Professional but friendly
-Style: Clear and concise
+Style: Use one concrete example before any abstraction
 ```
 
 ## What's Next?

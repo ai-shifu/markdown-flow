@@ -41,15 +41,13 @@ Therefore, you can:
 When you need personalization or interactivity, simply add MarkdownFlow's extended syntax:
 
 ```markdown
-Say hello to {{user_name}}!
+Greet the user warmly.
 
 Ask about user's **experience level** on Markdown with three options: beginner, intermediate, and expert.
 
-?[%{{level}} Beginner | Intermediate | Expert]
+?[Beginner | Intermediate | Expert]
 
-The user's experience level is {{level}}.
-
-Based on the level, recommend resources for further learning:
+Based on the experience level the user just selected, recommend resources for further learning:
 
 - If beginner: "Markdown for Dummies"
 - If intermediate: "Mastering Markdown"
@@ -79,6 +77,6 @@ Then, three buttons appear, and the user selects "Expert". Output continues:
 > - Writing **documentation-as-code** (combining Markdown with static site generators like MkDocs or Jekyll).
 >   But honestly? You’ve got this. Go build something cool. 🚀
 
-The above example uses MarkdownFlow's [Variable](variables.md) and [Interaction](interaction.md) features.
+The above example uses MarkdownFlow's [Interaction](interaction.md) feature without variables. Variables are available for [shared context](variables.md) when a value must be provided by the platform or shared across different MarkdownFlow documents.
 
 If you want to know how the magic happens, check out the [How It Works](how-it-works.md) section.

@@ -41,15 +41,13 @@ MarkdownFlow 是 Markdown 的自然扩展，不是替代品。就像 GitHub Flav
 当您需要个性化或交互性时，只需添加 MarkdownFlow 的扩展语法：
 
 ```markdown
-向 {{user_name}} 问好！
+热情地问候用户。
 
 询问用户关于 Markdown 的**经验水平**，提供三个选项：初学者、中级、专家。
 
-?[%{{level}} 初学者 | 中级 | 专家]
+?[初学者 | 中级 | 专家]
 
-用户的经验水平是 {{level}}。
-
-根据水平推荐进一步学习的资源：
+根据用户刚才选择的经验水平，推荐进一步学习的资源：
 
 - 如果是初学者："Markdown 入门"
 - 如果是中级："精通 Markdown"
@@ -79,6 +77,6 @@ MarkdownFlow 是 Markdown 的自然扩展，不是替代品。就像 GitHub Flav
 > - 编写**文档即代码**（将 Markdown 与静态站点生成器如 MkDocs 或 Jekyll 结合）。
 >   但说实话？你已经掌握了。去构建一些很棒的东西吧。🚀
 
-上面的示例使用了 MarkdownFlow 的[变量](variables.md)和[交互](interaction.md)功能。
+上面的示例使用了 MarkdownFlow 的[交互](interaction.md)功能，不需要变量。当某个值由平台提供，或需要跨不同 MarkdownFlow 文档共享时，可以使用[变量](variables.md)。
 
 如果您想知道魔法是如何发生的，请查看[工作原理](how-it-works.md)部分。

@@ -16,14 +16,14 @@ Master every detail of MDFlow syntax and capabilities.
 2. **[How It Works](../specification/how-it-works.md)**  
    Learn the technical processing workflow
 
-3. **[Variables](../specification/variables.md)**  
-   Master variable naming, assignment, and usage patterns
+3. **[Interaction](../specification/interaction.md)**
+   Explore buttons, options, and input without needing variables
 
-4. **[Interaction](../specification/interaction.md)**
-   Explore all interactive element options
-
-5. **[Preserved Output](../specification/preserved.md)**
+4. **[Preserved Output](../specification/preserved.md)**
    Control content preservation and translation
+
+5. **[Variables](../specification/variables.md)**
+   Learn advanced shared-context patterns for cross-document state
 
 ### Path 2: Learn from Examples
 
@@ -63,33 +63,33 @@ Jump straight into development with your preferred technology.
 
 ```markdown
 # Version 1: Basic
-Welcome {{name}}!
+Generate a friendly welcome.
 
 # Version 2: Add interaction
 Welcome! What's your name?
-?[%{{name}}...Enter name]
-Nice to meet you, {{name}}!
+?[...Enter name]
+Generate a greeting using the name the user entered.
 
 # Version 3: Add personalization
 Welcome! What's your name?
-?[%{{name}}...Enter name]
+?[...Enter name]
 
 What brings you here?
-?[%{{goal}}Learning|Building|Exploring]
+?[Learning|Building|Exploring]
 
-Generate a warm welcome for {{name}} who is {{goal}}.
+Generate a warm welcome using the user's name and selected goal.
 ```
 
 #### 2. Be Specific with AI Instructions
 
 ```markdown
 # Too vague ❌
-Tell the user about {{topic}}.
+Tell the user about the selected topic.
 
 # Clear and specific ✅
-Explain {{topic}} to a {{level}} user in exactly 3 paragraphs:
+Explain the topic to the user's chosen experience level in exactly 3 paragraphs:
 1. Core concept (50 words)
-2. Practical example from {{industry}} (75 words)
+2. Practical example from the user's selected industry (75 words)
 3. Action they can take today (50 words)
 ```
 
@@ -116,19 +116,19 @@ Always consider:
 #### Progressive Disclosure
 
 ```markdown
-Show basic info about {{topic}}.
+Show basic info about the selected topic.
 
 Want more details?
-?[%{{more}}Yes, tell me more|No, that's enough]
+?[Yes, tell me more|No, that's enough]
 
-If {{more}} is "Yes": provide in-depth explanation
-If {{more}} is "No": summarize and conclude
+If the user chose "Yes": provide in-depth explanation
+If the user chose "No": summarize and conclude
 ```
 
 #### Contextual Adaptation
 
 ```markdown
-Explain {{concept}} using analogies from {{user_background}}:
+Explain the selected concept using analogies from the reader's background:
 - If tech: use programming examples
 - If business: use market scenarios
 - If creative: use artistic metaphors
@@ -138,7 +138,7 @@ Explain {{concept}} using analogies from {{user_background}}:
 
 ```markdown
 Was this helpful?
-?[%{{feedback}}Very helpful|Somewhat helpful|Not helpful]
+?[Very helpful|Somewhat helpful|Not helpful]
 
 If "Not helpful": ask what they need clarification on
 If "Somewhat helpful": offer additional resources
@@ -166,22 +166,23 @@ templates/
 <!--
   Template: User Onboarding
   Version: 1.2.0
-  Variables: name, role, experience
+  Inputs: name, role, experience
+  Shared variables: none
   Last Updated: 2024-03-15
 -->
 
 # Content starts here...
 ```
 
-### 3. Variable Documentation
+### 3. Context Documentation
 
-Keep track of your variables:
+Keep track of the interaction answers and shared variables your template expects:
 
 ```markdown
-<!-- Variables Used:
-  {{user_name}} - User's display name
-  {{user_role}} - Selected role (student/teacher/admin)
-  {{course_id}} - Current course identifier
+<!-- Context Used:
+  Interaction: user's display name
+  Interaction: selected role (student/teacher/admin)
+  Shared variable: {{course_id}} - Current course identifier from the platform
 -->
 ```
 
@@ -267,24 +268,25 @@ Track how users interact with your MDFlow content:
 ### Cheat Sheet
 
 ```markdown
-# Variables
-{{variable_name}}                          # Use variable
-?[%{{var}}...]                            # Store input in variable
-
 # Buttons
 ?[Option1|Option2]                        # Simple buttons
-?[%{{var}}Option1|Option2]                # Store selection
 ?[Button Text//value]                     # Different display/value
 
 # Input
 ?[...Enter text]                          # Text input
-?[%{{var}}...Enter text]                  # Store input text
+
+# Options
+?[Option1||Option2]                       # Multiple selection
 
 # Preserved Content
 ===Exact text===                          # Preserve formatting/meaning
 
 # Combined
-?[%{{choice}}Yes|No|...Other]            # Buttons + input
+?[Yes|No|...Other]                       # Buttons + input
+
+# Advanced Variables
+{{variable_name}}                         # Use shared variable
+?[%{{shared_var}}Option1|Option2]         # Store answer for cross-document sharing
 ```
 
 ## 🎓 Final Tips

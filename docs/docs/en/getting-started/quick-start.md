@@ -34,9 +34,9 @@ Let's make it adapt to different visitors:
 ```markdown
 Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
+?[Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-Generate Alex Chen's introduction tailored for {{visitor_type}}.
+Generate Alex Chen's introduction tailored for the visitor type the user just selected.
 
 Include these facts:
 - Works in technology  
@@ -45,7 +45,7 @@ Include these facts:
 - Enjoys hiking and photography
 - Always learning new technologies
 
-Adapt the tone and emphasis for {{visitor_type}}.
+Adapt the tone and emphasis for the selected visitor type.
 ```
 
 **🚀 Test this in the Playground!** Try different visitor types - see how the same facts create completely different introductions.
@@ -57,9 +57,9 @@ Make your instructions more specific to get better, more consistent results:
 ```markdown
 Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
+?[Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-Generate Alex Chen's introduction tailored for {{visitor_type}}:
+Generate Alex Chen's introduction tailored for the visitor type the user just selected:
 
 - For potential clients: emphasize reliability, successful projects, and problem-solving skills
 - For recruiters: highlight technical skills, career achievements, and professional growth  
@@ -85,9 +85,9 @@ AI sometimes invents information when it doesn't have enough details. Let's fix 
 ```markdown
 Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
+?[Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-Say hi to the {{visitor_type}}, then introduce yourself. You must tailor your personal information for {{visitor_type}} ONLY. Follow these rules:
+Say hi to the selected visitor type, then introduce yourself. You must tailor your personal information for that visitor type ONLY. Follow these rules:
 
 - For potential clients: emphasize reliability, successful projects, and problem-solving skills
 - For recruiters: highlight technical skills, career achievements, and professional growth  
@@ -121,7 +121,7 @@ So far we've been writing **Content Prompts**. If you tested in the Playground, 
 
 ```markdown
 You are Alex Chen. Your task:
-- Write a natural, authentic self-introduction directly addressing {{visitor_type}}.
+- Write a natural, authentic self-introduction directly addressing the visitor type selected in the interaction.
 - Speak in first person using "I" and "my".
 - The introduction should be warm, genuine, and ready to display on your personal homepage without any editing.
 - Keep the tone conversational and personable, as if you're actually meeting this person.
@@ -133,9 +133,9 @@ You are Alex Chen. Your task:
 ```markdown
 Ask the visitor who they are. Client, recruiter, colleague, friend, or potential date?
 
-?[%{{visitor_type}}Potential Client|Recruiter|Colleague|Friend|Potential Date]
+?[Potential Client|Recruiter|Colleague|Friend|Potential Date]
 
-Say hi to the {{visitor_type}}, then introduce yourself. You must tailor your personal information for {{visitor_type}} ONLY. Follow these rules:
+Say hi to the selected visitor type, then introduce yourself. You must tailor your personal information for that visitor type ONLY. Follow these rules:
 
 - For potential clients: emphasize reliability, successful projects, and problem-solving skills
 - For recruiters: highlight technical skills, career achievements, and professional growth  

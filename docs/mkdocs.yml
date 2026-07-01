@@ -128,8 +128,8 @@ nav:
   - Specification:
     - Overview: specification/overview.md
     - How It Works: specification/how-it-works.md
-    - Variables: specification/variables.md
     - Interaction: specification/interaction.md
+    - Variables: specification/variables.md
     - Preserved Output: specification/preserved.md
   - SDKs:
     - Overview: sdks/index.md
