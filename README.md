@@ -14,7 +14,7 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 ## 🚀 Quick Links
 
 | Resource | Description | Link |
-|----------|-------------|------|
+| ---------- | ------------- | ------ |
 | **🌐 Official Website** | Project homepage and overview | [markdownflow.ai](https://markdownflow.ai) |
 | **🎮 Playground** | Try MarkdownFlow interactively | [play.mdflow.run](https://play.mdflow.run) |
 | **📚 Documentation** | Complete guides and references | [markdownflow.ai/docs](https://markdownflow.ai/docs) |
@@ -24,7 +24,7 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 ### Frontend Libraries
 
 | Project | Description | Language | License |
-|---------|-------------|----------|---------|
+| --------- | ------------- | ---------- | --------- |
 | [**markdown-flow-ui**](https://github.com/ai-shifu/markdown-flow-ui) | Complete UI components with built-in functionality. Ready-to-use React components for interactive markdown documents. | React/TypeScript | MIT |
 | [**remark-flow**](https://github.com/ai-shifu/remark-flow) | React-markdown plugin for MarkdownFlow syntax. Extends react-markdown with variable processing and AI integration. | TypeScript | MIT |
 | [**markdown-it-flow**](https://github.com/ai-shifu/markdown-it-flow) | Markdown-it plugin for MarkdownFlow syntax. Adds MarkdownFlow capabilities to any markdown-it powered application. | TypeScript | MIT |

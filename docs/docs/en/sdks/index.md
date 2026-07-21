@@ -12,7 +12,7 @@ MarkdownFlow provides SDKs for major programming languages and frameworks. Each 
 ## Available SDKs
 
 | SDK | Language | Use Case | Repository | Installation |
-|-----|----------|----------|------------|--------------|
+| ----- | ---------- | ---------- | ------------ | -------------- |
 | [markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui) | React/TypeScript | Complete UI components | [GitHub →](https://github.com/ai-shifu/markdown-flow-ui) | `npm install markdown-flow-ui` |
 | [remark-flow](https://github.com/ai-shifu/remark-flow) | TypeScript | React-markdown plugin | [GitHub →](https://github.com/ai-shifu/remark-flow) | `npm install remark-flow` |
 | [markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow) | TypeScript | Parser plugin | [GitHub →](https://github.com/ai-shifu/markdown-it-flow) | `npm install markdown-it-flow` |

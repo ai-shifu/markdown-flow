@@ -7,7 +7,7 @@
 MarkdownFlow 的所有功能都通过我们的开源 SDK 和库提供。每个项目都维护着包含示例、教程和 API 参考的完整文档。
 
 | 项目 | 描述 | 仓库 | 安装 |
-|------|------|------|------|
+| ------ | ------ | ------ | ------ |
 | **[markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui)** | 用于渲染交互式 MarkdownFlow 文档的 React 组件库，包含内置 UI 元素 | GitHub | `npm install markdown-flow-ui` |
 | **[remark-flow](https://github.com/ai-shifu/remark-flow)** | 用于在 React 应用中解析和处理 MarkdownFlow 语法的 remark 插件 | GitHub | `npm install remark-flow` |
 | **[markdown-it-flow](https://github.com/ai-shifu/markdown-it-flow)** | 用于解析和渲染 MarkdownFlow 语法的 markdown-it 插件（即将推出） | GitHub | `npm install markdown-it-flow` |
