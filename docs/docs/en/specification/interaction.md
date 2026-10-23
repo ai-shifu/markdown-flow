@@ -37,6 +37,8 @@ Or for options (multiple selection):
 
 Every interactive element starts with `?[` and ends with `]`. These brackets are **mandatory** and mark the boundaries of the interactive element:
 
+An optional leading `%{{ name }}` is one complete token. Its name follows the [variable naming rules](variables.md); a `]` inside that name is literal key content and does not close the control.
+
 ```markdown
 ?[...content goes here...]
 ```
