@@ -75,7 +75,7 @@ Both markers use the exact key `Which [path] | level//hint...?`. Only the operat
 
 ### Markdown Literal Boundaries
 
-Keep Markdown code spans, fenced code blocks and complete HTML tags within their existing boundaries. A marker-like example inside one of those literal contexts must not continue beyond that context and hide later variables or controls. For compatibility, document variable extraction still collects complete markers written inside inline code or a complete HTML tag; read those spans independently. Escaping an opening brace with Markdown's backslash escape prevents it from starting a marker.
+Keep Markdown code spans, fenced and indented code blocks, complete HTML tags, and raw `script`, `style`, `pre` and `textarea` blocks within their existing boundaries. A marker-like example inside one of those literal contexts must not continue beyond that context and hide later variables or controls. Inline-code backticks cannot pair across a blank paragraph or a later fenced block. For compatibility, document variable extraction still collects complete markers written inside inline code or a complete HTML tag; read those spans independently. Escaping an opening brace with Markdown's backslash escape prevents it from starting a marker.
 
 For example, ``Show `{{` then ?[%{{ q }} A|B]`` declares `q` and contains one interaction. ``Show `%{{ q }}` then ?[A|B]`` still declares `q`, while the code example remains literal when rendered. In surrounding text, a recognized marker takes priority over Markdown-looking characters inside its own body, including backticks, HTML and line breaks used as edge padding. An unfinished marker in that text owns its remaining tail.
 
