@@ -194,7 +194,7 @@ Create test cases for your templates:
 const testCases = [
   { name: "Alice", role: "student", level: "beginner" },
   { name: "Bob", role: "teacher", level: "expert" },
-  { name: "特殊字符测试", role: "admin", level: "intermediate" }
+  { name: "Zoë O'Connor 🚀", role: "admin", level: "intermediate" }
 ];
 ```
 

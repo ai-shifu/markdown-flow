@@ -48,7 +48,7 @@ Trimming uses this explicit cross-language whitespace set: U+0009–U+000D, U+00
 | `{{ name }}` | `name` |
 | `{{user name}}` | `user name` |
 | `{{user  name}}` | `user  name` (two internal spaces) |
-| `{{你的性别是？}}` | `你的性别是？` |
+| `{{What is your gender?}}` | `What is your gender?` |
 | `{{🚀 rocket}}` | `🚀 rocket` |
 | `{{a{b}c}}` | `a{b}c` |
 | `{{ a} }}` | `a}` |

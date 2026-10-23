@@ -177,12 +177,12 @@ The LLM may adapt button/option text and input hints based on context (translati
 **Without IDs - Adapted Values:**
 
 - English: "Continue" → stores "Continue"
-- Chinese: "继续" → stores "继续"
+- French: "Continuer" → stores "Continuer"
 
 **With IDs - Fixed Values:**
 
 - English: "Continue//continue" → stores "continue"
-- Chinese: "继续//continue" → stores "continue"
+- French: "Continuer//continue" → stores "continue"
 
 ### Best Practices
 

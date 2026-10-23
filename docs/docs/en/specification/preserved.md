@@ -72,7 +72,7 @@ Language: Translate to {{browser_language}}
 **Outputs:**
 
 - English user: "Welcome to our platform!"
-- Chinese user: "欢迎来到我们的平台！" (translated while preserving enthusiastic tone)
+- French user: "Bienvenue sur notre plateforme !" (translated while preserving enthusiastic tone)
 - Spanish user: "¡Bienvenido a nuestra plataforma!"
 
 ### Key Point
