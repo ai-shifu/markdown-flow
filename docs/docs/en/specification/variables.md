@@ -73,15 +73,21 @@ Use {{ Which [path] | level//hint...? }} when adapting the next document.
 
 Both markers use the exact key `Which [path] | level//hint...?`. Only the operators after the assignment marker describe the buttons.
 
+### Markdown Literal Boundaries
+
+Keep Markdown code spans, fenced code blocks and complete HTML tags within their existing boundaries. A marker-like example inside one of those literal contexts must not continue beyond that context and hide later variables or controls. For compatibility, document variable extraction still collects complete markers written inside inline code or a complete HTML tag; read those spans independently. Escaping an opening brace with Markdown's backslash escape prevents it from starting a marker.
+
+For example, ``Show `{{` then ?[%{{ q }} A|B]`` declares `q` and contains one interaction. ``Show `%{{ q }}` then ?[A|B]`` still declares `q`, while the code example remains literal when rendered. In surrounding text, a recognized marker takes priority over Markdown-looking characters inside its own body, including backticks, HTML and line breaks used as edge padding. An unfinished marker in that text owns its remaining tail.
+
 ### Compatibility
 
 Existing letter/number/underscore names keep their keys. `{{name}}`, `{{ name}}` and `{{ name }}` are equivalent. Existing punctuation, quote and backslash keys are not decoded or renamed. Stored memory is not migrated.
 
-The new rule also recognizes names that older implementations treated as literal or rejected, such as `{{user name}}`. Authors upgrading a parser should check examples containing variable-like text. Historical malformed markers and names containing interior control characters are outside the valid syntax.
+The new rule also recognizes names that older implementations treated as literal or rejected, such as `{{user name}}`. Authors upgrading a parser should check examples containing variable-like text. Earlier SDKs may have collected or replaced a Markdown-escaped opener incorrectly; document processing now keeps that opener literal. Historical malformed markers and names containing interior control characters are outside the valid syntax.
 
 The grammar sets no fixed name length. Hosts may enforce separate storage or request limits after normalization; they must not silently truncate a key. Earlier SDK releases may not support the expanded rule, so implementations adopting it should pass the shared cases.
 
-The [shared conformance cases](../../assets/variable-name-cases.json) specify normalization, extraction and interaction examples for implementations.
+The [shared conformance cases](../../assets/variable-name-cases.json) specify normalization, extraction, interaction and document-context examples for implementations.
 
 ## How Variables Work
 

@@ -748,5 +748,225 @@
       "source": "{{ unterminated ?[Go]",
       "interaction_count": 0
     }
+  ],
+  "document_context_cases": [
+    {
+      "id": "inline-code-example",
+      "source": "Show `{{` then ?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "multiline-inline-code-example",
+      "source": "Show `{{`\n?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "escaped-example",
+      "source": "\\{{\n?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "inline-html-example",
+      "source": "Text <span title=\"{{\">\n?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "multiline-inline-html-example",
+      "source": "Text <span title=\"before\n{{\">\n?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "complete-inline-code-assignment",
+      "source": "Show `%{{ q }}` then ?[A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": null,
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "complete-inline-code-reference",
+      "source": "Show `{{ q }}` then ?[A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [],
+      "interaction_count": 1,
+      "name": null,
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "complete-inline-html-assignment",
+      "source": "Text <span title=\"%{{ attr }}\">\n?[A|B]",
+      "names": [
+        "attr"
+      ],
+      "collected": [
+        "attr"
+      ],
+      "interaction_count": 1,
+      "name": null,
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "literal-looking-name",
+      "source": "?[%{{ <span title=\"`\"> }} A|B]",
+      "names": [
+        "<span title=\"`\">"
+      ],
+      "collected": [
+        "<span title=\"`\">"
+      ],
+      "interaction_count": 1,
+      "name": "<span title=\"`\">",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "complete-escaped-example",
+      "source": "Show \\{{ not a variable }} then ?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "escaped-example-before-complete-assignment",
+      "source": "\\{{ example ?[%{{ q }} A|B]",
+      "names": [
+        "q"
+      ],
+      "collected": [
+        "q"
+      ],
+      "interaction_count": 1,
+      "name": "q",
+      "buttons": [
+        "A",
+        "B"
+      ],
+      "values": [
+        "A",
+        "B"
+      ]
+    }
   ]
 }
