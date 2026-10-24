@@ -37,6 +37,8 @@ Or for options (multiple selection):
 
 Every interactive element starts with `?[` and ends with `]`. These brackets are **mandatory** and mark the boundaries of the interactive element:
 
+An optional leading `%{{ name }}` is one complete token. Its name follows the [variable naming rules](variables.md); a `]` inside that name is literal key content and does not close the control.
+
 ```markdown
 ?[...content goes here...]
 ```
@@ -175,12 +177,12 @@ The LLM may adapt button/option text and input hints based on context (translati
 **Without IDs - Adapted Values:**
 
 - English: "Continue" → stores "Continue"
-- Chinese: "继续" → stores "继续"
+- French: "Continuer" → stores "Continuer"
 
 **With IDs - Fixed Values:**
 
 - English: "Continue//continue" → stores "continue"
-- Chinese: "继续//continue" → stores "continue"
+- French: "Continuer//continue" → stores "continue"
 
 ### Best Practices
 
