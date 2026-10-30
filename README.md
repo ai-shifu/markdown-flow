@@ -8,7 +8,7 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 
 - **📝 Fully Compatible with Markdown** - All standard Markdown syntax works unchanged
 - **🤖 AI-Powered Personalization** - Write prompts for AI, not content for humans
-- **🎯 Simple Extensions** - Interactive elements, preserved content, and advanced variables
+- **🎯 Simple Extensions** - Interactive elements, preserved content, and memory
 - **🌍 Multi-Language Support** - Built with international audiences in mind
 
 ## 🚀 Quick Links
@@ -25,9 +25,9 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 
 | Project | Description | Language | License |
 |---------|-------------|----------|---------|
-| [**markdown-flow-ui**](https://github.com/ai-shifu/markdown-flow-ui) | Complete UI components with built-in functionality. Ready-to-use React components for interactive markdown documents. | React/TypeScript | MIT |
-| [**remark-flow**](https://github.com/ai-shifu/remark-flow) | React-markdown plugin for MarkdownFlow syntax. Extends react-markdown with variable processing and AI integration. | TypeScript | MIT |
-| [**markdown-it-flow**](https://github.com/ai-shifu/markdown-it-flow) | Markdown-it plugin for MarkdownFlow syntax. Adds MarkdownFlow capabilities to any markdown-it powered application. | TypeScript | MIT |
+| [**markdown-flow-ui**](https://github.com/ai-shifu/markdown-flow-ui) | A React component library to render interactive MarkdownFlow documents with built-in UI elements. | React/TypeScript | MIT |
+| [**remark-flow**](https://github.com/ai-shifu/remark-flow) | A remark plugin to parse and process MarkdownFlow syntax in React applications. | TypeScript | MIT |
+| [**markdown-it-flow**](https://github.com/ai-shifu/markdown-it-flow) | A markdown-it plugin to parse and render MarkdownFlow syntax. (Coming soon) | TypeScript | MIT |
 
 ### Backend Implementations
 
@@ -40,15 +40,15 @@ MarkdownFlow extends standard Markdown with AI to create personalized, interacti
 
 | Project | Description | License |
 |---------|-------------|---------|
-| [**markdown-flow**](https://github.com/ai-shifu/markdown-flow) | Main documentation, website, and development platform. Interactive demo showcasing MarkdownFlow capabilities. | CC |
+| [**markdown-flow**](https://github.com/ai-shifu/markdown-flow) | The main repository containing homepage, documentation, and interactive playground. | CC |
 
 ## 📖 Quick Start
 
-MarkdownFlow adds two everyday extensions to standard Markdown, plus variables for advanced shared context:
+MarkdownFlow adds interaction, preserved content, and memory to standard Markdown:
 
 ### 1. Interactive Elements: `?[Option1 | Option2]`
 
-Buttons and input fields that collect user choices. A single MarkdownFlow document usually does not need variables.
+Buttons and input fields collect user choices. Within one document, later prompts can refer naturally to earlier answers.
 
 ```markdown
 Ask the user about their experience level:
@@ -69,20 +69,18 @@ Introduce our company values, preserving the exact motto:
 ===Innovation Through Simplicity===
 ```
 
-### 3. Variables: `{{variable}}`
+### 3. Memory: `{{question}}`
 
-Advanced placeholders for shared context, especially when a value must be supplied by the platform or shared across different MarkdownFlow documents.
-
-```markdown
-Generate a welcoming message for {{user_name}} that mentions their
-current account balance of {{balance}} in a friendly tone.
-```
-
-For interaction controls, add `{{variable}}` only when the answer needs cross-document sharing:
+Memory stores questions and answers. Add a question at the start of an interaction to save its answer, then use the same question in later prompts:
 
 ```markdown
-?[{{shared_level}} Beginner | Intermediate | Expert]
+Ask the user about their learning goal:
+?[{{What would you like to learn?}} Python | JavaScript | ...Another topic]
+
+Design a learning plan based on the answer to {{What would you like to learn?}}.
 ```
+
+The AI uses the remembered answer as context. The host platform determines where it is saved and which documents can access it. See the [Memory specification](https://markdownflow.ai/docs/specification/memory/).
 
 ## 🌟 Use Cases
 

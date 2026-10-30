@@ -17,13 +17,13 @@ Master every detail of MDFlow syntax and capabilities.
    Learn the technical processing workflow
 
 3. **[Interaction](../specification/interaction.md)**
-   Explore buttons, options, and input without needing variables
+   Explore buttons, options, and input with natural references to recent answers
 
 4. **[Preserved Output](../specification/preserved.md)**
    Control content preservation and translation
 
-5. **[Variables](../specification/variables.md)**
-   Learn advanced shared-context patterns for cross-document state
+5. **[Memory](../specification/memory.md)**
+   Learn how to save questions and answers for later use within the platform's memory scope
 
 ### Path 2: Learn from Examples
 
@@ -66,15 +66,15 @@ Jump straight into development with your preferred technology.
 Generate a friendly welcome.
 
 # Version 2: Add interaction
-Welcome! What's your name?
+Ask the user for their name.
 ?[...Enter name]
 Generate a greeting using the name the user entered.
 
 # Version 3: Add personalization
-Welcome! What's your name?
+Ask the user for their name.
 ?[...Enter name]
 
-What brings you here?
+Ask the user what brings them here.
 ?[Learning|Building|Exploring]
 
 Generate a warm welcome using the user's name and selected goal.
@@ -118,7 +118,7 @@ Always consider:
 ```markdown
 Show basic info about the selected topic.
 
-Want more details?
+Ask whether the user wants more details.
 ?[Yes, tell me more|No, that's enough]
 
 If the user chose "Yes": provide in-depth explanation
@@ -137,7 +137,7 @@ Explain the selected concept using analogies from the reader's background:
 #### Feedback Loops
 
 ```markdown
-Was this helpful?
+Ask the user how helpful the explanation was.
 ?[Very helpful|Somewhat helpful|Not helpful]
 
 If "Not helpful": ask what they need clarification on
@@ -167,7 +167,7 @@ templates/
   Template: User Onboarding
   Version: 1.2.0
   Inputs: name, role, experience
-  Shared variables: none
+  Memory questions: none
   Last Updated: 2024-03-15
 -->
 
@@ -176,13 +176,13 @@ templates/
 
 ### 3. Context Documentation
 
-Keep track of the interaction answers and shared variables your template expects:
+Keep track of the interaction answers and saved memory your template expects:
 
 ```markdown
 <!-- Context Used:
   Interaction: user's display name
   Interaction: selected role (student/teacher/admin)
-  Shared variable: {{course_id}} - Current course identifier from the platform
+  Memory question: {{What would you like to learn?}} - Previously saved learning goal
 -->
 ```
 
@@ -231,14 +231,14 @@ Ready for more? Explore these advanced concepts:
 Learn to extend MDFlow with custom processing logic:
 
 - Pre-processing hooks
-- Custom variable resolvers
+- Custom memory providers
 - Post-processing transformations
 
 ### Integration Patterns
 
 - CMS integration
 - API-driven content
-- Database-backed variables
+- Database-backed memory
 - Multi-language support
 
 ### Performance Optimization
@@ -284,9 +284,9 @@ Track how users interact with your MDFlow content:
 # Combined
 ?[Yes|No|...Other]                       # Buttons + input
 
-# Advanced Variables
-{{variable_name}}                         # Use shared variable
-?[{{shared_var}}Option1|Option2]         # Store answer for cross-document sharing
+# Memory
+{{What would you like to learn?}}          # Refer to a saved answer
+?[{{Which topic interests you?}} AI|Writing] # Save an answer under its question
 ```
 
 ## 🎓 Final Tips

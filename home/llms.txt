@@ -2,11 +2,11 @@
 
 > MarkdownFlow extends standard Markdown with AI intelligence to create personalized, interactive documents. Instead of writing static content for readers, you write prompts for AI agents that transform your instructions into personalized content adapting to each user's choices, preferences, and context. Core principle: You write prompts for AI, not content for humans.
 
-MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, personalized, and interactive documents. With the tagline "Write Once, Deliver Personally" (一次创作，千人千面), it allows developers and content creators to build dynamic documents that adapt to each reader. The system is 100% compatible with standard Markdown while adding everyday interaction and preservation syntax plus advanced variables for shared context:
+MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, personalized, and interactive documents. With the tagline "Write Once, Deliver Personally", it allows developers and content creators to build dynamic documents that adapt to each reader. The system is 100% compatible with standard Markdown while adding interaction, preserved content, and memory:
 
 ### Basic Syntax
 
-1. **Interactive Elements**: Create buttons, multi-select options, and input fields for user interaction. Variables are not required for a single MarkdownFlow document.
+1. **Interactive Elements**: Create buttons, multi-select options, and input fields for user interaction. Later prompts in the same document can refer naturally to earlier answers.
    - Single selection (buttons): `?[Option1|Option2|Option3]` - User picks one
      Example: `?[Beginner|Intermediate|Expert]`, then the next prompt can refer to the selected level
    - Multiple selection (options): `?[Option1||Option2||Option3]` - User picks multiple
@@ -27,9 +27,10 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
      !===
      ```
 
-3. **Variables**: `{{variable_name}}` - Advanced shared-context placeholders replaced with actual values
-   Example: `Generate a welcome for {{user_name}} mentioning {{balance}}`
-   - For interaction controls, use `?[{{shared_var}}Option1|Option2]` only when the answer must be stored for cross-document sharing
+3. **Memory**: Questions and answers that provide context for AI-generated content
+   - Collect an answer: `?[{{What would you like to learn?}} Python|JavaScript|...Another topic]`
+   - Refer to it in an AI instruction: `Design a learning plan based on the answer to {{What would you like to learn?}}.`
+   - The host platform determines persistence, permissions, and which documents may share answers. In AI-Shifu, course memory can be reused across lessons within the same course.
 
 ## Core Documentation
 
@@ -42,7 +43,7 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 
 - [Overview](https://markdownflow.ai/docs/specification/overview/): Complete MarkdownFlow syntax specification
 - [Interactive Elements](https://markdownflow.ai/docs/specification/interaction/): Buttons and input fields for user interaction
-- [Variables](https://markdownflow.ai/docs/specification/variables/): Advanced shared-context placeholders and variable system
+- [Memory](https://markdownflow.ai/docs/specification/memory/): Collect and recall answers using questions
 - [Preserved Content](https://markdownflow.ai/docs/specification/preserved/): Content that maintains exact meaning during AI processing
 - [How It Works](https://markdownflow.ai/docs/specification/how-it-works/): Technical architecture and processing pipeline
 

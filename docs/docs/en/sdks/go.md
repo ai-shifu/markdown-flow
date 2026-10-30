@@ -23,7 +23,7 @@ The repository includes:
 - **Quick Start Guide** - Get up and running in minutes
 - **API Reference** - Complete method and configuration documentation
 - **Examples** - Gin, Echo, and standard library HTTP examples
-- **Configuration** - Environment variables, caching, and performance tuning
+- **Configuration** - Environment settings, caching, and performance tuning
 - **Troubleshooting** - Common issues and solutions
 
 ## Repository

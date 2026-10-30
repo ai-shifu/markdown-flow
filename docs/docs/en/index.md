@@ -26,14 +26,14 @@ You can start with any existing Markdown document and gradually add MDFlow featu
 
 ## Everyday Syntax First
 
-MarkdownFlow adds two everyday syntax elements to standard Markdown, plus variables for advanced shared context:
+MarkdownFlow adds interactive elements, preserved output, and memory to standard Markdown:
 
 !!! tip "Remember the Core Principle"
     All examples below show **AI instructions**, not direct user content. You write prompts for AI to generate personalized content.
 
 ### 1. Interactive Elements
 
-Buttons and input fields that collect user choices. For a single MarkdownFlow document, you normally do not need variables; the user's response becomes context for the following content.
+Buttons and input fields collect user choices. In a single MarkdownFlow document, you can refer to the user's response naturally in the following prompt.
 
 ```markdown
 Ask the user about their experience level.
@@ -64,22 +64,20 @@ Provide installation instructions, preserving the exact command:
 
 **Learn more:** [Preserved Output Specification](specification/preserved.md)
 
-### 3. Variables
+### 3. Memory
 
-Advanced placeholders for shared context. Use variables when a value must be supplied by the platform or shared across different MarkdownFlow documents.
-
-```markdown
-Generate a welcoming message for {{user_name}} that mentions their
-current account balance of {{balance}} in a friendly tone.
-```
-
-For interaction controls, add `{{variable}}` only when the answer needs to be stored for cross-document use:
+Memory records questions and their answers so the AI can use relevant context later. Put a question at the beginning of an interaction to save its answer, then refer to the same question in a later prompt:
 
 ```markdown
-?[{{shared_level}} Beginner | Intermediate | Expert]
+Ask the user about their experience level.
+?[{{What is your experience level?}} Beginner | Intermediate | Expert]
+
+Adapt the next explanation to {{What is your experience level?}}.
 ```
 
-**Learn more:** [Variables Specification](specification/variables.md)
+The platform determines where memory is saved and which documents can use it. In AI-Shifu, course memory can be reused across lessons in the same course.
+
+**Learn more:** [Memory Specification](specification/memory.md)
 
 ## How It Works (Simple Version)
 

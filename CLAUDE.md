@@ -65,14 +65,14 @@ The site automatically deploys to GitHub Pages when pushing to main branch via `
 - Content in MarkdownFlow documents serves as **instructions/prompts for AI** to generate personalized content
 - Examples should demonstrate **AI instructions**, not direct user-facing content
 - Traditional approach: "Welcome, John!" (content for humans)
-- MarkdownFlow approach: "Generate a welcoming message for {{user_name}}" (instruction for AI)
+- MarkdownFlow approach: "Generate a welcoming message based on {{How should we address you?}}" (instruction for AI)
 
 ## MarkdownFlow Syntax
 
 The core MarkdownFlow syntax extensions:
 
-1. **Variables**: `{{variable_name}}` - Dynamic content placeholders
-2. **User Input**: `?[{{variable}}Option1|Option2]` - Interactive buttons that store user choices
+1. **Memory**: `{{question}}` - Refer to the remembered answer to a question
+2. **User Input**: `?[{{question}}Option1|Option2]` - Interactive buttons that save an answer under that question; omit the question for ordinary interactions
 3. **Preserved Content**: `===content===` - Content that should not be interpreted by AI
 
 ## Documentation Guidelines
@@ -86,6 +86,7 @@ When updating documentation:
 - Examples should demonstrate practical use cases with proper "writing for AI" approach
 - Navigation structure is defined in `docs/mkdocs.yml`
 - Ensure consistency with the paradigm: "You write prompts for AI, not content for humans"
+- Describe memory through questions and answers. Use natural-language questions in new examples; existing short keys remain compatible. The host platform controls persistence and sharing. Do not describe prompt references as automatic text substitution.
 
 ## Linting and Formatting
 

@@ -24,7 +24,7 @@ MarkdownFlow provides SDKs for major programming languages and frameworks. Each 
 ### React
 
 - **[markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui)** - Ready-to-use React components for interactive MarkdownFlow documents
-- **[remark-flow](https://github.com/ai-shifu/remark-flow)** - Plugin for react-markdown with variable processing and AI integration
+- **[remark-flow](https://github.com/ai-shifu/remark-flow)** - Plugin for react-markdown with memory references, interaction controls, and AI integration
 
 ### Vue.js & Vanilla JavaScript
 

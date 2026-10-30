@@ -77,6 +77,6 @@ Then, three buttons appear, and the user selects "Expert". Output continues:
 > - Writing **documentation-as-code** (combining Markdown with static site generators like MkDocs or Jekyll).
 >   But honestly? You’ve got this. Go build something cool. 🚀
 
-The above example uses MarkdownFlow's [Interaction](interaction.md) feature without variables. Variables are available for [shared context](variables.md) when a value must be provided by the platform or shared across different MarkdownFlow documents.
+The example above uses MarkdownFlow's [Interaction](interaction.md) feature and refers to recent answers naturally. Use [Memory](memory.md) when a question and its answer should be saved for later use. The platform determines the scope in which that memory is available.
 
 If you want to know how the magic happens, check out the [How It Works](how-it-works.md) section.
