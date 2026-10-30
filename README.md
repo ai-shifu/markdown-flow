@@ -78,10 +78,10 @@ Generate a welcoming message for {{user_name}} that mentions their
 current account balance of {{balance}} in a friendly tone.
 ```
 
-For interaction controls, add `%{{variable}}` only when the answer needs cross-document sharing:
+For interaction controls, add `{{variable}}` only when the answer needs cross-document sharing:
 
 ```markdown
-?[%{{shared_level}} Beginner | Intermediate | Expert]
+?[{{shared_level}} Beginner | Intermediate | Expert]
 ```
 
 ## 🌟 Use Cases

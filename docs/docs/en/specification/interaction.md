@@ -29,7 +29,7 @@ Or for options (multiple selection):
 ?[Option1//id1 || Option2//id2 || ...input hint]
 ```
 
-**Every component is optional**, giving you flexibility to create exactly the interaction you need. The variable prefix `%{{variable}}` is an advanced optional component, not a requirement.
+**Every component is optional**, giving you flexibility to create exactly the interaction you need. The variable prefix `{{variable}}` is an advanced optional component, not a requirement.
 
 ## Core Components
 
@@ -37,7 +37,7 @@ Or for options (multiple selection):
 
 Every interactive element starts with `?[` and ends with `]`. These brackets are **mandatory** and mark the boundaries of the interactive element:
 
-An optional leading `%{{ name }}` is one complete token. Its name follows the [variable naming rules](variables.md); a `]` inside that name is literal key content and does not close the control.
+An optional leading `{{ name }}` is one complete token. Its name follows the [variable naming rules](variables.md); a `]` inside that name is literal key content and does not close the control.
 
 ```markdown
 ?[...content goes here...]
@@ -62,23 +62,15 @@ Ask the user which learning path they want.
 Recommend the next section based on the learning path the user just selected.
 ```
 
-### Named Variable Storage with `%{{variable}}` (Advanced)
+### Named Variable Storage with `{{variable}}` (Advanced)
 
-Use `%{{variable}}` only when the answer must be stored for cross-document sharing. The `%` prefix writes the interaction result into that variable:
+To store an answer for cross-document sharing, place `{{variable}}` at the beginning of the interaction, before the buttons or input hint:
 
 ```markdown
-?[%{{shared_choice}} Yes | No]
+?[{{shared_choice}} Yes | No]
 ```
 
 When the user clicks "Yes", the value "Yes" is stored into `{{shared_choice}}` and can be used by other MarkdownFlow documents that receive the same shared variable context.
-
-Without `%`, variables inside a control are read as normal placeholders:
-
-```markdown
-?[{{userName}}, click here to continue]
-```
-
-If `{{userName}}` contains "Alice", the button displays: "Alice, click here to continue"
 
 ### Button IDs with `//id`
 
@@ -118,9 +110,8 @@ Unlike buttons which return a single value, options return a **comma-separated s
 
 Variables and IDs work the same as with buttons:
 
-- `%{{variable}}` stores selections only when cross-document sharing is needed
+- A leading `{{variable}}` stores selections in that named variable
 - `//id` separates display from value
-- Without `%`, uses variable value for display
 
 ## Input (Text Entry)
 
@@ -134,10 +125,10 @@ Input fields allow users to enter custom text. They use `...` followed by a hint
 
 ### Variable Usage
 
-Variables work the same as described above. Use `%{{variable}}` only when the input must be shared beyond the current MarkdownFlow document:
+Variables work the same as described above. Use `{{variable}}` only when the input must be shared beyond the current MarkdownFlow document:
 
 ```markdown
-?[%{{shared_name}}...Enter your name]
+?[{{shared_name}}...Enter your name]
 ```
 
 ## Combining Elements

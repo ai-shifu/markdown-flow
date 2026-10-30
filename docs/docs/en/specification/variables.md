@@ -29,7 +29,7 @@ Say hello to {{user_name}}! Tell the user the account balance is {{balance}}.
 
 ## Variable Naming Rules
 
-Variable names are **text keys**, not programming-language identifiers or expressions. References `{{name}}` and assignments `%{{name}}` use the same rules:
+Variable names are **text keys**, not programming-language identifiers or expressions. The same `{{name}}` marker is used for variable references and leading interaction bindings, with the following naming rules:
 
 1. Read from `{{` through the **first literal `}}`**. Do not recursively parse `{{` inside that marker.
 2. Trim whitespace from both ends of its body. The result must be nonempty.
@@ -56,7 +56,7 @@ Trimming uses this explicit cross-language whitespace set: U+0009–U+000D, U+00
 
 `{{}}` and `{{   }}` are invalid because the normalized name is empty. Interior line breaks and control characters are invalid. A key containing literal `}}` cannot be expressed: `{{a}}b}}` reads key `a` followed by text `b}}`. This syntax defines no escaping or alternate quoting for that sequence.
 
-When generating markers, pad the key with one space on each side: `{{ key }}` or `%{{ key }}`. This also preserves a name ending in a single `}` without introducing escapes. Invalid or empty markers remain literal text; scanning their bodies must not discover nested variables.
+When generating markers, pad the key with one space on each side: `{{ key }}`. This also preserves a name ending in a single `}` without introducing escapes. Invalid or empty markers remain literal text; scanning their bodies must not discover nested variables.
 
 ### Named Interactions
 
@@ -66,7 +66,7 @@ The same protection applies outside controls: `{{ key ?[A|B] }}` is one variable
 
 ```markdown
 Ask which learning path and level the user prefers.
-?[%{{ Which [path] | level//hint...? }} Concepts//concepts | Examples//examples]
+?[{{ Which [path] | level//hint...? }} Concepts//concepts | Examples//examples]
 
 Use {{ Which [path] | level//hint...? }} when adapting the next document.
 ```
@@ -79,9 +79,11 @@ Keep Markdown code spans, complete inline math spans and inline-link resources (
 
 Keep native Markdown boundaries for fences inside list or quote containers and for reference-link definitions. Ordinary HTML blocks such as `<div>` end at the next blank line; the four raw HTML block types above instead end after their closing-tag line. HTML comments, processing instructions, declarations and CDATA blocks likewise include their entire terminating line. Raw HTML blocks and recognized block tags follow native block-start rules even when their opening tag is incomplete. A confirmed container end also bounds an HTML block. LF, CRLF and CR are physical line endings, without rewriting the marker's original text or source offsets.
 
-For example, ``Show `{{` then ?[%{{ q }} A|B]`` declares `q` and contains one interaction. ``Show `%{{ q }}` then ?[A|B]`` still declares `q`, while the code example remains literal when rendered. In surrounding text, a recognized marker takes priority over Markdown-looking characters inside its own body, including backticks, HTML and line breaks used as edge padding. An unfinished marker in that text owns its remaining tail.
+For example, ``Show `{{` then ?[{{ q }} A|B]`` declares `q` and contains one interaction. In surrounding text, a recognized marker takes priority over Markdown-looking characters inside its own body, including backticks, HTML and line breaks used as edge padding. An unfinished marker in that text owns its remaining tail.
 
 ### Compatibility
+
+The legacy leading binding `%{{name}}` remains supported for compatibility. Use `{{name}}` in new documents.
 
 Existing letter/number/underscore names keep their keys. `{{name}}`, `{{ name}}` and `{{ name }}` are equivalent. Existing punctuation, quote and backslash keys are not decoded or renamed. Stored memory is not migrated.
 
@@ -101,12 +103,12 @@ Variables get their values from multiple sources:
 
 ```markdown
 Ask the user for a profile name that should be available to later MarkdownFlow documents.
-?[%{{shared_profile_name}} ...Enter your name]
+?[{{shared_profile_name}} ...Enter your name]
 
 In a different MarkdownFlow document, generate a warm greeting for {{shared_profile_name}}.
 ```
 
-Do not add `%{{variable}}` to ordinary single-document interactions. The named variable form is for shared state.
+Do not add `{{variable}}` to ordinary single-document interactions. The named variable form is for shared state.
 
 **System Predefined Variables:**
 

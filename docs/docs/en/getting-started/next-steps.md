@@ -286,7 +286,7 @@ Track how users interact with your MDFlow content:
 
 # Advanced Variables
 {{variable_name}}                         # Use shared variable
-?[%{{shared_var}}Option1|Option2]         # Store answer for cross-document sharing
+?[{{shared_var}}Option1|Option2]         # Store answer for cross-document sharing
 ```
 
 ## 🎓 Final Tips

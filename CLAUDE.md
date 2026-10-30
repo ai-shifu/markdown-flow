@@ -72,7 +72,7 @@ The site automatically deploys to GitHub Pages when pushing to main branch via `
 The core MarkdownFlow syntax extensions:
 
 1. **Variables**: `{{variable_name}}` - Dynamic content placeholders
-2. **User Input**: `?[%{{variable}}Option1|Option2]` - Interactive buttons that store user choices
+2. **User Input**: `?[{{variable}}Option1|Option2]` - Interactive buttons that store user choices
 3. **Preserved Content**: `===content===` - Content that should not be interpreted by AI
 
 ## Documentation Guidelines
