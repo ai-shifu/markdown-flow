@@ -1,6 +1,6 @@
 # remark-flow
 
-A remark plugin to parse and process MarkdownFlow syntax in React applications. Extends react-markdown with variable processing and AI integration capabilities.
+A remark plugin to parse and process MarkdownFlow syntax in React applications. Extends react-markdown with memory references, interaction controls, and AI integration capabilities.
 
 ## Overview
 

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=../memory/">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://markdownflow.ai/docs/specification/memory/">
+  <title>Memory</title>
+  <script>
+    const sections = {
+      "#variables": "#memory",
+      "#using-variables-in-markdownflow": "#questions-and-answers",
+      "#basic-syntax": "#collecting-and-reading-memory",
+      "#variable-naming-rules": "#question-text-rules",
+      "#named-interactions": "#question-bindings-in-interactions",
+      "#how-variables-work": "#collecting-and-reading-memory",
+      "#1-sources": "#memory-scope-and-availability",
+      "#2-variable-replacement": "#collecting-and-reading-memory",
+      "#3-unassigned-variables": "#memory-scope-and-availability",
+      "#variables-in-different-contexts": "#using-memory-in-generation-instructions",
+      "#in-text": "#using-memory-in-generation-instructions",
+      "#in-headers": "#a-heading-and-explanation",
+      "#in-lists": "#a-list-or-table",
+      "#in-links-and-images": "#a-link-or-html-output",
+      "#in-tables": "#a-list-or-table",
+      "#in-html": "#a-link-or-html-output"
+    };
+    const fragment = window.location.hash;
+    window.location.replace("../memory/" + (sections[fragment] || fragment));
+  </script>
+</head>
+<body>
+  <p>Continue to <a href="../memory/">Memory</a>.</p>
+</body>
+</html>

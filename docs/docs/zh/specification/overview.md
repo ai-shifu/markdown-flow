@@ -77,6 +77,6 @@ MarkdownFlow 是 Markdown 的自然扩展，不是替代品。就像 GitHub Flav
 > - 编写**文档即代码**（将 Markdown 与静态站点生成器如 MkDocs 或 Jekyll 结合）。
 >   但说实话？你已经掌握了。去构建一些很棒的东西吧。🚀
 
-上面的示例使用了 MarkdownFlow 的[交互](interaction.md)功能，不需要变量。当某个值由平台提供，或需要跨不同 MarkdownFlow 文档共享时，可以使用[变量](variables.md)。
+上面的示例使用了 MarkdownFlow 的[交互](interaction.md)功能，可以自然引用最近的回答。当需要保存问题和回答以便后续使用时，可以使用[记忆](memory.md)。记忆的可用范围由平台决定。
 
 如果您想知道魔法是如何发生的，请查看[工作原理](how-it-works.md)部分。

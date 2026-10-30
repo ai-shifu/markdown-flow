@@ -103,9 +103,9 @@ For better processing effectiveness, the MarkdownFlow Agent divides the content 
 
 ### Step 2: Context Resolution
 
-The MarkdownFlow Agent prepares the context for the current block. This includes recent interaction answers from the same document and, only when used, shared variables from the platform or other MarkdownFlow documents.
+The MarkdownFlow Agent prepares the context for the current block. This includes recent interaction answers from the same document and relevant memory made available by the platform.
 
-If a block contains a variable, the variable is replaced with its concrete value. Unassigned variables are replaced with "UNKNOWN". For more details, see the [Variables](variables.md) section.
+A reference such as `{{What would you like to learn?}}` asks the AI to use the answer to that question. The original prompt keeps the question text; the AI uses the available memory when following the instructions. If an answer is unavailable, guide the AI to ask for it or continue with a suitable default. For more details, see the [Memory](memory.md) section.
 
 ### Step 3: LLM Generating
 
@@ -113,7 +113,7 @@ The document prompt and the current content block are sent to the Large Language
 
 ### Step 4: Interactive Element Processing
 
-If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The answer becomes context for the following content in the same MarkdownFlow document. If the control begins with `{{variable}}`, the answer is also stored in that named variable for cross-document sharing.
+If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The answer becomes context for the following content in the same MarkdownFlow document. If the control begins with `{{question}}`, its answer can also be saved as memory under that question. The platform determines the storage scope and which documents can reuse it.
 
 For more details, see the [Interaction](interaction.md) section.
 

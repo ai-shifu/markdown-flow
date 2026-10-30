@@ -8,7 +8,7 @@ MarkdownFlow 通过 AI 扩展了标准 Markdown，用于创建个性化的交互
 
 - **📝 与 Markdown 完全兼容** - 所有标准 Markdown 语法都不变
 - **🤖 AI 驱动的个性化** - 为 AI 写提示词，而非为人类写内容
-- **🎯 简单扩展** - 交互元素、确定内容和进阶变量
+- **🎯 简单扩展** - 交互元素、确定内容和记忆
 - **🌍 多语言支持** - 为国际用户群体而构建
 
 ## 🚀 快速链接
@@ -25,9 +25,9 @@ MarkdownFlow 通过 AI 扩展了标准 Markdown，用于创建个性化的交互
 
 | 项目 | 描述 | 语言 | 许可证 |
 |------|------|------|--------|
-| [**markdown-flow-ui**](https://github.com/ai-shifu/markdown-flow-ui) | 具有内置功能的完整 UI 组件。为交互式 markdown 文档提供即用的 React 组件。 | React/TypeScript | MIT |
-| [**remark-flow**](https://github.com/ai-shifu/remark-flow) | MarkdownFlow 语法的 React-markdown 插件。通过变量处理和 AI 集成扩展 react-markdown。 | TypeScript | MIT |
-| [**markdown-it-flow**](https://github.com/ai-shifu/markdown-it-flow) | MarkdownFlow 语法的 Markdown-it 插件。为任何基于 markdown-it 的应用程序添加 MarkdownFlow 功能。 | TypeScript | MIT |
+| [**markdown-flow-ui**](https://github.com/ai-shifu/markdown-flow-ui) | 用于渲染交互式 MarkdownFlow 文档的 React 组件库，包含内置 UI 元素。 | React/TypeScript | MIT |
+| [**remark-flow**](https://github.com/ai-shifu/remark-flow) | 用于在 React 应用中解析和处理 MarkdownFlow 语法的 remark 插件。 | TypeScript | MIT |
+| [**markdown-it-flow**](https://github.com/ai-shifu/markdown-it-flow) | 用于解析和渲染 MarkdownFlow 语法的 markdown-it 插件。（即将推出） | TypeScript | MIT |
 
 ### 后端实现
 
@@ -40,15 +40,15 @@ MarkdownFlow 通过 AI 扩展了标准 Markdown，用于创建个性化的交互
 
 | 项目 | 描述 | 许可证 |
 |------|------|--------|
-| [**markdown-flow**](https://github.com/ai-shifu/markdown-flow) | 主要文档、网站和开发平台。展示 MarkdownFlow 功能的交互式演示。 | CC |
+| [**markdown-flow**](https://github.com/ai-shifu/markdown-flow) | 主仓库，包含首页、文档和交互式 Playground。 | CC |
 
 ## 📖 快速上手
 
-MarkdownFlow 为标准 Markdown 添加了两个日常扩展，以及用于进阶共享上下文的变量：
+MarkdownFlow 为标准 Markdown 添加了交互、确定内容和记忆：
 
 ### 1. 交互元素：`?[选项1 | 选项2]`
 
-收集用户选择的按钮和输入框。单个 MarkdownFlow 文档通常不需要变量。
+按钮和输入框用于收集用户选择。在同一文档内，后续提示词可以自然引用之前的回答。
 
 ```markdown
 询问用户的经验水平：
@@ -69,20 +69,18 @@ MarkdownFlow 为标准 Markdown 添加了两个日常扩展，以及用于进阶
 ===创新通过简化===
 ```
 
-### 3. 变量：`{{variable}}`
+### 3. 记忆：`{{问题}}`
 
-用于共享上下文的进阶占位符，尤其适用于由平台提供值，或需要跨不同 MarkdownFlow 文档共享值的场景。
-
-```markdown
-为 {{user_name}} 生成一条欢迎消息，以友好的语气提及他们当前的
-账户余额 {{balance}}。
-```
-
-对于交互控件，只有当答案需要跨文档共享时，才添加 `{{变量名}}`：
+记忆以问题和回答的形式保存信息。在交互开头添加问题以保存回答，再在后续提示词中引用同一个问题：
 
 ```markdown
-?[{{shared_level}} 初学者 | 中级 | 专家]
+询问用户的学习目标：
+?[{{你想学习什么？}} Python | JavaScript | ...其他主题]
+
+根据 {{你想学习什么？}} 的回答制定学习计划。
 ```
+
+AI 将记住的回答作为上下文。保存位置和可访问这些回答的文档范围由宿主平台决定。详见[记忆规范](https://markdownflow.ai/docs/zh/specification/memory/)。
 
 ## 🌟 使用场景
 

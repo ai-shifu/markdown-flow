@@ -1,6 +1,6 @@
 # remark-flow
 
-用于在 React 应用中解析和处理 MarkdownFlow 语法的 remark 插件。扩展 react-markdown 支持变量处理和 AI 集成功能。
+用于在 React 应用中解析和处理 MarkdownFlow 语法的 remark 插件。扩展 react-markdown 支持记忆引用、交互控件和 AI 集成功能。
 
 ## 概述
 

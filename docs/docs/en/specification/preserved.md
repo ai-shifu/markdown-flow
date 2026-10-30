@@ -66,7 +66,7 @@ Tone: Friendly
 Document Prompt:
 Style: Professional
 Tone: Friendly
-Language: Translate to {{browser_language}}
+Language: Translate according to {{Which language do you prefer?}}
 ```
 
 **Outputs:**
@@ -77,7 +77,7 @@ Language: Translate to {{browser_language}}
 
 ### Key Point
 
-**Translation only happens when explicitly requested in the document prompt.** The `{{browser_language}}` variable enables user-specific language adaptation, but only when the document author chooses to use it.
+**Translation only happens when explicitly requested in the document prompt.** This example uses the saved answer to `{{Which language do you prefer?}}` to guide language adaptation. Ask the reader first if that answer is unavailable.
 
 ## Three Usage Patterns
 
@@ -86,7 +86,7 @@ Language: Translate to {{browser_language}}
 For preserving words or short phrases within a sentence:
 
 ```markdown
-Explain to {{user_type}} that the command ===npm install=== must be typed exactly as shown.
+Using {{How familiar are you with command-line tools?}}, explain that the command ===npm install=== must be typed exactly as shown.
 
 Introduce AI Shifu and mention that our motto is ===Amplifying humanity’s eternal values===.
 ```
@@ -98,9 +98,9 @@ Instructs the AI to explain the command while preserving the exact command text,
 For preserving entire lines:
 
 ```markdown
-Provide step-by-step instructions for {{task_name}}:
+Provide step-by-step instructions for {{What task would you like to complete?}}:
 
-1. Explain how to open terminal for {{user_os}}
+1. Use {{Which operating system do you use?}} to explain how to open a terminal
 2. ===Type: git commit -m "Initial commit"===
 3. Tell them to press Enter and what to expect
 ```
@@ -121,7 +121,7 @@ Don't settle."
 - Steve Jobs
 !===
 
-Explain how this quote relates to {{user_interest}} and why it inspires many entrepreneurs.
+Explain how this quote relates to {{What interests you?}} and why it inspires many entrepreneurs.
 ```
 
 Instructs the AI to contextualize the quote for the user's interests while preserving the exact quote text and attribution.

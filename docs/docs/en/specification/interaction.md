@@ -13,7 +13,7 @@ tags:
 
 MarkdownFlow provides a powerful yet simple syntax for creating interactive elements that collect user input. These interactions pause content delivery, wait for user response, and then continue with personalized content based on the input.
 
-For a single MarkdownFlow document, interaction controls do **not** need variables. Write the control, then refer to the user's answer naturally in the following prompt. Use variables only when an interaction answer must be shared across different MarkdownFlow documents.
+For a single MarkdownFlow document, you can refer to the user's answer naturally in the following prompt. To save an answer as memory for later use, add a question at the beginning of the control. The platform determines the scope in which that memory is available.
 
 ## Complete Syntax
 
@@ -29,7 +29,7 @@ Or for options (multiple selection):
 ?[Option1//id1 || Option2//id2 || ...input hint]
 ```
 
-**Every component is optional**, giving you flexibility to create exactly the interaction you need. The variable prefix `{{variable}}` is an advanced optional component, not a requirement.
+**Every component inside the brackets is optional**, giving you flexibility to create the interaction you need. The leading memory question `{{question}}` is optional.
 
 ## Core Components
 
@@ -37,7 +37,7 @@ Or for options (multiple selection):
 
 Every interactive element starts with `?[` and ends with `]`. These brackets are **mandatory** and mark the boundaries of the interactive element:
 
-An optional leading `{{ name }}` is one complete token. Its name follows the [variable naming rules](variables.md); a `]` inside that name is literal key content and does not close the control.
+An optional leading `{{ question }}` is one complete token. Its question text follows the [memory question rules](memory.md); a `]` inside the question is literal text and does not close the control.
 
 ```markdown
 ?[...content goes here...]
@@ -62,15 +62,18 @@ Ask the user which learning path they want.
 Recommend the next section based on the learning path the user just selected.
 ```
 
-### Named Variable Storage with `{{variable}}` (Advanced)
+### Saving an Answer as Memory
 
-To store an answer for cross-document sharing, place `{{variable}}` at the beginning of the interaction, before the buttons or input hint:
+To save an answer, place the question in `{{...}}` at the beginning of the interaction, before the buttons or input hint:
 
 ```markdown
-?[{{shared_choice}} Yes | No]
+Ask whether the user wants more detailed explanations.
+?[{{Would you like detailed explanations?}} Yes | No]
+
+Use {{Would you like detailed explanations?}} to decide how much detail to include.
 ```
 
-When the user clicks "Yes", the value "Yes" is stored into `{{shared_choice}}` and can be used by other MarkdownFlow documents that receive the same shared variable context.
+When the user clicks "Yes", that answer can be saved under the question "Would you like detailed explanations?". Later prompts can refer to the same question. The platform determines which documents can use the saved memory.
 
 ### Button IDs with `//id`
 
@@ -101,17 +104,17 @@ Options allow users to select multiple items. They use double vertical bars (`||
 
 ### Return Value Format
 
-Unlike buttons which return a single value, options return a **comma-separated string** of selected values when a named variable is used:
+Unlike buttons, which return a single value, options return a **comma-separated string** of selected values when an answer is saved as memory:
 
-- Buttons: `{{shared_color}} = "Red"`
-- Options: `{{shared_skills}} = "Python, JavaScript, Go"`
+- Buttons: question "Which color do you prefer?", answer "Red"
+- Options: question "Which programming languages do you use?", answer "Python, JavaScript, Go"
 
-### Variable and ID Usage
+### Memory Questions and IDs
 
-Variables and IDs work the same as with buttons:
+Memory questions and IDs work the same as with buttons:
 
-- A leading `{{variable}}` stores selections in that named variable
-- `//id` separates display from value
+- A leading `{{question}}` associates the selected answer with that question
+- `//id` separates display text from the saved answer
 
 ## Input (Text Entry)
 
@@ -123,13 +126,16 @@ Input fields allow users to enter custom text. They use `...` followed by a hint
 ?[...Enter text here]
 ```
 
-### Variable Usage
+### Saving Text as Memory
 
-Variables work the same as described above. Use `{{variable}}` only when the input must be shared beyond the current MarkdownFlow document:
+To save a text answer, put its question before the input hint:
 
 ```markdown
-?[{{shared_name}}...Enter your name]
+Ask how the user would like to be addressed.
+?[{{How would you like to be addressed?}} ...Enter your name]
 ```
+
+As with buttons, the platform determines where the memory is saved and where it can be reused.
 
 ## Combining Elements
 
@@ -140,7 +146,7 @@ You can combine buttons/options with input fields to provide both preset choices
 Example:
 
 ```markdown
-How should we address you?
+Ask the user how they would like to be addressed.
 
 ?[Mr. | Ms. | Dr. | Prof. | ...Other (please specify)]
 
@@ -152,7 +158,7 @@ Use the user's chosen form of address in the next greeting.
 Example:
 
 ```markdown
-Select your skills or add new ones:
+Ask the user to select their skills or add new ones:
 
 ?[Python || JavaScript || Go || Rust || ...Add another skill]
 
@@ -161,16 +167,18 @@ Summarize the user's skillset based on the selected options and any custom entry
 
 ## Tips and Best Practices
 
-### Text Adaptation and IDs
+### Author-Provided Text, Translation, and IDs
 
-The LLM may adapt button/option text and input hints based on context (translation, rephrasing). Use IDs when you need consistent values:
+Use the author's button and option labels and input hints by default. Translation depends on the host: AI-Shifu's native engine instructs the model to preserve authored controls, while the standalone [`markdown-flow-agent-py` SDK (Python package `markdown-flow` 0.4.16)](https://pypi.org/project/markdown-flow/0.4.16/) can translate their display text when `set_output_language(...)` or `set_prompt("output_language", ...)` is configured. Without an output-language setting, the SDK skips interaction translation. During translation, it preserves answer values, adding `//original_value` when needed.
 
-**Without IDs - Adapted Values:**
+The following examples show separately authored language versions. Use the same `//id` when their saved answers must stay consistent:
+
+**Without IDs - Different Saved Answers:**
 
 - English: "Continue" → stores "Continue"
 - French: "Continuer" → stores "Continuer"
 
-**With IDs - Fixed Values:**
+**With IDs - Consistent Saved Answers:**
 
 - English: "Continue//continue" → stores "continue"
 - French: "Continuer//continue" → stores "continue"
@@ -181,5 +189,5 @@ The LLM may adapt button/option text and input hints based on context (translati
 2. **Use Options** when users can choose multiple items (skills, preferences)
 3. **Use Input** when you need custom text (names, feedback, quantities)
 4. **Use IDs** when you need consistent backend values across languages
-5. **Use Variables** only when an answer must be shared across MarkdownFlow documents
+5. **Add a memory question** when an answer should be saved for later use
 6. **Combine elements** to provide both convenience and flexibility

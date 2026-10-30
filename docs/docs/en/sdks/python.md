@@ -23,7 +23,7 @@ The repository includes:
 - **Quick Start Guide** - Get up and running in minutes
 - **API Reference** - Complete method and configuration documentation
 - **Examples** - FastAPI, Django, and Flask integration examples
-- **Configuration** - Environment variables, caching, and LLM providers
+- **Configuration** - Environment settings, caching, and LLM providers
 - **Troubleshooting** - Common issues and solutions
 
 ## Repository

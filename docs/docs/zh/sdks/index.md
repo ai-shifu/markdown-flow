@@ -24,7 +24,7 @@ MarkdownFlow 为主要编程语言和框架提供 SDK。每个 SDK 都作为独�
 ### React
 
 - **[markdown-flow-ui](https://github.com/ai-shifu/markdown-flow-ui)** - 用于交互式 MarkdownFlow 文档的即用 React 组件
-- **[remark-flow](https://github.com/ai-shifu/remark-flow)** - 具有变量处理和 AI 集成的 react-markdown 插件
+- **[remark-flow](https://github.com/ai-shifu/remark-flow)** - 支持记忆引用、交互控件和 AI 集成的 react-markdown 插件
 
 ### Vue.js 和 Vanilla JavaScript
 

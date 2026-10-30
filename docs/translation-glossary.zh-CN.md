@@ -23,10 +23,12 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 
 | English | Chinese | Notes |
 |---------|---------|-------|
-| Variables | 变量 | `{{variable}}` |
+| Memory | 记忆 | Questions and answers |
+| Question | 问题 | `{{question}}` refers to its remembered answer |
+| Answer | 回答 | Collected with `?[{{question}}...]` |
 | Interactive Elements | 交互元素 | |
-| Button| 按钮| `?[{{var}}Option]` |
-| Input | 输入框| `?[{{var}}...input hint]` |
+| Button| 按钮| `?[{{question}}Option]` |
+| Input | 输入框| `?[{{question}}...input hint]` |
 | Preserved Content | 确定内容 | `===content===` |
 | Preserved Output | 确定输出| Same as above |
 
