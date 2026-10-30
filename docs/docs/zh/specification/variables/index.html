@@ -6,7 +6,25 @@
   <meta name="robots" content="noindex">
   <link rel="canonical" href="https://markdownflow.ai/docs/zh/specification/memory/">
   <title>记忆</title>
-  <script>window.location.replace("../memory/" + window.location.hash);</script>
+  <script>
+    const sections = {
+      "#markdownflow": "#_2",
+      "#_2": "#_3",
+      "#_3": "#_5",
+      "#_4": "#_6",
+      "#_5": "#_7",
+      "#_6": "#_8",
+      "#_7": "#_3",
+      "#1": "#_4",
+      "#2": "#_3",
+      "#3": "#_4",
+      "#_8": "#_9",
+      "#_12": "#html",
+      "#_13": "#_11"
+    };
+    const fragment = window.location.hash;
+    window.location.replace("../memory/" + (sections[fragment] || fragment));
+  </script>
 </head>
 <body>
   <p>继续阅读<a href="../memory/">记忆</a>。</p>
