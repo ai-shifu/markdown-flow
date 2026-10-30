@@ -167,9 +167,11 @@ Summarize the user's skillset based on the selected options and any custom entry
 
 ## Tips and Best Practices
 
-### Author-Provided Text and IDs
+### Author-Provided Text, Translation, and IDs
 
-Button and option labels and input hints retain the text provided by the author. For different language versions, provide the display text in each language and use the same `//id` when the saved answer must stay consistent:
+Use the author's button and option labels and input hints by default. Translation depends on the host: AI-Shifu's native engine instructs the model to preserve authored controls, while the standalone [`markdown-flow-agent-py` SDK (Python package `markdown-flow` 0.4.16)](https://pypi.org/project/markdown-flow/0.4.16/) can translate their display text when `set_output_language(...)` or `set_prompt("output_language", ...)` is configured. Without an output-language setting, the SDK skips interaction translation. During translation, it preserves answer values, adding `//original_value` when needed.
+
+The following examples show separately authored language versions. Use the same `//id` when their saved answers must stay consistent:
 
 **Without IDs - Different Saved Answers:**
 
