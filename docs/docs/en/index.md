@@ -73,10 +73,10 @@ Generate a welcoming message for {{user_name}} that mentions their
 current account balance of {{balance}} in a friendly tone.
 ```
 
-For interaction controls, add `%{{variable}}` only when the answer needs to be stored for cross-document use:
+For interaction controls, add `{{variable}}` only when the answer needs to be stored for cross-document use:
 
 ```markdown
-?[%{{shared_level}} Beginner | Intermediate | Expert]
+?[{{shared_level}} Beginner | Intermediate | Expert]
 ```
 
 **Learn more:** [Variables Specification](specification/variables.md)

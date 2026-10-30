@@ -113,7 +113,7 @@ The document prompt and the current content block are sent to the Large Language
 
 ### Step 4: Interactive Element Processing
 
-If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The answer becomes context for the following content in the same MarkdownFlow document. If the control uses `%{{variable}}`, the answer is also stored in that named variable for cross-document sharing.
+If the current block contains buttons or inputs, the system displays the interactive interface and waits for user input. The answer becomes context for the following content in the same MarkdownFlow document. If the control begins with `{{variable}}`, the answer is also stored in that named variable for cross-document sharing.
 
 For more details, see the [Interaction](interaction.md) section.
 

@@ -25,8 +25,8 @@ This glossary provides standardized Chinese translations for MarkdownFlow termin
 |---------|---------|-------|
 | Variables | 变量 | `{{variable}}` |
 | Interactive Elements | 交互元素 | |
-| Button| 按钮| `?[%{{var}}Option]` |
-| Input | 输入框| `?[%{{var}}...input hint]` |
+| Button| 按钮| `?[{{var}}Option]` |
+| Input | 输入框| `?[{{var}}...input hint]` |
 | Preserved Content | 确定内容 | `===content===` |
 | Preserved Output | 确定输出| Same as above |
 

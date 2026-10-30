@@ -29,7 +29,7 @@ MarkdownFlow (MDFlow) is a Markdown format extension that enables AI-powered, pe
 
 3. **Variables**: `{{variable_name}}` - Advanced shared-context placeholders replaced with actual values
    Example: `Generate a welcome for {{user_name}} mentioning {{balance}}`
-   - For interaction controls, use `?[%{{shared_var}}Option1|Option2]` only when the answer must be stored for cross-document sharing
+   - For interaction controls, use `?[{{shared_var}}Option1|Option2]` only when the answer must be stored for cross-document sharing
 
 ## Core Documentation
 
